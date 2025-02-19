@@ -8,7 +8,7 @@ export const SelfProfile=()=>{
     className="max-w-xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white shadow-xl rounded-lg text-gray-900 w-64">
      
     <div className="mx-auto w-20 h-20 relative border-4 border-white rounded-full overflow-hidden">
-        <Image width={100} height={100}height={100} width={100} className="object-cover object-center h-20" src='https://randomuser.me/api/portraits/men/69.jpg' alt='Woman looking front'/>
+        <Image width={100}  height={100}  className="object-cover object-center h-20" src='https://randomuser.me/api/portraits/men/69.jpg' alt='Woman looking front'/>
     </div>
     <div className="text-center mt-2">
         <h2 className="font-semibold">Rohit Saxena</h2>
@@ -29,9 +29,9 @@ export const SelfProfile=()=>{
         </li>
     </ul>
     <div className="p-4 mx-8 mt-0">
-      <Link href="/account/profile">
-      <button className="w-auto block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-4 py-2 text-sm">My Profile</button>
-      </Link>
+          
+      <button className="w-auto block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-4 py-2 text-sm"> <Link href="/account/profile"> My Profile </Link></button>
+       
          
     </div>
 </div>
