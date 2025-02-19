@@ -16,7 +16,7 @@ const Login = () => {
     setError(null);
 
     const response = await loginUser({ email, password });
-
+    localStorage.setItem("email", email);
     if (response.success && response.token) {
       localStorage.setItem("token", response.token);
       router.push("/home/feed"); // Redirect to dashboard

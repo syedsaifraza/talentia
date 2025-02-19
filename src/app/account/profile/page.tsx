@@ -27,8 +27,8 @@ export default function Profile() {
               alt="Profile"
             />
             <div>
-              <h1 className="text-2xl font-bold text-white">Acetians</h1>
-              <p className="text-gray-200">Acetians Technologis | AI Leader in India</p>
+              <h1 className="text-2xl font-bold text-white">Rohit Saxena</h1>
+              <p className="text-gray-200">Rohit Saxena  | Marketing Executive</p>
             </div>
           </div>
         </div>
@@ -54,8 +54,8 @@ export default function Profile() {
         <div className="flex">
         <div className="w-full md:w-1/3 mx-auto p-6 bg-white mt-6 shadow rounded">
           <h2 className="text-xl font-semibold">Intro</h2>
-          <p className="text-gray-700">Acetians is Shaping the future of AI.</p>
-          <p className="text-gray-700">We are inviting the world to build a responsibel AI.</p>
+          <p className="text-gray-700">Love to work in marketting.</p>
+          <p className="text-gray-700">Leading marketting Executive.</p>
         </div>
         <div className="w-full md:w-2/3 mx-auto p-6 bg-white mt-6 shadow rounded">
         {currentPage==accountSubOptions[0] &&   <Post/> }

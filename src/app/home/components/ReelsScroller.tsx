@@ -48,6 +48,8 @@ const ReelsScroller = () => {
             >
                 <div className="absolute inset-0 bg-black opacity-40"></div>
               <Image
+               
+
                 src={reel.thumbnail}
                 alt={reel.user}
                 className="w-full h-full object-cover"

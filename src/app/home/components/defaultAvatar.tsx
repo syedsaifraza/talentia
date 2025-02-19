@@ -24,6 +24,7 @@ const DefaultAvatar: React.FC<AvatarProps> = ({ name, size = 40 }) => {
         width: size,
         height: size,
         backgroundColor: bgColor,
+        backgroundImage:`url('https://randomuser.me/api/portraits/men/69.jpg')`,
         color: "#fff",
         display: "flex",
         justifyContent: "center",

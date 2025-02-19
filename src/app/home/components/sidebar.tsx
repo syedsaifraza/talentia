@@ -1,6 +1,6 @@
 'use client' 
   
-import { FaUserFriends } from "react-icons/fa";
+import { FaBuilding, FaUserFriends, FaWatchmanMonitoring } from "react-icons/fa";
 import { FaBookmark, FaHistory, FaUsers, FaVideo, FaHome, FaBirthdayCake, FaEnvelope, FaClock, FaBriefcase, FaNewspaper } from "react-icons/fa";
  
 import { SelfProfile } from "./self-profile";
@@ -9,8 +9,11 @@ import { SelfProfile } from "./self-profile";
 const Sidebar = () => {
   //const { user } = useSelector((state: any) => state.auth);
   const sideOptions = [
+    { name: "Create Institution", icon: <FaBuilding size={25} /> },
     { name: "Feed", icon: <FaHome size={25} /> },
     { name: "Connections", icon: <FaUserFriends size={25} /> },
+    { name: "Blog", icon: <FaBookmark size={25} /> },
+    { name: "Reels", icon: <FaWatchmanMonitoring size={25} /> },
     { name: "Saved", icon: <FaBookmark size={25} /> },
     { name: "Watch History", icon: <FaHistory size={25} /> },
     { name: "Communities", icon: <FaUsers size={25} /> },

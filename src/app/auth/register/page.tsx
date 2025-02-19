@@ -31,6 +31,8 @@ const Register = () => {
      
 
     const response = await signupUser({ name, email, password });
+    localStorage.setItem("name",name);
+    localStorage.setItem("email",email);
     toast(response.message)
     if (response.success && response.token) {
       localStorage.setItem("token", response.token);

@@ -7,10 +7,10 @@ export const SelfProfile=()=>{
     className="max-w-xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white shadow-xl rounded-lg text-gray-900 w-64">
      
     <div className="mx-auto w-20 h-20 relative border-4 border-white rounded-full overflow-hidden">
-        <Image className="object-cover object-center h-20" src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Woman looking front'/>
+        <Image height={100} width={100} className="object-cover object-center h-20" src='https://randomuser.me/api/portraits/men/69.jpg' alt='Woman looking front'/>
     </div>
     <div className="text-center mt-2">
-        <h2 className="font-semibold">Sarah Smith</h2>
+        <h2 className="font-semibold">Rohit Saxena</h2>
         <p className="text-gray-500">Freelance Web Designer</p>
     </div>
     <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">

@@ -69,6 +69,7 @@ export const registerUser = async (_userData: RegisterData): Promise<AuthRespons
 };
 
 export const loginUser = async (_credentials: LoginData): Promise<AuthResponse> => {
+
   console.log("Dummy loginUser called with:", _credentials);
   return new Promise((resolve) =>
     setTimeout(() => resolve({ ...dummyUser, message: "Login successful" }), 500)
