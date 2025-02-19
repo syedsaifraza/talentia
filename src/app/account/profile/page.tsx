@@ -15,7 +15,7 @@ export default function Profile() {
         {/* Cover Photo */}
         <div className="relative">
           <Image
-            src="https://picsum.photos/1500/600"
+            src="https://randomuser.me/api/portraits/men/69.jpg"
             className="w-full h-60 object-cover"
             alt="Cover"
           />

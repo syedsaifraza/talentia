@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const SelfProfile=()=>{
     return (
@@ -37,7 +38,10 @@ export const SelfProfile=()=>{
         </li>
     </ul>
     <div className="p-4 mx-8 mt-0">
-        <button className="w-auto block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-4 py-2 text-sm">My Profile</button>
+      <Link href="/account/profile">
+      <button className="w-auto block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-4 py-2 text-sm">My Profile</button>
+      </Link>
+         
     </div>
 </div>
     );
