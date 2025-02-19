@@ -27,7 +27,7 @@ export const FriendsCard = ({ profileId }: { profileId: number }) => {
         </div>
     </div>
     <div className="flex flex-col items-center pb-10">
-        <Image className="w-24 h-24 mb-3 rounded-full shadow-lg" src={`https://randomuser.me/api/portraits/women/${profileId}.jpg`} alt="Bonnie image"/>
+        <Image width={100} height={100}className="w-24 h-24 mb-3 rounded-full shadow-lg" src={`https://randomuser.me/api/portraits/women/${profileId}.jpg`} fill alt="Bonnie image"/>
         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
         <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
         <div className="flex mt-4 md:mt-6">

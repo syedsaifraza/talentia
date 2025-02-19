@@ -6,7 +6,8 @@ export default function Post() {
         {/* Post Header */}
         <div className="flex items-center space-x-3">
           <Image
-            src="https://randomuser.me/api/portraits/men/47.jpg"
+            width={10} height={10}
+            src="https://randomuser.me/api/portraits/men/69.jpg"
             alt="User Avatar"
             className="w-10 h-10 rounded-full"
           />
@@ -23,6 +24,8 @@ export default function Post() {
   
         {/* Post Image (Optional) */}
         <Image
+          width={100}  height={1000}
+           
           src="https://talentia.co.in/post.jpg"
           alt="Post"
           className="rounded-lg w-full"

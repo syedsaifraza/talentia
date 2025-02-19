@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -13,7 +14,7 @@ const DefaultAvatar: React.FC<AvatarProps> = ({ imageUrl, size = 40 }) => {
 
   return (
     <Link href="/account/profile">
-      <img
+      <Image
         src={imageUrl || defaultImage} // Use provided image or fallback
         alt="User Avatar"
         width={size}

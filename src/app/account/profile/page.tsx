@@ -15,6 +15,7 @@ export default function Profile() {
         {/* Cover Photo */}
         <div className="relative">
           <Image
+           fill
             src="https://randomuser.me/api/portraits/men/69.jpg"
             className="w-full h-60 object-cover"
             alt="Cover"
@@ -22,6 +23,7 @@ export default function Profile() {
           <div className="absolute bottom-4 left-6 flex items-center space-x-4">
             {/* Profile Picture */}
             <Image
+             fill
               src="https://picsum.photos/100/100"
               className="w-28 h-28 rounded-full border-4 border-white"
               alt="Profile"
@@ -54,8 +56,8 @@ export default function Profile() {
         <div className="flex">
         <div className="w-full md:w-1/3 mx-auto p-6 bg-white mt-6 shadow rounded">
           <h2 className="text-xl font-semibold">Intro</h2>
-          <p className="text-gray-700">Love to work in marketting.</p>
-          <p className="text-gray-700">Leading marketting Executive.</p>
+          <p className="text-gray-700">Love to work in marketing.</p>
+          <p className="text-gray-700">Leading marketing Executive.</p>
         </div>
         <div className="w-full md:w-2/3 mx-auto p-6 bg-white mt-6 shadow rounded">
         {currentPage==accountSubOptions[0] &&   <Post/> }

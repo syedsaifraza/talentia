@@ -20,11 +20,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <aside className="w-1/4 p-0 hidden lg:block">
                     <div className="fixed right-0 z-40">
                     <div className=" p-2  ">
-                        <Image src="https://talentia.co.in/byjus.png" height={200} width={300} alt="Sponser Image"/>
+                        <Image width={100} height={100}src="https://talentia.co.in/byjus.png" height={200} width={300} alt="Sponser Image"/>
                         <h1 style={{textDecoration:'underline'}}>Join Byjus Upto 50% Scholarship</h1>
                     </div>
                     <div className=" p-2 ">
-                        <Image src="https://talentia.co.in/physics-wallah.png" height={200} width={300} alt="Sponser Image"/>
+                        <Image width={100} height={100}src="https://talentia.co.in/physics-wallah.png" height={200} width={300} alt="Sponser Image"/>
                         <h1 style={{textDecoration:'underline'}}>Physics Wallah in Kanpur Now</h1>
                     </div>
                     </div>

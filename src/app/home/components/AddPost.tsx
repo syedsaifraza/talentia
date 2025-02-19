@@ -26,7 +26,7 @@ const AddPost = () => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4 mt-1 mb-1">
       <div className="flex items-center space-x-3">
-      <DefaultAvatar name={"Syed Saif"}/>
+      <DefaultAvatar imageUrl="https://randomuser.me/api/portraits/men/69.jpg"/>
         <input
           type="text"
           placeholder="What's on your mind?"
@@ -38,7 +38,7 @@ const AddPost = () => {
 
       {image && (
         <div className="mt-3">
-          <Image src={image} alt="Preview" className="w-full rounded-md" />
+          <Image width={100} height={100}src={image} alt="Preview" className="w-full rounded-md" />
         </div>
       )}
 

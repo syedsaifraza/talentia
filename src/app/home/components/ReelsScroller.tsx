@@ -49,13 +49,14 @@ const ReelsScroller = () => {
                 <div className="absolute inset-0 bg-black opacity-40"></div>
               <Image
                
-
+                width={100} height={100}
                 src={reel.thumbnail}
                 alt={reel.user}
                 className="w-full h-full object-cover"
               />
               <div className="absolute top-2 left-2 w-8 h-8 border-2 border-blue-500 rounded-full">
                 <Image
+                width={100} height={100}
                   src={reel.avatar}
                   alt={reel.user}
                   className="w-full h-full rounded-full"

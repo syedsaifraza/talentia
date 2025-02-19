@@ -22,7 +22,7 @@ export default function Navbar() {
                 <div className="relative flex items-center justify-between">
                     <div className="flex flex-1 items-center justify-center sm:justify-between">
                         <div className="flex shrink-0 items-start lg:w-1/4">
-                            <Image alt="Logo" width={200} height={30} className="px-2" src="https://talentia.co.in/logo.png" />
+                            <Image width={100} height={100}alt="Logo" width={200} height={30} className="px-2" src="https://talentia.co.in/logo.png" />
                         </div>
                         <div className="hidden sm:block lg:w-full">
                             <div className="flex justify-between w-full px-20">
@@ -62,7 +62,7 @@ export default function Navbar() {
                                     </div>
                                 )}
                             </div>
-                            <div className="px-1"><DefaultAvatar size={35} name="Syed Saif" /></div>
+                            <div className="px-1"><DefaultAvatar size={35} imageUrl="https://randomuser.me/api/portraits/men/69.jpg" /></div>
                         </div>
                     </div>
                 </div>
