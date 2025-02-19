@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 
-export default function GetNotified() {
-  const [visible, setVisible] = useState(true);
+const GetNotified: React.FC = () => {
+  const [visible, setVisible] = useState<boolean>(true);
 
   if (!visible) return null;
 
@@ -11,7 +11,7 @@ export default function GetNotified() {
     <div className="bg-gray-100 p-4 rounded-lg flex justify-between items-center border">
       {/* Left Content */}
       <div>
-        <h3 className="text-lg font-semibold">Get notified about jobs you're interested in</h3>
+        <h3 className="text-lg font-semibold">Get notified about jobs you&apos;re interested in</h3>
         <p className="text-sm text-gray-600">
           Create an alert for a job title, a company, or key words.
         </p>
@@ -21,9 +21,15 @@ export default function GetNotified() {
       </div>
 
       {/* Close Button */}
-      <button onClick={() => setVisible(false)} className="text-gray-500 hover:text-gray-700">
+      <button
+        onClick={() => setVisible(false)}
+        className="text-gray-500 hover:text-gray-700"
+        aria-label="Close notification"
+      >
         <IoClose size={24} />
       </button>
     </div>
   );
-}
+};
+
+export default GetNotified;
