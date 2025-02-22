@@ -5,7 +5,7 @@ import Navbar from "../home/components/navbar";
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
          
-        <div className="bg-[#ddd06a] min-h-screen h-screen overflow-y-scroll">
+        <div className="bg-blue-50 min-h-screen h-screen overflow-y-scroll">
             <Navbar />
             <div className="w-full  flex justify-center py-1">
                 

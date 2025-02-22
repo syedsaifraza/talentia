@@ -5,7 +5,7 @@ import Sidebar from "./components/sidebar";
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
          
-        <div className="bg-[#ddd06a] h-screen overflow-scroll">
+        <div className="bg-blue-50 h-screen overflow-scroll">
             <Navbar />
             <div className="w-full mx-auto flex py-1">
                 {/* Left Sidebar */}

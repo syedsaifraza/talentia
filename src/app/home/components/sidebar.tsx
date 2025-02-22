@@ -29,11 +29,11 @@ const Sidebar = () => {
     <aside id="default-sidebar" className="w-1/4 h-[90vh]" aria-label="Sidebar">
       <div className="h-full px-3 py-4 overflow-y-auto   dark:bg-gray-800 no-scrollbar fixed left-0 z-40 ">
         <ul className="space-y-2 font-medium">
-          <li key={321}>
+          <li key={321} className="">
             <SelfProfile/>
              
           </li>
-          {sideOptions.map((side,index)=><li key={index} className=" px-2 ">
+          {sideOptions.map((side,index)=><li key={index} className=" px-2 font-a">
             <a
               href="#"
               className="flex items-center p-2 py-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
