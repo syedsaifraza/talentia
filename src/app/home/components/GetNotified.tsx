@@ -11,7 +11,7 @@ const GetNotified: React.FC = () => {
     <div className="bg-gray-100 p-4 rounded-lg flex justify-between items-center border">
       {/* Left Content */}
       <div>
-        <h3 className="text-lg font-semibold">Get notified about jobs you&apos;re interested in</h3>
+        <h3 className="text-lg font-semibold">Get notified about jobs you are interested in</h3>
         <p className="text-sm text-gray-600">
           Create an alert for a job title, a company, or key words.
         </p>
