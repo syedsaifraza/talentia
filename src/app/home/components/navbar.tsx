@@ -6,8 +6,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { CiBellOn, CiBoxes, CiLaptop, CiSettings, CiYoutube } from "react-icons/ci";
 import { usePathname } from "next/navigation";
-import DefaultAvatar from "./defaultAvatar";
-import { FaUserCircle } from "react-icons/fa";
+import DefaultAvatar from "./defaultAvatar"; 
 
 export default function Navbar() {
     const pathname = usePathname();
