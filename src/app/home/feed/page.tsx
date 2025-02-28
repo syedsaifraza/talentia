@@ -7,7 +7,7 @@ export default function Feed() {
      
     <div className="">
       <AddPost/>
-      <ReelsScroller/>
+      <ReelsScroller  />
        
       <Post />
       <Post />

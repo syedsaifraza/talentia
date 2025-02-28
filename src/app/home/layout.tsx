@@ -18,7 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 
                 {/* Right Sidebar */}
                 <aside className="w-1/4 p-0 hidden lg:block">
-                    <div className="fixed right-0 z-40">
+                    <div className="fixed right-10 z-40">
                     <div className=" p-2  ">
                         <Image width={300} height={200}src="https://talentia.co.in/byjus.png"    alt="Sponser Image"/>
                         <h1 style={{textDecoration:'underline'}}>Join Byjus Upto 50% Scholarship</h1>

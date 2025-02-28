@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"; 
 import DefaultAvatar from "./defaultAvatar";
-import { BsCamera, BsEmojiHeartEyesFill } from "react-icons/bs";
+import { BsCamera, BsCameraVideo, BsEmojiHeartEyesFill } from "react-icons/bs";
 import Image from "next/image";
 
 const AddPost = () => {
@@ -45,7 +45,18 @@ const AddPost = () => {
       <div className="flex justify-between items-center mt-3">
         <label className="flex items-center space-x-2 cursor-pointer">
           <BsCamera className="w-5 h-5 text-blue-500"/>
-          <span className="text-sm text-gray-600">Photo/Video</span>
+          <span className="text-sm text-gray-600">Photo</span>
+          <input
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleImageUpload}
+          />
+        </label>
+
+        <label className="flex items-center space-x-2 cursor-pointer">
+          <BsCameraVideo className="w-5 h-5 text-blue-500"/>
+          <span className="text-sm text-gray-600">Video</span>
           <input
             type="file"
             accept="image/*"

@@ -7,6 +7,34 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c9abab;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #d4b8b8;
+}
+
+
+#default-sidebar:hover ::-webkit-scrollbar {
+  width: 5px;
+  display: block;
+}
+
 ul{
   padding: 0;
   margin: 0;
@@ -69,6 +97,6 @@ body {
 
 .font-a{
   font-family:Arial, sans-serif !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   font-size: 13px !important;
 }
