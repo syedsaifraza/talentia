@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
          
         <div className="bg-blue-50 h-screen">
             <Navbar />
-            <div className="w-full mx-auto flex py-1">
+            <div className="w-full mx-auto flex ">
                
                 <MessageList />
                 

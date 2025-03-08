@@ -19,6 +19,7 @@ export default function MessageList() {
     { name: "Priya Malhotra", status: "Online", img: "https://randomuser.me/api/portraits/women/10.jpg" },
     { name: "Amit Gupta", status: "Offline", img: "https://randomuser.me/api/portraits/men/11.jpg" },
     { name: "Sneha Joshi", status: "Online", img: "https://randomuser.me/api/portraits/women/12.jpg" },
+    { name: "Sneha Joshi", status: "Online", img: "https://randomuser.me/api/portraits/women/12.jpg" },
   ];
 
   // Possible last messages
@@ -38,9 +39,9 @@ export default function MessageList() {
   ];
 
   return (
-    <div className="flex flex-col w-80 text-gray-900 border-r border-gray-300 h-screen py-20 pb-2">
+    <div className="flex flex-col w-80 text-gray-900 border-r border-gray-300 h-screen ">
       {/* Search Bar */}
-      <div className="p-3">
+      <div className="px-3">
         <input
           type="text"
           placeholder="Search messages..."

@@ -51,7 +51,7 @@ export default function MessageView() {
   };
 
   return (
-    <div className="flex flex-col w-full bg-white border border-gray-300 rounded-lg shadow-lg h-[85vh] mt-20">
+    <div className="flex flex-col w-full bg-white border border-gray-300 rounded-lg shadow-lg h-[85vh]">
       {/* Chat Header */}
       <div className="p-3 bg-white text-gray-800 font-medium text-lg rounded-t-lg border-b border-gray-300">
         Chat with Aarav Sharma  

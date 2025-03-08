@@ -7,6 +7,7 @@ interface Job {
   location: string;
   salary?: string;
   promoted: boolean;
+  logo: string;
 }
 
 interface JobListProps {
@@ -17,12 +18,14 @@ export default function JobList({ jobs }: JobListProps) {
   return (
     <div className="space-y-4">
       {jobs.map((job) => (
-        <JobItem key={job.id}
-        logo="https://picsum.photos/80/80"
-        title= {job.title}
-        company= {job.company}
-        location= {job.location}
-        salary= {"12LPA"}   />
+        <JobItem
+          key={job.id}
+          logo={job.logo}
+          title={job.title}
+          company={job.company}
+          location={job.location}
+          salary={job.salary || "12LPA"} // Default salary if not provided
+        />
       ))}
     </div>
   );

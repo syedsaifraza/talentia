@@ -23,6 +23,7 @@ const DefaultAvatar: React.FC<AvatarProps> = ({ imageUrl, size = 40 }) => {
           borderRadius: "50%",
           objectFit: "cover",
           cursor: "pointer",
+          width: "100%",
         }}
       />
     </Link>

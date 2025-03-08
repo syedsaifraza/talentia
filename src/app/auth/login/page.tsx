@@ -6,8 +6,8 @@ import Link from "next/link";
 import { loginUser } from "../../../utils/apis/auth"
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("surajkabir@gmail.com");
+  const [password, setPassword] = useState("surajkabir");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
