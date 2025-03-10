@@ -6,7 +6,7 @@ import Image from "next/image";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { IoClose } from "react-icons/io5";
 import { MdNoteAdd } from "react-icons/md";
-import dynamic from "next/dynamic"; 
+import dynamic from "next/dynamic";
 
 const EmojiPicker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
@@ -38,12 +38,10 @@ const AddPost = ({ addPost }: AddPostProps) => {
     }
   };
 
-  
   const handleRemoveMedia = () => {
     setMedia(null);
   };
 
- 
   const handlePostSubmit = () => {
     if (!postText.trim() && !media) return;
 
@@ -51,27 +49,24 @@ const AddPost = ({ addPost }: AddPostProps) => {
       text: postText,
       media,
       user: {
-        name: "John Doe", 
+        name: "John Doe",
         avatar: "https://randomuser.me/api/portraits/men/69.jpg",
       },
       timestamp: new Date().toISOString(),
     };
 
-    addPost(newPost); 
+    addPost(newPost);
     setPostText("");
     setMedia(null);
   };
-
 
   const handleAddButtonClick = () => {
     fileInputRef.current?.click();
   };
 
-
   const handleFeelingButtonClick = () => {
     setShowEmojiSection((prev) => !prev);
   };
-
 
   const handleEmojiClick = (emojiObject: { emoji: string }) => {
     setPostText((prevText) => prevText + emojiObject.emoji);
@@ -79,7 +74,6 @@ const AddPost = ({ addPost }: AddPostProps) => {
 
   return (
     <div className="flex flex-col justify-center h-[25vh] px-[2vw] bg-white rounded-lg p-4">
-    
       <div className="flex items-center space-x-3">
         <DefaultAvatar imageUrl="https://randomuser.me/api/portraits/men/69.jpg" />
         <input
@@ -92,11 +86,9 @@ const AddPost = ({ addPost }: AddPostProps) => {
         />
       </div>
 
-    
       {isModalOpen && (
         <div className="fixed inset-0 z-[99] flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div className="bg-white shadow-[0px_0px_16px_0px_rgba(0,_0,_0,_0.1)] flex gap-2 flex-col py-5 rounded-lg w-[40vw] h-[90vh]">
-         
             <div className="flex px-4 flex-row items-center border-b-[1px] border-gray pb-2 justify-between">
               <h2 className="text-lg">Create Post</h2>
               <button
@@ -117,13 +109,15 @@ const AddPost = ({ addPost }: AddPostProps) => {
               />
               <div>
                 <h3 className="font-semibold text-gray-800">John Doe</h3>
-                <p className="text-xs text-gray-500">2 hours ago</p>
+                <select className=" block font-bold text-[11px]  bg-gray-100 border-transparent  text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600">
+                  <option selected>Only for Me</option>
+                  <option>Only Friends</option>
+                  <option>EveryOne</option>
+                </select>
               </div>
             </div>
 
-         
             <div className="overflow-y-auto mx-4 mt-2">
-              
               <textarea
                 className="w-full py-2 border-none rounded-md focus:border-none focus:outline-none"
                 rows={3}
@@ -132,7 +126,6 @@ const AddPost = ({ addPost }: AddPostProps) => {
                 onChange={(e) => setPostText(e.target.value)}
               ></textarea>
 
-            
               {showEmojiSection ? (
                 <div className="p-2 border-[1px] border-gray mt-2 rounded-[12px]">
                   <EmojiPicker
@@ -150,7 +143,6 @@ const AddPost = ({ addPost }: AddPostProps) => {
                   >
                     {media ? (
                       <div className="w-full h-full relative">
-                       
                         <button
                           className="absolute top-2 right-2 z-10 p-1 bg-white rounded-full shadow-md hover:bg-gray-100"
                           onClick={(e) => {
@@ -161,7 +153,6 @@ const AddPost = ({ addPost }: AddPostProps) => {
                           <IoClose className="text-lg text-gray-700" />
                         </button>
 
-                       
                         {media.type === "image" ? (
                           <Image
                             width={100}
@@ -187,7 +178,6 @@ const AddPost = ({ addPost }: AddPostProps) => {
                       </div>
                     )}
 
-               
                     <input
                       type="file"
                       accept="image/*, video/*"
@@ -200,7 +190,6 @@ const AddPost = ({ addPost }: AddPostProps) => {
               )}
             </div>
 
-          
             <div className="flex mx-4 justify-between items-center space-x-2 mt-4">
               <div className="flex flex-row items-center gap-2">
                 <button
@@ -238,7 +227,6 @@ const AddPost = ({ addPost }: AddPostProps) => {
         </div>
       )}
 
-    
       <div className="flex justify-evenly items-center mt-5">
         <button
           className="flex items-center rounded-md justify-center hover:bg-gray-100 px-2 py-3 w-[13vw] space-x-2 cursor-pointer"

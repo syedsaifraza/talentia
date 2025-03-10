@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Sidebar />
                 
                 {/* Centered Content */}
-                <main className="w-full lg:w-3/4 px-8">
+                <main className="w-full lg:w-3/4 px-8 py-4">
                     <div className="">{children}</div>
                 </main>
                 

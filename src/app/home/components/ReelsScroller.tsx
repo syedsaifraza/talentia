@@ -11,19 +11,91 @@ const EmojiPicker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 const initialReelsData = [
   {
     id: 1,
-    user: "Add Status",
+    user: "Alice Johnson",
+
     avatar: "https://picsum.photos/20/20?random=1",
     thumbnail: "https://picsum.photos/300/500?random=1",
-    video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    video: "https://content.acetians.in/uploads/video15.mp4",
   },
   {
     id: 2,
-    user: "Jane Smith",
+    user: "Bob Brown",
     avatar: "https://picsum.photos/20/20?random=2",
     thumbnail: "https://picsum.photos/300/500?random=2",
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
+    video: "https://content.acetians.in/uploads/video14.mp4",
+  },
+  {
+    id: 3,
+    user: "Charlie Davis",
+    avatar: "https://picsum.photos/20/20?random=1",
+    thumbnail: "https://picsum.photos/300/500?random=1",
+    video: "https://content.acetians.in/uploads/video13.mp4",
+  },
+  {
+    id: 4,
+    user: "Diana Evans",
+    avatar: "https://picsum.photos/20/20?random=2",
+    thumbnail: "https://picsum.photos/300/500?random=2",
+    video: "https://content.acetians.in/uploads/video12.mp4",
+  },
+  {
+    id: 5,
+    user:"Eva Green",
+    avatar: "https://picsum.photos/20/20?random=1",
+    thumbnail: "https://picsum.photos/300/500?random=1",
+    video: "https://content.acetians.in/uploads/video7.mp4",
+  },
+  {
+    id: 6,
+    user:  "Frank Harris",
+    avatar: "https://picsum.photos/20/20?random=1",
+    thumbnail: "https://picsum.photos/300/500?random=1",
+    video: "https://content.acetians.in/uploads/video1.mp4",
+  },
+  {
+    id: 7,
+    user:  "Grace Lee",
+    avatar: "https://picsum.photos/20/20?random=2",
+    thumbnail: "https://picsum.photos/300/500?random=2",
+    video: "https://content.acetians.in/uploads/video4.mp4",
+  },
+  {
+    id: 8,
+    user:   "Henry Martinez",
+    avatar: "https://picsum.photos/20/20?random=1",
+    thumbnail: "https://picsum.photos/300/500?random=1",
+    video: "https://content.acetians.in/uploads/video2.mp4",
+  },
+  {
+    id: 9,
+    user: "Ivy Nguyen",
+    avatar: "https://picsum.photos/20/20?random=2",
+    thumbnail: "https://picsum.photos/300/500?random=2",
+    video: "https://content.acetians.in/uploads/VID-20250310-WA0020.mp4",
+  },
+  {
+    id: 10,
+    user:   "Jack Wilson",
+    avatar: "https://picsum.photos/20/20?random=1",
+    thumbnail: "https://picsum.photos/300/500?random=1",
+    video: "https://content.acetians.in/uploads/VID-20250310-WA0021.mp4",
+  },
+  {
+    id: 11,
+    user:  "Karen Taylor",
+    avatar: "https://picsum.photos/20/20?random=1",
+    thumbnail: "https://picsum.photos/300/500?random=1",
+    video: "https://content.acetians.in/uploads/VID-20250310-WA0023.mp4",
+  },
+  {
+    id: 12,
+    user: "Leo Anderson",
+    avatar: "https://picsum.photos/20/20?random=2",
+    thumbnail: "https://picsum.photos/300/500?random=2",
+    video: "https://content.acetians.in/uploads/video3.mp4",
   },
 ];
+
 
 const ReelsScroller = ({ size = "small", limit = 0 }) => {
   const [reelsData, setReelsData] = useState(initialReelsData);
@@ -90,71 +162,73 @@ const ReelsScroller = ({ size = "small", limit = 0 }) => {
 
   return (
     <>
-      <div className="mt-4 bg-white rounded-lg p-2">
+      <div className=" bg-white rounded-lg p-2">
         <h3 className="text-lg font-semibold mb-2 p-2">Status</h3>
         <div className="flex space-x-3 overflow-x-auto no-scrollbar p-2">
-          <div
-            onClick={() => setaddstatus(!addstatus)}
-            className={`relative ${
-              limit !== 0 ? "h-100 w-60" : "h-40 w-24"
-            } rounded-lg overflow-hidden cursor-pointer`}
-          >
-            <div className="absolute inset-0 bg-black opacity-40"></div>
-            <Image
-              width={100}
-              height={100}
-              src={"https://randomuser.me/api/portraits/men/69.jpg"}
-              alt="hello"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute flex flex-col justify-center align-center items-center top-[60%] left-[10%] text-white rounded-full">
-              <MdAddCircleOutline
-                onClick={() => setaddstatus(!addstatus)}
-                className="text-white hover:text-gray-800 text-[30px]"
-              />
-              <p className="text-[12px]">Add Status</p>
-            </div>
-          </div>
-
-          {(limit === 0
-            ? reelsData
-            : reelsData.filter((reel) => reel.id < limit)
-          ).map((reel, index) => (
+          <div className="flex gap-2">
             <div
-              key={reel.id}
+              onClick={() => setaddstatus(!addstatus)}
               className={`relative ${
                 limit !== 0 ? "h-100 w-60" : "h-40 w-24"
               } rounded-lg overflow-hidden cursor-pointer`}
-              onClick={() => setSelectedStatus(index)}
             >
               <div className="absolute inset-0 bg-black opacity-40"></div>
               <Image
                 width={100}
                 height={100}
-                src={reel.thumbnail}
-                alt={reel.user}
+                src={"https://randomuser.me/api/portraits/men/69.jpg"}
+                alt="hello"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-2 left-2 w-8 h-8 border-2 border-blue-500 rounded-full">
+              <div className="absolute flex flex-col justify-center align-center items-center top-[60%] left-[10%] text-white rounded-full">
+                <MdAddCircleOutline
+                  onClick={() => setaddstatus(!addstatus)}
+                  className="text-white hover:text-gray-800 text-[30px]"
+                />
+                <p className="text-[12px]">Add Status</p>
+              </div>
+            </div>
+
+            {(limit === 0
+              ? reelsData
+              : reelsData.filter((reel) => reel.id < limit)
+            ).map((reel, index) => (
+              <div
+                key={reel.id}
+                className={`relative ${
+                  limit !== 0 ? "h-100 w-60" : "h-40 w-24"
+                } rounded-lg overflow-hidden cursor-pointer`}
+                onClick={() => setSelectedStatus(index)}
+              >
+                <div className="absolute inset-0 bg-black opacity-40"></div>
                 <Image
                   width={100}
                   height={100}
-                  src={reel.avatar}
+                  src={reel.thumbnail}
                   alt={reel.user}
-                  className="w-full h-full rounded-full"
+                  className="w-full h-full object-cover"
                 />
+                <div className="absolute top-2 left-2 w-8 h-8 border-2 border-blue-500 rounded-full">
+                  <Image
+                    width={100}
+                    height={100}
+                    src={reel.avatar}
+                    alt={reel.user}
+                    className="w-full h-full rounded-full"
+                  />
+                </div>
+                <div className="absolute bottom-2 left-2 text-white text-sm font-semibold">
+                  {reel.user}
+                  {limit > 0 && (
+                    <>
+                      <p>300k Views</p>
+                      <p>#20 on Trending</p>
+                    </>
+                  )}
+                </div>
               </div>
-              <div className="absolute bottom-2 left-2 text-white text-sm font-semibold">
-                {reel.user}
-                {limit > 0 && (
-                  <>
-                    <p>300k Views</p>
-                    <p>#20 on Trending</p>
-                  </>
-                )}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {selectedStatus !== null && (

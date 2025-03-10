@@ -122,3 +122,24 @@ const JobCard: React.FC<JobCardProps> = ({
 };
 
 export default JobCard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

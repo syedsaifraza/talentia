@@ -11,14 +11,18 @@ import {
   CiSettings,
   CiYoutube,
 } from "react-icons/ci";
+import { IoMdSettings } from "react-icons/io";
+
 import { MdOutlineVideoLibrary } from "react-icons/md";
 import { MdLeaderboard } from "react-icons/md";
 import { PiBagSimpleFill } from "react-icons/pi";
 import { PiChatCircle } from "react-icons/pi";
 
 import { usePathname } from "next/navigation";
-import DefaultAvatar from "./defaultAvatar";
+import { BiSolidBell } from "react-icons/bi";
 
+import DefaultAvatar from "./defaultAvatar";
+import { BiSolidMessageAlt } from "react-icons/bi";
 import { MdOutlineSettings } from "react-icons/md";
 
 export default function Navbar() {
@@ -64,7 +68,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white shadow-md  px-10 w-full sticky top-0 z-50">
+    <nav className="bg-white shadow-md  px-10 w-full sticky top-0 z-50 bg-gradient-to-r from-[#36809A] via-[#D7EBF6] to-[#4389A2]">
       <div className="mx-auto w-full sm:px-0 lg:px-0">
         <div className="relative flex items-center justify-between">
           <div className="flex flex-1 items-center justify-center sm:justify-between">
@@ -130,12 +134,12 @@ export default function Navbar() {
               </div>
             </div>
             <div className="flex justify-end gap-5 items-center w-full lg:w-1/2">
-              <div className="p-1 bg-gray-300 rounded-full">
-                <CiSettings className="text-black text-bold" size={35} />
+              <div className="p- rounded-full">
+                <IoMdSettings className="text-black text-bold" size={25} />
               </div>
-              <div className="p-1 bg-gray-300 rounded-full relative">
-                <CiBellOn
-                  size={35}
+              <div className="p-1  rounded-full relative">
+                <BiSolidBell
+                  size={25}
                   onClick={() => setShowNotifications(!showNotifications)}
                   className="cursor-pointer text-black text-bold"
                 />
@@ -152,13 +156,14 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-              <div className="p-1 bg-gray-300 rounded-full">
-                <PiChatCircle
-                  size={35}
-                  onClick={() => setShowChat(!showChat)}
+              <div className="p-1 rounded-full">
+                <a href="/messaging/view">
+                <BiSolidMessageAlt
+                  size={25}
+                  // onClick={() => setShowChat(!showChat)}
                   className="cursor-pointer text-black text-bold"
                 />
-                {showChat && (
+                {/* {showChat && (
                   <div className="absolute right-0 mt-4 w-80 h-80 bg-white shadow-lg rounded-lg p-4 overflow-y-auto overshadow2">
                     <p>Chat window</p>
                     {chats.map((chat) => (
@@ -185,7 +190,9 @@ export default function Navbar() {
                       </div>
                     ))}
                   </div>
-                )}
+                )} */}
+                </a>
+               
               </div>
               <div className=" w-11 h-11 flex justify-center items-center  rounded-full  shadow-[0px_0px_2px_0px_rgba(0,0,0,0.75)] ">
                 <DefaultAvatar

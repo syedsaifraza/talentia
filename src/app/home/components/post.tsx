@@ -92,7 +92,7 @@ const Post = ({ post }: PostProps) => {
   };
 
   return (
-    <div className="bg-white my-[3vh] rounded-lg p-4 space-y-4">
+    <div className="bg-white  rounded-lg p-4 space-y-4">
       {/* Post Header */}
       <div className="flex items-center space-x-3">
         <Image

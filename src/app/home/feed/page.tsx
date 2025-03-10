@@ -73,10 +73,12 @@ export default function Feed() {
   ];
 
   return (
-    <div className="">
+    <div className="flex flex-col gap-4">
       <AddPost addPost={addPost} />
       <ReelsScroller />
+
       
+        
       {posts.map((post) => (
         <Post key={post.id} post={post} />
       ))}
@@ -84,6 +86,8 @@ export default function Feed() {
       {samplePosts.map((post) => (
         <Post key={post.id} post={post} />
       ))}
+  
+      
     </div>
   );
 }

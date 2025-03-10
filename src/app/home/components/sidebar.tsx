@@ -23,12 +23,11 @@ const Sidebar = () => {
 
     { name: "Feed", icon: <FaHome size={25} />, link: "/feed/view" },
     { name: "Connections", icon: <FaUserFriends size={25} />, link: "/page/connections" },
-    { name: "Blog", icon: <FaBookmark size={25} />, link: "/page/blogs" },
+    { name: "Blog", icon: <FaBookmark size={25} />, link: "/Blogs/BlogView" },
     { name: "TalentVerse", icon: <FaWatchmanMonitoring size={25} />, link: "/page/reels" },
     { name: "Saved", icon: <FaBookmark size={25} />, link: "/page/saved" },
     { name: "Watch History", icon: <FaHistory size={25} />, link: "/page/watches" },
     { name: "Communities", icon: <FaUsers size={25} />, link: "/page/communities" },
-    { name: "Video", icon: <FaVideo size={25} />, link: "/page/videos" },
     { name: "Birthday", icon: <FaBirthdayCake size={25} />, link: "/page/birthdays" },
     { name: "Messages", icon: <FaEnvelope size={25} />, link: "/messaging/view" },
     { name: "Memories", icon: <FaClock size={25} />, link: "/page/memories" },
