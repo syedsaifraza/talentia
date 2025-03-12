@@ -7,7 +7,7 @@ export default function JobsPage() {
   return (
     <ul className="flex flex-col gap-4 ">
       <li>
-        <button className="bg-blue-600  rounded-[10px] text-white font-bold py-2 px-3 hover:bg-blue-700">Create Communities</button>
+        <button className="bg-blue-600  rounded-[1px] text-white font-bold py-2 px-3 hover:bg-blue-700">Create Communities</button>
       </li>
 
       <li className="bg-white flex flex-col  gap-2 p-1 rounded-[10px]">

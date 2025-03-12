@@ -12,22 +12,6 @@ import { GiSettingsKnobs } from "react-icons/gi";
 
 export default function Watch() {
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
   const [filter, setfilter] = useState(false);
 
   const handlefiltershow = () => {

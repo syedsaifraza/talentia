@@ -10,7 +10,7 @@ export default function MainBlogPage() {
     <>
       <div className="flex flex-row justify-evenly mx-auto">
         <div className="w-[60vw]">
-          <a href="/Blogs/BlogView">
+          <a href="/page/blogs">
           <FaArrowLeft/>
           </a>
           <main className="mt-10">
@@ -156,8 +156,8 @@ export default function MainBlogPage() {
           <div className="w-[25vw] ">
             <div>
               <ul className="p-3 bg-white  gap-5 flex flex-col  rounded-[8px] ">
-                <li
-                  onClick={() => setblogform(!blogform)}
+                <a href="/Blog/BlogView"
+                  // onClick={() => setblogform(!blogform)}
                   className="bg-[#2dce89] w-full gap-2 rounded-[8px]
              flex flex-row justify-center items-center align-middle p-4"
                 >
@@ -165,7 +165,7 @@ export default function MainBlogPage() {
                   <button className="font-bold text-white">
                     Write New Article
                   </button>
-                </li>
+                </a>
                 <li className="border-b w-full py-2 ">
                   <p className="font-[600]">SEARCH</p>
                 </li>

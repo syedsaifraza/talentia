@@ -21,7 +21,7 @@ const Sidebar = () => {
   //const { user } = useSelector((state: any) => state.auth);
   const sideOptions = [
 
-    { name: "Feed", icon: <FaHome size={25} />, link: "/feed/view" },
+    { name: "Feed", icon: <FaHome size={25} />, link: "/page/feed/" },
     { name: "Connections", icon: <FaUserFriends size={25} />, link: "/page/connections" },
     { name: "Blog", icon: <FaBookmark size={25} />, link: "/Blogs/BlogView" },
     { name: "TalentVerse", icon: <FaWatchmanMonitoring size={25} />, link: "/page/reels" },
