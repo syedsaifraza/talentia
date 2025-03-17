@@ -1,19 +1,28 @@
 import Image from "next/image";
-import Navbar from "../home/components/navbar";
+import Navbar from "@/app/home/components/navbar";
 import Sidebar from "./FeedSideBar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-[#f2f4f7] h-screen overflow-scroll">
       <Navbar />
-      <div className="w-full mx-auto flex justify-around py-1">
+      <div className="w-full mx-auto flex justify-between gap-2 ">
         {/* Left Sidebar */}
-        <Sidebar />
+
+        <aside
+          id="default-sidebar"
+          className="w-[25vw] bg-white"
+          aria-label="Sidebar"
+        >
+          <Sidebar />
+        </aside>
 
         {/* Centered Content */}
-        <main className="w-full lg:w-3/4 mt-4 px-8">
-          <div className="">{children}</div>
+        <main className=" w-full lg:w-[75vw]    ">
+          <div className=" rounded-lg ">{children}</div>
         </main>
+
+       
       </div>
     </div>
   );

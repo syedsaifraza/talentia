@@ -1,6 +1,6 @@
-import Image from "next/image";
+
 import Navbar from "../home/components/navbar";
-import Sidebar from "../home/components/BlogSidebar";
+
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

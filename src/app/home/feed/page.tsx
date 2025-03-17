@@ -73,7 +73,7 @@ export default function Feed() {
   ];
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 mt-2">
       <AddPost addPost={addPost} />
       <ReelsScroller />
 

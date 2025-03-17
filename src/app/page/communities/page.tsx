@@ -1,13 +1,86 @@
 "use client";
-import Video from "@/app/home/components/Videos";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import DefaultAvatar from "@/app/home/components/defaultAvatar";
+import { BsEmojiHeartEyesFill } from "react-icons/bs";
+import Image from "next/image";
+import { AiOutlineFileAdd } from "react-icons/ai";
+import { IoClose } from "react-icons/io5";
+import { MdNoteAdd } from "react-icons/md";
+import dynamic from "next/dynamic";
 import { IoIosPeople } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
+
+const EmojiPicker = dynamic(() => import("emoji-picker-react"), { ssr: false });
+
+interface Media {
+  type: "image" | "video";
+  url: string;
+}
+
+interface AddPostProps {
+  addPost: (post: { text: string; media: Media | null }) => void;
+}
 
 export default function JobsPage() {
+  const [inputVisibility, setInputVisibility] = useState({
+    input1: false,
+    input2: false,
+    input3: false,
+  });
+
+  const toggleInput = (inputId) => {
+    setInputVisibility((prev) => ({
+      ...prev,
+      [inputId]: !prev[inputId],
+    }));
+  };
+
+  const [postText, setPostText] = useState("");
+  const [media, setMedia] = useState<Media | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showEmojiSection, setShowEmojiSection] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleMediaUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const mediaUrl = URL.createObjectURL(file);
+      if (file.type.startsWith("image/")) {
+        setMedia({ type: "image", url: mediaUrl });
+      } else if (file.type.startsWith("video/")) {
+        setMedia({ type: "video", url: mediaUrl });
+      }
+    }
+  };
+
+  const handleRemoveMedia = () => {
+    setMedia(null);
+  };
+
+  const handleAddButtonClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFeelingButtonClick = () => {
+    setShowEmojiSection((prev) => !prev);
+  };
+
+  const handleEmojiClick = (emojiObject: { emoji: string }) => {
+    setPostText((prevText) => prevText + emojiObject.emoji);
+  };
+
   return (
-    <ul className="flex flex-col gap-4 ">
+    <ul className="flex flex-col gap-4 mt-2 ">
       <li>
-        <button className="bg-blue-600  rounded-[1px] text-white font-bold py-2 px-3 hover:bg-blue-700">Create Communities</button>
+        <button
+          onClick={() => {
+            setIsModalOpen(true);
+            setShowEmojiSection(false);
+          }}
+          className="bg-blue-600  rounded-[1px] text-white font-bold py-2 px-3 hover:bg-blue-700"
+        >
+          Create Communities
+        </button>
       </li>
 
       <li className="bg-white flex flex-col  gap-2 p-1 rounded-[10px]">
@@ -289,7 +362,7 @@ export default function JobsPage() {
           <div className="container mx-auto bg-indigo-500 rounded-lg p-14">
             <form>
               <h1 className="text-center font-bold text-white text-4xl">
-                Find the perfect Communities 
+                Find the perfect Communities
                 <p className="mx-auto font-normal text-sm my-6 max-w-lg">
                   Enter your select communities name and choose any subject name
                 </p>
@@ -299,12 +372,10 @@ export default function JobsPage() {
                     type="text"
                     placeholder="Search Communities"
                   />
-                
-                    
-                    <button className="bg-indigo-500 text-white text-base rounded-lg px-4 py-2 font-thin">
-                      Search
-                    </button>
-                
+
+                  <button className="bg-indigo-500 text-white text-base rounded-lg px-4 py-2 font-thin">
+                    Search
+                  </button>
                 </div>
               </h1>
             </form>
@@ -314,6 +385,147 @@ export default function JobsPage() {
           <h1 className="text-center font-bold">No Communities</h1>
         </div>
       </li>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[99] flex items-center justify-center bg-gray-800 bg-opacity-50">
+          <div className="bg-white shadow-[0px_0px_16px_0px_rgba(0,_0,_0,_0.1)] flex  flex-col py-5 rounded-lg w-[40vw] h-[90vh]">
+            <div className="flex px-4 flex-row items-center border-b-[1px] border-gray pb-2 justify-between">
+              <h2 className="text-lg">Create Communities</h2>
+              <button
+                className="flex justify-center items-center rounded-[50%] p-2 bg-gray-300"
+                onClick={() => setIsModalOpen(false)}
+              >
+                <IoClose />
+              </button>
+            </div>
+
+            <div className="overflow-y-auto">
+              <div className=" mb-2 ">
+                <div className=" border-gray rounded-[12px] mb-4">
+                  <div
+                    onClick={handleAddButtonClick}
+                    className="flex justify-center align-center flex-col  bg-gray-100 h-[40vh] relative"
+                  >
+                    {media ? (
+                      <div className="w-full h-full relative">
+                        <button
+                          className="absolute top-5 right-2 z-10 p-1 bg-white rounded-full shadow-md hover:bg-gray-100"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleRemoveMedia();
+                          }}
+                        >
+                          <IoClose className="text-lg text-gray-700" />
+                        </button>
+
+                        {media.type === "image" ? (
+                          <Image
+                            width={100}
+                            height={100}
+                            src={media.url}
+                            alt="Preview"
+                            className="w-full h-full object-cover rounded-md"
+                          />
+                        ) : (
+                          <video
+                            controls
+                            className="w-full h-full object-cover rounded-md"
+                          >
+                            <source src={media.url} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="flex bg-blue-500 w-[70px] flex-row justify-center items-center relative top-[38%] gap-1 p-2 rounded-[5px] left-[86%]">
+                        <MdNoteAdd className="text-[30px] text-white" />
+
+                        <h2 className=" text-white">Add</h2>
+                      </div>
+                    )}
+
+                    <input
+                      type="file"
+                      accept="image/*, video/*"
+                      onChange={handleMediaUpload}
+                      className="hidden"
+                      ref={fileInputRef}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex px-4 items-center space-x-3 mb-5">
+                <Image
+                  width={10}
+                  height={10}
+                  src="https://randomuser.me/api/portraits/men/69.jpg"
+                  alt="User Avatar"
+                  className="w-10 h-10 rounded-full"
+                />
+                <div>
+                  <h3 className="font-semibold text-gray-800">John Doe</h3>
+                </div>
+              </div>
+              <div className="px-4 flex flex-col gap-3">
+                <input
+                  type="text"
+                  placeholder="Group Name"
+                  className="p-3 rounded-[5px] border focus:outline-none  border-gray-400"
+                />
+
+                <div>
+                  <select className="w-full p-3 border border-gray-400 focus:outline-none rounded-[5px]">
+                    <option selected>Choose Privacy</option>
+                    <option>Public</option>
+                    <option>Private</option>
+                  </select>
+                </div>
+
+                <input
+                  type="text"
+                  placeholder="Invite friends (Optional)"
+                  className="p-3 rounded-[5px] border focus:outline-none  border-gray-400"
+                />
+              </div>
+            </div>
+
+            <div className="flex mx-4 justify-between items-center space-x-2 mt-4">
+              <div className="flex flex-row items-center gap-2">
+                <button
+                  title="Photos/Video"
+                  className="flex justify-center items-center rounded-[50%] p-2 bg-gray-200"
+                  onClick={() => setShowEmojiSection(false)}
+                >
+                  <img
+                    src="https://static.xx.fbcdn.net/rsrc.php/v4/y7/r/Ivw7nhRtXyo.png"
+                    className="w-5 h-5"
+                  />
+                </button>
+                <button
+                  title="Feeling/Activity"
+                  className="flex justify-center items-center rounded-[50%] p-2 bg-gray-200"
+                  onClick={handleFeelingButtonClick}
+                >
+                  <img
+                    src="https://static.xx.fbcdn.net/rsrc.php/v4/yd/r/Y4mYLVOhTwq.png"
+                    className="w-5 h-5"
+                  />
+                </button>
+              </div>
+              <button
+                className="px-4 py-2 bg-blue-500 text-white rounded"
+                onClick={() => {
+                  handlePostSubmit();
+                  setIsModalOpen(false);
+                }}
+              >
+                Post
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </ul>
   );
 }

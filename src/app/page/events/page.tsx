@@ -8,6 +8,7 @@ import { IoClose } from "react-icons/io5";
 import { MdNoteAdd } from "react-icons/md";
 import dynamic from "next/dynamic";
 import { IoIosPeople } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 
 const EmojiPicker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
@@ -21,6 +22,23 @@ interface AddPostProps {
 }
 
 export default function JobsPage() {
+  // State to manage visibility of each input field
+
+  // Styles
+
+  const [inputVisibility, setInputVisibility] = useState({
+    input1: false,
+    input2: false,
+    input3: false,
+  });
+
+  const toggleInput = (inputId) => {
+    setInputVisibility((prev) => ({
+      ...prev,
+      [inputId]: !prev[inputId],
+    }));
+  };
+
   const [postText, setPostText] = useState("");
   const [media, setMedia] = useState<Media | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,23 +61,23 @@ export default function JobsPage() {
     setMedia(null);
   };
 
-  const handlePostSubmit = () => {
-    if (!postText.trim() && !media) return;
+  // const handlePostSubmit = () => {
+  //   if (!postText.trim() && !media) return;
 
-    const newPost = {
-      text: postText,
-      media,
-      user: {
-        name: "John Doe",
-        avatar: "https://randomuser.me/api/portraits/men/69.jpg",
-      },
-      timestamp: new Date().toISOString(),
-    };
+  //   const newPost = {
+  //     text: postText,
+  //     media,
+  //     user: {
+  //       name: "John Doe",
+  //       avatar: "https://randomuser.me/api/portraits/men/69.jpg",
+  //     },
+  //     timestamp: new Date().toISOString(),
+  //   };
 
-    addPost(newPost);
-    setPostText("");
-    setMedia(null);
-  };
+  //   addPost(newPost);
+  //   setPostText("");
+  //   setMedia(null);
+  // };
 
   const handleAddButtonClick = () => {
     fileInputRef.current?.click();
@@ -77,7 +95,7 @@ export default function JobsPage() {
     <ul className="flex flex-col gap-4 ">
       <li>
         <button
-          className="bg-blue-600  rounded-[10px] text-white font-bold py-2 px-3 hover:bg-blue-700"
+                    className="bg-blue-600  rounded-[1px] text-white font-bold py-2 px-3 hover:bg-blue-700"
           onClick={() => {
             setIsModalOpen(true);
             setShowEmojiSection(false);
@@ -92,7 +110,7 @@ export default function JobsPage() {
           <div className="border-b mb-5 flex justify-between text-sm">
             <div className="text-indigo-600 flex items-center pb-2 pr-2 border-b-2 border-indigo-600 uppercase">
               <a href="#" className="font-semibold inline-block">
-                Top Trending Communities
+                Top Events
               </a>
             </div>
             <a href="#">See All</a>
@@ -229,7 +247,7 @@ export default function JobsPage() {
           <div className="border-b mb-5 flex justify-between text-sm">
             <div className="text-indigo-600 flex items-center pb-2 pr-2 border-b-2 border-indigo-600 uppercase">
               <a href="#" className="font-semibold inline-block">
-                Joined Communities
+                Invites Events
               </a>
             </div>
             <a href="#">See All</a>
@@ -366,7 +384,7 @@ export default function JobsPage() {
           <div className="container mx-auto bg-indigo-500 rounded-lg p-14">
             <form>
               <h1 className="text-center font-bold text-white text-4xl">
-                Find the perfect Communities
+                Find the Events
                 <p className="mx-auto font-normal text-sm my-6 max-w-lg">
                   Enter your select communities name and choose any subject name
                 </p>
@@ -374,7 +392,7 @@ export default function JobsPage() {
                   <input
                     className="text-base text-gray-400 flex-grow outline-none px-2 "
                     type="text"
-                    placeholder="Search Communities"
+                    placeholder="Search Events"
                   />
 
                   <button className="bg-indigo-500 text-white text-base rounded-lg px-4 py-2 font-thin">
@@ -393,8 +411,6 @@ export default function JobsPage() {
       {isModalOpen && (
         <div className="fixed inset-0 z-[99] flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div className="bg-white shadow-[0px_0px_16px_0px_rgba(0,_0,_0,_0.1)] flex  flex-col py-5 rounded-lg w-[40vw] h-[90vh]">
-
-            
             <div className="flex px-4 flex-row items-center border-b-[1px] border-gray pb-2 justify-between">
               <h2 className="text-lg">Create event</h2>
               <button
@@ -405,80 +421,166 @@ export default function JobsPage() {
               </button>
             </div>
 
-            <div className="overflow-y-auto mb-2 ">
-              <div className="overflow-y-auto border-gray rounded-[12px]">
-                <div
-                  onClick={handleAddButtonClick}
-                  className="flex justify-center align-center flex-col  bg-gray-100 h-[40vh] relative"
-                >
-                  {media ? (
-                    <div className="w-full h-full relative">
-                      <button
-                        className="absolute top-5 right-2 z-10 p-1 bg-white rounded-full shadow-md hover:bg-gray-100"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleRemoveMedia();
-                        }}
-                      >
-                        <IoClose className="text-lg text-gray-700" />
-                      </button>
-
-                      {media.type === "image" ? (
-                        <Image
-                          width={100}
-                          height={100}
-                          src={media.url}
-                          alt="Preview"
-                          className="w-full h-full object-cover rounded-md"
-                        />
-                      ) : (
-                        <video
-                          controls
-                          className="w-full h-full object-cover rounded-md"
+            <div className="overflow-y-auto">
+              <div className=" mb-2 ">
+                <div className=" border-gray rounded-[12px] mb-4">
+                  <div
+                    onClick={handleAddButtonClick}
+                    className="flex justify-center align-center flex-col  bg-gray-100 h-[40vh] relative"
+                  >
+                    {media ? (
+                      <div className="w-full h-full relative">
+                        <button
+                          className="absolute top-5 right-2 z-10 p-1 bg-white rounded-full shadow-md hover:bg-gray-100"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleRemoveMedia();
+                          }}
                         >
-                          <source src={media.url} type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="flex flex-col justify-center items-center relative top-[90px] left-[135px]">
-                      {/* <MdNoteAdd className="text-[30px]" /> */}
-                      <h2 className="bg-blue-500">Add</h2>
+                          <IoClose className="text-lg text-gray-700" />
+                        </button>
+
+                        {media.type === "image" ? (
+                          <Image
+                            width={100}
+                            height={100}
+                            src={media.url}
+                            alt="Preview"
+                            className="w-full h-full object-cover rounded-md"
+                          />
+                        ) : (
+                          <video
+                            controls
+                            className="w-full h-full object-cover rounded-md"
+                          >
+                            <source src={media.url} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="flex bg-blue-500 w-[70px] flex-row justify-center items-center relative top-[38%] gap-1 p-2 rounded-[5px] left-[86%]">
+                        <MdNoteAdd className="text-[30px] text-white" />
+
+                        <h2 className=" text-white">Add</h2>
+                      </div>
+                    )}
+
+                    <input
+                      type="file"
+                      accept="image/*, video/*"
+                      onChange={handleMediaUpload}
+                      className="hidden"
+                      ref={fileInputRef}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex px-4 items-center space-x-3 mb-5">
+                <Image
+                  width={10}
+                  height={10}
+                  src="https://randomuser.me/api/portraits/men/69.jpg"
+                  alt="User Avatar"
+                  className="w-10 h-10 rounded-full"
+                />
+                <div>
+                  <h3 className="font-semibold text-gray-800">John Doe</h3>
+
+                </div>
+              </div>
+              <div className="px-4 flex flex-col gap-3">
+                <input
+                  type="text"
+                  placeholder="Event Name"
+                  className="p-3 rounded-[5px] border focus:outline-none  border-gray-400"
+                />
+
+                <div className="grid grid-cols-3 gap-2 ">
+                  <input
+                    type="date"
+                    placeholder="Start Date"
+                    className="p-3 rounded-[5px] border focus:outline-none  border-gray-400"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Start Time"
+                    className="p-3 rounded-[5px] border focus:outline-none  border-gray-400"
+                  />
+                  <input
+                    type="date"
+                    placeholder="End Time"
+                    className="p-3 rounded-[5px] border focus:outline-none  border-gray-400"
+                  />
+                </div>
+                <div>
+                  <select className="w-full p-3 border border-gray-400 focus:outline-none rounded-[5px]">
+                    <option selected>is it in person or virtual</option>
+                    <option>Only Friends</option>
+                    <option>EveryOne</option>
+                  </select>
+                </div>
+
+                <div>
+                  <select className="w-full p-3 border border-gray-400 focus:outline-none rounded-[5px]">
+                    <option selected>Who can see it</option>
+                    <option>Only Friends</option>
+                    <option>EveryOne</option>
+                  </select>
+                </div>
+
+                <input
+                  type="text"
+                  placeholder="Event Name"
+                  className="p-3 rounded-[5px] border focus:outline-none  border-gray-400"
+                />
+
+              
+                  <div
+                   className="bg-gray-100 p-3 flex justify-between items-center"
+                    onClick={() => toggleInput("input1")}
+                  >
+                    <p>Add co-host</p>
+                    <IoIosArrowDown/>
+                  </div>
+                  {inputVisibility.input1 && (
+                    <div>
+                      <input
+                        className="p-3 rounded-[5px] border w-full focus:outline-none  border-gray-400"
+                        type="text"
+                        placeholder="Add co-host"
+                      />
                     </div>
                   )}
 
-                  <input
-                    type="file"
-                    accept="image/*, video/*"
-                    onChange={handleMediaUpload}
-                    className="hidden"
-                    ref={fileInputRef}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex px-4 items-center space-x-3">
-              <Image
-                width={10}
-                height={10}
-                src="https://randomuser.me/api/portraits/men/69.jpg"
-                alt="User Avatar"
-                className="w-10 h-10 rounded-full"
-              />
-              <div>
-                <h3 className="font-semibold text-gray-800">John Doe</h3>
-                <select className=" block font-bold text-[11px]  bg-gray-100 border-transparent  text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600">
-                  <option selected>Only for Me</option>
-                  <option>Only Friends</option>
-                  <option>EveryOne</option>
-                </select>
+                  {/* Text 2 and Input 2 */}
+                  <div
+                    className="bg-gray-100 p-3 flex justify-between items-center"
+                    onClick={() => toggleInput("input2")}
+                  >
+                   <p> Repeat Event</p>
+                    <IoIosArrowDown/>
+                  </div>
+                  {inputVisibility.input2 && (
+                      <div className="grid grid-cols-2 gap-2 ">
+                      <input
+                        type="date"
+                        placeholder="Start Date"
+                        className="p-3 rounded-[5px] border focus:outline-none  border-gray-400"
+                      />
+                      <input
+                        type="date"
+                        placeholder="End date"
+                        className="p-3 rounded-[5px] border focus:outline-none  border-gray-400"
+                      />
+                    
+                    </div>
+                  )}                
               </div>
             </div>
 
             <div className="flex mx-4 justify-between items-center space-x-2 mt-4">
-
               <div className="flex flex-row items-center gap-2">
                 <button
                   title="Photos/Video"
@@ -511,8 +613,6 @@ export default function JobsPage() {
                 Post
               </button>
             </div>
-
-
           </div>
         </div>
       )}

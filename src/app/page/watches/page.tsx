@@ -145,17 +145,17 @@ export default function FeedPage() {
   ];
 
   return (
-    <div className=" flex flex-row gap-10">
-      <div className="flex flex-1 flex-col gap-4 ">
+    <div className=" flex flex-row gap-2">
+      <div className="flex flex-1 flex-col gap-4 mt-2 ">
         {samplePosts.map((post) => (
           <div>
             <Post key={post.id} post={post} />
           </div>
         ))}
       </div>
-      <div className="w-[20vw] ">
+      <div className="w-[25vw] ">
         <div>
-          <ul className="fixed p-3 bg-white w-[20vw] h-[85vh] gap-1 flex flex-col rounded-[8px] ">
+          <ul className="fixed p-3 bg-white w-[25vw] h-[85vh] gap-1 flex flex-col  ">
             <li className="flex rounded-[10px] flex-row gap-4 items-center px-3 py-[8px] hover:bg-slate-100 cursor-pointer">
               <p className="bg-sky-600 rounded-full p-2">
                 <ImProfile className="size-[20] text-white" />

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { loginUser } from "../../../utils/apis/auth"
+import { loginUser } from "../../../utils/apis/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("surajkabir@gmail.com");
@@ -61,7 +61,10 @@ const Login = () => {
       </button>
 
       <p className="text-[15px] text-gray-600 text-center">
-        <Link href="/auth/forgot-password" className="text-blue-600 hover:underline">
+        <Link
+          href="/auth/forgot"
+          className="text-blue-600 hover:underline"
+        >
           Forgotten Password?
         </Link>
       </p>

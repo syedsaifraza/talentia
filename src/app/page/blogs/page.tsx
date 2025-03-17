@@ -132,8 +132,8 @@ export default function BlogPage() {
 
   return (
     <>
-      <div className="flex felx-row justify-between gap-5">
-        <div className="flex-1">
+      <div className="flex felx-row justify-between gap-2 bg-white px-4">
+        <div className="flex-1 mt-2">
           <div className="space-y-6">
             {blogs.map((blog) => (
               <div
@@ -187,10 +187,10 @@ export default function BlogPage() {
             ))}
           </div>
         </div>
-        <div className="w-[25vw] ">
+        <div className="w-[25vw]  ">
       
           <div>
-            <ul className="p-3 bg-white  gap-5 flex flex-col  rounded-[8px] ">
+            <ul className="p-3   gap-5 flex flex-col ">
               <a href="/Blog/BlogView"
                 // onClick={() => setblogform(!blogform)}
                 className="bg-[#2dce89] w-full gap-2 rounded-[8px]

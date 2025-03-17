@@ -19,7 +19,7 @@ export default function Watch() {
   };
 
   return (
-    <div className="">
+    <div className="mt-2">
       <div className="flex flex-col justify-center mb-4 ">
         <div className="flex items-center space-x-3">
           <input

@@ -7,7 +7,7 @@ import { IoSend } from "react-icons/io5";
 export default function JobsPage() {
   return (
     <div>
-      <ul className="flex flex-col gap-4 ">
+      <ul className="flex flex-col gap-4 mt-2 ">
         <li className="bg-white flex flex-col  gap-2 p-5 rounded-[10px]">
           <h1 className="text-[20px] font-bold py-4">Recent Birthday</h1>
           <div className="flex flex-row  gap-4 ">

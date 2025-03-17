@@ -7,7 +7,7 @@ import { Challenges } from "../components/achievements/challenges";
 export default function Achievements() {
     const [currentPage,setCurrentPage] = useState<number>(1)
 
-    return <div className="bg-white rounded-xl p-2">
+    return <div className="bg-white rounded-xl p-2 mt-2">
         <WelcomeAchievements/>
         <ul className="flex flex-row">
             <li className={`w-1/2 text-center p-2 ${currentPage==1?'bg-[#000] text-white':''} rounder-xl    hover:cursor-pointer`} onClick={()=>setCurrentPage(1)} >Leader Board</li>

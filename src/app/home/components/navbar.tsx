@@ -67,8 +67,10 @@ export default function Navbar() {
     },
   ];
 
+  // className="bg-white shadow-md  px-10 w-full sticky top-0 z-50 bg-gradient-to-r from-[#36809A] via-[#D7EBF6] to-[#4389A2]"
+
   return (
-    <nav className="bg-white shadow-md  px-10 w-full sticky top-0 z-50 bg-gradient-to-r from-[#36809A] via-[#D7EBF6] to-[#4389A2]">
+    <nav className="bg-white shadow-md  px-4 w-full sticky top-0 z-50 ">
       <div className="mx-auto w-full sm:px-0 lg:px-0">
         <div className="relative flex items-center justify-between">
           <div className="flex flex-1 items-center justify-center sm:justify-between">
@@ -84,7 +86,7 @@ export default function Navbar() {
             <div className="hidden sm:block lg:w-full">
               <div className="flex justify-between w-full px-20">
                 <div
-                  className={`py-[1rem] w-[100px] flex justify-center items-center ${isActive(
+                  className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive(
                     "/home/feed"
                   )}`}
                 >
@@ -96,7 +98,7 @@ export default function Navbar() {
                   </Link>
                 </div>
                 <div
-                  className={`py-[1rem] w-[100px] flex justify-center items-center ${isActive(
+                  className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive(
                     "/home/watch"
                   )}`}
                 >
@@ -108,7 +110,7 @@ export default function Navbar() {
                   </Link>
                 </div>
                 <div
-                  className={`py-[1rem] w-[100px] flex justify-center items-center ${isActive(
+                  className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive(
                     "/home/job"
                   )}`}
                 >
@@ -120,7 +122,7 @@ export default function Navbar() {
                   </Link>
                 </div>
                 <div
-                  className={`py-[1rem] w-[100px] flex justify-center items-center ${isActive(
+                  className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center  ${isActive(
                     "/home/achievements"
                   )}`}
                 >
@@ -135,7 +137,9 @@ export default function Navbar() {
             </div>
             <div className="flex justify-end gap-5 items-center w-full lg:w-1/2">
               <div className="p- rounded-full">
-                <IoMdSettings className="text-black text-bold" size={25} />
+                <a href="/Settings/view">
+                  <IoMdSettings className="text-black text-bold" size={25} />
+                </a>
               </div>
               <div className="p-1  rounded-full relative">
                 <BiSolidBell
@@ -158,12 +162,12 @@ export default function Navbar() {
               </div>
               <div className="p-1 rounded-full">
                 <a href="/messaging/view">
-                <BiSolidMessageAlt
-                  size={25}
-                  // onClick={() => setShowChat(!showChat)}
-                  className="cursor-pointer text-black text-bold"
-                />
-                {/* {showChat && (
+                  <BiSolidMessageAlt
+                    size={25}
+                    // onClick={() => setShowChat(!showChat)}
+                    className="cursor-pointer text-black text-bold"
+                  />
+                  {/* {showChat && (
                   <div className="absolute right-0 mt-4 w-80 h-80 bg-white shadow-lg rounded-lg p-4 overflow-y-auto overshadow2">
                     <p>Chat window</p>
                     {chats.map((chat) => (
@@ -192,7 +196,6 @@ export default function Navbar() {
                   </div>
                 )} */}
                 </a>
-               
               </div>
               <div className=" w-11 h-11 flex justify-center items-center  rounded-full  shadow-[0px_0px_2px_0px_rgba(0,0,0,0.75)] ">
                 <DefaultAvatar
