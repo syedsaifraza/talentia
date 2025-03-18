@@ -1,17 +1,28 @@
 "use client";
 
 import Post from "@/app/home/components/post";
-import { useState } from "react";
-import { RiProfileLine } from "react-icons/ri";
-import { GoStarFill } from "react-icons/go";
+ 
 import { ImProfile } from "react-icons/im";
 import { FaUserFriends } from "react-icons/fa";
-import { MdGroups } from "react-icons/md";
-import { TbFlag3Filled } from "react-icons/tb";
+import { MdGroups } from "react-icons/md"; 
 
 export default function FeedPage() {
   // Sample post data
-  const samplePosts = [
+  interface Post {
+     id: number;
+     text: string;
+     media: {
+       type: string;
+       url: string;
+     } | null;
+     user: {
+       name: string;
+       avatar: string;
+     };
+     timestamp: string;
+   }
+   
+  const samplePosts:Post[] = [
     {
       id: 1,
       text: "Enjoying a beautiful sunset at the beach! 🌅 #NatureLover",
@@ -147,8 +158,8 @@ export default function FeedPage() {
   return (
     <div className=" flex flex-row gap-2">
       <div className="flex flex-1 flex-col gap-4 mt-2 ">
-        {samplePosts.map((post) => (
-          <div>
+        {samplePosts.map((post,index) => (
+          <div key={index}>
             <Post key={post.id} post={post} />
           </div>
         ))}

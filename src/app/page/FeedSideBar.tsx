@@ -1,28 +1,22 @@
 "use client";
 
-import {
-  FaBuilding,
-  FaUserFriends,
+import { 
   FaWatchmanMonitoring,
 } from "react-icons/fa";
 import {
   FaBookmark,
   FaHistory,
-  FaUsers,
-  FaVideo,
-  FaHome,
+  FaUsers, 
   FaBirthdayCake,
   FaEnvelope,
-  FaClock,
-  FaBriefcase,
+  FaClock, 
   FaNewspaper,
 } from "react-icons/fa";
 
-import { SelfProfile } from "../home/components/self-profile";
-import { FaCirclePlus } from "react-icons/fa6";
-import Link from "next/link";
-import { link } from "fs";
+ 
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+
 
 const Sidebar = () => {
   const currentPath = usePathname();
@@ -33,7 +27,10 @@ const Sidebar = () => {
   //const { user } = useSelector((state: any) => state.auth);
 
   const sideOptions = [
-    { name: "Feed", icon:  <img src="https://cdn3d.iconscout.com/3d/premium/thumb/social-media-feed-3d-icon-download-in-png-blend-fbx-gltf-file-formats--like-logo-pack-user-interface-icons-9091452.png?f=webp" alt="" className="w-[25px]"/>, link: "/page/feed/" },
+    { name: "Feed", icon:  <Image
+                        alt="user"
+                        height={10}
+                        width={10} src="https://cdn3d.iconscout.com/3d/premium/thumb/social-media-feed-3d-icon-download-in-png-blend-fbx-gltf-file-formats--like-logo-pack-user-interface-icons-9091452.png?f=webp"  className="w-[25px]"/>, link: "/page/feed/" },
     {
       name: "Connections",
       icon:<FaBookmark size={25} />,

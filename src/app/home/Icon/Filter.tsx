@@ -8,10 +8,10 @@ export const Filter = () => {
              viewBox="0 0 24 24"
              version="1.1"
              xmlns="http://www.w3.org/2000/svg"
-             xmlnsxlink="http://www.w3.org/1999/xlink"
+             xmlnsXlink="http://www.w3.org/1999/xlink"
              fill="#000000"
            >
-             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
              <g
                id="SVGRepo_tracerCarrier"
                stroke-linecap="round"
@@ -23,7 +23,7 @@ export const Filter = () => {
                <g
                  id="Page-1"
                  stroke="none"
-                 stroke-width="1"
+                 strokeWidth="1"
                  fill="none"
                  fill-rule="evenodd"
                >
@@ -47,7 +47,7 @@ export const Filter = () => {
                      y2="5"
                      id="Path"
                      stroke="#0C0310"
-                     stroke-width="2"
+                     strokeWidth="2"
                      stroke-linecap="round"
                    >
                      {" "}
@@ -59,7 +59,7 @@ export const Filter = () => {
                      y2="12"
                      id="Path"
                      stroke="#0C0310"
-                     stroke-width="2"
+                     strokeWidth="2"
                      stroke-linecap="round"
                    >
                      {" "}
@@ -71,7 +71,7 @@ export const Filter = () => {
                      y2="12"
                      id="Path"
                      stroke="#0C0310"
-                     stroke-width="2"
+                     strokeWidth="2"
                      stroke-linecap="round"
                    >
                      {" "}
@@ -83,7 +83,7 @@ export const Filter = () => {
                      y2="19"
                      id="Path"
                      stroke="#0C0310"
-                     stroke-width="2"
+                     strokeWidth="2"
                      stroke-linecap="round"
                    >
                      {" "}
@@ -91,7 +91,7 @@ export const Filter = () => {
                    <circle
                      id="Oval"
                      stroke="#0C0310"
-                     stroke-width="2"
+                     strokeWidth="2"
                      stroke-linecap="round"
                      cx="18"
                      cy="5"
@@ -102,7 +102,7 @@ export const Filter = () => {
                    <circle
                      id="Oval"
                      stroke="#0C0310"
-                     stroke-width="2"
+                     strokeWidth="2"
                      stroke-linecap="round"
                      cx="12"
                      cy="12"
@@ -113,7 +113,7 @@ export const Filter = () => {
                    <circle
                      id="Oval"
                      stroke="#0C0310"
-                     stroke-width="2"
+                     strokeWidth="2"
                      stroke-linecap="round"
                      cx="6"
                      cy="19"

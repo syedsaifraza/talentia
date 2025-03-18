@@ -4,7 +4,9 @@ export default function Blog() {
     return (
         <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
             
-            <img
+            <Image 
+                                height={10}
+                                width={10}
                 className="object-cover w-full h-64"
                 src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
                 alt="Article"
@@ -14,7 +16,9 @@ export default function Blog() {
                 <div className="mt-4">
                     <div className="flex items-center">
                         <div className="flex items-center">
-                            <img
+                            <Image 
+                                                height={10}
+                                                width={10}
                                 className="object-cover h-10 rounded-full"
                                 src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60"
                                 alt="Avatar"

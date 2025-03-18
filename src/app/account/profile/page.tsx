@@ -133,9 +133,9 @@ export default function Profile() {
         <div className="w-full md:w-2/3 mx-auto p-6 bg-white mt-6 shadow rounded">
           {currentPage == accountSubOptions[0] && (
             <>
-              {samplePosts.map((post) => (
+              {/* {samplePosts.map((post) => (
                 <Post key={post.id} post={post} />
-              ))}
+              ))} */}
             </>
           )}
           {currentPage == accountSubOptions[3] && <AccountPhotos />}

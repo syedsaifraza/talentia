@@ -12,7 +12,10 @@ export default function JobsPage() {
           <h1 className="text-[20px] font-bold py-4">Recent Birthday</h1>
           <div className="flex flex-row  gap-4 ">
             <div>
-              <img
+              <Image
+                                  alt="user"
+                                  height={10}
+                                  width={10}
                 className="w-12 h-12 rounded-full border"
                 src="https://randomuser.me/api/portraits/men/69.jpg"
               />
@@ -47,7 +50,10 @@ export default function JobsPage() {
           <div className="flex flex-row justify-between items-center gap-4 py-2 border-b-[1px] ">
             <div className="flex flex-row  gap-4">
               <div>
-                <img
+                <Image
+                                    alt="user"
+                                    height={10}
+                                    width={10}
                   className="w-12 h-12 rounded-full border"
                   src="https://randomuser.me/api/portraits/men/69.jpg"
                 />
@@ -65,7 +71,10 @@ export default function JobsPage() {
           <div className="flex flex-row justify-between items-center gap-4 py-2 border-b-[1px] ">
             <div className="flex flex-row  gap-4">
               <div>
-                <img
+                <Image
+                                    alt="user"
+                                    height={10}
+                                    width={10}
                   className="w-12 h-12 rounded-full border"
                   src="https://randomuser.me/api/portraits/men/69.jpg"
                 />
@@ -83,7 +92,10 @@ export default function JobsPage() {
           <div className="flex flex-row justify-between items-center gap-4 py-2 border-b-[1px] ">
             <div className="flex flex-row  gap-4">
               <div>
-                <img
+                <Image
+                                    alt="user"
+                                    height={10}
+                                    width={10}
                   className="w-12 h-12 rounded-full border"
                   src="https://randomuser.me/api/portraits/men/69.jpg"
                 />
@@ -104,31 +116,46 @@ export default function JobsPage() {
           <h1 className="text-[20px] font-bold py-4">March</h1>
           <div className="flex flex-row  gap-4 ">
             <div>
-              <img
+              <Image
+                                  alt="user"
+                                  height={10}
+                                  width={10}
                 className="w-12 h-12 rounded-full border"
                 src="https://randomuser.me/api/portraits/men/69.jpg"
               />
             </div>
             <div>
-              <img
+              <Image
+                                  alt="user"
+                                  height={10}
+                                  width={10}
                 className="w-12 h-12 rounded-full border"
                 src="https://randomuser.me/api/portraits/men/69.jpg"
               />
             </div>
             <div>
-              <img
+              <Image
+                                  alt="user"
+                                  height={10}
+                                  width={10}
                 className="w-12 h-12 rounded-full border"
                 src="https://randomuser.me/api/portraits/men/69.jpg"
               />
             </div>
             <div>
-              <img
+              <Image
+                                  alt="user"
+                                  height={10}
+                                  width={10}
                 className="w-12 h-12 rounded-full border"
                 src="https://randomuser.me/api/portraits/men/69.jpg"
               />
             </div>
             <div>
-              <img
+              <Image
+                                  alt="user"
+                                  height={10}
+                                  width={10}
                 className="w-12 h-12 rounded-full border"
                 src="https://randomuser.me/api/portraits/men/69.jpg"
               />

@@ -1,14 +1,8 @@
 "use client";
-import { useState, useRef } from "react";
-import DefaultAvatar from "@/app/home/components/defaultAvatar";
-import { BsEmojiHeartEyesFill } from "react-icons/bs";
-import Image from "next/image";
-import { AiOutlineFileAdd } from "react-icons/ai";
-import { IoClose } from "react-icons/io5";
-import { MdNoteAdd } from "react-icons/md";
-import dynamic from "next/dynamic";
-import VideoPost from "../components/watch";
-import { GiSettingsKnobs } from "react-icons/gi";
+import { useState } from "react";
+  
+import { IoClose } from "react-icons/io5";  
+import VideoPost from "../components/watch"; 
 
 export default function Watch() {
 
@@ -36,10 +30,10 @@ export default function Watch() {
               viewBox="0 0 24 24"
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
-              xmlnsxlink="http://www.w3.org/1999/xlink"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
               fill="#000000"
             >
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
               <g
                 id="SVGRepo_tracerCarrier"
                 stroke-linecap="round"
@@ -51,7 +45,7 @@ export default function Watch() {
                 <g
                   id="Page-1"
                   stroke="none"
-                  stroke-width="1"
+                  strokeWidth="1"
                   fill="none"
                   fill-rule="evenodd"
                 >
@@ -75,7 +69,7 @@ export default function Watch() {
                       y2="5"
                       id="Path"
                       stroke="#0C0310"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke-linecap="round"
                     >
                       {" "}
@@ -87,7 +81,7 @@ export default function Watch() {
                       y2="12"
                       id="Path"
                       stroke="#0C0310"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke-linecap="round"
                     >
                       {" "}
@@ -99,7 +93,7 @@ export default function Watch() {
                       y2="12"
                       id="Path"
                       stroke="#0C0310"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke-linecap="round"
                     >
                       {" "}
@@ -111,7 +105,7 @@ export default function Watch() {
                       y2="19"
                       id="Path"
                       stroke="#0C0310"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke-linecap="round"
                     >
                       {" "}
@@ -119,7 +113,7 @@ export default function Watch() {
                     <circle
                       id="Oval"
                       stroke="#0C0310"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke-linecap="round"
                       cx="18"
                       cy="5"
@@ -130,7 +124,7 @@ export default function Watch() {
                     <circle
                       id="Oval"
                       stroke="#0C0310"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke-linecap="round"
                       cx="12"
                       cy="12"
@@ -141,7 +135,7 @@ export default function Watch() {
                     <circle
                       id="Oval"
                       stroke="#0C0310"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke-linecap="round"
                       cx="6"
                       cy="19"

@@ -1,13 +1,15 @@
+import { StaticImageData } from "next/image";
 import { JobItem } from "./jobitem";
 
 interface Job {
   id: number;
   title: string;
   company: string;
-  location: string;
-  salary?: string;
-  promoted: boolean;
-  logo: string;
+  location: string; 
+  promoted?: boolean;
+  logo:StaticImageData;
+  description:string;
+  salary?:string;
 }
 
 interface JobListProps {
@@ -24,7 +26,7 @@ export default function JobList({ jobs }: JobListProps) {
           title={job.title}
           company={job.company}
           location={job.location}
-          salary={job.salary || "12LPA"} // Default salary if not provided
+          salary={ "12LPA"} // Default salary if not provided
         />
       ))}
     </div>

@@ -1,7 +1,7 @@
 
 "use client";
 import Video from "@/app/home/components/Videos";
-import { useState } from "react";
+ 
 
 export default function JobsPage() {
 

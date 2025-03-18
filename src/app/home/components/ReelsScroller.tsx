@@ -409,7 +409,10 @@ const ReelsScroller = ({ size = "small", limit = 0 }) => {
                   className="flex justify-center items-center rounded-[50%] p-2 bg-gray-200"
                   onClick={() => setShowEmojiSection(false)}
                 >
-                  <img
+                  <Image
+                                      alt="user"
+                                      height={5}
+                                      width={5}
                     src="https://static.xx.fbcdn.net/rsrc.php/v4/y7/r/Ivw7nhRtXyo.png"
                     className="w-5 h-5"
                   />
@@ -418,7 +421,10 @@ const ReelsScroller = ({ size = "small", limit = 0 }) => {
                   className="flex justify-center items-center rounded-[50%] p-2 bg-gray-200"
                   onClick={() => setShowEmojiSection(true)}
                 >
-                  <img
+                  <Image
+                                      alt="user"
+                                      height={5}
+                                      width={5}
                     src="https://static.xx.fbcdn.net/rsrc.php/v4/yd/r/Y4mYLVOhTwq.png"
                     className="w-5 h-5"
                   />

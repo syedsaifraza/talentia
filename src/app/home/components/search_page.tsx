@@ -1,5 +1,8 @@
-export const JobSearchComponent = ({ onSearch }) => {
-  const handleInputChange = (e) => {
+interface JobSearchProps {
+  onSearch: (query: string) => void; // Explicitly define the type for onSearch
+}
+export const JobSearchComponent = ({ onSearch }:JobSearchProps) => {
+  const handleInputChange = (e:any) => {
     const query = e.target.value;
     onSearch(query); // Pass the search query to the parent component
   };

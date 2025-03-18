@@ -1,28 +1,33 @@
-
-
 "use client";
 import React, { useState } from "react";
 import JobListCardWrapper from "./jobcard_wrapper_list";
 import JobList from "./joblist";
-import { JobSearchComponent } from "./search_page";
-import Image from "next/image";
-import Img1 from "../Company Logos/Google.png";
-import Img2 from "../Company Logos/Facebook.png";
-import Img3 from "../Company Logos/Microsoft.png";
-import Img4 from "../Company Logos/Apple.png";
-import Img5 from "../Company Logos/Atlassian.png";
-import Img6 from "../Company Logos/Amazone.png";
-import Img7 from "../Company Logos/JaneStreet.png";
-import Img8 from "../Company Logos/Linkdedin.png";
-import Img9 from "../Company Logos/Nvidia.png";
-import Img10 from "../Company Logos/Snapchat.webp";
-import Img11 from "../Company Logos/Wipro.png";
-import Img12 from "../Company Logos/infosys.png";
-import Img13 from "../Company Logos/netflix.jpg";
-import Img14 from "../Company Logos/tcs.png";
-import Img15 from "../Company Logos/jpmorgan.png";
+import { JobSearchComponent } from "./search_page"; 
+import Img1 from "../Company_Logos/Google.png";
+import Img2 from "../Company_Logos/Facebook.png";
+import Img3 from "../Company_Logos/Microsoft.png";
+import Img4 from "../Company_Logos/Apple.png";
+import Img5 from "../Company_Logos/Atlassian.png";
+import Img6 from "../Company_Logos/Amazone.png"
+import Img7 from "../Company_Logos/JaneStreet.png";
+import Img8 from "../Company_Logos/Amazone.png";
+import Img9 from "../Company_Logos/Nvidia.png";
+import Img10 from "../Company_Logos/Snapchat.webp";
+import { StaticImageData } from "next/image";
 
-const jobs2 = [
+// Job interface with optional salary
+interface Job {
+  id: number;
+  title: string;
+  company: string;
+  location: string;
+  promoted?: boolean;
+  salary?: string;
+  logo: StaticImageData;
+  description: string;
+}
+
+const jobs: Job[] = [
   {
     id: 1,
     title: "Deputy Manager - Two Wheeler",
@@ -35,7 +40,7 @@ const jobs2 = [
   },
   {
     id: 2,
-    title: "Software Development Engineer - IV ",
+    title: "Software Development Engineer - IV",
     company: "Facebook",
     location: "Bhubaneswar, Odisha, India (Remote)",
     description:
@@ -59,8 +64,7 @@ const jobs2 = [
     title: "Frontend Developer",
     company: "Apple",
     location: "Bangalore, India (Hybrid)",
-    description:
-      "Build and maintain user interfaces with React and Tailwind CSS.",
+    description: "Build and maintain user interfaces with React and Tailwind CSS.",
     logo: Img4,
   },
   {
@@ -75,7 +79,7 @@ const jobs2 = [
   {
     id: 6,
     title: "Data Analyst",
-    company: "Amazone",
+    company: "Amazon",
     location: "Hyderabad, India (On-site)",
     description:
       "Analyze large datasets to extract insights and create reports for business strategy.",
@@ -93,7 +97,7 @@ const jobs2 = [
   {
     id: 8,
     title: "Cybersecurity Specialist",
-    company: "Linkdedin",
+    company: "LinkedIn",
     location: "Delhi, India (On-site)",
     description:
       "Protect company systems from cyber threats and conduct security audits.",
@@ -119,34 +123,6 @@ const jobs2 = [
   },
 ];
 
-const jobs = [
-  {
-    id: 1,
-    title: "Deputy Manager - Two Wheeler",
-    company: "Google",
-    location: "Purulia-I, West Bengal, India (On-site)",
-    promoted: true,
-    logo: Img1,
-  },
-  {
-    id: 2,
-    title: "Software Development Engineer - 2",
-    company: "Facebook",
-    location: "Bhubaneswar, Odisha, India (Remote)",
-    promoted: true,
-    logo: Img2,
-  },
-  {
-    id: 3,
-    title: "Lead Backend Developer",
-    company: "Microsoft",
-    location: "Bhubaneswar, Odisha, India (Remote)",
-    salary: "₹2.5M/yr - ₹3M/yr",
-    promoted: true,
-    logo: Img3,
-  },
-];
-
 export default function JobsPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -155,15 +131,11 @@ export default function JobsPage() {
     job.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const filteredJobs2 = jobs2.filter((job) =>
-    job.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">Top Job Picks for You</h2>
       <JobList jobs={filteredJobs} />
-      <JobSearchComponent onSearch={(query) => setSearchQuery(query)} />
+      <JobSearchComponent onSearch={(query:any) => setSearchQuery(query)} />
       <div className="flex gap-2 px-2">
         <div className="rounded-md bg-slate-800 py-0.5 px-2.5 border border-transparent text-sm text-white transition-all shadow-sm">
           3-5 years
@@ -178,7 +150,7 @@ export default function JobsPage() {
           +1000 employees
         </div>
       </div>
-      <JobListCardWrapper jobs={filteredJobs2} />
+      <JobListCardWrapper jobs={filteredJobs} />
     </div>
   );
 }

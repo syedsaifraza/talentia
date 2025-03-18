@@ -1,13 +1,10 @@
 "use client";
-import { useState } from "react";
-import { FiEdit } from "react-icons/fi";
+import { useState } from "react"; 
 import { IoClose } from "react-icons/io5";
-import { MdOutlineArticle } from "react-icons/md";
-import { MdNoteAdd } from "react-icons/md";
+import { MdOutlineArticle } from "react-icons/md"; 
 import Image from "next/image";
 import { IoMdCamera } from "react-icons/io";
-import { useRef } from "react";
-import dynamic from "next/dynamic";
+import { useRef } from "react"; 
 
 interface Media {
   type: "image" | "video";

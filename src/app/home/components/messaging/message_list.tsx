@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
+
 
 export default function MessageList() {
   const [search, setSearch] = useState("");
@@ -56,7 +58,10 @@ export default function MessageList() {
         {users.map((user, index) => (
           <div key={index} className="flex items-center px-4 py-2 hover:bg-gray-200 cursor-pointer">
             <div className="relative">
-              <img className="w-10 h-10 rounded-full" src={user.img} alt={user.name} />
+              <Image
+                                  alt="user"
+                                  height={10}
+                                  width={10} className="w-10 h-10 rounded-full" src={user.img}  />
               <div
                 className={`absolute bottom-0 right-0 w-3 h-3 border-2 border-white rounded-full ${
                   user.status === "Online" ? "bg-green-400" : "bg-gray-400"

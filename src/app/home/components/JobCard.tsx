@@ -1,12 +1,10 @@
 "use client";
 import React from "react";
-import Image from "next/image";
-import { useState } from "react";
-
-import { FaHeart } from "react-icons/fa";
+import Image, { StaticImageData } from "next/image"; 
+ 
 
 interface JobCardProps {
-  logo: string;
+  logo: StaticImageData;
   jobTitle: string;
   location:string;
   jobDescription: string;
@@ -22,11 +20,9 @@ const JobCard: React.FC<JobCardProps> = ({
   jobDescription,
   company,
   location,
-  tags,
-  onApply,
-  onMessage,
+   
 }) => {
-  const [issave, setissave] = useState(false);
+  //const [issave, setissave] = useState(false);
 
   return (
     // <div className="mt-6 w-full p-2">

@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 import JobCard from "./JobCard";
 
 interface Job {
@@ -6,8 +7,8 @@ interface Job {
   company: string;
   location: string;
   salary?: string;
-  promoted: boolean;
-  logo: string;
+  promoted?: boolean;
+  logo:StaticImageData;
   description: string; // Added description to match the jobs2 array
 }
 

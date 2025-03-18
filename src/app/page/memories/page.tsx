@@ -1,13 +1,7 @@
 "use client";
 
 import Post from "@/app/home/components/post";
-import { useState } from "react";
-import { RiProfileLine } from "react-icons/ri";
-import { GoStarFill } from "react-icons/go";
-import { ImProfile } from "react-icons/im";
-import { FaUserFriends } from "react-icons/fa";
-import { MdGroups } from "react-icons/md";
-import { TbFlag3Filled } from "react-icons/tb";
+
 
 export default function Memories() {
   const currentDate = new Date().toISOString().split("T")[0];
@@ -152,8 +146,8 @@ export default function Memories() {
           <h1 className="bg-white p-2 rounded-[10px] font-bold w-[60vw]">
             On This Day
           </h1>
-          {samplePosts.map((post) => (
-            <div className=" w-[60vw]">
+          {samplePosts.map((post,index) => (
+            <div key={index} className=" w-[60vw]">
               <Post key={post.id} post={post} />
             </div>
           ))}

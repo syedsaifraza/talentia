@@ -3,69 +3,59 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineHome } from "react-icons/ai";
-import { IoChatbubblesOutline } from "react-icons/io5";
-import {
-  CiBellOn,
-  CiBoxes,
-  CiLaptop,
-  CiSettings,
-  CiYoutube,
-} from "react-icons/ci";
+ 
 import { IoMdSettings } from "react-icons/io";
 
 import { MdOutlineVideoLibrary } from "react-icons/md";
 import { MdLeaderboard } from "react-icons/md";
-import { PiBagSimpleFill } from "react-icons/pi";
-import { PiChatCircle } from "react-icons/pi";
+import { PiBagSimpleFill } from "react-icons/pi"; 
 
 import { usePathname } from "next/navigation";
 import { BiSolidBell } from "react-icons/bi";
 
 import DefaultAvatar from "./defaultAvatar";
-import { BiSolidMessageAlt } from "react-icons/bi";
-import { MdOutlineSettings } from "react-icons/md";
+import { BiSolidMessageAlt } from "react-icons/bi"; 
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const [showChat, setShowChat] = useState(false);
+  const pathname = usePathname(); 
   const [showNotifications, setShowNotifications] = useState(false);
 
   const isActive = (route: string) =>
     pathname === route ? "border-b-4 border-[#3113d6]" : "";
   const activeColor = (route: string) =>
     pathname === route ? "#3113d6" : "gray";
-  const chats = [
-    {
-      id: 1,
-      name: "Suresh Yadav",
-      message: "Hey, how are you?",
-      time: "2h ago",
-    },
-    {
-      id: 2,
-      name: "Bacchan Pandey",
-      message: "Let's catch up later!",
-      time: "4h ago",
-    },
-    {
-      id: 3,
-      name: "Dr. Pankaj Kumar",
-      message: "Did you check the report?",
-      time: "6h ago",
-    },
-    {
-      id: 4,
-      name: "Munna Tripathi",
-      message: "Meeting at 5 PM?",
-      time: "8h ago",
-    },
-    {
-      id: 5,
-      name: "Guddu Pandit",
-      message: "Meeting at 5 PM?",
-      time: "8h ago",
-    },
-  ];
+  // const chats = [
+  //   {
+  //     id: 1,
+  //     name: "Suresh Yadav",
+  //     message: "Hey, how are you?",
+  //     time: "2h ago",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Bacchan Pandey",
+  //     message: "Let's catch up later!",
+  //     time: "4h ago",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Dr. Pankaj Kumar",
+  //     message: "Did you check the report?",
+  //     time: "6h ago",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Munna Tripathi",
+  //     message: "Meeting at 5 PM?",
+  //     time: "8h ago",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Guddu Pandit",
+  //     message: "Meeting at 5 PM?",
+  //     time: "8h ago",
+  //   },
+  // ];
 
   // className="bg-white shadow-md  px-10 w-full sticky top-0 z-50 bg-gradient-to-r from-[#36809A] via-[#D7EBF6] to-[#4389A2]"
 

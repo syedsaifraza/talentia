@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import Navbar from "../home/components/navbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {

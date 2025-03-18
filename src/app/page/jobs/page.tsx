@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
+ 
 
 // Job data
 const jobs = [
@@ -160,7 +162,10 @@ export default function JobsPage() {
                 }`}
             >
               <div className="flex items-center">
-                <img
+                <Image
+                
+                    height={10}
+                    width={10}
                   src={job.image}
                   alt={job.title}
                   className="w-12 h-12 rounded-full mr-4"

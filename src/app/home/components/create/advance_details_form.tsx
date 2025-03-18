@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { useState } from "react";
+
 
 interface StepProps {
   setStep: (step: number) => void;
@@ -45,7 +47,10 @@ const AdvancedDetailsForm = ({ setStep }: StepProps) => {
           <label className="block text-gray-700 font-medium">Cover Photo</label>
           <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, "cover")} className="mt-1 w-full" />
           {formData.coverPhoto && (
-            <img src={URL.createObjectURL(formData.coverPhoto)} alt="Cover Preview" className="mt-2 rounded-lg w-full h-40 object-cover" />
+            <Image
+                                alt="user"
+                                height={10}
+                                width={10} src={URL.createObjectURL(formData.coverPhoto)}   className="mt-2 rounded-lg w-full h-40 object-cover" />
           )}
         </div>
 
@@ -54,7 +59,10 @@ const AdvancedDetailsForm = ({ setStep }: StepProps) => {
           <label className="block text-gray-700 font-medium">Profile Photo</label>
           <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, "profile")} className="mt-1 w-full" />
           {formData.profilePhoto && (
-            <img src={URL.createObjectURL(formData.profilePhoto)} alt="Profile Preview" className="mt-2 w-24 h-24 rounded-full object-cover" />
+            <Image
+                                alt="user"
+                                height={10}
+                                width={10} src={URL.createObjectURL(formData.profilePhoto)}   className="mt-2 w-24 h-24 rounded-full object-cover" />
           )}
         </div>
 

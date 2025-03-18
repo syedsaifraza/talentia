@@ -1,30 +1,23 @@
 "use client";
 
-import {
-  FaBuilding,
+import { 
   FaUserFriends,
   FaWatchmanMonitoring,
 } from "react-icons/fa";
 import {
   FaBookmark,
   FaHistory,
-  FaUsers,
-  FaVideo,
+  FaUsers, 
   FaHome,
   FaBirthdayCake,
-  FaEnvelope,
-  FaClock,
-  FaBriefcase,
-  FaNewspaper,
+  FaEnvelope, 
+  FaBriefcase, 
 } from "react-icons/fa";
 
 import { SelfProfile } from "./self-profile";
 import { FaCirclePlus } from "react-icons/fa6";
-import { MdAutoAwesomeMotion } from "react-icons/md";
-import Link from "next/link";
-import { link } from "fs";
-import { usePathname } from "next/navigation";
-import svg from "./helloicon.svg";
+import { MdAutoAwesomeMotion } from "react-icons/md"; 
+import { usePathname } from "next/navigation"; 
 import { FaBookBookmark } from "react-icons/fa6";
 import { MdEmojiEvents } from "react-icons/md";
 

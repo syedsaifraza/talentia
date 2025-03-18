@@ -1,5 +1,3 @@
-import CurrentMessagingUser from "../home/components/messaging/current_messaging_user";
-import MessageList from "../home/components/messaging/message_list";
 import Navbar from "../home/components/navbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {

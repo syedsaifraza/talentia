@@ -1,17 +1,12 @@
 "use client";
-import { useState, useRef } from "react";
-import DefaultAvatar from "@/app/home/components/defaultAvatar";
-import { BsEmojiHeartEyesFill } from "react-icons/bs";
-import Image from "next/image";
-import { AiOutlineFileAdd } from "react-icons/ai";
+import { useState, useRef } from "react"; 
+import Image from "next/image"; 
 import { IoClose } from "react-icons/io5";
-import { MdNoteAdd } from "react-icons/md";
-import dynamic from "next/dynamic";
+import { MdNoteAdd } from "react-icons/md"; 
 import { IoIosPeople } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 
-const EmojiPicker = dynamic(() => import("emoji-picker-react"), { ssr: false });
-
+ 
 interface Media {
   type: "image" | "video";
   url: string;
@@ -32,12 +27,12 @@ export default function JobsPage() {
     input3: false,
   });
 
-  const toggleInput = (inputId) => {
-    setInputVisibility((prev) => ({
-      ...prev,
-      [inputId]: !prev[inputId],
-    }));
-  };
+  // const toggleInput = (inputId) => {
+  //   setInputVisibility((prev) => ({
+  //     ...prev,
+  //     [inputId]: !prev[inputId],
+  //   }));
+  // };
 
   const [postText, setPostText] = useState("");
   const [media, setMedia] = useState<Media | null>(null);
@@ -121,7 +116,10 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <img
+                  <Image
+                
+                    height={10}
+                    width={10}
                     className="w-full"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiakQQXPgmJxsCp9rb8_2Jm7uWrGCvbUHGoQ&s"
                     alt="Sunset in the mountains"
@@ -161,7 +159,10 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <img
+                  <Image
+                
+                    height={10}
+                    width={10}
                     className="w-full"
                     src="https://www.si.com/.image/t_share/MTczMzYxMjQzODkxOTY3ODk3/x163129_tk1_00818.jpg"
                     alt="Sunset in the mountains"
@@ -202,7 +203,10 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <img
+                  <Image
+                
+                    height={10}
+                    width={10}
                     className="w-full"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO96z3T-2CqY__oEdjBER62VMH94j4lv9Yb7VYbey4nMUKaoOq3hER3d-3PKNmd3_UWxw&usqp=CAU"
                     alt="Sunset in the mountains"
@@ -258,7 +262,10 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <img
+                  <Image
+                
+                    height={10}
+                    width={10}
                     className="w-full"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiakQQXPgmJxsCp9rb8_2Jm7uWrGCvbUHGoQ&s"
                     alt="Sunset in the mountains"
@@ -298,7 +305,10 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <img
+                  <Image
+                
+                    height={10}
+                    width={10}
                     className="w-full"
                     src="https://www.si.com/.image/t_share/MTczMzYxMjQzODkxOTY3ODk3/x163129_tk1_00818.jpg"
                     alt="Sunset in the mountains"
@@ -339,7 +349,10 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <img
+                  <Image
+                
+                    height={10}
+                    width={10}
                     className="w-full"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO96z3T-2CqY__oEdjBER62VMH94j4lv9Yb7VYbey4nMUKaoOq3hER3d-3PKNmd3_UWxw&usqp=CAU"
                     alt="Sunset in the mountains"
@@ -539,7 +552,7 @@ export default function JobsPage() {
               
                   <div
                    className="bg-gray-100 p-3 flex justify-between items-center"
-                    onClick={() => toggleInput("input1")}
+                    onClick={() => {}}
                   >
                     <p>Add co-host</p>
                     <IoIosArrowDown/>
@@ -557,7 +570,7 @@ export default function JobsPage() {
                   {/* Text 2 and Input 2 */}
                   <div
                     className="bg-gray-100 p-3 flex justify-between items-center"
-                    onClick={() => toggleInput("input2")}
+                    onClick={() => {}}
                   >
                    <p> Repeat Event</p>
                     <IoIosArrowDown/>
@@ -587,7 +600,10 @@ export default function JobsPage() {
                   className="flex justify-center items-center rounded-[50%] p-2 bg-gray-200"
                   onClick={() => setShowEmojiSection(false)}
                 >
-                  <img
+                  <Image
+                    alt=""
+                    height={10}
+                    width={10}
                     src="https://static.xx.fbcdn.net/rsrc.php/v4/y7/r/Ivw7nhRtXyo.png"
                     className="w-5 h-5"
                   />
@@ -597,7 +613,10 @@ export default function JobsPage() {
                   className="flex justify-center items-center rounded-[50%] p-2 bg-gray-200"
                   onClick={handleFeelingButtonClick}
                 >
-                  <img
+                  <Image
+                    alt=""
+                    height={10}
+                    width={10}
                     src="https://static.xx.fbcdn.net/rsrc.php/v4/yd/r/Y4mYLVOhTwq.png"
                     className="w-5 h-5"
                   />
@@ -606,7 +625,7 @@ export default function JobsPage() {
               <button
                 className="px-4 py-2 bg-blue-500 text-white rounded"
                 onClick={() => {
-                  handlePostSubmit();
+                 // handlePostSubmit();
                   setIsModalOpen(false);
                 }}
               >

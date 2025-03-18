@@ -1,4 +1,6 @@
+import Image from "next/image";
 import React from "react";
+
 
 interface LeaderboardEntry {
   rank: number;
@@ -66,17 +68,26 @@ const LeaderBoard: React.FC = () => {
       {/* Podium */}
       <div className="flex justify-center items-end gap-6 mb-6">
         <div className="flex flex-col items-center">
-          <img src="https://randomuser.me/api/portraits/men/80.jpg" className="w-12 h-12 rounded-full mb-2" />
+          <Image
+                              alt="user"
+                              height={10}
+                              width={10} src="https://randomuser.me/api/portraits/men/80.jpg" className="w-12 h-12 rounded-full mb-2" />
           <span className="bg-gray-300 px-3 py-1 rounded-lg">2nd</span>
           <span className="text-sm">54 PTS - $80</span>
         </div>
         <div className="flex flex-col items-center">
-          <img src="https://randomuser.me/api/portraits/men/81.jpg" className="w-16 h-16 rounded-full mb-2 border-4 border-yellow-400" />
+          <Image
+                              alt="user"
+                              height={10}
+                              width={10} src="https://randomuser.me/api/portraits/men/81.jpg" className="w-16 h-16 rounded-full mb-2 border-4 border-yellow-400" />
           <span className="bg-yellow-400 px-3 py-1 rounded-lg">1st</span>
           <span className="text-sm">61 PTS - $100</span>
         </div>
         <div className="flex flex-col items-center">
-          <img src="https://randomuser.me/api/portraits/men/82.jpg" className="w-12 h-12 rounded-full mb-2" />
+          <Image
+                              alt="user"
+                              height={10}
+                              width={10} src="https://randomuser.me/api/portraits/men/82.jpg" className="w-12 h-12 rounded-full mb-2" />
           <span className="bg-gray-300 px-3 py-1 rounded-lg">3rd</span>
           <span className="text-sm">52 PTS - $40</span>
         </div>
@@ -106,11 +117,17 @@ const LeaderBoard: React.FC = () => {
                 {player.rank} 
               </td>
               <td className="flex items-center gap-2 py-3">
-                <img src={player.avatar} className="w-8 h-8 rounded-full" alt={player.name} />
+                <Image
+                                    alt="user"
+                                    height={10}
+                                    width={10} src={player.avatar} className="w-8 h-8 rounded-full"   />
                 {player.name}
               </td>
               <td className="flex items-center gap-2 py-3">
-                <img src={player.countryFlag} className="w-5 h-5" alt={player.country} />
+                <Image
+                                    alt="user"
+                                    height={10}
+                                    width={10} src={player.countryFlag} className="w-5 h-5"   />
                 {player.country}
                 {player.bonusPoints && (
                   <span className="text-green-600 bg-green-100 px-2 py-1 text-xs rounded-lg">
@@ -134,13 +151,19 @@ const LeaderBoard: React.FC = () => {
           </div>
           <div className="mt-3 space-y-3">
             <div className="flex items-center gap-3">
-              <img src="https://cdn-icons-png.flaticon.com/128/9464/9464298.png" className="w-12 h-12 rounded-lg" alt="News 1" />
+              <Image
+                                  alt="user"
+                                  height={10}
+                                  width={10} src="https://cdn-icons-png.flaticon.com/128/9464/9464298.png" className="w-12 h-12 rounded-lg"   />
               <p className="text-sm">
                 Talentia is offering creata as the prize to <strong>  100 winners </strong> of talents challege...
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <img src="https://cdn-icons-png.flaticon.com/128/12886/12886549.png" className="w-12 h-12 rounded-lg" alt="News 2" />
+              <Image
+                                  alt="user"
+                                  height={10}
+                                  width={10}  src="https://cdn-icons-png.flaticon.com/128/12886/12886549.png" className="w-12 h-12 rounded-lg"   />
               <p className="text-sm">
                 <strong>Meet Iphone Winner</strong> Kamlesh won Iphone 16 last week using talentia...
               </p>

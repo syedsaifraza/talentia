@@ -1,7 +1,6 @@
 "use client";
 
-import { FriendsGrid } from "@/app/account/Accounts/friends-grid";
-
+ 
 export default function InstitutionalPage() {
   return (
     <div className="bg-white p-6 mt-4 mx-auto rounded shadow-lg">

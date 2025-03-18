@@ -22,24 +22,23 @@ interface Comment {
   text: string;
   replies: { id: number; text: string }[];
 }
-
-interface PostProps {
-  post: {
-    id: number;
-    text: string;
-    media?: {
-      type: "image" | "video";
-      url: string;
-    };
-    user: {
-      name: string;
-      avatar: string;
-    };
-    timestamp: string;
+interface PostType {
+ post:{ id: number;
+  text: string;
+  media: {
+    type: string;
+    url: string;
+  } | null;
+  user: {
+    name: string;
+    avatar: string;
   };
+  timestamp: string;
 }
+}
+ 
 
-const Post = ({ post }: PostProps) => {
+const Post = ({ post }: PostType) => {
   const [likeCount, setLikeCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [isCommentSectionOpen, setIsCommentSectionOpen] = useState(false);

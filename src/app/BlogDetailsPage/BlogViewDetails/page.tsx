@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
@@ -27,7 +28,9 @@ export default function MainBlogPage() {
                   Cryptocurrency
                 </a>
               </div>
-              <img
+              <Image
+                height={20} width={20}
+                alt="20"
                 src="https://images.unsplash.com/photo-1587614387466-0a72ca909e16?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
                 className="w-full object-cover lg:rounded"
                 style={{ height: "28em" }}
@@ -123,7 +126,10 @@ export default function MainBlogPage() {
               <div className="w-full lg:w-1/4 m-auto mt-12 max-w-screen-sm">
                 <div className="p-4 border-t border-b md:border md:rounded">
                   <div className="flex py-2">
-                    <img
+                    <Image
+                    alt="user"
+                    height={10}
+                    width={10}
                       src="https://randomuser.me/api/portraits/men/97.jpg"
                       className="h-10 w-10 rounded-full mr-2 object-cover"
                     />
@@ -259,10 +265,13 @@ export default function MainBlogPage() {
                   <li>
                     <article className="mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg">
                       <a href="#">
-                        <img
+                      <Image
+                    alt="user"
+                    height={60}
+                    width={60}
                           src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHBhcnRuZXJzaGlwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                           className="h-56 w-full object-cover"
-                          alt="hello"
+                          
                         />
                         <div className="flex-auto px-6 py-5">
                           <span className="mb-2 flex items-center text-sm font-semibold">
@@ -299,10 +308,13 @@ export default function MainBlogPage() {
                   <li>
                     <article className="mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg">
                       <a href="#">
-                        <img
+                      <Image
+                    alt="user"
+                    height={56}
+                    width={56}
                           src="https://images.unsplash.com/photo-1594122230689-45899d9e6f69?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXdhcmRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                           className="h-56 w-full object-cover"
-                          alt="hello"
+                         
                         />
                         <div className="flex-auto px-6 py-5">
                           <span className="mb-2 flex items-center text-sm font-semibold">
@@ -339,7 +351,9 @@ export default function MainBlogPage() {
                   <li>
                     <article className="mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg">
                       <a href="#">
-                        <img
+                      <Image 
+                    height={56}
+                    width={56}
                           src="https://images.unsplash.com/photo-1569705460033-cfaa4bf9f822?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXdhcmRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                           className="h-56 w-full object-cover"
                           alt="hello"

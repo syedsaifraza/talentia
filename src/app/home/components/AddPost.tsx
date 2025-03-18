@@ -2,13 +2,27 @@
 import { useState, useRef } from "react";
 import DefaultAvatar from "./defaultAvatar";
 import { BsEmojiHeartEyesFill } from "react-icons/bs";
-import Image from "next/image";
-import { AiOutlineFileAdd } from "react-icons/ai";
+import Image from "next/image"; 
 import { IoClose } from "react-icons/io5";
 import { MdNoteAdd } from "react-icons/md";
 import dynamic from "next/dynamic";
 
 const EmojiPicker = dynamic(() => import("emoji-picker-react"), { ssr: false });
+
+
+interface PostType {
+  id: number;
+  text: string;
+  media: {
+    type: "image" | "video";
+    url: string;
+  } | null;
+  user: {
+    name: string;
+    avatar: string;
+  };
+  timestamp: string;
+}
 
 interface Media {
   type: "image" | "video";
@@ -16,7 +30,7 @@ interface Media {
 }
 
 interface AddPostProps {
-  addPost: (post: { text: string; media: Media | null }) => void;
+  addPost: (newPost: Omit<PostType, "id">) => void;
 }
 
 const AddPost = ({ addPost }: AddPostProps) => {
@@ -197,7 +211,10 @@ const AddPost = ({ addPost }: AddPostProps) => {
                   className="flex justify-center items-center rounded-[50%] p-2 bg-gray-200"
                   onClick={() => setShowEmojiSection(false)}
                 >
-                  <img
+                  <Image
+                                      alt="user"
+                                      height={5}
+                                      width={5}
                     src="https://static.xx.fbcdn.net/rsrc.php/v4/y7/r/Ivw7nhRtXyo.png"
                     className="w-5 h-5"
                   />
@@ -207,7 +224,10 @@ const AddPost = ({ addPost }: AddPostProps) => {
                   className="flex justify-center items-center rounded-[50%] p-2 bg-gray-200"
                   onClick={handleFeelingButtonClick}
                 >
-                  <img
+                  <Image
+                                      alt="user"
+                                      height={10}
+                                      width={10}
                     src="https://static.xx.fbcdn.net/rsrc.php/v4/yd/r/Y4mYLVOhTwq.png"
                     className="w-5 h-5"
                   />
@@ -235,7 +255,10 @@ const AddPost = ({ addPost }: AddPostProps) => {
             setShowEmojiSection(false);
           }}
         >
-          <img
+          <Image
+                              alt="user"
+                              height={10}
+                              width={10}
             src="https://static.xx.fbcdn.net/rsrc.php/v4/y7/r/Ivw7nhRtXyo.png"
             className="w-5 h-5"
           />
@@ -249,7 +272,10 @@ const AddPost = ({ addPost }: AddPostProps) => {
             setShowEmojiSection(false);
           }}
         >
-          <img
+          <Image
+                              alt="user"
+                              height={10}
+                              width={10}
             src="https://static.xx.fbcdn.net/rsrc.php/v4/yr/r/c0dWho49-X3.png"
             className="w-5 h-5"
           />

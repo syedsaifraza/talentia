@@ -1,9 +1,6 @@
 "use client";
 
-import ReelsScroller from "@/app/home/components/ReelsScroller";
-import { ImProfile } from "react-icons/im";
-import { FaUserFriends } from "react-icons/fa";
-import { MdGroups } from "react-icons/md";
+ 
 import Post from "@/app/home/components/post";
 
 export default function SavedPage() {
@@ -138,9 +135,9 @@ export default function SavedPage() {
     <div className=" flex flex-row gap-10 mt-2 justify-center items-center w-[75vw]">
       <div className="flex flex-1 flex-col gap-4 justify-center items-center ">
         <h1 className="bg-white p-2 rounded-[10px] font-bold w-[60vw]">Saved</h1>
-        {samplePosts.map((post) => (
-          <div className=" w-[60vw]">
-            <Post key={post.id} post={post} />
+        {samplePosts.map((post,index) => (
+          <div key={index} className=" w-[60vw]">
+            {/* <Post key={post.id} post={post} /> */}
           </div>
         ))}
       </div>

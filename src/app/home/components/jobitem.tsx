@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 interface JobItemProps {
-  logo: string;
+  logo: StaticImageData;
   title: string;
   company: string;
   location: string;

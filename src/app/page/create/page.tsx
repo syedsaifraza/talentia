@@ -66,11 +66,11 @@ function OptionCards({ setStep }: StepProps) {
             <h2 className="text-lg font-semibold">Choose an Option</h2>
             <div className="grid grid-cols-4 gap-4 mt-4">
                 {options.map((option, index) => (
-                    <div key={index} className={`border p-4 rounded-lg cursor-pointer hover:bg-indigo-100 h-300 text-center ${option.gradient}`}    onClick={() => setStep(2)}>
-                        <Image src={option.icon}
+                    <div key={index} className={`border p-4 rounded-lg cursor-pointer hover:bg-indigo-100 h-300 text-center ${option?.gradient}`}    onClick={() => setStep(2)}>
+                        <Image src={option?.icon||""}
                         width={100} height={100}
-                        alt={option.name} className="m-auto mb-3 mt-3"/>
-                        <p className="text-[20px]" >{option.name}</p>
+                        alt={option?.name||""} className="m-auto mb-3 mt-3"/>
+                        <p className="text-[20px]" >{option?.name}</p>
                     </div>
                 ))}
             </div>

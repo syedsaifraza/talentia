@@ -1,4 +1,4 @@
-import Achievements from "../achievements/page";
+ 
 import GetNotified from "../components/GetNotified";
 import JobsPage from "../components/jobpage";
 

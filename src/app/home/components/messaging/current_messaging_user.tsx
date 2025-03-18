@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { FaVideo, FaPhone, FaFile } from "react-icons/fa";
+
 
 export default function CurrentMessagingUser() {
   const user = {
@@ -18,7 +20,9 @@ export default function CurrentMessagingUser() {
   return (
     <div className="w-full mx-1 bg-white shadow-lg rounded-lg p-4 flex flex-col items-center text-center border py-20">
       {/* Profile Image & Name */}
-      <img src={user.img} alt={user.name} className="w-20 h-20 rounded-full border mb-3" />
+      <Image 
+                          height={10}
+                          width={10} src={user.img} alt={user.name} className="w-20 h-20 rounded-full border mb-3" />
       <h2 className="text-lg font-semibold">{user.name}</h2>
 
       {/* Followers & Posts */}

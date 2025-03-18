@@ -29,8 +29,13 @@ export default function MessageView() {
 
   // Scroll to the latest message
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    if(messagesEndRef.current==null){
+
+    }else{
+    //  messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+ 
+    }
+     }, [messages]);
 
   // Handle sending a new message
   const sendMessage = () => {
@@ -46,7 +51,7 @@ export default function MessageView() {
   };
 
   // Send message on Enter key press
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e:any) => {
     if (e.key === "Enter") sendMessage();
   };
 
