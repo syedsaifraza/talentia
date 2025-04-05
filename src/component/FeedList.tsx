@@ -3,8 +3,9 @@
 import { getPosts } from "@/utils/apis/post";
 import { useEffect, useState } from "react";
 import Post from "@/app/home/components/post";
+import { PostType } from "@/types/PostType";
 export default function PostList({typeOf="all"}) {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<PostType[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {

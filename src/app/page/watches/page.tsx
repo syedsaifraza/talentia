@@ -160,7 +160,7 @@ export default function FeedPage() {
       <div className="flex flex-1 flex-col gap-4 mt-2 ">
         {samplePosts.map((post,index) => (
           <div key={index}>
-            <Post key={post.id} post={post} />
+            <p></p>
           </div>
         ))}
       </div>

@@ -18,7 +18,7 @@ import { addComment, addLike } from "@/utils/apis/post";
 import { useSelector } from "react-redux";
 import { CommentType, PostType } from "@/lib/interfaces/types";
 
-const Post = ( {post} : {post:PostType}) => {
+const Post = ( post : any) => {
  
   const [likeCount, setLikeCount] = useState(post.likes==undefined?0: post.likes.length);
   
@@ -33,8 +33,8 @@ const Post = ( {post} : {post:PostType}) => {
   const handleLikeClick = (postId:any) => {
     addLike(postId);
     
-    setLikeCount((prev) => (isLiked ? prev - 1 : prev + 1));
-    setIsLiked((prev) => !prev);
+    setLikeCount((prev:any) => (isLiked ? prev - 1 : prev + 1));
+    setIsLiked((prev:any) => !prev);
   };
 
   // Handle comment submission

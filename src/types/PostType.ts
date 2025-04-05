@@ -1,4 +1,5 @@
 export interface PostType {
+    fileURL: any;
     id: number;
     text: string;
     media: {

@@ -1,9 +1,7 @@
 "use client";
 import { useState } from "react";
   
-import { IoClose } from "react-icons/io5";  
-import VideoPost from "../components/watch"; 
-import FeedList from "../tasks/pages";
+import { IoClose } from "react-icons/io5";     
 import PostList from "@/component/FeedList";
 
 export default function Watch() {

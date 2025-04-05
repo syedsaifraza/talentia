@@ -148,7 +148,7 @@ export default function Memories() {
           </h1>
           {samplePosts.map((post,index) => (
             <div key={index} className=" w-[60vw]">
-              <Post key={post.id} post={post} />
+              <></>
             </div>
           ))}
         </div>

@@ -11,7 +11,7 @@ const Feed: React.FC<FeedPageProps> = ({ posts }) => {
   return (
     <div className="flex flex-col gap-4 mt-2">
       <h1>Feed</h1>
-      <FeedList posts={posts} />
+      <FeedList />
     </div>
   );
 };
