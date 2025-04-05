@@ -17,7 +17,7 @@ const DefaultAvatar: React.FC<AvatarProps> = ({ imageUrl, size = 40 }) => {
 
   // Get the first letter of the user's name (if available)
   const firstLetter = user?.name ? user.name.charAt(0).toUpperCase() : "?";
-  imageUrl=userInfo.profilePhoto||null;
+  
   return (
     <>
       {imageUrl ? (
@@ -33,6 +33,7 @@ const DefaultAvatar: React.FC<AvatarProps> = ({ imageUrl, size = 40 }) => {
           }}
         />
       ) : (
+        
         <div
           style={{
             width: size,

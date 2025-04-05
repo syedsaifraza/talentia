@@ -1,6 +1,6 @@
 import { AuthResponse, LoginData, RegisterData } from "../auth-helper";
 
-const API_BASE_URL = "https://talentia.humanoid.education/auth"; // Replace with your actual API URL
+const API_BASE_URL = "https://talentia2.humanoid.education/auth"; // Replace with your actual API URL
 
 export const registerUser = async (userData: RegisterData): Promise<AuthResponse> => {
   try {

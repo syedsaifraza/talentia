@@ -24,7 +24,7 @@ const useAuth = () => {
     // Call API to validate token
     const validateToken = async () => {
       try {
-        const res = await fetch('https://talentia.humanoid.education/auth/me', {
+        const res = await fetch('https://talentia2.humanoid.education/auth/me', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const useAuth = () => {
 
         if (res.ok) {
           const data = await res.json();
-          const institutes = await fetch('https://talentia.humanoid.education/api/institute', {
+          const institutes = await fetch('https://talentia2.humanoid.education/api/institute', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ const useAuth = () => {
             }, 
           });
 
-          const userProfile = await fetch('https://talentia.humanoid.education/api/profile', {
+          const userProfile = await fetch('https://talentia2.humanoid.education/api/profile', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

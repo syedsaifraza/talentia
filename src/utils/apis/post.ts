@@ -2,7 +2,7 @@ import { PostType } from "@/types/PostType";
 import { AuthResponse, LoginData, RegisterData } from "../auth-helper";
 import Cookies from "js-cookie";
 
-const API_BASE_URL = "https://talentia.humanoid.education/api/posts"; 
+const API_BASE_URL = "https://talentia2.humanoid.education/api/posts"; 
 // Replace with your actual API URL
 
 export const getPosts = async (): Promise<{ posts: PostType[] }> => {

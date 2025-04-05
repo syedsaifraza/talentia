@@ -4,6 +4,7 @@ import AddPost from "../components/AddPost";
 import ReelsScroller from "../components/ReelsScroller"; 
 import PostList from "@/component/FeedList";
 import { useSelector } from "react-redux";
+import { addPost } from "@/utils/apis/post";
 
 interface PostType {
   id: number;
@@ -24,11 +25,7 @@ export default function Feed() {
   const [posts, setPosts] = useState<PostType[]>([]);
 
 
-  const addPost = (newPost: Omit<PostType, "id">) => {
-   
-    const postWithId: PostType = { ...newPost, id: Date.now() };
-    setPosts([postWithId, ...posts]);
-  };
+  
 
   
   const samplePosts: PostType[] = [

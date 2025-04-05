@@ -28,7 +28,14 @@ export default function Profile() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const appState = useSelector((state:any)=>state.auth);
-  const [profileData, setProfileData] = useState({
+  const [profileData, setProfileData] = appState.userInfo==null? useState({name:"" ,
+    bio:"",
+    skills:[],
+    intro:"",
+    profilePhoto: "",
+    coverPhoto:"https://content.acetians.in/uploads/cover1_cleanup.jpg",
+    featuredPhotos: [],
+    jobTitle:""}): useState({
     name: appState.userInfo.name ,
     bio: appState.userInfo.bio,
     skills: appState.userInfo.skills,

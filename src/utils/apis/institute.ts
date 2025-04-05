@@ -1,7 +1,7 @@
 import { AuthResponse } from "../auth-helper";
 import Cookies from "js-cookie";
 
-const API_BASE_URL = "https://talentia.humanoid.education/api/institute"; 
+const API_BASE_URL = "https://talentia2.humanoid.education/api/institute"; 
 // Replace with your actual API URL
 
 interface Institution {

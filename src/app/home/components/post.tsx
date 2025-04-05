@@ -18,8 +18,8 @@ import { addComment, addLike } from "@/utils/apis/post";
 import { useSelector } from "react-redux";
 import { CommentType, PostType } from "@/lib/interfaces/types";
 
-const Post = ( post : any) => {
- 
+const Post = ( {post}:{post:any}) => {
+  // alert(JSON.stringify(post))
   const [likeCount, setLikeCount] = useState(post.likes==undefined?0: post.likes.length);
   
   const [isCommentSectionOpen, setIsCommentSectionOpen] = useState(false);
@@ -87,6 +87,7 @@ const Post = ( post : any) => {
             cursor: "pointer",
           }}
         >
+          
           {post.user.name.charAt(0).toUpperCase()}
         </div>):(post.userDetails.profilePhoto==undefined? 
         <div

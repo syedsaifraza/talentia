@@ -4,12 +4,18 @@ import Link from "next/link";
 import DefaultAvatar from "./defaultAvatar";
 import { useSelector } from "react-redux";
 import { CgChevronDoubleDown, CgChevronDoubleLeft, CgChevronRight } from "react-icons/cg";
+import { profile } from "console";
 
 export const SelfProfile = () => {
 
   const { user } = useAuth();
   const appState = useSelector((state:any) => state.institute);
   const userState = useSelector((state:any) => state.auth.userInfo);
+  const coverPhoto='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ';
+  const profilePhoto ='https://content.acetians.in/uploads/149071.png';
+  if(userState==null){
+    return <p>No User</p>
+  }
   return (
     <>
       <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white shadow-xl rounded-lg text-gray-900">
@@ -19,15 +25,14 @@ export const SelfProfile = () => {
             height={100}
             width={100}
             className="object-cover object-top w-full"
-            src={userState.coverPhoto==undefined? `https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ` :userState.coverPhoto }
+            src={userState==null?coverPhoto: (userState.coverPhoto==undefined) ? coverPhoto :userState.coverPhoto }
 
           />
         </div>
         <div className="mx-auto w-[6vw] h-[6vw] relative left-[-10px] -mt-10 overflow-hidden">
           {/* <Link href="/account/profile"> */}
-          {userState.profilePhoto==undefined && <DefaultAvatar  size={60} />}
-          {userState.profilePhoto!=undefined && <DefaultAvatar imageUrl={userState.profilePhoto}  size={160} />}
-          {/* </Link> */}
+          {userState==null ? <DefaultAvatar  size={60} />: <DefaultAvatar imageUrl={userState.profilePhoto}  size={160} />}
+       
         </div>
         <div className=" mx-4">
           <h2 className="font-semibold">{userState.name|| 'Guest'}</h2>
@@ -50,6 +55,7 @@ export const SelfProfile = () => {
         
         <div className="px-2">
           <p>Pages ({appState.institutes.length})</p>
+          <ul>
           {appState.institutes.slice(0,1).map((ins:any) => (
             <li
               key={ins.id}
@@ -74,6 +80,7 @@ export const SelfProfile = () => {
               </span>
             </li>
           ))}
+          </ul>
         </div>
         <hr className="mt-4 border-gray-300" />
 

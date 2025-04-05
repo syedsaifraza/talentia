@@ -46,6 +46,7 @@ const AddPost = ({addPost}:{addPost:any}) => {
     if (fileV) formData.append("file", fileV);
 
     try {
+      alert("Posting Please wait")
       await addPost(formData);
       setPostText("");
       setMedia(null);

@@ -30,7 +30,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
       }
 
       setIsChecking(false); // Hide loader
-    }, 1000); // 1-second timeout
+    }, 100); // 1-second timeout
 
     return () => clearTimeout(timeout);
   }, [pathname, router, appState.isAuthenticated]);
