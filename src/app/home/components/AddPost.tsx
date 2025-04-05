@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import { addPost } from "@/utils/apis/post";
 import { useSelector } from "react-redux";
 import { Media } from "@/lib/interfaces/types";
+import { revalidatePath } from "next/cache";
 const EmojiPicker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
 
@@ -16,6 +17,7 @@ const EmojiPicker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 const AddPost = ({addPost}:{addPost:any}) => {
   const [postText, setPostText] = useState("");
   const [media, setMedia] = useState<Media | null>(null);
+  const [isUploading,setIsUploading]=useState(false);
   const [fileV, setFileV] = useState<File | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showEmojiSection, setShowEmojiSection] = useState(false);
@@ -39,26 +41,29 @@ const AddPost = ({addPost}:{addPost:any}) => {
 
   const handlePostSubmit = async () => {
     if (!postText.trim() && !fileV) return;
+    setIsUploading(true);
 
     const formData = new FormData();
     formData.append("text", postText);
     formData.append("timestamp", new Date().toISOString());
     if (fileV) formData.append("file", fileV);
 
-    try {
-      alert("Posting Please wait")
+    try { 
       await addPost(formData);
       setPostText("");
       setMedia(null);
       setFileV(null);
       setIsModalOpen(false);
+      revalidatePath("/home/feed")
     } catch (error) {
       console.error("Error posting:", error);
+    }finally{
+      setIsUploading(false);
     }
   };
 
   return (
-    <div className="flex flex-col justify-center h-[25vh] px-[2vw] bg-white rounded-lg p-4">
+    <div className="flex flex-col justify-center h-[20vh] px-[1vw] bg-white rounded-lg p-2">
       <div className="flex items-center space-x-3">
         <DefaultAvatar />
         <input
@@ -80,7 +85,8 @@ const AddPost = ({addPost}:{addPost:any}) => {
                 <IoClose />
               </button>
             </div>
-
+            <div className="overflow-y-auto px-4 space-y-4" style={{ maxHeight: 'calc(90vh - 60px)' }}>
+      
             <div className="flex px-4 items-center space-x-3">
               <DefaultAvatar size={40}/>
               <div>
@@ -134,9 +140,10 @@ const AddPost = ({addPost}:{addPost:any}) => {
                   <BsEmojiHeartEyesFill />
                 </button>
               </div>
-              <button className="px-4 py-2 bg-blue-500 text-white rounded" onClick={handlePostSubmit}>
-                Post
+              <button className="px-4 py-2 bg-blue-500 text-white rounded" disabled={isUploading} onClick={handlePostSubmit}>
+               {isUploading?"Posting":"Post"} 
               </button>
+            </div>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ import { profile } from "console";
 
 export const SelfProfile = () => {
 
-  const { user } = useAuth();
+  
   const appState = useSelector((state:any) => state.institute);
   const userState = useSelector((state:any) => state.auth.userInfo);
   const coverPhoto='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ';
@@ -31,7 +31,7 @@ export const SelfProfile = () => {
         </div>
         <div className="mx-auto w-[6vw] h-[6vw] relative left-[-10px] -mt-10 overflow-hidden">
           {/* <Link href="/account/profile"> */}
-          {userState==null ? <DefaultAvatar  size={60} />: <DefaultAvatar imageUrl={userState.profilePhoto}  size={160} />}
+          {userState==null ? <DefaultAvatar  size={60} />: <DefaultAvatar imageUrl={userState.profilePhoto}  size={80} />}
        
         </div>
         <div className=" mx-4">

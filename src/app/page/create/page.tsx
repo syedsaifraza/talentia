@@ -42,7 +42,7 @@ export default function InstitutionalPage() {
           />
         </div>
         <div className="mx-auto w-[6vw] h-[6vw] relative left-[-80px] -mt-10 overflow-hidden"> 
-          <DefaultAvatar size={60} imageUrl={ins.logoURL} />
+          <Image src={ins.logoURL} height={60} width={60} className="rounded-full" alt={ins.name} />
          
           
         </div>

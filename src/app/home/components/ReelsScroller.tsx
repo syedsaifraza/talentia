@@ -5,6 +5,9 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { MdNoteAdd, MdAddCircleOutline } from "react-icons/md";
 import dynamic from "next/dynamic";
+import { useSelector } from "react-redux";
+import ReelCardSkeletal from "@/component/skelatal/ReelCardSkletal";
+import NameAvatar from "./nameAvatar";
 
 const EmojiPicker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
@@ -100,6 +103,10 @@ const initialReelsData = [
 const ReelsScroller = ({ size = "small", limit = 0 }) => {
   const [reelsData, setReelsData] = useState(initialReelsData);
 
+  const appState = useSelector((state:any)=>state.auth);
+  const userState = useSelector((state:any)=>state.auth.userInfo);
+ 
+
   const [postText, setPostText] = useState("");
   const [media, setMedia] = useState<{
     type: "image" | "video";
@@ -163,71 +170,36 @@ const ReelsScroller = ({ size = "small", limit = 0 }) => {
   return (
     <>
       <div className=" bg-white rounded-lg p-2">
-        <h3 className="text-lg font-semibold mb-2 p-2">Status</h3>
-        <div className="flex space-x-3 overflow-x-auto no-scrollbar p-2">
+        <h3 className="text-lg font-semibold mb-2 px-2">Status</h3>
+        <div className="flex space-x-3 overflow-x-auto no-scrollbar px-2 pb-1">
           <div className="flex gap-2">
+            {appState.user==null ?<> <ReelCardSkeletal/></>:
             <div
-              onClick={() => setaddstatus(!addstatus)}
-              className={`relative ${
-                limit !== 0 ? "h-100 w-60" : "h-40 w-24"
-              } rounded-lg overflow-hidden cursor-pointer`}
-            >
-              <div className="absolute inset-0 bg-black opacity-40"></div>
-              <Image
-                width={100}
-                height={100}
-                src={"https://randomuser.me/api/portraits/men/69.jpg"}
-                alt="hello"
-                className="w-full h-full object-cover"
+            onClick={() => setaddstatus(!addstatus)}
+            className={`relative ${
+              limit !== 0 ? "h-100 w-60" : "h-40 w-24"
+            } rounded-lg overflow-hidden cursor-pointer`}
+          >
+            <div className="absolute inset-0 bg-black opacity-40"></div>
+            {userState.profilePhoto==undefined?<NameAvatar name={userState.name} size={100} />:
+            <Image
+              width={100}
+              height={100}
+              src={userState.profilePhoto}
+              alt="hello"
+              className="w-full h-full object-cover"
+            />}
+            <div className="absolute flex flex-col justify-center align-center items-center top-[60%] left-[10%] text-white rounded-full">
+              <MdAddCircleOutline
+                onClick={() => setaddstatus(!addstatus)}
+                className="text-white hover:text-gray-800 text-[30px]"
               />
-              <div className="absolute flex flex-col justify-center align-center items-center top-[60%] left-[10%] text-white rounded-full">
-                <MdAddCircleOutline
-                  onClick={() => setaddstatus(!addstatus)}
-                  className="text-white hover:text-gray-800 text-[30px]"
-                />
-                <p className="text-[12px]">Add Status</p>
-              </div>
+              <p className="text-[12px]">Add Status</p>
             </div>
-
-            {(limit === 0
-              ? reelsData
-              : reelsData.filter((reel) => reel.id < limit)
-            ).map((reel, index) => (
-              <div
-                key={reel.id}
-                className={`relative ${
-                  limit !== 0 ? "h-100 w-60" : "h-40 w-24"
-                } rounded-lg overflow-hidden cursor-pointer`}
-                onClick={() => setSelectedStatus(index)}
-              >
-                <div className="absolute inset-0 bg-black opacity-40"></div>
-                <Image
-                  width={100}
-                  height={100}
-                  src={reel.thumbnail}
-                  alt={reel.user}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-2 left-2 w-8 h-8 border-2 border-blue-500 rounded-full">
-                  <Image
-                    width={100}
-                    height={100}
-                    src={reel.avatar}
-                    alt={reel.user}
-                    className="w-full h-full rounded-full"
-                  />
-                </div>
-                <div className="absolute bottom-2 left-2 text-white text-sm font-semibold">
-                  {reel.user}
-                  {limit > 0 && (
-                    <>
-                      <p>300k Views</p>
-                      <p>#20 on Trending</p>
-                    </>
-                  )}
-                </div>
-              </div>
-            ))}
+          </div>
+            }
+             
+             
           </div>
         </div>
 

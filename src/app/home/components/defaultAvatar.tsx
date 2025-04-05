@@ -4,54 +4,29 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
+import NameAvatar from "./nameAvatar";
 
 interface AvatarProps {
   imageUrl?: string; // Optional image URL
   size?: number; // Default size is 40px
 }
 
-const DefaultAvatar: React.FC<AvatarProps> = ({ imageUrl, size = 40 }) => {
+const DefaultAvatar: React.FC<AvatarProps> = ({ size = 40 }) => {
   const defaultImage = "https://randomuser.me/api/portraits/men/69.jpg";
   const user = useSelector((state: any) => state.auth.user);
-  const userInfo = useSelector((state:any)=>state.auth.userInfo);
+  const userState= useSelector((state:any)=>state.auth.userInfo);
 
   // Get the first letter of the user's name (if available)
   const firstLetter = user?.name ? user.name.charAt(0).toUpperCase() : "?";
   
   return (
     <>
-      {imageUrl ? (
-        <Image
-          src={imageUrl || defaultImage}
-          alt="User Avatar"
-          width={size}
-          height={size}
-          style={{
-            borderRadius: "50%",
-            objectFit: "cover",
-            cursor: "pointer",
-          }}
-        />
-      ) : (
+       
+      {userState==null ?<div className="bg-gray-200 rounded-full h-40 w-40"></div> : userState.profilePhoto==undefined?<NameAvatar name={userState.name} size={size} /> : <Image
+        className="rounded-full"
+        src={userState.profilePhoto} height={size} width={size} alt={userState.name}/> }  
         
-        <div
-          style={{
-            width: size,
-            height: size,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#3498db",
-            color: "#fff",
-            fontSize: size * 0.5,
-            fontWeight: "bold",
-            borderRadius: "50%",
-            cursor: "pointer",
-          }}
-        >
-          {firstLetter}
-        </div>
-      )}
+      
       
     </>
   );

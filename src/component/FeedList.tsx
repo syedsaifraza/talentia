@@ -4,6 +4,7 @@ import { getPosts } from "@/utils/apis/post";
 import { useEffect, useState } from "react";
 import Post from "@/app/home/components/post";
 import { PostType } from "@/types/PostType";
+import PostSkelatal from "./skelatal/PostSkelatal";
 export default function PostList({typeOf="all"}) {
   const [posts, setPosts] = useState<PostType[]>([]);
 
@@ -27,7 +28,9 @@ export default function PostList({typeOf="all"}) {
     <div className="mt-4">
       <h2 className="text-xl font-bold mb-2">Recent Posts</h2>
       {posts.length === 0 ? (
-        <p>No posts yet.</p>
+      <>
+        <PostSkelatal key={1}/>
+        <PostSkelatal key={2}/></>
       ) : (
         <ul>
           {typeOf=="all" &&

@@ -4,21 +4,37 @@ import { useState, useEffect } from "react";
 import { AccountPhotos } from "../components/photos-account";
 import { FriendsGrid } from "../components/friends-grid";
 import Image from "next/image";
-import { IoClose } from "react-icons/io5";
+import { IoCamera, IoClose } from "react-icons/io5";
 import DefaultAvatar from "@/app/home/components/defaultAvatar";
 import { updateUser } from "@/utils/apis/profile";
 import { useSelector } from "react-redux"; 
 import { revalidatePath } from "next/cache";
 import { FeaturedPhotos, PostType, ProfileData } from "@/lib/interfaces/types";
+import NameAvatar from "@/app/home/components/nameAvatar";
+import useAuth from "@/hooks/useAuth";
+import PostSkelatal from "@/component/skelatal/PostSkelatal";
 
 
 
 export default function Profile() {
+  const [loading,setLoading]=useState(true);
+  useEffect(()=>{
+   try{
+    setLoading(true)
+    useAuth()
+   }catch(e) {
 
+   }finally{
+    setLoading(false);
+   }
+  })
+  
+  
   const [uploadFiles,setUploadFiles]=useState({});
   const editOptions = [
-    { name: "Profile Photo", input: "image", key: "profilePhoto" },
     { name: "Cover Photo", input: "image", key: "coverPhoto" },
+    { name: "Profile Photo", input: "image", key: "profilePhoto" },
+    
     { name: "Job Title", input: "text", key: "jobTitle" },
     { name: "Bio", input: "textarea", key: "bio" },
     { name: "Skills", input: "tags", key: "skills" },
@@ -28,12 +44,13 @@ export default function Profile() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const appState = useSelector((state:any)=>state.auth);
+   const userState= useSelector((state:any)=>state.auth.userInfo);
   const [profileData, setProfileData] = appState.userInfo==null? useState({name:"" ,
     bio:"",
     skills:[],
     intro:"",
-    profilePhoto: "",
     coverPhoto:"https://content.acetians.in/uploads/cover1_cleanup.jpg",
+    profilePhoto: "https://content.acetians.in/uploads/logo%20(2).png",
     featuredPhotos: [],
     jobTitle:""}): useState({
     name: appState.userInfo.name ,
@@ -156,7 +173,9 @@ export default function Profile() {
 
   const accountSubOptions = ["Posts", "About", "Friends", "Photos", "More"];
   const [currentPage, setCurrentPage] = useState<string>(accountSubOptions[0]);
-
+ if(userState==null){
+  return <h1>Loading</h1>;
+ }
   return (
     <>
       {isModalOpen && (
@@ -175,28 +194,73 @@ export default function Profile() {
             <div className="px-4 py-4 space-y-6">
               {editOptions.map((opt, id) => (
                 <div key={id} className="space-y-2">
-                  <h3 className="font-medium">{opt.name}</h3>
                   
-                  {opt.input === "image" && (
-                    <div className="flex items-center space-x-4">
-                      <div className="relative w-20 h-20 rounded-full overflow-hidden border">
-                        <Image
-                          src={tempProfileData[opt.key as keyof ProfileData] as string || "/default-avatar.jpg"}
-                          alt={opt.name}
-                          width={80}
-                          height={80}
-                          className="object-cover"
-                        />
-                      </div>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleFileUpload(opt.key as keyof ProfileData, e)}
-                        className="text-sm"
-                      />
-                    </div>
-                  )}
+                  
+                  
 
+                  {opt.input === "image" && opt.key == "coverPhoto" && (
+  <div className="flex items-center space-x-4">
+    <div className="relative w-full h-[20vh] overflow-hidden border rounded-md">
+      <Image
+        src={
+          (tempProfileData[opt.key as keyof ProfileData] as string) ||
+          "/default-avatar.jpg"
+        }
+        alt={opt.name}
+        width={200}
+        height={28}
+        className="object-cover w-full h-[20vh]"
+      />
+
+      {/* Camera Icon Overlay */}
+      <label className="absolute bottom-2 right-2 bg-white p-2 rounded-full cursor-pointer shadow-md hover:bg-gray-200 transition">
+        <IoCamera className="text-black w-5 h-5" />
+        <input
+          type="file"
+          accept="image/*"
+          hidden
+          onChange={(e) =>
+            handleFileUpload(opt.key as keyof ProfileData, e)
+          }
+        />
+      </label>
+    </div>
+  </div>
+)}
+{opt.input === "image" && opt.key == "profilePhoto" && (
+  <div className="flex items-center space-x-4">
+    <div className="relative w-20 h-20 rounded-full overflow-hidden border top-[-20vh] right-[-40vh]">
+      
+      {tempProfileData[opt.key] === "" ? (
+        <NameAvatar name={profileData.name} size={80} />
+      ) : (
+        <Image
+          src={
+            (tempProfileData[opt.key as keyof ProfileData] as string) ||
+            "/default-avatar.jpg"
+          }
+          alt={opt.name}
+          width={80}
+          height={80}
+          className="object-cover"
+        />
+      )}
+
+      {/* Camera Icon Overlay */}
+      <label className="absolute bottom-0 right-0 bg-white p-1 rounded-full cursor-pointer shadow-md">
+        <IoCamera className="text-black w-5 h-5" />
+        <input
+          type="file"
+          hidden
+          accept="image/*"
+          onChange={(e) =>
+            handleFileUpload(opt.key as keyof ProfileData, e)
+          }
+        />
+      </label>
+    </div>
+  </div>
+)}
                   {opt.input === "textarea" && (
                     <textarea
                       value={tempProfileData[opt.key as keyof ProfileData] as string}
@@ -316,8 +380,7 @@ export default function Profile() {
           </div>
         </div>
       )}
-
-      <div className="bg-gray-100 min-h-[90vh]">
+       {loading==true? <PostSkelatal/>:<div className="bg-gray-100 min-h-[90vh]">
         {/* Cover Photo */}
        
          
@@ -332,7 +395,8 @@ export default function Profile() {
           <div className="absolute bottom-4 left-6 flex items-center space-x-4">
             {/* Profile Picture */}
             {profileData.profilePhoto == undefined && <DefaultAvatar size={112}/>}
-            {profileData.profilePhoto != undefined &&
+            {profileData.profilePhoto != undefined && profileData.profilePhoto=="" &&
+            
             <Image
               width={112}
               height={112}
@@ -410,7 +474,8 @@ export default function Profile() {
             {currentPage === accountSubOptions[2] && <FriendsGrid />}
           </div>
         </div>
-      </div>
+      </div> }
+      
     </>
   );
 }

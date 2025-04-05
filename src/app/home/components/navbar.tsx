@@ -27,16 +27,7 @@ export default function Navbar() {
     Cookies.remove("token")
     dispatch(logout());
     router.push("/auth/login");
-
-  // Ensure no history entry exists for the previous page
-  setTimeout(() => {
-    if (typeof window !== "undefined") {
-      window.history.pushState(null, "", window.location.href);
-      window.onpopstate = () => {
-        window.history.pushState(null, "", window.location.href);
-      };
-    }
-  }, 100);  
+    alert("logout success") 
   };
 
   const isActive = (route: string) =>

@@ -5,6 +5,8 @@ import ReelsScroller from "../components/ReelsScroller";
 import PostList from "@/component/FeedList";
 import { useSelector } from "react-redux";
 import { addPost } from "@/utils/apis/post";
+import AddPostSkelatal from "@/component/skelatal/AddPostSkelatal";
+import PostSkelatal from "@/component/skelatal/PostSkelatal";
 
 interface PostType {
   id: number;
@@ -73,9 +75,15 @@ export default function Feed() {
   const appState = useSelector((state:any)=>state.auth);
   return (
     <div className="flex flex-col gap-4 mt-2">
-      <AddPost addPost={addPost} />
+      {appState.user==null ? <AddPostSkelatal/>: <AddPost addPost={addPost} /> }
+      
       <ReelsScroller />
-      {appState.isAuthenticated==true && <PostList/> }
+      {appState.isAuthenticated!=true ?
+      <>
+      <PostSkelatal/>
+      <PostSkelatal/>
+      </>:
+      <PostList/> }
       
 
       

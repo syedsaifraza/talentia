@@ -20,6 +20,9 @@ import { MdAutoAwesomeMotion } from "react-icons/md";
 import { usePathname } from "next/navigation"; 
 import { FaBookBookmark } from "react-icons/fa6";
 import { MdEmojiEvents } from "react-icons/md";
+import { useSelector } from "react-redux";
+import SelfProfileSkelatal from "@/component/skelatal/SelfProfileCard";
+import ListTileSkelatal from "@/component/skelatal/ListTileSkelatal";
 
 
 const Sidebar = () => {
@@ -67,6 +70,7 @@ const Sidebar = () => {
     { name: "Jobs", icon: <FaBriefcase size={20} />, link: "/home/job" },
     { name: "Blogs", icon: <FaBookBookmark size={18} />, link: "/page/blogs" },
   ];
+  const appState = useSelector((state:any)=>state.auth)
   return (
     <aside
       id="default-sidebar"
@@ -76,8 +80,10 @@ const Sidebar = () => {
       <div className="h-full pt-2 pl-4 pr-6 pb-2  overflow-y-auto   dark:bg-gray-800 no-scrollbar fixed bg-white z-40 ">
         <ul className="space-y-2 w-[22vw] font-medium  ">
           <li key={321} className="">
-            <SelfProfile />
+            {appState.user==null ? <SelfProfileSkelatal/> : <SelfProfile /> }
+            
           </li>
+          {appState.user!=null ?
           <li key={211231}>
             <a
               href="/page/create"
@@ -87,7 +93,9 @@ const Sidebar = () => {
               Page
             </a>
           </li>
+          :""}
           <li>
+            {appState.user!=null ?
             <ul className="space-y-2 font-medium">
               {sideOptions &&
                 sideOptions.map((side, index) => (
@@ -111,6 +119,13 @@ const Sidebar = () => {
                   </li>
                 ))}
             </ul>
+            : 
+            <ul className="space-y-2 font-medium">
+            {sideOptions &&
+                sideOptions.map((side, index) => (
+               <ListTileSkelatal key={index} />
+                ))}
+            </ul>}
           </li>
         </ul>
       </div>
