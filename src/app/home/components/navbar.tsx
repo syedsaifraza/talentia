@@ -3,65 +3,50 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineHome } from "react-icons/ai";
- 
 import { IoMdSettings } from "react-icons/io";
-
-import { MdOutlineVideoLibrary } from "react-icons/md";
-import { MdLeaderboard } from "react-icons/md";
+import { MdOutlineVideoLibrary, MdLeaderboard } from "react-icons/md";
 import { PiBagSimpleFill } from "react-icons/pi"; 
-
 import { usePathname } from "next/navigation";
-import { BiSolidBell } from "react-icons/bi";
-
+import { BiSolidBell, BiSolidMessageAlt } from "react-icons/bi";
 import DefaultAvatar from "./defaultAvatar";
-import { BiSolidMessageAlt } from "react-icons/bi"; 
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import { logout, setLoggedInUser } from "@/store/slices/authSlices";
+import { useDispatch } from "react-redux";
 
 export default function Navbar() {
-  const pathname = usePathname(); 
+  const pathname = usePathname();
+  const router = useRouter();
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    
+    // Clear session (e.g., remove token from localStorage)
+    localStorage.removeItem("token");
+    Cookies.remove("token")
+    dispatch(logout());
+    router.push("/auth/login");
+
+  // Ensure no history entry exists for the previous page
+  setTimeout(() => {
+    if (typeof window !== "undefined") {
+      window.history.pushState(null, "", window.location.href);
+      window.onpopstate = () => {
+        window.history.pushState(null, "", window.location.href);
+      };
+    }
+  }, 100);  
+  };
 
   const isActive = (route: string) =>
     pathname === route ? "border-b-4 border-[#3113d6]" : "";
   const activeColor = (route: string) =>
     pathname === route ? "#3113d6" : "gray";
-  // const chats = [
-  //   {
-  //     id: 1,
-  //     name: "Suresh Yadav",
-  //     message: "Hey, how are you?",
-  //     time: "2h ago",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Bacchan Pandey",
-  //     message: "Let's catch up later!",
-  //     time: "4h ago",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Dr. Pankaj Kumar",
-  //     message: "Did you check the report?",
-  //     time: "6h ago",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Munna Tripathi",
-  //     message: "Meeting at 5 PM?",
-  //     time: "8h ago",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Guddu Pandit",
-  //     message: "Meeting at 5 PM?",
-  //     time: "8h ago",
-  //   },
-  // ];
-
-  // className="bg-white shadow-md  px-10 w-full sticky top-0 z-50 bg-gradient-to-r from-[#36809A] via-[#D7EBF6] to-[#4389A2]"
 
   return (
-    <nav className="bg-white shadow-md  px-4 w-full sticky top-0 z-50 ">
-      <div className="mx-auto w-full sm:px-0 lg:px-0">
+    <nav className="bg-white shadow-md px-4 w-full sticky top-0 z-50">
+      <div className="mx-auto w-full">
         <div className="relative flex items-center justify-between">
           <div className="flex flex-1 items-center justify-center sm:justify-between">
             <div className="flex shrink-0 items-start lg:w-1/4">
@@ -70,130 +55,76 @@ export default function Navbar() {
                 height={80}
                 alt="Logo"
                 className="px-2"
-                src="https://talentia.co.in/logo.png"
+                src="https://content.acetians.in/uploads/logo%20(2).png"
               />
             </div>
+
             <div className="hidden sm:block lg:w-full">
               <div className="flex justify-between w-full px-20">
-                <div
-                  className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive(
-                    "/home/feed"
-                  )}`}
-                >
+                <div className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive("/home/feed")}`}>
                   <Link href="/home/feed">
-                    <AiOutlineHome
-                      color={activeColor("/home/feed")}
-                      size={28}
-                    />
+                    <AiOutlineHome color={activeColor("/home/feed")} size={28} />
                   </Link>
                 </div>
-                <div
-                  className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive(
-                    "/home/watch"
-                  )}`}
-                >
+                <div className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive("/home/watch")}`}>
                   <Link href="/home/watch">
-                    <MdOutlineVideoLibrary
-                      color={activeColor("/home/watch")}
-                      size={28}
-                    />
+                    <MdOutlineVideoLibrary color={activeColor("/home/watch")} size={28} />
                   </Link>
                 </div>
-                <div
-                  className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive(
-                    "/home/job"
-                  )}`}
-                >
+                <div className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive("/home/job")}`}>
                   <Link href="/home/job">
-                    <PiBagSimpleFill
-                      color={activeColor("/home/job")}
-                      size={28}
-                    />
+                    <PiBagSimpleFill color={activeColor("/home/job")} size={28} />
                   </Link>
                 </div>
-                <div
-                  className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center  ${isActive(
-                    "/home/achievements"
-                  )}`}
-                >
+                <div className={`py-[1rem] w-[100px] hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive("/home/achievements")}`}>
                   <Link href="/home/achievements">
-                    <MdLeaderboard
-                      color={activeColor("/home/achievements")}
-                      size={28}
-                    />
+                    <MdLeaderboard color={activeColor("/home/achievements")} size={28} />
                   </Link>
                 </div>
               </div>
             </div>
+
             <div className="flex justify-end gap-5 items-center w-full lg:w-1/2">
               <div className="p- rounded-full">
-                <a href="/Settings/view">
+                <Link href="/settings/view">
                   <IoMdSettings className="text-black text-bold" size={25} />
-                </a>
+                </Link>
               </div>
-              <div className="p-1  rounded-full relative">
-                <BiSolidBell
-                  size={25}
-                  onClick={() => setShowNotifications(!showNotifications)}
-                  className="cursor-pointer text-black text-bold"
-                />
+              <div className="p-1 rounded-full relative">
+                <BiSolidBell size={25} onClick={() => setShowNotifications(!showNotifications)} className="cursor-pointer text-black text-bold" />
                 {showNotifications && (
-                  <div className="absolute right-0 mt-3 w-64 bg-white shadow-lg rounded-lg p-4 overshadow2 ">
-                    <Image
-                      className="text-center"
-                      height={200}
-                      width={200}
-                      alt="not-found"
-                      src={"https://talentia.co.in/aligator.png"}
-                    />
+                  <div className="absolute right-0 mt-3 w-64 bg-white shadow-lg rounded-lg p-4">
+                    <Image className="text-center" height={200} width={200} alt="not-found" src="https://talentia.co.in/aligator.png" />
                     <p className="text-center">No new notifications</p>
                   </div>
                 )}
               </div>
-              <div className="p-1 rounded-full">
-                <a href="/messaging/view">
-                  <BiSolidMessageAlt
-                    size={25}
-                    // onClick={() => setShowChat(!showChat)}
-                    className="cursor-pointer text-black text-bold"
-                  />
-                  {/* {showChat && (
-                  <div className="absolute right-0 mt-4 w-80 h-80 bg-white shadow-lg rounded-lg p-4 overflow-y-auto overshadow2">
-                    <p>Chat window</p>
-                    {chats.map((chat) => (
-                      <div
-                        key={chat.id}
-                        className="flex items-center gap-3 p-2 border-b hover:bg-gray-100 rounded-md cursor-pointer"
-                      >
-                        <DefaultAvatar
-                          imageUrl={`https://randomuser.me/api/portraits/men/${
-                            61 + chat.id
-                          }.jpg`}
-                          size={30}
-                        />
 
-                        <div className="flex-1">
-                          <h4 className="text-sm font-semibold">{chat.name}</h4>
-                          <p className="text-xs text-gray-500 truncate">
-                            {chat.message}
-                          </p>
-                        </div>
-                        <span className="text-xs text-gray-400">
-                          {chat.time}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )} */}
-                </a>
+              <div className="p-1 rounded-full">
+                <Link href="/messaging/view">
+                  <BiSolidMessageAlt size={25} className="cursor-pointer text-black text-bold" />
+                </Link>
               </div>
-              <div className=" w-11 h-11 flex justify-center items-center  rounded-full  shadow-[0px_0px_2px_0px_rgba(0,0,0,0.75)] ">
-                <DefaultAvatar
-                  size={35}
-                  imageUrl="https://randomuser.me/api/portraits/men/69.jpg"
-                />
+
+              {/* Avatar with Dropdown Menu */}
+              <div className="relative">
+                <div className="w-11 h-11 flex justify-center items-center rounded-full shadow-md cursor-pointer" onClick={() => setShowMenu(!showMenu)}>
+                  <DefaultAvatar size={35} />
+                </div>
+
+                {showMenu && (
+                  <div className="absolute right-0 mt-3 w-48 bg-white shadow-md rounded-md py-2">
+                    <Link href="/account/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      Profile Settings
+                    </Link>
+                    <button onClick={handleLogout} className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
+
           </div>
         </div>
       </div>

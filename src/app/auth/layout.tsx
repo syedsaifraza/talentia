@@ -17,7 +17,7 @@ export default function RootLayout({
         <div className="flex min-h-screen items-center justify-center">
           <div className="w-2/5">
           <Image
-              src="https://talentia.co.in/logo.png"
+              src="https://content.acetians.in/uploads/logo%20(2).png"
               alt="Logo"
               width={350} // Set a width value
               height={100} // Set the height value

@@ -5,6 +5,8 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import {store} from "@/store/index"
+import useAuth from "@/hooks/useAuth";
+import ProtectedRoute from "@/component/ProtectedRoute";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,8 +22,8 @@ const geistMono = Geist_Mono({
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-   
-   
+ 
+
 
    
 
@@ -30,10 +32,16 @@ export default function RootLayout({
     <html lang="en" data-theme="light"  className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       
       <body className="bg-[#f2f4f7] w-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors">
-         
+          
         <div style={{width:'100%'}}>
+        <div className="beta">
+        Beta  
+        </div>
           <Provider store={store}>
-          {children}
+            <ProtectedRoute>
+            {children}
+            </ProtectedRoute>
+          
           </Provider>
         
         </div>

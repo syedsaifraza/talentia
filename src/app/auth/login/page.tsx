@@ -1,15 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { loginUser } from "../../../utils/apis/auth";
+import Cookies from "js-cookie";
+import useAuth from "../../../hooks/useAuth";
+import { useSelector } from "react-redux";
+
+
 
 const Login = () => {
-  const [email, setEmail] = useState("surajkabir@gmail.com");
-  const [password, setPassword] = useState("surajkabir");
+  const { user } = useAuth()  ;
+  const [currentUser,setCurrentUser]=useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  
+  useEffect(() => {
+    if (user) {
+      // router.push("/home/feed");  // Redirect to home if user is logged in
+    }
+  }, [user, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +31,7 @@ const Login = () => {
     const response = await loginUser({ email, password });
     localStorage.setItem("email", email);
     if (response.success && response.token) {
-      localStorage.setItem("token", response.token);
+      Cookies.set("token", response.token);
       router.push("/home/feed"); // Redirect to dashboard
     } else {
       setError(response.message || "Invalid credentials");

@@ -1,0 +1,139 @@
+import Cookies from "js-cookie";
+import { AuthResponse } from "../auth-helper";
+
+const API_BASE_URL = "https://talentia.humanoid.education/api/profile"; 
+// Replace with your actual API URL
+
+interface ProfileData {
+    name: string;
+    bio: string;
+    skills: string[];
+    intro: string;
+    profilePhoto: string;
+    coverPhoto: string;
+    featuredPhotos: string[];
+    jobTitle: string;
+  }
+
+interface ProfileResponse extends AuthResponse {
+  institution?: ProfileData;
+  institutions?: ProfileData[];
+  profileId?: string;
+}
+
+export const createProfile= async (formData: FormData): Promise<ProfileResponse> => {
+  try {
+    const token = Cookies.get("token");
+    const response = await fetch(`${API_BASE_URL}`, {
+      method: "POST",
+      headers: {  
+        "Authorization": `Bearer ${token}`
+      },
+      credentials: "include",
+      body: formData,
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error creating institution:", error);
+    return { 
+      success: false, 
+      error: "Something went wrong", 
+      message: "Institution creation failed" 
+    };
+  }
+};
+
+export const getProfiles = async (
+  type?: string,
+  city?: string,
+  country?: string
+): Promise<ProfileResponse> => {
+  try {
+    // Build query parameters
+    const params = new URLSearchParams();
+    if (type) params.append('type', type);
+    if (city) params.append('city', city);
+    if (country) params.append('country', country);
+
+    const response = await fetch(`${API_BASE_URL}?${params.toString()}`, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return { 
+      success: false, 
+      error: "Something went wrong", 
+      message: "Failed to fetch users" 
+    };
+  }
+};
+
+export const getUser = async (id: string): Promise<ProfileResponse> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/${id}`, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    return { 
+      success: false, 
+      error: "Something went wrong", 
+      message: "Failed to fetch user" 
+    };
+  }
+};
+
+export const updateUser = async (
+  id: string, 
+  formData: FormData
+): Promise<ProfileResponse> => {
+  try {
+    const token = Cookies.get("token");
+    const response = await fetch(`${API_BASE_URL}/${id}`, {
+      method: "PUT",
+      headers: {  
+        "Authorization": `Bearer ${token}`
+      },
+      credentials: "include",
+      body: formData,
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error updating institution:", error);
+    return { 
+      success: false, 
+      error: "Something went wrong", 
+      message: "Institution update failed" 
+    };
+  }
+};
+
+export const deleteProfile = async (id: string): Promise<ProfileResponse> => {
+  try {
+    const token = Cookies.get("token");
+    const response = await fetch(`${API_BASE_URL}/${id}`, {
+      method: "DELETE",
+      headers: {  
+        "Authorization": `Bearer ${token}`
+      },
+      credentials: "include",
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error deleting profile:", error);
+    return { 
+      success: false, 
+      error: "Something went wrong", 
+      message: "Profile deletion failed" 
+    };
+  }
+};

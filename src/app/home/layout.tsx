@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           className="w-[25vw] bg-white"
           aria-label="Sidebar"
         >
-          <Sidebar />
+          <Sidebar /> 
         </aside>
 
         {/* Centered Content */}
@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Image
                 width={300}
                 height={250}
-                src="https://talentia.co.in/byjus.png"
+                src="https://content.acetians.in/uploads/byjus.jpg"
                 alt="Sponser Image"
               />
               <h1 style={{ textDecoration: "underline" }}>
@@ -38,7 +38,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <div className="">
               <Image
-                src="https://talentia.co.in/physics-wallah.png"
+                src="https://content.acetians.in/uploads/pw.jpg"
                 height={300}
                 width={250}
                 alt="Sponser Image"

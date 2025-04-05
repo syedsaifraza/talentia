@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
-import AddPost from "../components/AddPost";
-import Post from "../components/post";
-import ReelsScroller from "../components/ReelsScroller";
+import AddPost from "../components/AddPost"; 
+import ReelsScroller from "../components/ReelsScroller"; 
+import PostList from "@/component/FeedList";
+import { useSelector } from "react-redux";
 
 interface PostType {
   id: number;
@@ -72,20 +73,16 @@ export default function Feed() {
     },
   ];
 
+  const appState = useSelector((state:any)=>state.auth);
   return (
     <div className="flex flex-col gap-4 mt-2">
       <AddPost addPost={addPost} />
       <ReelsScroller />
+      {appState.isAuthenticated==true && <PostList/> }
+      
 
       
-        
-      {posts.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
-    
-      {samplePosts.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
+     
   
       
     </div>

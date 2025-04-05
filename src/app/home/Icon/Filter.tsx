@@ -14,8 +14,8 @@ export const Filter = () => {
              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
              <g
                id="SVGRepo_tracerCarrier"
-               stroke-linecap="round"
-               stroke-linejoin="round"
+               strokeLinecap="round"
+               strokeLinejoin="round"
              ></g>
              <g id="SVGRepo_iconCarrier">
                {" "}
@@ -25,14 +25,14 @@ export const Filter = () => {
                  stroke="none"
                  strokeWidth="1"
                  fill="none"
-                 fill-rule="evenodd"
+                 fillRule="evenodd"
                >
                  {" "}
                  <g id="Filter">
                    {" "}
                    <rect
                      id="Rectangle"
-                     fill-rule="nonzero"
+                     fillRule="nonzero"
                      x="0"
                      y="0"
                      width="24"
@@ -48,7 +48,7 @@ export const Filter = () => {
                      id="Path"
                      stroke="#0C0310"
                      strokeWidth="2"
-                     stroke-linecap="round"
+                     strokeLinecap="round"
                    >
                      {" "}
                    </line>{" "}
@@ -60,7 +60,7 @@ export const Filter = () => {
                      id="Path"
                      stroke="#0C0310"
                      strokeWidth="2"
-                     stroke-linecap="round"
+                     strokeLinecap="round"
                    >
                      {" "}
                    </line>{" "}
@@ -72,7 +72,7 @@ export const Filter = () => {
                      id="Path"
                      stroke="#0C0310"
                      strokeWidth="2"
-                     stroke-linecap="round"
+                     strokeLinecap="round"
                    >
                      {" "}
                    </line>{" "}
@@ -84,7 +84,7 @@ export const Filter = () => {
                      id="Path"
                      stroke="#0C0310"
                      strokeWidth="2"
-                     stroke-linecap="round"
+                     strokeLinecap="round"
                    >
                      {" "}
                    </line>{" "}
@@ -92,7 +92,7 @@ export const Filter = () => {
                      id="Oval"
                      stroke="#0C0310"
                      strokeWidth="2"
-                     stroke-linecap="round"
+                     strokeLinecap="round"
                      cx="18"
                      cy="5"
                      r="2"
@@ -103,7 +103,7 @@ export const Filter = () => {
                      id="Oval"
                      stroke="#0C0310"
                      strokeWidth="2"
-                     stroke-linecap="round"
+                     strokeLinecap="round"
                      cx="12"
                      cy="12"
                      r="2"
@@ -114,7 +114,7 @@ export const Filter = () => {
                      id="Oval"
                      stroke="#0C0310"
                      strokeWidth="2"
-                     stroke-linecap="round"
+                     strokeLinecap="round"
                      cx="6"
                      cy="19"
                      r="2"

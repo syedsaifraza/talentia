@@ -32,6 +32,19 @@
   background: #969696;
 }
 
+.beta{
+  color: #3113d6;
+  position: fixed;
+  right:0;
+  bottom: 0;
+  z-index: 100001;
+  background-color: red;
+  padding: 20px;
+  color: white;
+  font-weight: bolder;
+  border-radius: 20px;
+  transform: rotate(-45deg); 
+}
 
 #default-sidebar:hover ::-webkit-scrollbar {
   width: 8px;

@@ -2,13 +2,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa6";
-import { FaFacebookF } from "react-icons/fa";
-import { FaPinterestP } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaRedditAlien } from "react-icons/fa6";
+import { FaFacebookF } from "react-icons/fa"; 
+import { FaXTwitter } from "react-icons/fa6"; 
 import { FaLinkedinIn } from "react-icons/fa";
-import { IoMail } from "react-icons/io5";
-import { FaBloggerB } from "react-icons/fa";
+import { IoMail } from "react-icons/io5"; 
 import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
 import { FiMessageSquare } from "react-icons/fi";
@@ -16,38 +13,26 @@ import { IoIosShareAlt } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { IoIosSend } from "react-icons/io";
 import { FiCopy } from "react-icons/fi";
+import moment from "moment";
+import { addComment, addLike } from "@/utils/apis/post";
+import { useSelector } from "react-redux";
+import { CommentType, PostType } from "@/lib/interfaces/types";
 
-interface Comment {
-  id: number;
-  text: string;
-  replies: { id: number; text: string }[];
-}
-interface PostType {
- post:{ id: number;
-  text: string;
-  media: {
-    type: string;
-    url: string;
-  } | null;
-  user: {
-    name: string;
-    avatar: string;
-  };
-  timestamp: string;
-}
-}
+const Post = ( {post} : {post:PostType}) => {
  
-
-const Post = ({ post }: PostType) => {
-  const [likeCount, setLikeCount] = useState(0);
-  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(post.likes==undefined?0: post.likes.length);
+  
   const [isCommentSectionOpen, setIsCommentSectionOpen] = useState(false);
-  const [comments, setComments] = useState<Comment[]>([]);
+  const [comments, setComments] = useState<CommentType[]>(post.comments==undefined?[]:post.comments);
   const [commentInput, setCommentInput] = useState("");
   const [isShareOverlayOpen, setIsShareOverlayOpen] = useState(false);
+  const appState = useSelector((state:any)=>state.auth);
+  const [isLiked, setIsLiked] = useState(post.likes?.includes(appState.user.uid) || false);
 
   // Handle like button click
-  const handleLikeClick = () => {
+  const handleLikeClick = (postId:any) => {
+    addLike(postId);
+    
     setLikeCount((prev) => (isLiked ? prev - 1 : prev + 1));
     setIsLiked((prev) => !prev);
   };
@@ -57,28 +42,18 @@ const Post = ({ post }: PostType) => {
     e.preventDefault();
     if (commentInput.trim() === "") return;
 
-    const newComment: Comment = {
-      id: Date.now(),
-      text: commentInput,
-      replies: [],
+    const newComment: CommentType = {
+       
+      comment: commentInput,
+      user:"122"
     };
 
     setComments([...comments, newComment]);
     setCommentInput("");
+    addComment(post.id.toString(),commentInput)
   };
 
-  // Handle reply submission
-  const handleReplySubmit = (commentId: number, replyText: string) => {
-    const updatedComments = comments.map((comment) =>
-      comment.id === commentId
-        ? {
-            ...comment,
-            replies: [...comment.replies, { id: Date.now(), text: replyText }],
-          }
-        : comment
-    );
-    setComments(updatedComments);
-  };
+  
 
   // Handle share button click
   const handleShareClick = () => {
@@ -91,20 +66,69 @@ const Post = ({ post }: PostType) => {
   };
 
   return (
-    <div className="bg-white  rounded-lg p-4 space-y-4">
-      {/* Post Header */}
+    <div className="bg-white  rounded-lg p-4 space-y-4 mb-2">
+      {/* Post Header */} 
+       
       <div className="flex items-center space-x-3">
-        <Image
+        {/* <DefaultAvatar/> */}
+        {/* {JSON.stringify(post.userDetails)} */}
+        {post.userDetails==null  ? (<div
+          style={{
+            width: 40,
+            height: 40,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#3498db",
+            color: "#fff",
+            fontSize: 40 * 0.5,
+            fontWeight: "bold",
+            borderRadius: "50%",
+            cursor: "pointer",
+          }}
+        >
+          {post.user.name.charAt(0).toUpperCase()}
+        </div>):(post.userDetails.profilePhoto==undefined? 
+        <div
+        style={{
+          width: 40,
+          height: 40,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#3498db",
+          color: "#fff",
+          fontSize: 40 * 0.5,
+          fontWeight: "bold",
+          borderRadius: "50%",
+          cursor: "pointer",
+        }}
+      >
+        {post.user.name.charAt(0).toUpperCase()}
+      </div>:
+      <Image src={post.userDetails.profilePhoto} 
+      width={40} height={40} alt={post.user.name} style={{
+        borderRadius: "50%",
+        objectFit: "cover",
+        cursor: "pointer",
+      }} />
+        )}
+
+        
+        
+        {/* <Image
           width={40}
           height={40}
           src={post.user.avatar}
           alt="User Avatar"
           className="w-10 h-10 rounded-full"
-        />
+        /> */}
         <div>
           <h3 className="font-semibold text-gray-800">{post.user.name}</h3>
-          <p className="text-xs text-gray-500">
-            {new Date(post.timestamp).toLocaleString()}
+          <p className="text-xs text-gray-500"> 
+          {moment(post.createdAt._seconds*1000).fromNow()}
+ 
+            
           </p>
         </div>
       </div>
@@ -113,12 +137,12 @@ const Post = ({ post }: PostType) => {
       <p className="text-gray-700">{post.text}</p>
 
      
-      {post.media && (
-        post.media.type === "image" ? (
+      {post.fileURL!="" && post.fileURL!=null && (
+        !post.fileURL.includes(".mp4")  ? (
           <Image
             width={500}
             height={500}
-            src={post.media.url}
+            src={post.fileURL}
             alt="Post Media"
             className="rounded-lg  max-h-[70vh] w-full"
           />
@@ -127,17 +151,17 @@ const Post = ({ post }: PostType) => {
             controls
             className="w-full min-h-[60vh] object-cover rounded-md"
           >
-            <source src={post.media.url} type="video/mp4" />
+            <source src={post.fileURL} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         )
       )}
 
-   
+     
       <div className="flex justify-between items-center mb-4">
-        <span className="text-sm text-gray-500 hover:text-[#6366f1] cursor-pointer">
-          {likeCount} likes
-        </span>
+      <span className="text-sm text-gray-500 hover:text-[#6366f1] cursor-pointer">
+  {likeCount} likes
+</span>
         <div className="flex gap-3">
           <span className="text-sm text-gray-500 hover:text-[#6366f1] cursor-pointer">
             {comments.length} comments
@@ -147,12 +171,12 @@ const Post = ({ post }: PostType) => {
           </span>
         </div>
       </div>
-
+    
       
       <div className="flex justify-between text-gray-600 text-sm border-t pt-2">
         <button
           className="flex items-center rounded-md justify-center space-x-1 hover:bg-gray-100 p-2 w-32"
-          onClick={handleLikeClick}
+          onClick={()=>handleLikeClick(post.id)}
         >
           {isLiked ? (
             <AiFillLike className="text-[21px] text-[#6366f1]" />
@@ -227,81 +251,21 @@ const Post = ({ post }: PostType) => {
       {isCommentSectionOpen && (
       <div className="mt-4">
       <div className="overflow-y-auto max-h-[30vh]">
-        {comments.map((comment) => (
-          <div key={comment.id} className="mb-4">
+        {comments.map((comment,id) => (
+          <div key={id} className="mb-4">
             <div className="flex items-center space-x-2">
-              <Image
-                width={24}
-                height={24}
-                src={post.user.avatar}
-                alt="User Avatar"
-                className="w-6 h-6 rounded-full"
-              />
-              <div className="bg-gray-100 p-2 rounded-lg">
-                <p className="text-sm">{comment.text}</p>
                
-                <div className="flex space-x-4 mt-2">
-                  <button
-                    className="text-sm text-gray-500 hover:text-[#6366f1]"
-                    // onClick={() => handleLike(comment.id)}
-                  >
-                    Like
-                  </button>
-                  <button
-                    className="text-sm text-gray-500 hover:text-[#6366f1]"
-                    // onClick={() => handleShare(comment.id)}
-                  >
-                    Share
-                  </button>
-                </div>
+              <div className="bg-gray-100 p-2 rounded-lg">
+                <p className="text-sm">{comment.comment}</p>
+                
               </div>
             </div>
     
          
-            {comment.replies.map((reply) => (
-              <div key={reply.id} className="ml-8 mt-2">
-                <div className="flex items-center space-x-2">
-                  <Image
-                    width={24}
-                    height={24}
-                    src={post.user.avatar}
-                    alt="User Avatar"
-                    className="w-6 h-6 rounded-full"
-                  />
-                  <div className="bg-gray-100 p-2 rounded-lg">
-                    <p className="text-sm">{reply.text}</p>
-                
-                    <div className="flex space-x-4 mt-2">
-                      <button
-                        className="text-sm text-gray-500 hover:text-[#6366f1]"
-                        // onClick={() => handleLike(reply.id)}
-                      >
-                        Like
-                      </button>
-                      <button
-                        className="text-sm text-gray-500 hover:text-[#6366f1]"
-                        // onClick={() => handleShare(reply.id)}
-                      >
-                        Share
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+             
     
           
-            <button
-              className="ml-8 text-sm text-gray-500 hover:text-[#6366f1]"
-              onClick={() => {
-                const replyText = prompt("Enter your reply:");
-                if (replyText) {
-                  handleReplySubmit(comment.id, replyText);
-                }
-              }}
-            >
-              Reply
-            </button>
+             
           </div>
         ))}
       </div>

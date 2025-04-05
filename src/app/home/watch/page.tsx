@@ -3,6 +3,8 @@ import { useState } from "react";
   
 import { IoClose } from "react-icons/io5";  
 import VideoPost from "../components/watch"; 
+import FeedList from "../tasks/pages";
+import PostList from "@/component/FeedList";
 
 export default function Watch() {
 
@@ -36,8 +38,8 @@ export default function Watch() {
               <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
               <g
                 id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               ></g>
               <g id="SVGRepo_iconCarrier">
                 {" "}
@@ -47,14 +49,14 @@ export default function Watch() {
                   stroke="none"
                   strokeWidth="1"
                   fill="none"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                 >
                   {" "}
                   <g id="Filter">
                     {" "}
                     <rect
                       id="Rectangle"
-                      fill-rule="nonzero"
+                      fillRule="nonzero"
                       x="0"
                       y="0"
                       width="24"
@@ -70,7 +72,7 @@ export default function Watch() {
                       id="Path"
                       stroke="#0C0310"
                       strokeWidth="2"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     >
                       {" "}
                     </line>{" "}
@@ -82,7 +84,7 @@ export default function Watch() {
                       id="Path"
                       stroke="#0C0310"
                       strokeWidth="2"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     >
                       {" "}
                     </line>{" "}
@@ -94,7 +96,7 @@ export default function Watch() {
                       id="Path"
                       stroke="#0C0310"
                       strokeWidth="2"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     >
                       {" "}
                     </line>{" "}
@@ -106,7 +108,7 @@ export default function Watch() {
                       id="Path"
                       stroke="#0C0310"
                       strokeWidth="2"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                     >
                       {" "}
                     </line>{" "}
@@ -114,7 +116,7 @@ export default function Watch() {
                       id="Oval"
                       stroke="#0C0310"
                       strokeWidth="2"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       cx="18"
                       cy="5"
                       r="2"
@@ -125,7 +127,7 @@ export default function Watch() {
                       id="Oval"
                       stroke="#0C0310"
                       strokeWidth="2"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       cx="12"
                       cy="12"
                       r="2"
@@ -136,7 +138,7 @@ export default function Watch() {
                       id="Oval"
                       stroke="#0C0310"
                       strokeWidth="2"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       cx="6"
                       cy="19"
                       r="2"
@@ -238,10 +240,9 @@ export default function Watch() {
           </div>
         )}
       </div>
-      <VideoPost key={1} />
-      <VideoPost key={2} />
-      <VideoPost key={3} />
-      <VideoPost key={4} />
+       
+      <PostList typeOf="video"/> 
+
     </div>
   );
 }
