@@ -6,10 +6,10 @@ import {
     EnggMgmtForm,  MedicalInstituteForm, PolytechnicForm, 
     CoachingInstituteForm,
     OtherInstituteForm
-} from "@/app/home/components/InstitutionForm";
+} from "@/component/components/InstitutionForm";
 import { useSelector } from "react-redux";
 import { CgChevronRight } from "react-icons/cg";
-import DefaultAvatar from "@/app/home/components/defaultAvatar";
+import DefaultAvatar from "@/component/components/defaultAvatar";
 
 interface StepProps {
     setStep: (step: number) => void;
@@ -42,7 +42,7 @@ export default function InstitutionalPage() {
           />
         </div>
         <div className="mx-auto w-[6vw] h-[6vw] relative left-[-80px] -mt-10 overflow-hidden"> 
-          <Image src={ins.logoURL} height={60} width={60} className="rounded-full" alt={ins.name} />
+          <Image src={ins.logoURL} height={60} width={60} className="rounded-full" alt={ins.namea} />
          
           
         </div>

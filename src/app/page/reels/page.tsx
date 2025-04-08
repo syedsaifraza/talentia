@@ -1,5 +1,5 @@
 "use client";
-import ReelsScroller from "@/app/home/components/ReelsScroller";
+import ReelsScroller from "@/component/components/ReelsScroller";
 
 export default function ReelsPage() {
   return (
@@ -9,7 +9,7 @@ export default function ReelsPage() {
         Talent Verse
         </h1>
 
-        <ReelsScroller limit={10} />
+        <ReelsScroller limit={10} size="small" />
       </div>
     </div>
   );

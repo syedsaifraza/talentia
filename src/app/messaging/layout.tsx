@@ -1,6 +1,6 @@
-import CurrentMessagingUser from "../home/components/messaging/current_messaging_user";
-import MessageList from "../home/components/messaging/message_list";
-import Navbar from "../home/components/navbar";
+import CurrentMessagingUser from "../../component/components/messaging/current_messaging_user";
+import MessageList from "../../component/components/messaging/message_list";
+import Navbar from "../../component/components/navbar";
  
  
 

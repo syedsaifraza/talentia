@@ -1,13 +1,14 @@
 import { PostType } from "@/types/PostType";
 import { AuthResponse, LoginData, RegisterData } from "../auth-helper";
 import Cookies from "js-cookie";
+import { revalidatePath } from "next/cache";
 
 const API_BASE_URL = "https://talentia2.humanoid.education/api/posts"; 
 // Replace with your actual API URL
 
-export const getPosts = async (): Promise<{ posts: PostType[] }> => {
+export const getPosts = async (token:string): Promise<{ posts: PostType[] }> => {
   try {
-    const token = Cookies.get("token");
+ 
     const response = await fetch(`${API_BASE_URL}/list`, {
       method: "GET",
       headers: {
@@ -17,9 +18,7 @@ export const getPosts = async (): Promise<{ posts: PostType[] }> => {
     });
 
     const data = await response.json();
-
-    // You can add a console.log to check the structure
-    console.log("API Response:", data);
+ 
 
     return { posts: data.posts || [] }; // Safely handle if posts is undefined
   } catch (error) {
@@ -88,8 +87,7 @@ export const addPost = async (postData:FormData): Promise<AuthResponse> => {
   try {
     
      
-    const token = Cookies.get("token");
-    console.log("API URL:", API_BASE_URL);
+    const token = Cookies.get("token"); 
     const response = await fetch(`${API_BASE_URL}/add`, {
       method: "POST",
       headers: {  
@@ -98,7 +96,7 @@ export const addPost = async (postData:FormData): Promise<AuthResponse> => {
       credentials: "include", 
       body:postData,
     });
-
+    revalidatePath("/feed");
     return await response.json();
   } catch (error) {
     console.error("Error during adding post:", error);

@@ -1,6 +1,6 @@
 
 "use client";
-import Video from "@/app/home/components/Videos";
+import Video from "@/component/components/Videos";
  
 
 export default function JobsPage() {

@@ -1,5 +1,5 @@
 
-import Navbar from "../home/components/navbar";
+import Navbar from "../../component/components/navbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

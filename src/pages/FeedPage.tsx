@@ -2,6 +2,8 @@ import { GetServerSideProps } from "next";
 
 import { PostType } from "@/types/PostType";
 import FeedList from "@/component/FeedList";
+import { Suspense } from "react";
+import PostSkelatal from "@/component/skelatal/PostSkelatal";
 
 interface FeedPageProps {
   posts: PostType[];
@@ -11,15 +13,17 @@ const Feed: React.FC<FeedPageProps> = ({ posts }) => {
   return (
     <div className="flex flex-col gap-4 mt-2">
       <h1>Feed</h1>
+      <Suspense fallback={<PostSkelatal/> }>
       <FeedList />
+      </Suspense>
+      
     </div>
   );
 };
 
 // ✅ Fetch data on the server before rendering
 export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    console.log("Fetching posts from server...");
+  try { 
     const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5");
     const data = await response.json();
 

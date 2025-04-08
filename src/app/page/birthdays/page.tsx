@@ -1,5 +1,5 @@
 "use client";
-import Video from "@/app/home/components/Videos";
+import Video from "@/component/components/Videos";
 import { useState } from "react";
 import Image from "next/image";
 import { IoSend } from "react-icons/io5";

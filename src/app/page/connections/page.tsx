@@ -1,6 +1,6 @@
 "use client";
 
-import { FriendsGrid } from "@/app/account/components/friends-grid";
+ 
 
 export default function InstitutionalPage() {
   return (
@@ -115,7 +115,7 @@ export default function InstitutionalPage() {
         </div>
       </form>
 
-      <FriendsGrid />
+      
     </div>
   );
 }

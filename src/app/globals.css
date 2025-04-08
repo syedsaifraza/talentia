@@ -32,6 +32,13 @@
   background: #969696;
 }
 
+input:focus{
+  border: none;
+  outline: none;
+  border:1px solid #589c;
+  background-color: #589cfb17;
+}
+
 .beta{
   color: #3113d6;
   position: fixed;

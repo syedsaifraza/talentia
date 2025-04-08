@@ -1,6 +1,6 @@
 "use client";
 
-import Post from "@/app/home/components/post";
+import Post from "@/component/components/post";
  
 import { ImProfile } from "react-icons/im";
 import { FaUserFriends } from "react-icons/fa";

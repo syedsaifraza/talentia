@@ -1,70 +1,64 @@
-// hooks/useAuth.js
 import { useState, useEffect } from 'react';
-import Cookies from 'js-cookie'; 
-import { setLoggedInUser, setUserInfo } from '@/store/slices/authSlices';
+import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
-import  { setInstitue  } from '@/store/slices/institutionSlice';
- 
- 
+import { setLoggedInUser, setUserInfo } from '@/store/slices/authSlices';
+import { setInstitue } from '@/store/slices/institutionSlice';
+import {setStatus} from '@/store/slices/statusSlice';
+import { fetchUserProfileAndInstitute } from '@/utils/apis/auth';
 
+
+// 🔹 Validate Token
+const validateTokenAndFetchUser = async (token) => {
+  const res = await fetch('https://talentia2.humanoid.education/auth/me', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+  });
+
+  if (!res.ok) throw new Error("Token validation failed");
+
+  return await res.json();
+};
+
+
+// 🔹 Fetch Profile + Institute Data
+
+
+
+// 🔹 Logout Function
+const logoutUser = () => {
+  Cookies.remove('token');
+};
+
+
+// 🔸 Main Hook
 const useAuth = () => {
-  const [user, setUser] = useState(null);  // Store user data
-  const [loading, setLoading] = useState(true);  // Track loading state
-  const [error, setError] = useState(null);  // Track any errors
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  useEffect(() => { 
-    const token = Cookies.get('token'); 
+
+  useEffect(() => {
+    const token = Cookies.get('token');
     if (!token) {
-      setLoading(false);
       setUser(null);
-      
+      setLoading(false);
       return;
     }
 
-    // Call API to validate token
-    const validateToken = async () => {
+    const authenticate = async () => {
       try {
-        const res = await fetch('https://talentia2.humanoid.education/auth/me', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization':`Bearer ${token}`
-          }, 
-        });
+        const userData = await validateTokenAndFetchUser(token);
+        const { instituteData, profileData,statusData } = await fetchUserProfileAndInstitute(token)
 
-        
+        dispatch(setLoggedInUser(userData));
+        dispatch(setUserInfo(profileData.data));
+        dispatch(setInstitue(instituteData.institutions));
+        dispatch(setStatus(statusData.posts))
 
-        if (res.ok) {
-          const data = await res.json();
-          const institutes = await fetch('https://talentia2.humanoid.education/api/institute', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization':`Bearer ${token}`
-            }, 
-          });
-
-          const userProfile = await fetch('https://talentia2.humanoid.education/api/profile', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization':`Bearer ${token}`
-            }, 
-          });
-
-          const institueData = await institutes.json();
-          const profileData = await userProfile.json();
-          console.log("profileData");
-          console.log(profileData.data)
-          // alert("seeting user")
-          // alert(JSON.stringify(data.user))
-          dispatch(setLoggedInUser(data))
-          dispatch(setUserInfo(profileData.data))
-          dispatch(setInstitue(institueData.institutions))
-          setUser(data.user);  // Store user data in state
-        } else {
-          setUser(null);  // If token is invalid, clear user data
-        }
+        setUser(userData.user);
       } catch (err) {
         setError(err);
         setUser(null);
@@ -73,15 +67,16 @@ const useAuth = () => {
       }
     };
 
-    validateToken();
+    authenticate();
   }, []);
 
   const logout = () => {
-    Cookies.remove('token');  // Remove token from cookies
-    setUser(null);  // Clear user data from state
+    logoutUser();
+    setUser(null);
   };
 
   return { user, loading, error, logout };
 };
 
 export default useAuth;
+

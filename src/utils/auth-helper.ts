@@ -3,6 +3,9 @@ export interface RegisterData {
     name: string;
     email: string;
     password: string;
+    dob:string;
+    fullName:any;
+    gender:string;
      
   }
   

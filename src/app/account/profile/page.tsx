@@ -1,18 +1,17 @@
 "use client";
-import Post from "@/app/home/components/post";
+ 
 import { useState, useEffect } from "react";
-import { AccountPhotos } from "../components/photos-account";
-import { FriendsGrid } from "../components/friends-grid";
 import Image from "next/image";
 import { IoCamera, IoClose } from "react-icons/io5";
-import DefaultAvatar from "@/app/home/components/defaultAvatar";
 import { updateUser } from "@/utils/apis/profile";
 import { useSelector } from "react-redux"; 
 import { revalidatePath } from "next/cache";
 import { FeaturedPhotos, PostType, ProfileData } from "@/lib/interfaces/types";
-import NameAvatar from "@/app/home/components/nameAvatar";
 import useAuth from "@/hooks/useAuth";
 import PostSkelatal from "@/component/skelatal/PostSkelatal";
+import NameAvatar from "@/component/components/nameAvatar";
+import DefaultAvatar from "@/component/components/defaultAvatar";
+import Post from "@/component/components/post";
 
 
 
@@ -470,8 +469,7 @@ export default function Profile() {
                 ))}
               </div>
             )}
-            {currentPage === accountSubOptions[3] && <AccountPhotos photos={featuredPhotos} />}
-            {currentPage === accountSubOptions[2] && <FriendsGrid />}
+            
           </div>
         </div>
       </div> }

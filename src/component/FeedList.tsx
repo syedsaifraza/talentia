@@ -2,17 +2,19 @@
  
 import { getPosts } from "@/utils/apis/post";
 import { useEffect, useState } from "react";
-import Post from "@/app/home/components/post";
+import Post from "@/component/components/post";
 import { PostType } from "@/types/PostType";
 import PostSkelatal from "./skelatal/PostSkelatal";
+import Cookies from "js-cookie";
 export default function PostList({typeOf="all"}) {
   const [posts, setPosts] = useState<PostType[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await getPosts();
-        console.log(res);
+        const token = Cookies.get("token")
+        const res = await getPosts(token||"");
+        
         if (res && res.posts) {
           setPosts(res.posts);
         }

@@ -1,6 +1,6 @@
 "use client";
 
-import Post from "@/app/home/components/post";
+import Post from "@/component/components/post";
 
 import { GoStarFill } from "react-icons/go";
 import { ImProfile } from "react-icons/im";
@@ -16,7 +16,7 @@ export default function FeedPage() {
   const samplePosts:PostType[] = [];
 
   return (
-    <div className=" flex flex-row gap-2">
+    <div className="flex flex-row gap-y-4">
       <div className="flex flex-1 flex-col gap-4 mt-2 ">
         {samplePosts.map((post) => (
           <p></p>

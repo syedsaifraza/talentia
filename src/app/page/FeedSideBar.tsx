@@ -67,7 +67,7 @@ const Sidebar = () => {
     { name: "Events", icon: <FaClock size={25} />, link: "/page/events" },
     // { name: "Jobs",
     //   icon: <FaBriefcase size={25} />,
-    //   link: "/home/job" },
+    //   link: "//job" },
     { name: "Blogs", icon: <FaNewspaper size={25} />, link: "/page/blogs" },
   ];
   return (

@@ -1,9 +1,46 @@
+import { statSync } from "fs";
 import { AuthResponse, LoginData, RegisterData } from "../auth-helper";
 
 const API_BASE_URL = "https://talentia2.humanoid.education/auth"; // Replace with your actual API URL
 
+export const fetchUserProfileAndInstitute = async (token:string) => {
+  const [instituteRes, profileRes,statusRes] = await Promise.all([
+    fetch('https://talentia2.humanoid.education/api/institute', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    }),
+    fetch('https://talentia2.humanoid.education/api/profile', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    }),
+    fetch('https://talentia2.humanoid.education/api/status', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    }),
+  ]);
+
+  if (!instituteRes.ok || !profileRes.ok || !statusRes.ok) {
+    throw new Error("Failed to fetch institute or profile data");
+  }
+
+  const instituteData = await instituteRes.json();
+  const profileData = await profileRes.json();
+  const statusData = await statusRes.json();
+  return { instituteData, profileData ,statusData };
+};
+
+
 export const registerUser = async (userData: RegisterData): Promise<AuthResponse> => {
-  try {
+  try { 
     const response = await fetch(`${API_BASE_URL}/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -11,7 +48,7 @@ export const registerUser = async (userData: RegisterData): Promise<AuthResponse
     });
 
     return await response.json();
-  } catch (error) {
+  } catch (error) { 
     console.error("Error during registration:", error);
     return { success: false, error: "Something went wrong", message: "Registration failed" };
   }
