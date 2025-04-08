@@ -5,9 +5,7 @@ import PostSkelatal from "@/component/skelatal/PostSkelatal";
 import { cookies } from "next/headers";
 import AddPost from "@/component/components/AddPost";
 import ReelsScroller from "@/component/components/ReelsScroller";
-interface PostListProps {
-  typeOf?: "all" | "video";
-}
+
 
 export default async function PostList() {
   let posts: PostType[] = [];
