@@ -18,6 +18,7 @@ import { addComment, addLike } from "@/utils/apis/post";
 import { useSelector } from "react-redux";
 import { CommentType, PostType } from "@/lib/interfaces/types"; 
 import ReadMore from "./ReadMore";
+import NameAvatar from "./nameAvatar";
 
 const Post = ( {post}:{post:any}) => {
   // alert(JSON.stringify(post))
@@ -171,9 +172,10 @@ const Post = ( {post}:{post:any}) => {
       <span className="text-sm text-gray-500 hover:text-[#6366f1] cursor-pointer">
   {likeCount} likes
 </span>
+ 
         <div className="flex gap-3">
           <span className="text-sm text-gray-500 hover:text-[#6366f1] cursor-pointer">
-            {comments.length} comments
+            {post.userComments.length} comments
           </span>
           <span className="text-sm text-gray-500 hover:text-[#6366f1] cursor-pointer">
             Share
@@ -260,11 +262,12 @@ const Post = ( {post}:{post:any}) => {
       {isCommentSectionOpen && (
       <div className="mt-4">
       <div className="overflow-y-auto max-h-[30vh]">
-        {comments.map((comment,id) => (
+        {post.userComments.map((comment:any,id:number) => (
           <div key={id} className="mb-4">
             <div className="flex items-center space-x-2">
-               
+              {comment.userDetails.profilePhoto==undefined?<NameAvatar name={comment.userDetails.name} size={30} />:<Image className="rounded-full" width={30} height={30} alt="saif" src={comment.userDetails.profilePhoto}/>}
               <div className="bg-gray-100 p-2 rounded-lg">
+                <p className="font-bold text-sm">{comment.userDetails.name}</p>
                 <p className="text-sm">{comment.comment}</p>
                 
               </div>
