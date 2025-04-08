@@ -191,7 +191,7 @@ const PostCustomizer: React.FC<PostCustomiserProp> = ({closeStatusBox}) => {
           <FaTimes
             size={20}
             className="cursor-pointer text-gray-900 hover:text-red-500"
-            onClick={() => setOpenStatusAdd(false)}
+            onClick={() => closeStatusBox()}
           />
         </div>
       <div className="bg-white shadow-sm p-6" style={{width:'400px',margin:'auto'}}>
@@ -201,7 +201,7 @@ const PostCustomizer: React.FC<PostCustomiserProp> = ({closeStatusBox}) => {
         <div
           className="transition-all duration-500 p-5 flex justify-center items-center rounded-xl shadow-xl"
           style={{
-            height: "600px",
+            height: "70vh",
             width: "350px",
             backgroundColor:
               background?.startsWith("solid:") && !imageURL

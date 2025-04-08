@@ -11,8 +11,10 @@ export default async function PostList() {
   let posts: PostType[] = [];
 
   try {
+    const cookieStore = cookies();  // Get the cookie store
+    const token = (await cookieStore).get('token');
+    const res = await getPosts(token?.value||"no token");
      
-    const res = await getPosts();
     
     if (res && res.posts) {
       posts = res.posts;

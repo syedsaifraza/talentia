@@ -1,8 +1,8 @@
-"use-client"
 import { getPosts } from "@/utils/apis/post";
 import Post from "@/component/components/post";
 import { PostType } from "@/types/PostType";
 import PostSkelatal from "@/component/skelatal/PostSkelatal";
+import { cookies } from "next/headers";
 
 
 
@@ -11,8 +11,9 @@ export default async function WatchList() {
 
   try {
      
-    
-    const res = await getPosts();
+    const cookieStore = cookies();  // Get the cookie store
+    const token = (await cookieStore).get('token');
+    const res = await getPosts(token?.value||"no token");
     
     if (res && res.posts) {
       posts = res.posts;

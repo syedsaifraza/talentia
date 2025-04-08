@@ -168,16 +168,20 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
 
               <div className="w-[350px] h-[550px]">
                  {statusUpdates.status[selectedStatus].fileURL!=null?
+                  <div className="flex justify-center items-center p-5" style={{  minHeight:'80vh',width:'500px' }}>
+                  <span className="text-white"></span>
+                  
                   <Image
                     width={300}
                     height={500}
                     src={statusUpdates.status[selectedStatus].fileURL}
                     alt={statusUpdates.status[selectedStatus].text}
                     className="w-full h-full object-cover"
-                  />:
-                  <div className="flex justify-center items-center p-5" style={{ background: "#f87171",minHeight:'100vh',width:'500px' }}>
+                  />
+                  </div>:
+                  <div className="flex justify-center items-center p-5" style={{ background: "#f87171",minHeight:'80vh',width:'500px' }}>
                     
-                    <div className="text-white text-lg">{statusUpdates.status[selectedStatus].text}</div>
+                    <div className="text-white text-lg">{statusUpdates.status[selectedStatus].text}  </div>
                     </div>}
                 
               </div>

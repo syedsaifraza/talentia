@@ -6,11 +6,10 @@ import { revalidatePath } from "next/cache";
 const API_BASE_URL = "https://talentia2.humanoid.education/api/posts"; 
 // Replace with your actual API URL
 
-export const getPosts = async (): Promise<{ posts: PostType[] }> => {
+export const getPosts = async (token:string): Promise<{ posts: PostType[] }> => {
   try {
-    const token = Cookies.get("token")||"no";
-     
-    const response = await fetch(`${API_BASE_URL}/list`, {
+   
+    const response = await fetch(`${API_BASE_URL}/`, {  
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
