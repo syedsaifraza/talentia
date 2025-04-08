@@ -1,3 +1,6 @@
+// Force Next.js to treat this as a dynamic server-rendered route
+export const dynamic = 'force-dynamic';
+
 import { getPosts } from "@/utils/apis/post";
 import Post from "@/component/components/post";
 import { PostType } from "@/types/PostType";
@@ -6,16 +9,15 @@ import { cookies } from "next/headers";
 import AddPost from "@/component/components/AddPost";
 import ReelsScroller from "@/component/components/ReelsScroller";
 
-
 export default async function PostList() {
+  const cookieStore = cookies();
+  const token = (await cookieStore).get("token"); // get token from cookies
+
   let posts: PostType[] = [];
 
   try {
-    const cookieStore = cookies();  // Get the cookie store
-    const token = (await cookieStore).get('token');
-    const res = await getPosts(token?.value||"no token");
-     
-    
+    const res = await getPosts(token?.value || "no token");
+
     if (res && res.posts) {
       posts = res.posts;
     }
@@ -25,29 +27,26 @@ export default async function PostList() {
 
   return (
     <>
-    <br/>
-    <AddPost/>
-    <div className="mt-2 mb-2">
-    <ReelsScroller limit={6} size="large" />
-    </div>
-    
-    <div className="mt-1">
-      
+      <br />
+      <AddPost />
+      <div className="mt-2 mb-2">
+        <ReelsScroller limit={6} size="large" />
+      </div>
 
-      {posts.length === 0 ? (
-        <>
-          <PostSkelatal key={1} />
-          <PostSkelatal key={2} />
-        </>
-      ) : (
-        <ul>
-          {
-            posts.map((post, id) => <Post post={post} key={id} />)}
-
-          
-        </ul>
-      )}
-    </div>
+      <div className="mt-1">
+        {posts.length === 0 ? (
+          <>
+            <PostSkelatal key={1} />
+            <PostSkelatal key={2} />
+          </>
+        ) : (
+          <ul>
+            {posts.map((post, id) => (
+              <Post post={post} key={id} />
+            ))}
+          </ul>
+        )}
+      </div>
     </>
   );
 }

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getPosts } from "@/utils/apis/post";
 import Post from "@/component/components/post";
 import { PostType } from "@/types/PostType";

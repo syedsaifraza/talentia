@@ -1,7 +1,6 @@
 import { GetServerSideProps } from "next";
 
-import { PostType } from "@/types/PostType";
-import FeedList from "@/component/FeedList";
+import { PostType } from "@/types/PostType"; 
 import { Suspense } from "react";
 import PostSkelatal from "@/component/skelatal/PostSkelatal";
 
@@ -14,7 +13,7 @@ const Feed: React.FC<FeedPageProps> = ({ posts }) => {
     <div className="flex flex-col gap-4 mt-2">
       <h1>Feed</h1>
       <Suspense fallback={<PostSkelatal/> }>
-      <FeedList />
+     
       </Suspense>
       
     </div>
