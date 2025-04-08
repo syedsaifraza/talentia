@@ -2,7 +2,6 @@ import { getPosts } from "@/utils/apis/post";
 import Post from "@/component/components/post";
 import { PostType } from "@/types/PostType";
 import PostSkelatal from "@/component/skelatal/PostSkelatal";
-import Cookies from "js-cookie";
 import { cookies } from "next/headers";
 import AddPost from "@/component/components/AddPost";
 import ReelsScroller from "@/component/components/ReelsScroller";
