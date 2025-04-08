@@ -135,7 +135,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
   return (
     <>
     {selectedStatus !== null && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-95 gap-10">
+          <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-95 gap-10" style={{zIndex:5000}}>
             <div>
               <button
                 onClick={handlePrevious}
@@ -175,7 +175,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
                     alt={statusUpdates.status[selectedStatus].text}
                     className="w-full h-full object-cover"
                   />:
-                  <div className="flex justify-center items-center" style={{ background: "#f87171",minHeight:'100vh',width:'500px' }}>
+                  <div className="flex justify-center items-center p-5" style={{ background: "#f87171",minHeight:'100vh',width:'500px' }}>
                     
                     <div className="text-white text-lg">{statusUpdates.status[selectedStatus].text}</div>
                     </div>}
