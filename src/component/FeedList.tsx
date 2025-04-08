@@ -31,7 +31,7 @@ export default function PostList({typeOf="all"}) {
       {posts.length === 0 ? (
       <>
         <PostSkelatal key={1}/>
-        <PostSkelatal key={2}/></>
+        <PostSkelatal key={4}/></>
       ) : (
         <ul>
           {typeOf=="all" &&
