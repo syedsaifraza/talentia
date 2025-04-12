@@ -11,7 +11,7 @@ import ReelsScroller from "@/component/components/ReelsScroller";
 
 export default async function PostList() {
   const cookieStore = cookies();
-  const token = (await cookieStore).get("token"); // get token from cookies
+  const token = (await cookieStore).get("token");  
 
   let posts: PostType[] = [];
 

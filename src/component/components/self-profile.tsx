@@ -23,7 +23,7 @@ export default function SelfProfile  ()  {
   return (
     <>
       <div className="sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white shadow-xl rounded-lg text-gray-900">
-        <div className="rounded-t-lg h-[12vh] overflow-hidden">
+        <div className="rounded-t-lg h-[20vh] overflow-hidden">
           <Image
             alt="user"
             height={100}
@@ -33,7 +33,7 @@ export default function SelfProfile  ()  {
 
           />
         </div>
-        <div className="mx-auto w-[6vw] h-[6vw] relative left-[-10px] -mt-10 overflow-hidden">
+        <div className="mx-auto w-[6vw] h-[6vw] relative left-[-40px] -mt-50 overflow-hidden">
           {/* <Link href="/account/profile"> */}
           {userState==null ? <DefaultAvatar  size={60} />: <DefaultAvatar imageUrl={userState.profilePhoto}  size={80} />}
        

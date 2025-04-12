@@ -4,6 +4,17 @@ export interface FeaturedPhotos {
     url:string
 }
 
+export interface Feelings {
+  text: string;
+  emoji: any;
+  nextInput?: string | null;
+}
+
+export interface FeelingsList {
+  feelings: Feelings[];
+  activities: Feelings[];
+}
+
  
   
 export 

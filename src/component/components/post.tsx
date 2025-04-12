@@ -16,7 +16,7 @@ import { FiCopy } from "react-icons/fi";
 import moment from "moment";
 import { addComment, addLike } from "@/utils/apis/post";
 import { useSelector } from "react-redux";
-import { CommentType, PostType } from "@/lib/interfaces/types"; 
+import { CommentType, Feelings, PostType } from "@/lib/interfaces/types"; 
 import ReadMore from "./ReadMore";
 import NameAvatar from "./nameAvatar";
 
@@ -30,6 +30,11 @@ const Post = ( {post}:{post:any}) => {
   const [isShareOverlayOpen, setIsShareOverlayOpen] = useState(false);
   const appState = useSelector((state:any)=>state.auth);
   const [isLiked, setIsLiked] = useState(appState.user==null?false: post.likes?.includes(appState.user.uid) || false);
+  const getFeelingType=(feelingType:string,feelingInfo:Feelings)=>{
+    const fline=feelingType=="feelings"?"is feeling ":"is ";
+    
+ return fline +feelingInfo.text +" "+feelingInfo.emoji;
+  }
 
   // Handle like button click
   const handleLikeClick = (postId:any) => {
@@ -127,7 +132,9 @@ const Post = ( {post}:{post:any}) => {
           className="w-10 h-10 rounded-full"
         /> */}
         <div>
-          <h3 className="font-semibold text-gray-800">{post.user.name}</h3>
+          <h3 className="font-semibold text-gray-800">{post.user.name}
+            <span className="font-normal px-2">{post.activityOrFeeling != null ? getFeelingType(post.activityOrFeeling,post.currentFeeling)+" "+post.activityInfo : ""}</span>
+          </h3>
           <p className="text-xs text-gray-500"> 
           {moment(post.createdAt._seconds*1000).fromNow()}
  
@@ -135,9 +142,9 @@ const Post = ( {post}:{post:any}) => {
           </p>
         </div>
       </div>
-
-     
-      <ReadMore text={post.text}/>
+  
+      {post.text.length>100?<ReadMore text={post.text}/>:<p>{post.text}</p>}   
+      
 
      
       {post.fileURL!="" && post.fileURL!=null && (

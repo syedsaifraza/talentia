@@ -47,6 +47,7 @@ export default function Navbar() {
                 className="px-2"
                 src="https://content.acetians.in/uploads/logo%20(2).png"
               />
+              <p className="bg-orange-400 font-bold">BETA</p>
             </div>
 
             <div className="w-2/5 px-2">

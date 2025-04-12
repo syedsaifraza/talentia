@@ -211,30 +211,34 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
     }
     <div className="bg-white p-2 m-2 rounded-lg relative select-none">
  
-      <h5 className="text-md text-center font-bold m-2 mb-4">Status</h5>
+    <ul className="w-full flex justify-between items-center hover:bg-green-400  transition duration-300 bg-indigo " style={{}}>
+       <li className="hover:cursor-pointer hover:text-indigo-900"><BiChevronLeft onClick={() => scrollToRight()} className="bg-opacity-10" size={40} /></li>
+       <li className="font-semibold">
+        Status
+       </li>
+       <li className="hover:cursor-pointer hover:text-indigo-900"> <BiChevronRight onClick={() => scrollToLeft()} className="bg-white" size={40} /> </li>
+       </ul>
        <ul className="flex" ref={arrayName} style={{overflow:'scroll',height:'100px'}}>
        <li key={23111} className="text-indigo-500 px-2 ">
           <div className="bg-gray-200 rounded-full  border-2 border-green-500 hover:cursor-pointer">
-            <FaPlus size={75} color="green" onClick={()=>setOpenStatusAdd(true)}/>
+            <FaPlus size={68} color="green" onClick={()=>setOpenStatusAdd(true)}/>
           </div>
         </li>
         {statusUpdates.status.map((stat:any,i:number)=><li key={i} onClick={()=>setSelectedStatus(i)} className="text-indigo-500 px-2">
-          {statusUpdates.status[0].userDetails.profilePhoto==undefined?<NameAvatar name={statusUpdates.status[0].userDetails.name} size={80}/>:
+          
+          {stat.userDetails.profilePhoto==undefined?<NameAvatar name={stat.userDetails.name} size={70}/>:
           <Image src={stat.userDetails.profilePhoto}
           width={100}
           height={100}
           alt={stat.text}
-          className="rounded-full inset border-2 border-green-500"
-          style={{minWidth:'80px',width:'80px',height:'80px'}}
+          className="rounded-full inset border-4 border-green-500"
+          style={{minWidth:'70px',width:'70px',height:'70px'}}
           /> 
 }
         </li>)}
        </ul>
        
-       <ul className="absolute left-0 z-20 top-0 w-full flex justify-between items-center hover:bg-green-400  transition duration-300 bg-indigo " style={{}}>
-       <li className="hover:cursor-pointer hover:text-indigo-900"><BiChevronLeft onClick={() => scrollToRight()} className="bg-white shadow-lg rounded-full bg-opacity-10" size={40} /></li>
-       <li className="hover:cursor-pointer hover:text-indigo-900"> <BiChevronRight onClick={() => scrollToLeft()} className="bg-white shadow-lg rounded-full" size={40} /> </li>
-       </ul>
+       
        
        
  

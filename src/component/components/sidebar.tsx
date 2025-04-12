@@ -76,10 +76,10 @@ const Sidebar = () => {
   const appState = useSelector((state:any)=>state.auth)
   return (
     <aside
-      id="default-sidebar"
-      className="w-[18vw] h-[90vh] "
-      aria-label="Sidebar"
-    >
+    id="default-sidebar"
+    className="w-[18vw] h-[90vh]"
+    aria-label="Sidebar"
+  >
       <div className="h-full pt-2 pl-4 pr-6 pb-2  overflow-y-auto   dark:bg-gray-800 no-scrollbar fixed z-40 ">
         <ul className="space-y-2 w-[25vw] font-medium  ">
           <li key={321} className="">
