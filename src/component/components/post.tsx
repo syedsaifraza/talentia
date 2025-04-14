@@ -31,9 +31,11 @@ const Post = ( {post}:{post:any}) => {
   const appState = useSelector((state:any)=>state.auth);
   const [isLiked, setIsLiked] = useState(appState.user==null?false: post.likes?.includes(appState.user.uid) || false);
   const getFeelingType=(feelingType:string,feelingInfo:Feelings)=>{
-    const fline=feelingType=="feelings"?"is feeling ":"is ";
-    
- return fline +feelingInfo.text +" "+feelingInfo.emoji;
+    const fline=feelingType? feelingType=="feelings"?"is feeling ":"is ":"";
+     
+    const ftext = feelingInfo !=null ?feelingInfo.text: "";
+    const femoji =feelingInfo !=null ?feelingInfo.emoji: "";
+    return fline + " " +ftext +" "+femoji;
   }
 
   // Handle like button click

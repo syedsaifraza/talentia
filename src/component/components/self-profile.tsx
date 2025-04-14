@@ -7,6 +7,7 @@ import { CgChevronRight } from "react-icons/cg";
 import Cookies from "js-cookie";
 import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
 import SelfProfileSkelatal from "../skelatal/SelfProfileCard";
+import { SessionProvider } from "next-auth/react";
 
 export default function SelfProfile  ()  {
 
@@ -22,6 +23,7 @@ export default function SelfProfile  ()  {
   }
   return (
     <>
+    <SessionProvider>
       <div className="sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white shadow-xl rounded-lg text-gray-900">
         <div className="rounded-t-lg h-[20vh] overflow-hidden">
           <Image
@@ -91,6 +93,7 @@ export default function SelfProfile  ()  {
 
 
       </div>
+      </SessionProvider>
     </>
   );
 };

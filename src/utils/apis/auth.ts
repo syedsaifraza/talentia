@@ -50,7 +50,7 @@ export const registerUser = async (userData: RegisterData): Promise<AuthResponse
     return await response.json();
   } catch (error) { 
     console.error("Error during registration:", error);
-    return { success: false, error: "Something went wrong", message: "Registration failed" };
+    return { success: false,  message: "Registration failed" };
   }
 };
 
@@ -65,7 +65,7 @@ export const loginUser = async (credentials: LoginData): Promise<AuthResponse> =
     return await response.json();
   } catch (error) {
     console.error("Error during login:", error);
-    return { success: false, error: "Something went wrong", message: "Login failed" };
+    return {  success: false, message: "Login failed",token:"no" };
   }
 };
 
@@ -84,7 +84,7 @@ export const fetchUser = async (token: string): Promise<AuthResponse> => {
     return await response.json();
   } catch (error) {
     console.error("Error fetching user details:", error);
-    return { success: false, error: "Something went wrong", message: "Failed to fetch user" };
+    return {  success: false, message: "Failed to fetch user",token:"no" };
   }
 };
 

@@ -11,8 +11,9 @@ import { BiSolidBell, BiSolidMessageAlt } from "react-icons/bi";
 import DefaultAvatar from "./defaultAvatar";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { logout, setLoggedInUser } from "@/store/slices/authSlices";
+// import { logout, setLoggedInUser } from "@/store/slices/authSlices";
 import { useDispatch } from "react-redux";
+import { logout } from "@/store/slices/authSlices";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -20,6 +21,7 @@ export default function Navbar() {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const dispatch = useDispatch();
+
   const handleLogout = () => {
     
     // Clear session (e.g., remove token from localStorage)
@@ -29,6 +31,7 @@ export default function Navbar() {
     router.push("/login");
     alert("logout success") 
   };
+  
 
   const isActive = (route: string) =>
     pathname === route ? "border-b-4 border-[#3113d6]" : "";
@@ -109,7 +112,7 @@ export default function Navbar() {
                     <Link href="/account/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                       Profile Settings
                     </Link>
-                    <button onClick={handleLogout} className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                    <button onClick={()=>handleLogout()} className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
                       Logout
                     </button>
                   </div>

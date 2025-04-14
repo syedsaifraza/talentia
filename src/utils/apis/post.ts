@@ -65,7 +65,7 @@ export const addComment = async (postId: string, comment: string): Promise<AuthR
     return await response.json();
   } catch (error) {
     console.error("Error adding comment:", error);
-    return { success: false, error: "Something went wrong", message: "Comment failed" };
+    return { success: false, message: "Comment failed" };
   }
 };
 export const addLike = async (postId: string): Promise<AuthResponse> => {
@@ -80,7 +80,7 @@ export const addLike = async (postId: string): Promise<AuthResponse> => {
     return await response.json();
   } catch (error) {
     console.error("Error adding like:", error);
-    return { success: false, error: "Something went wrong", message: "Like failed" };
+    return { success: false,  message: "Like failed" };
   }
 };
 export const addPost = async (postData:FormData): Promise<AuthResponse> => {
@@ -100,7 +100,7 @@ export const addPost = async (postData:FormData): Promise<AuthResponse> => {
     return await response.json();
   } catch (error) {
     console.error("Error during adding post:", error);
-    return { success: false, error: "Something went wrong", message: "Post Add Failed" };
+    return { success: false,  message: "Post Add Failed" };
   }
 };
 

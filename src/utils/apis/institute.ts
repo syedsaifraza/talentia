@@ -45,8 +45,7 @@ export const createInstitution = async (formData: FormData): Promise<Institution
   } catch (error) {
     console.error("Error creating institution:", error);
     return { 
-      success: false, 
-      error: "Something went wrong", 
+      success: false,  
       message: "Institution creation failed" 
     };
   }
@@ -73,8 +72,7 @@ export const getInstitutions = async (
   } catch (error) {
     console.error("Error fetching institutions:", error);
     return { 
-      success: false, 
-      error: "Something went wrong", 
+      success: false,  
       message: "Failed to fetch institutions" 
     };
   }
@@ -91,8 +89,7 @@ export const getInstitution = async (id: string): Promise<InstitutionResponse> =
   } catch (error) {
     console.error("Error fetching institution:", error);
     return { 
-      success: false, 
-      error: "Something went wrong", 
+      success: false,  
       message: "Failed to fetch institution" 
     };
   }
@@ -117,8 +114,7 @@ export const updateInstitution = async (
   } catch (error) {
     console.error("Error updating institution:", error);
     return { 
-      success: false, 
-      error: "Something went wrong", 
+      success: false,  
       message: "Institution update failed" 
     };
   }
@@ -139,8 +135,7 @@ export const deleteInstitution = async (id: string): Promise<InstitutionResponse
   } catch (error) {
     console.error("Error deleting institution:", error);
     return { 
-      success: false, 
-      error: "Something went wrong", 
+      success: false,   
       message: "Institution deletion failed" 
     };
   }

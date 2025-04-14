@@ -37,8 +37,7 @@ export const createProfile= async (formData: FormData): Promise<ProfileResponse>
   } catch (error) {
     console.error("Error creating institution:", error);
     return { 
-      success: false, 
-      error: "Something went wrong", 
+      success: false,  
       message: "Institution creation failed" 
     };
   }
@@ -65,8 +64,7 @@ export const getProfiles = async (
   } catch (error) {
     console.error("Error fetching users:", error);
     return { 
-      success: false, 
-      error: "Something went wrong", 
+      success: false,  
       message: "Failed to fetch users" 
     };
   }
@@ -83,8 +81,7 @@ export const getUser = async (id: string): Promise<ProfileResponse> => {
   } catch (error) {
     console.error("Error fetching user:", error);
     return { 
-      success: false, 
-      error: "Something went wrong", 
+      success: false,  
       message: "Failed to fetch user" 
     };
   }
@@ -109,8 +106,7 @@ export const updateUser = async (
   } catch (error) {
     console.error("Error updating institution:", error);
     return { 
-      success: false, 
-      error: "Something went wrong", 
+      success: false,   
       message: "Institution update failed" 
     };
   }
@@ -131,8 +127,7 @@ export const deleteProfile = async (id: string): Promise<ProfileResponse> => {
   } catch (error) {
     console.error("Error deleting profile:", error);
     return { 
-      success: false, 
-      error: "Something went wrong", 
+      success: false,  
       message: "Profile deletion failed" 
     };
   }
