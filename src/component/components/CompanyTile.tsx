@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface CompanyListTileProps {
     logo: string;
     name: string;
@@ -14,9 +16,11 @@ interface CompanyListTileProps {
     return (
       <div className="flex items-center justify-between bg-white p-2 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer mt-2">
         <div className="flex items-center gap-4">
-          <img
+          <Image
             src={logo}
             alt={name}
+            width={200}
+            height={200}
             className="w-12 h-12 rounded-full object-cover border"
           />
           <div>

@@ -95,12 +95,11 @@ body {
   line-height: 25px;
 }
 body {
-  margin: 0;
-  height: 100vh;
+  margin: 0; 
   display: flex;
   justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  align-items: center; 
+  overflow: scroll;
    background-size: 200% 200%;
   animation: moveBackground 10s ease infinite;
 }

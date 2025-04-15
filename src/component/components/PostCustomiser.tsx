@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import { FastAverageColor } from "fast-average-color";
 import { addStatus } from "@/utils/apis/status";
+import Image from "next/image";
 
 interface PostCustomiserProp{
     closeStatusBox : ()=>void;
@@ -234,7 +235,9 @@ const PostCustomizer: React.FC<PostCustomiserProp> = ({closeStatusBox}) => {
           }}
         >
           {imageURL && (
-            <img
+            <Image
+              width={100}
+              height={100}
               ref={imgRef}
               src={imageURL}
               alt="preview"
