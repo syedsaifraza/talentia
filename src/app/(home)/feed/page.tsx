@@ -8,6 +8,7 @@ import PostSkelatal from "@/component/skelatal/PostSkelatal";
 import { cookies } from "next/headers";
 import AddPost from "@/component/components/AddPost";
 import ReelsScroller from "@/component/components/ReelsScroller";
+import TalentsView from "@/component/components/TalentsView";
 
 export default async function PostList() {
   const cookieStore = cookies();
@@ -35,16 +36,19 @@ export default async function PostList() {
 
       <div className="mt-1">
         {posts.length === 0 ? (
-          <>
-            <PostSkelatal key={1} />
-            <PostSkelatal key={2} />
-          </>
+          <div className="" key={Math.random()*1000}>
+            <PostSkelatal key={"cas1"} />
+            <PostSkelatal key={"cas2"} />
+          </div>
         ) : (
-          <ul>
-            {posts.map((post, id) => (
-              <Post post={post} key={id} />
-            ))}
-          </ul>
+          <div key={Math.random()*1000}>
+            {posts.map((post, idz) => 
+            (idz==0 || idz%3==0)? <div  key={idz} >
+              <TalentsView />
+            <Post post={post}  />
+            </div>:<Post post={post}/>
+             )}
+          </div>
         )}
       </div>
     </>

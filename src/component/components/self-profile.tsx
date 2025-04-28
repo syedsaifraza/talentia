@@ -7,9 +7,10 @@ import { CgChevronRight } from "react-icons/cg";
 import Cookies from "js-cookie";
 import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
 import SelfProfileSkelatal from "../skelatal/SelfProfileCard";
-import { SessionProvider } from "next-auth/react";
+
 
 export default function SelfProfile  ()  {
+
 
   
   const appState = useSelector((state:any) => state.institute);
@@ -21,9 +22,11 @@ export default function SelfProfile  ()  {
     
     return <SelfProfileSkelatal/>;
   }
+  const followers=userState.followers||[];
+  const followings = userState.followings||[];
   return (
     <>
-    <SessionProvider>
+    
       <div className="sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white shadow-xl rounded-lg text-gray-900">
         <div className="rounded-t-lg h-[20vh] overflow-hidden">
           <Image
@@ -46,11 +49,11 @@ export default function SelfProfile  ()  {
         </div>
         <ul className="py-4  text-gray-700 flex items-center justify-around">
           <li className="flex flex-col items-center justify-around">
-            <div>0</div>
+            <div>{followers.length}</div>
             <p className="text-xs">Followers</p>
           </li>
           <li className="flex flex-col items-center justify-between">
-            <div>0</div>
+            <div>{followings.length}</div>
             <p className="text-xs">Following</p>
           </li>
           <li className="flex flex-col items-center justify-around">
@@ -93,7 +96,7 @@ export default function SelfProfile  ()  {
 
 
       </div>
-      </SessionProvider>
+       
     </>
   );
 };

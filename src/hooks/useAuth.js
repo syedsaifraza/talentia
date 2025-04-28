@@ -8,11 +8,12 @@ import { setInstitue } from '@/store/slices/institutionSlice';
 import {setStatus} from '@/store/slices/statusSlice';
 import { fetchUserProfileAndInstitute } from '@/utils/apis/auth';
 import { useEffect , useState } from 'react';
+import { setReels } from '@/store/slices/reelsSlice';
 
 
 // 🔹 Validate Token
 const validateTokenAndFetchUser = async (token) => {
-  const res = await fetch('https://talentia2.humanoid.education/auth/me', {
+  const res = await fetch('http://69.62.76.168:8000/auth/me', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -54,9 +55,11 @@ const useAuth = () => {
     const authenticate = async () => {
       try {
         const userData = await validateTokenAndFetchUser(token);
-        const { instituteData, profileData,statusData } = await fetchUserProfileAndInstitute(token)
+        const { instituteData, profileData,statusData,reelsData } = await fetchUserProfileAndInstitute(token)
 
         dispatch(setLoggedInUser(userData));
+        //console.log(reelsData)
+        dispatch(setReels(reelsData.posts))
         dispatch(setUserInfo(profileData.data));
         dispatch(setInstitue(instituteData.institutions));
         dispatch(setStatus(statusData.posts))

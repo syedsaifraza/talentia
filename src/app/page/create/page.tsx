@@ -103,7 +103,7 @@ export default function InstitutionalPage() {
 
 function OptionCards({ setStep, setInstitutionType }: StepProps) {
     const options = [
-        { name: "School", icon: "https://cdn-icons-png.flaticon.com/128/2995/2995543.png", gradient: "bg-blue-50" },
+        { name: "School", icon: "https://cdn-icons-png.flaticon.com/512/8074/8074768.png", gradient: "bg-blue-50" },
         { name: "College", icon: "https://cdn-icons-png.flaticon.com/128/2995/2995582.png", gradient: "bg-green-50" },
         { name: "University", icon: "https://cdn-icons-png.flaticon.com/128/2231/2231696.png", gradient: "bg-purple-50" },
         { name: "Training Center", icon: "https://cdn-icons-png.flaticon.com/128/1376/1376523.png", gradient: "bg-yellow-50" },

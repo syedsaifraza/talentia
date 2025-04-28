@@ -19,6 +19,10 @@ import { useSelector } from "react-redux";
 import { CommentType, Feelings, PostType } from "@/lib/interfaces/types"; 
 import ReadMore from "./ReadMore";
 import NameAvatar from "./nameAvatar";
+import PostSkelatal from "../skelatal/PostSkelatal";
+import { handlePostRevalidation } from "./postRevalidation";
+import TalentsView from "./TalentsView";
+import Link from "next/link";
 
 const Post = ( {post}:{post:any}) => {
   // alert(JSON.stringify(post))
@@ -29,9 +33,13 @@ const Post = ( {post}:{post:any}) => {
   const [commentInput, setCommentInput] = useState("");
   const [isShareOverlayOpen, setIsShareOverlayOpen] = useState(false);
   const appState = useSelector((state:any)=>state.auth);
+  
   const [isLiked, setIsLiked] = useState(appState.user==null?false: post.likes?.includes(appState.user.uid) || false);
+  const [isLikeds, setIsLikeds] = useState(appState.user==null?"null": JSON.stringify(post.likes?.includes(appState.user.uid)) || "false last");
+  
   const getFeelingType=(feelingType:string,feelingInfo:Feelings)=>{
-    const fline=feelingType? feelingType=="feelings"?"is feeling ":"is ":"";
+
+    const fline=(feelingType && feelingInfo!=null) ? feelingType=="feelings"?"is feeling ":"is ":"";
      
     const ftext = feelingInfo !=null ?feelingInfo.text: "";
     const femoji =feelingInfo !=null ?feelingInfo.emoji: "";
@@ -60,6 +68,8 @@ const Post = ( {post}:{post:any}) => {
     setComments([...comments, newComment]);
     setCommentInput("");
     addComment(post.id.toString(),commentInput)
+    handlePostRevalidation() 
+    
   };
 
   
@@ -73,8 +83,11 @@ const Post = ( {post}:{post:any}) => {
   const closeShareOverlay = () => {
     setIsShareOverlayOpen(false);
   };
-  
+  if(appState.user==null){
+    return <PostSkelatal key={Math.random()*1000}/>
+  }
   return (
+    <>
     <div className="bg-white  rounded-lg p-4 space-y-4 mb-2">
       {/* Post Header */} 
        
@@ -134,7 +147,9 @@ const Post = ( {post}:{post:any}) => {
           className="w-10 h-10 rounded-full"
         /> */}
         <div>
-          <h3 className="font-semibold text-gray-800">{post.user.name}
+          <h3 className="font-semibold text-gray-800">
+            <Link href={`account/${post.user.uid}`}> {post.user.name}</Link>
+            
             <span className="font-normal px-2">{post.activityOrFeeling != null ? getFeelingType(post.activityOrFeeling,post.currentFeeling)+" "+post.activityInfo : ""}</span>
           </h3>
           <p className="text-xs text-gray-500"> 
@@ -180,6 +195,7 @@ const Post = ( {post}:{post:any}) => {
       <div className="flex justify-between items-center mb-4">
       <span className="text-sm text-gray-500 hover:text-[#6366f1] cursor-pointer">
   {likeCount} likes
+    
 </span>
  
         <div className="flex gap-3">
@@ -271,8 +287,8 @@ const Post = ( {post}:{post:any}) => {
       {isCommentSectionOpen && (
       <div className="mt-4">
       <div className="overflow-y-auto max-h-[30vh]">
-        {post.userComments.map((comment:any,id:number) => (
-          <div key={id} className="mb-4">
+        {post.userComments.map((comment:any,idc:number) => (
+          <div key={idc} className="mb-4">
             <div className="flex items-center space-x-2">
               {comment.userDetails.profilePhoto==undefined?<NameAvatar name={comment.userDetails.name} size={30} />:<Image className="rounded-full" width={30} height={30} alt="saif" src={comment.userDetails.profilePhoto}/>}
               <div className="bg-gray-100 p-2 rounded-lg">
@@ -311,7 +327,9 @@ const Post = ( {post}:{post:any}) => {
     </div>
       )}
     </div>
-  );
+     
+ </> 
+ );
 };
 
 export default Post;

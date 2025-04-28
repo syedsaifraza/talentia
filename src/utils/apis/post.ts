@@ -3,7 +3,7 @@ import { AuthResponse, LoginData, RegisterData } from "../auth-helper";
 import Cookies from "js-cookie";
 import { revalidatePath } from "next/cache";
 
-const API_BASE_URL = "https://talentia2.humanoid.education/api/posts"; 
+const API_BASE_URL = "http://69.62.76.168:8000/api/posts"; 
 // Replace with your actual API URL
 
 export const getPosts = async (token:string): Promise<{ posts: PostType[] }> => {
@@ -61,7 +61,8 @@ export const addComment = async (postId: string, comment: string): Promise<AuthR
       credentials: "include",
       body: JSON.stringify({ comment }),
     });
-
+    
+  
     return await response.json();
   } catch (error) {
     console.error("Error adding comment:", error);

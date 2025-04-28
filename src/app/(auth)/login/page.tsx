@@ -36,7 +36,7 @@ const Login = () => {
       localStorage.setItem("email", email);
       if (response.success && response.token) {
         Cookies.set("token", response.token);
-        window.location.reload();
+        window.location.href="/feed"
       } else {
         setError(response.message || "Invalid credentials");
       }

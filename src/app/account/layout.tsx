@@ -1,18 +1,9 @@
 import Navbar from "@/component/components/navbar";
 
-
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="bg-[#f2f4f7] min-h-screen h-screen overflow-y-scroll">
-      <Navbar />
-      <div className="w-full  flex justify-center py-1">
-        {/* Centered Content */}
-        <main className="w-full lg:w-4/5 px-12">
-          <div className="p-0 rounded-lg shadow">{children}</div>
-        </main>
-
-        {/* Right Sidebar */}
-      </div>
-    </div>
-  );
+export default function ReelsLayout({children}:{children:React.ReactNode}){
+    return <>
+    <Navbar/>
+    <div className="max-w-6xl mx-auto">{children}</div>
+    </>
+    ;
 }

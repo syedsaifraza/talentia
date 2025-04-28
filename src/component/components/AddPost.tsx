@@ -42,6 +42,13 @@ const [postModal,setPostModal]=useState(false);
           <MdEmojiEmotions />
           <span className="text-sm text-gray-600 font-bold">Feeling/Activity</span>
         </button>
+
+        <button className="flex items-center justify-center px-2 py- w-[13vw] rounded-md space-x-2 hover:bg-gray-100" onClick={() => window.location.href="/reels"  }>
+         <Image width={20} height={20} alt="Reels Icon"
+         src="https://content.acetians.in/uploads/reels.png"/>
+ 
+          <span className="text-sm text-gray-600 font-bold">Talent</span>
+        </button>
       </div>
 
       </div>

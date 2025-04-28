@@ -21,4 +21,11 @@ export interface RegisterData {
     message: string;
     token?: string; 
   }
+  export interface UserAsResponse {
+    
+    success: boolean;
+    message: string;
+    token?: string; 
+    user?:any
+  }
   

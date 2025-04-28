@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.cookie-container {
+  width: 100%;
+  color: #1d1d1d;
+  height: 100%;
+}
+
+.cookie-container > .banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #5841718c;
+  z-index: 998;
+}
+
+.cookie-container > .banner {
+  position: relative;
+  height: 300px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 998;
+}
+
+.cookie-container > .banner > .banner-heading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  color: white;
+  font-size: 3.8rem;
+  font-weight: bolder;
+  text-shadow: 10px 10px 10px rgba(255, 255, 255, 0.7);
+}
+
+.cookie-container > .banner > .banner-heading > span {
+  font-size: 1.2rem;
+  letter-spacing: 6px;
+}
+
+.cookie-container > .material-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cookie-container > .material-container > .material {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 70%;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+  font-size: 18px;
+  background-color: #f5f5f5;
+  color: #1d1d1d;
+}
+
+.cookie-container > .material-container > .material > p > strong {
+  color:#8a708b;
+  font-size: 25px;
+}
+
+.cookie-container > .material-container > .material > .list-ans {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cookie-container
+  > .material-container
+  > .material
+  > .list-ans
+  > .list-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 20px;
+}
+.cookie-container
+  > .material-container
+  > .material
+  > .list-ans
+  > .list-section
+  > ul {
+  padding-left: 60px;
+}
+.cookie-container > .material-container > .material > .list-ans > ul {
+  padding-left: 70px;
+}
+
+.cookie-container > .material-container > .material > .contact-information {
+  color: #1d1d1d;
+  display: flex;
+  margin-top: 1vh;
+  flex-direction: column;
+  font-size: 14px;
+  gap: 5px;
+  line-height: 25px;
+}
+
+.cookie-container
+  > .material-container
+  > .material
+  > .contact-information
+  > p
+  > a {
+  color: #8a708b;
+}
+
+@media (max-width: 767px) {
+  .cookie-container > .banner {
+    height: 200px;
+  }
+
+  .cookie-container > .banner > .banner-heading {
+    font-size: 2rem;
+    width: 100%;
+  }
+  .cookie-container > .banner > .banner-heading > span {
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+
+  .cookie-container > .material-container {
+    padding: 0;
+    margin: 0;
+  }
+
+  .cookie-container > .material-container > .material {
+    width: 90%;
+    padding: 10px 0px;
+    font-size: 14px;
+    margin: 0 auto;
+  }
+  .cookie-container > .material-container > .material > .list-ans > ul {
+    padding-left: 50px;
+  }
+  .cookie-container > .material-container > .material > .contact-information {
+    font-size: 10px;
+    line-height: 18px;
+  }
+
+  .cookie-container > .material-container > .material > .contact-information {
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .cookie-container > .material-container > .material > p > strong {
+    color: #8a708b;
+    font-size: 18px;
+  }
+  .cookie-container
+    > .material-container
+    > .material
+    > .list-ans
+    > .list-section
+    > ul {
+    padding-left: 35px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .cookie-container > .banner {
+    height: 200px;
+  }
+
+  .cookie-container > .banner > .banner-heading {
+    font-size: 2rem;
+    width: 100%;
+  }
+
+  .cookie-container > .banner > .banner-heading > span {
+    font-size: 13px;
+  }
+
+
+  .cookie-container
+    > .material-container
+    > .material
+    > .sections
+    > .section
+    > .section-content
+    > .list-section {
+    margin-left: 0px;
+    font-size: 15px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .cookie-container > .banner {
+    height: 250px;
+  }
+
+  .cookie-container > .banner > .banner-heading {
+    font-size: 3.5rem;
+    width: 100%;
+  }
+
+  .cookie-container > .banner > .banner-heading > span {
+    font-size: 1.3rem;
+  }
+
+  .cookie-container
+    > .material-container
+    > .material
+    > .sections
+    > .section
+    > .section-content
+    > .list-section {
+    margin-left: 10px;
+  }
+}

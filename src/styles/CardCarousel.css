@@ -1,0 +1,18 @@
+.carousel {
+  width: 100%;
+  overflow: hidden; 
+  border-radius: 15px;
+
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out; 
+}
+
+.carousel-card {
+  min-width: 100%; 
+  height: auto ; 
+  display: flex;
+}
+

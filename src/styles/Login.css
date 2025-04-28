@@ -1,0 +1,236 @@
+ /* ===== Login Page Base Styles ===== */
+.login-page {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    flex-direction: row;
+  }
+  
+  .login-page > .form-container {
+    width: 50%;
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    background-color: white;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+  
+  .login-page > .form-container > .login-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .login-page > .form-container > .login-title > p {
+    font-weight: 400;
+    margin: 0;
+    font-size: 1rem;
+    color: rgb(50, 49, 49);
+  }
+  
+  .login-page > .form-container > .login-title > .L-link {
+    font-size: 2.2rem;
+    display: flex;
+    gap: 0.6rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin: 0;
+  }
+  
+  .login-page > .form-container > .login-title > .L-link >.icon-hue> .L-logo {
+    color: #171147;
+    font-weight: 600;
+  }
+  
+  .login-page > .form-container > .login-title > .L-link > .icon-hue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    gap: 10px;
+    padding: 0;
+    filter: drop-shadow(0px 0px 12px #8a708b);
+  }
+  
+  .login-page > .form-container > .button-container {
+    width: 70%;
+    gap: 4px;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .login-page > .form-container > .button-container > button {
+    width: 49%;
+    height: 3rem;
+    color: black;
+    border-radius: 10px;
+    background-color: #f7f6f8;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .login-page > .form-container > .button-container > button:focus,
+  .login-page > .form-container > .button-container > button.active {
+    outline: none;
+    background-color: white;
+    box-shadow: 0 0 3px 3px #8a708b;
+  }
+  
+  .login-page > .form-container > .forms {
+    background-color: #f1f1f4;
+    width: 70%;
+    border-radius: 10px;
+  }
+  
+  .login-page > .fixed-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 50%;
+    background: #8a708b;
+    color: white;
+  }
+  
+  .login-page > .fixed-container > .ftitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 0;
+  }
+  
+  .login-page > .fixed-container > .ftitle > h1 {
+    font-size: 2.5rem;
+    width: 70%;
+    line-height: 2.7rem;
+    margin: 0;
+  }
+  
+  .login-page > .fixed-container > .ftitle > .fsubheading {
+    font-size: larger;
+    stroke-width: 50;
+    padding: 0;
+  }
+  
+  .login-page > .fixed-container > .fcard {
+    background-color: #8a708b;
+    flex-wrap: nowrap;
+    width: 70%;
+    min-height: 40%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-page > .fixed-container > .fcard > .fcard-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    height: 100%;
+    gap: 10px;
+  }
+  
+  .login-page > .fixed-container > .fcard > .fcard-item > .fcard-icon {
+    width: 20%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .login-page > .fixed-container > .fcard > .fcard-item > .fcard-text {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 73%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow: hidden;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+  }
+  
+  .login-page > .fixed-container > .fcard > .fcard-item > .fcard-text > h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    padding: 0;
+  }
+  
+  .login-page > .fixed-container > .fcard > .fcard-item > .fcard-text > p {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+  }
+  
+  /* ===== Responsive Styles ===== */
+  /* Tablet (768px to 1023px) */
+  @media (max-width: 1023px) {
+    .login-page {
+      flex-direction: column;
+      min-height: auto;
+    }
+  
+    .login-page > .form-container,
+    .login-page > .fixed-container {
+      width: 100%;
+      padding: 2rem 0;
+    }
+  
+    .login-page > .form-container > .button-container,
+    .login-page > .form-container > .forms,
+    .login-page > .fixed-container > .ftitle > h1,
+    .login-page > .fixed-container > .fcard {
+      width: 80%;
+    }
+  }
+  
+  /* Mobile (up to 767px) */
+  @media (max-width: 767px) {
+    .login-page> .form-container{
+      height: 100%;
+    }
+
+
+    .login-page> .fixed-container{
+      display: none;
+    }
+    .login-page > .form-container > .button-container,
+    .login-page > .form-container > .forms,
+    .login-page > .fixed-container > .ftitle > h1,
+    .login-page > .fixed-container > .fcard {
+      width: 90%;
+    }
+  
+    .login-page > .form-container > .login-title > .L-link {
+      font-size: 1.8rem;
+    }
+  
+    .login-page > .fixed-container > .ftitle > h1 {
+      font-size: 2rem;
+      line-height: 2.2rem;
+    }
+  
+    .login-page > .fixed-container > .fcard > .fcard-item {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .login-page > .fixed-container > .fcard > .fcard-item > .fcard-icon,
+    .login-page > .fixed-container > .fcard > .fcard-item > .fcard-text {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+  }

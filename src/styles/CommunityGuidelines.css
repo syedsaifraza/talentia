@@ -1,0 +1,217 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.cg-container{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    /* background-color: red; */
+}
+
+.cg-container>.header{
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color:  rgba(0, 0, 0, 0.3);;
+    overflow: hidden;
+    z-index: 1;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    video{
+        position: absolute;
+        width: 100%;
+        height: inherit;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        opacity: 0.6;
+        z-index: -7;
+    }
+
+    .title-header{
+        color:#171147;
+        z-index: 5;
+        font-size: 3rem;
+        letter-spacing: 2px;
+        display: inline;
+    }
+}
+
+.cg-container>.body{
+    width: 78%;
+    margin: 0 9%;
+    padding: 4vh 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: 2rem;
+    background-color: #f5f5f5;
+
+    .description{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        p{
+            font-size: 20px;
+
+            strong{
+                color: #171147;
+            }
+        }
+    }
+
+    .guidelines{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        
+
+        .horizontal-bar-saperation{
+            width: 90%;
+            height: 0.1vh;
+            background-color: #1d1d1d;
+            margin: 0 auto;
+        }
+
+        .content{
+            margin-bottom: 2vh;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            p{
+                font-size: 20px;
+                strong{
+                    color: #171147;
+                }
+            }
+
+            h1{
+                font-size: 25px;
+                color: #171147;
+            }
+        }
+    }
+
+    .final-word{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        h1{
+            color: #171147;
+            font-size: 30px;
+        }
+
+        p{
+            color: #1d1d1d;
+            font-size: 20px;
+
+            strong{
+                color: #171147;
+            }
+        }
+    }
+}
+
+@media(max-width:768px){
+    .cg-container > .header {
+        .title-header {
+            color: #171147;
+            z-index: 5;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            display: inline;
+            text-align: center;
+        }
+    }
+
+    .cg-container>.header {
+        height: 220px;
+    }
+
+    .cg-container>.body {
+        width: 100%;
+        margin: 0 0;
+        padding: 4vh 3%;
+        display: flex
+    ;
+        flex-direction: column;
+        gap: 0.8rem;
+        background-color: #f5f5f5;
+    }
+
+    .cg-container > .body {
+        & .description {
+            p {
+                font-size: 15px;
+            }
+        }
+    }
+    .cg-container > .body {
+        .description {
+            gap: 1rem;
+        }
+    }
+    .cg-container > .body {
+        .guidelines {
+            display: flex
+    ;
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+    .cg-container > .body {
+        & .guidelines {
+            & .content {
+                h1 {
+                    font-size: 20px;
+                    color: #171147;
+                }
+            }
+        }
+    }
+    .cg-container > .body {
+        & .guidelines {
+            & .content {
+                p {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+    .cg-container > .body {
+        & .guidelines {
+            .horizontal-bar-saperation {
+                width: 99%;
+                height: 0.1vh;
+                background-color: #1d1d1d;
+                margin: 0 auto;
+            }
+        }
+    }
+    .cg-container > .body {
+        .final-word {
+            display: flex
+    ;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            p{
+                font-size: 15px;
+            }
+
+            h1{
+                font-size: 25px;
+            }
+        }
+    }
+}
+
+

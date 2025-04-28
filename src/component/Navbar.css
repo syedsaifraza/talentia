@@ -1,0 +1,160 @@
+/* ===== Navbar Base Styles ===== */
+.nav {
+    background-color: white;
+    display: flex;
+    padding: 1vh 0vw;
+    width: 100%;
+    z-index: 1000;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .navbar-fixed{
+    position: fixed;
+    background-color: white;
+    display: flex;
+    padding: 1vh 0vw;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1000;
+  }
+  
+  .nav .navbar-sticky{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  
+  .nav > .nav-container {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    font-size: calc(15px + 2vmin);
+    color: #171147;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: #171147;
+  }
+  
+  .nav > .nav-container > .nav-link > .nav-logo {
+    color: #171147;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  .nav > .nav-container > .nav-link > .nav-logo > span {
+    margin: 0;
+    padding-top: 1vh;
+  }
+  
+  .nav > .nav-container > .nav-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .nav > .nav-container > .nav-links > button {
+    padding: 13px 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .nav > .nav-container > .nav-links > .b1 {
+    background-color: white;
+    border: none;
+  }
+  
+  .nav > .nav-container > .nav-links > .button2 {
+    background:  #171147;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .nav > .nav-container > .nav-links > .b1 > .nav-link {
+    color: black;
+  }
+  
+  .nav > .nav-container > .nav-links > .button2 > .nav-link {
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* ===== Responsive Navbar ===== */
+  /* Base mobile styles */
+  
+  @media (max-width: 767px) {
+  .nav {
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    /* background-color: red; */
+  }
+  
+  .nav > .nav-container {
+    width: 100%;
+    /* background-color: black; */
+    margin: auto 0.2rem;
+    font-size: calc(12px + 2vmin);
+  }
+  
+  .nav > .nav-container > .nav-link > .nav-logo {
+    gap: 0.5rem;
+  }
+  
+  
+  .nav > .nav-container > .nav-links > button {
+    padding: 10px 12px;
+    font-size: 0.7rem;
+  }
+  }
+  
+  /* Tablet (768px and up) */
+  @media (min-width: 768px) {
+    .nav > .nav-container {
+      width: 85%;
+    }
+    
+    .nav > .nav-container > .nav-links > button {
+      padding: 12px 25px;
+    }
+  }
+  
+  /* Desktop (1024px and up) */
+  @media (min-width: 1024px) {
+    .nav > .nav-container {
+      width: 78%;
+    }
+    
+    .nav > .nav-container > .nav-links > button {
+      padding: 13px 30px;
+    }
+  }
+  
+  /* Large screens (1440px and up) */
+  @media (min-width: 1440px) {
+    .nav > .nav-container {
+      max-width: 1400px;
+    }
+  }

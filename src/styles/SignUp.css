@@ -1,0 +1,301 @@
+/* ===== SignUp Base Styles ===== */
+.R-container {
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid #171147;
+    color: black;
+  }
+
+  #dob{
+    color: rgb(114, 113, 113);
+  }
+  
+  .R-container > .register-form {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: 10px;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .R-container > .register-form > .form-title {
+    margin-bottom: 1vh;
+  }
+  
+  .R-container > .register-form > .form-title > h1 {
+    font-size: 2rem;
+    width: 70%;
+    line-height: 2rem;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .R-container > .register-form > .name-fields {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    justify-content: space-evenly;
+  }
+  
+  .R-container > .register-form > .name-fields > .name-field {
+    font-size: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+  }
+  
+  .R-container > .register-form > .name-fields > .name-field > input {
+    width: 90%;
+    outline: none;
+    padding: 1.5vh 0.4vw;
+    border-radius: 8px;
+    background-color: #c7c2d3;
+    border: 1px solid #171147;
+    font-size: 13px;
+  }
+  
+  .R-container > .register-form > .r-dob-gen {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .R-container > .register-form > .r-dob-gen > .rdob,
+  .R-container > .register-form > .r-dob-gen > .rgen {
+    width: 100%;
+    display: flex;
+    gap: 0.5vh;
+    flex-direction: column;
+  }
+  
+  .R-container > .register-form > .r-dob-gen > .rdob > input,
+  .R-container > .register-form > .r-dob-gen > .rgen > select {
+    outline: none;
+    padding: 1.5vh 0.4vw;
+    border-radius: 8px;
+    border: 1px solid #171147;
+    background-color: #c7c2d3;
+    font-size: 13px;
+  }
+  
+  .R-container > .register-form > .r-dob-gen > .rgen > select {
+    color: rgba(104, 103, 103, 0.825);
+    font-size: 13px;
+  }
+  
+  .R-container > .register-form > .form-group > label,
+  .R-container > .register-form > .r-dob-gen > .rdob > label,
+  .R-container > .register-form > .r-dob-gen > .rgen > label {
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  .R-container > .register-form > .form-group > .input-icon {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    background-color: #c7c2d3;
+    border-radius: 10px;
+    border: 1px solid #171147;
+  }
+  
+  .R-container > .register-form > .form-group > .input-icon > input {
+    width: 100%;
+    outline: none;
+    font-size: 13px;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .R-container > .register-form > .register-password {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2vh;
+  }
+  
+  .R-container > .register-form > .register-password > .rpassword,
+  .R-container > .register-form > .register-password > .cpassword {
+    display: flex;
+    width: 100%;
+    gap: 0.5vh;
+    flex-direction: column;
+  }
+  
+  .R-container > .register-form > .register-password > .rpassword > .input-icon,
+  .R-container > .register-form > .register-password > .cpassword > .input-icon {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    background-color: #c7c2d3;
+    border-radius: 10px;
+    border: 1px solid #171147;
+  }
+  
+  .R-container > .register-form > .register-password > .rpassword > .input-icon > input,
+  .R-container > .register-form > .register-password > .cpassword > .input-icon > input {
+    width: 100%;
+    outline: none;
+    font-size: 13px;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .R-container > .register-form > .login-button {
+    display: flex;
+    border: 1px solid #171147;
+    background-color: #8a708b;
+    width: 100%;
+    flex-direction: row;
+    border-radius: 10px;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .R-container > .register-form > .login-button > .l-button-text {
+    color: white;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 1rem;
+  }
+  
+  .R-container > .register-form > .option {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .R-container > .register-form > .option > p > .highlight-option {
+    color: #c7c2d3;
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .R-container > .register-form > .option > p > .highlight-option:hover {
+    color: #8a708b;
+    transform: scale(1.05);
+  }
+  
+  /* ===== Responsive Styles ===== */
+  /* Tablet (768px to 1023px) */
+  @media (max-width: 1023px) {
+
+    .R-container {
+      padding: 0.8rem;
+    }
+  
+    .R-container > .register-form > .form-title > h1 {
+      font-size: 1.8rem;
+      width: 100%;
+    }
+  
+    .R-container > .register-form > .name-fields {
+      flex-direction: column;
+      flex-wrap: wrap;
+      width: 95%;
+      gap: 1vh;
+    }
+
+    .R-container > .register-form > .name-fields> .name-field{
+      width: 100%;
+    }
+  
+    .R-container > .register-form > .name-fields > .name-field > input {
+      width: 100%;
+      padding: 20px 0.9rem;
+    }
+  }
+  
+  /* Mobile (up to 767px) */
+  @media (max-width: 767px) {
+    .R-container {
+      border: none;
+      padding: 0;
+    }
+
+    .R-container > .register-form > .name-fields> .name-field{
+      width: 95%;
+    }
+  
+    .R-container > .register-form > .form-title > h1 {
+      font-size: 1.6rem;
+      line-height: 1.8rem;
+    }
+  
+    .R-container > .register-form > .r-dob-gen {
+      flex-direction: column;
+    }
+
+  
+    .R-container > .register-form > .register-password {
+      flex-direction: column;
+    }
+  }
+  
+  /* Small Mobile (up to 480px) */
+  @media (max-width: 480px) {
+    .R-container{
+      padding: 0 10px;
+    }
+
+    .R-container input{
+      margin: 0;
+      width: 97%;
+      height: 1.2rem;
+    }
+
+    .R-container select{
+      margin: 0;
+      padding: 0;
+      width: 97%;
+      height: 42px;
+    }
+    
+  .R-container > .register-form > .form-group > .input-icon {
+    padding: 0.3rem;
+  }
+  .R-container > .register-form > .r-dob-gen > .rdob > input, .R-container > .register-form > .r-dob-gen > .rgen > select{
+    padding: 2.8vh 0.4vw;
+    width: 99.8%;
+  }
+
+
+  .R-container > .register-form > .register-password > .rpassword > .input-icon, .R-container > .register-form > .register-password > .cpassword > .input-icon {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.4rem;
+    background-color: #c7c2d3;
+    border-radius: 10px;
+    border: 1px solid #171147;
+}
+
+.R-container > .register-form > .r-dob-gen > .rdob > input, .R-container > .register-form > .r-dob-gen > .rgen > select {
+  padding: 2.8vh 0.4vw;
+  width: 97.8%;
+}
+
+
+    
+
+    .R-container > .register-form > .form-title > h1 {
+      font-size: 1.4rem;
+    }
+  
+    .R-container > .register-form > .option {
+      font-size: 0.9rem;
+    }
+  }

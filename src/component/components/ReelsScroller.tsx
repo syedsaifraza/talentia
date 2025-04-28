@@ -170,14 +170,14 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
                  {statusUpdates.status[selectedStatus].fileURL!=null?
                   <div className="flex justify-center items-center p-5" style={{  minHeight:'80vh',width:'500px' }}>
                   <span className="text-white"></span>
-                  
+                  {statusUpdates.status[selectedStatus].fileURL.endsWith(".mp4")?<video controls src={statusUpdates.status[selectedStatus].fileURL} autoPlay={true}/>:
                   <Image
                     width={300}
                     height={500}
                     src={statusUpdates.status[selectedStatus].fileURL}
                     alt={statusUpdates.status[selectedStatus].text}
                     className="w-full h-full object-cover"
-                  />
+                  />}
                   </div>:
                   <div className="flex justify-center items-center p-5" style={{ background: "#f87171",minHeight:'80vh',width:'500px' }}>
                     

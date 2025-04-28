@@ -3,7 +3,8 @@ import { FaTimes } from "react-icons/fa";
 import Image from "next/image";
 import DefaultAvatar from "./defaultAvatar";
 import { Feelings, Media } from "@/lib/interfaces/types";
-import { addPost } from "@/utils/apis/post";
+import { addPost } from "@/utils/apis/post"; 
+import { handlePostRevalidation } from "./postRevalidation";
 
 export default function MainPostCard({
   postPrivacy,
@@ -104,12 +105,13 @@ export default function MainPostCard({
       setIsUploading(false);
       setIsUploading(false);
       setIsUploading(false);
+      await handlePostRevalidation()
     //   window.location.reload(); // Refresh to reflect post
     close()
     } catch (error) {
       console.error("Error posting:", error);
     } finally {
-      setIsUploading(false);
+      setIsUploading(false); 
     }
   };
 
@@ -129,7 +131,7 @@ export default function MainPostCard({
             {name}{" "} 
             <span className="font-normal text-xs">
                 
-              {selectedType =="feelings" && (
+              {selectedType =="feelings" &&currentFeeling?.emoji!=null && (
                 <> is feeling <span className="font-semibold text-xs">{currentFeeling?.text}{currentFeeling?.emoji}</span></>
               )}
               {selectedType === "activities" && (

@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { AuthResponse } from "../auth-helper";
 
-const API_BASE_URL = "https://talentia2.humanoid.education/api/profile"; 
+const API_BASE_URL = "http://69.62.76.168:8000/api/profile"; 
 // Replace with your actual API URL
 
 interface ProfileData {
@@ -42,7 +42,21 @@ export const createProfile= async (formData: FormData): Promise<ProfileResponse>
     };
   }
 };
+export const addFollower = async (followerId: string): Promise<AuthResponse> => {
+  try {
+    const token = Cookies.get("token");
+    const response = await fetch(`${API_BASE_URL}/follow/${followerId}`, {
+      method: "POST",
+      headers: { "Authorization": `Bearer ${token}` },
+      credentials: "include",
+    });
 
+    return await response.json();
+  } catch (error) {
+    console.error("Error following user:", error);
+    return { success: false,  message: "Following failed" };
+  }
+};
 export const getProfiles = async (
   type?: string,
   city?: string,

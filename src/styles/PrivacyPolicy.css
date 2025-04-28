@@ -1,0 +1,290 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.privacy-container {
+  width: 100%;
+  height: 100%;
+}
+
+.privacy-container > .banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 998;
+  background-color: #5841718c;
+}
+
+.privacy-container > .banner {
+  position: relative;
+  height: 300px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 998;
+}
+
+.privacy-container > .banner > .banner-heading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  color: white;
+  font-size: 4rem;
+  font-weight: bolder;
+  text-shadow: 10px 10px 10px rgba(255, 255, 255, 0.7);
+}
+
+.privacy-container > .banner > .banner-heading > span {
+  font-size: 1.2rem;
+  letter-spacing: 6px;
+}
+
+.privacy-container > .material-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.privacy-container > .material-container > .material {
+  width: 70%;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+  font-size: 18px;
+  background-color: #f5f5f5;
+  color: #1d1d1d;
+}
+
+.privacy-container > .material-container > .material > .sections {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.privacy-container > .material-container > .material > .sections > .section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.privacy-container
+  > .material-container
+  > .material
+  > .sections
+  > .section
+  > .section-header {
+  width: 95.5%;
+  background-color: #ffffff;
+  color:   #8a708b;
+  font-size: medium;
+  padding: 20px 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.privacy-container
+  > .material-container
+  > .material
+  > .sections
+  > .section
+  > .section-content{
+    color: #1d1d1d;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 20x;
+    width: 95.5%;
+  }
+
+  .privacy-container
+  > .material-container
+  > .material
+  > .sections
+  > .section
+  > .section-content>.list-section{
+    margin-left: 20px;
+  }
+
+  .privacy-container
+  > .material-container
+  > .material
+  > .sections
+  > .section
+  > .section-content>.list-section>ul{
+    margin-left: 40px;
+  }
+
+  .privacy-container
+  > .material-container
+  > .material
+  > .sections
+  > .section
+  > .section-content>.list-section>ul>li>strong,
+  .privacy-container
+  > .material-container
+  > .material
+  > .sections
+  > .section
+  > .section-content>.list-section>ul>li>a{
+    color:  #8a708b;
+    text-decoration: none;
+  }
+
+  .privacy-container
+  > .material-container
+  > .material
+  > .sections
+  > .section
+  > .section-content>.list-section>h4{
+    color:  #8a708b;
+  }
+
+  .privacy-container > .material-container > .material > .contact-information {
+    padding: 1.5rem;
+    color: #1d1d1d;
+    display: flex
+;
+    flex-direction: column;
+    gap: 10px;
+    line-height: 25px;
+}
+
+.privacy-container
+  > .material-container
+  > .material
+  > .contact-information
+  > .contact-email
+  > a {
+  color:  #8a708b;
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .privacy-container > .banner {
+    height: 200px;
+  }
+
+  .privacy-container > .banner > .banner-heading {
+    font-size: 2.6rem;
+    width: 100%;
+  }
+  .privacy-container > .banner > .banner-heading > span {
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+
+  .privacy-container > .material-container {
+    padding: 0;
+    margin: 0;
+  }
+
+  .privacy-container > .material-container > .material {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .privacy-container > .material-container > .material > .description {
+    font-size: 14px;
+    padding: 12px 15px;
+  }
+
+  .privacy-container > .material-container > .material > .sections {
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .privacy-container > .material-container > .material > .sections > .section {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .privacy-container
+    > .material-container
+    > .material
+    > .sections
+    > .section
+    > .section-header {
+    width: 88%;
+    font-size: 13px;
+    padding: 5px 12px;
+    margin: 0 auto;
+  }
+
+  .privacy-container > .material-container > .material > .contact-information {
+    font-size: 13px;
+    line-height: 18px;
+  }
+}
+
+@media(max-width: 1023px) {
+  .privacy-container>.banner{
+    height: 200px;
+  }
+
+  .privacy-container>.banner>.banner-heading{
+    font-size: 3rem;
+    width: 100%;
+  }
+
+  .privacy-container>.banner>.banner-heading>span{
+    font-size: 13px;
+  }
+
+  .privacy-container > .material-container > .material > .sections > .section > .section-content{
+    width: 88%;
+    margin: 0 auto;
+    padding: 5px 12px;
+  }
+
+  .privacy-container > .material-container > .material > .sections > .section > .section-content>p{
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .privacy-container > .material-container > .material > .sections > .section > .section-content>.list-section{
+    margin-left: 0px;
+    font-size: 15px;
+    width: 100%;
+  }
+  
+}
+
+@media(min-width: 992px){
+  .privacy-container>.banner{
+    height: 250px;
+  }
+
+  .privacy-container>.banner>.banner-heading{
+    font-size: 3.5rem;
+    width: 100%;
+  }
+
+  .privacy-container>.banner>.banner-heading>span{
+    font-size: 1.3rem;
+  }
+
+  .privacy-container > .material-container > .material > .sections > .section > .section-content>.list-section{
+    margin-left: 10px;
+  }
+
+}

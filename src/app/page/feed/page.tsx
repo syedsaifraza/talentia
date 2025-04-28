@@ -37,7 +37,7 @@ export default function FeedPage() {
             </li>
             <li className="flex rounded-[10px] flex-row gap-4 items-center px-3 py-[8px] hover:bg-slate-100 cursor-pointer">
               <p className="bg-sky-600 rounded-full p-2">
-                <GoStarFill className="size-[20] text-white" />
+             <GoStarFill className="size-[20] text-white" />
               </p>
 
               <p className="font-bold">followings</p>
