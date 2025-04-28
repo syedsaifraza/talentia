@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
 
   if (token) {
     try {
-      const res = await fetch("http://69.62.76.168:8000/auth/me", {
+      const res = await fetch("https://talentia.org.in/auth/me", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

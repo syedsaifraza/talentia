@@ -3,7 +3,7 @@ import { AuthResponse, LoginData, RegisterData } from "../auth-helper";
 import Cookies from "js-cookie";
 import { revalidatePath } from "next/cache";
 
-const API_BASE_URL = "http://69.62.76.168:8000/api/posts"; 
+const API_BASE_URL = "https://talentia.org.in/api/posts"; 
 // Replace with your actual API URL
 
 export const getPosts = async (token:string): Promise<{ posts: PostType[] }> => {

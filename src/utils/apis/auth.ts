@@ -1,32 +1,32 @@
 import { statSync } from "fs";
 import { AuthResponse, LoginData, RegisterData, UserAsResponse } from "../auth-helper";
 
-const API_BASE_URL = "http://69.62.76.168:8000/auth"; // Replace with your actual API URL
+const API_BASE_URL = "https://talentia.org.in/auth"; // Replace with your actual API URL
 
 export const fetchUserProfileAndInstitute = async (token:string) => {
   const [instituteRes, profileRes,statusRes,reelsRes] = await Promise.all([
-    fetch('http://69.62.76.168:8000/api/institute', {
+    fetch('https://talentia.org.in/api/institute', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
     }),
-    fetch('http://69.62.76.168:8000/api/profile', {
+    fetch('https://talentia.org.in/api/profile', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
     }),
-    fetch('http://69.62.76.168:8000/api/status', {
+    fetch('https://talentia.org.in/api/status', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
     }),
-    fetch('http://69.62.76.168:8000/api/reels', {
+    fetch('https://talentia.org.in/api/reels', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

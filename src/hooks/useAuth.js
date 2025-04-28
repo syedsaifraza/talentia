@@ -13,7 +13,7 @@ import { setReels } from '@/store/slices/reelsSlice';
 
 // 🔹 Validate Token
 const validateTokenAndFetchUser = async (token) => {
-  const res = await fetch('http://69.62.76.168:8000/auth/me', {
+  const res = await fetch('https://talentia.org.in/auth/me', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
