@@ -1,180 +1,210 @@
-"use client";
-
-import { useEffect, useState } from "react";
+"use client"
+import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { loginUser, registerUser } from "@/utils/apis/auth";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { registerUser as signupUser } from "@/utils/apis/auth";
-import toast from "react-hot-toast";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { format } from "date-fns";
-import LoadingSpinner from "@/component/components/LoadingSpinner";
+import LogoFile from "@/component/components/LogoFile";
 
-const Register = () => {
-  const [loading,setLoading]=useState(true)
-  useEffect(()=>{
-    setLoading(false)
-  },[])
-  
-  const [firstName, setFirstName] = useState("");
-  const [middleName, setMiddleName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [dob, setDob] = useState<Date | null>(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const gender = ["Male", "Female", "Rather Not Say"];
-  const [userGender, setUserGender] = useState<string>(gender[0]);
-  const [error, setError] = useState<string | null>(null);
-
+export default function Signup() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const [form, setForm] = useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    dob: "",
+    gender: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { id, value } = e.target;
+    setForm((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const formatDate = (date: string): string => {
+    const [year, month, day] = date.split('-');
+    return `${day}/${month}/${year}`; // Format as DD/MM/YYYY
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
+    if (form.password !== form.confirmPassword) {
+      toast.error("Passwords do not match", { position: "top-center" });
       return;
     }
-   try{
+
     setLoading(true);
-    const formattedDOB = dob ? format(dob, "dd/MM/yy") : "";
+    try {
+      // Register the user
+      const response = await registerUser({
+        name: form.firstName,
+        email: form.email,
+        password: form.password,
+        dob: formatDate(form.dob),
+        fullName: { firstName: form.firstName, middleName: form.middleName, lastName: form.lastName },
+        gender: form.gender,
+      });
 
-    const response = await signupUser({
-      name: `${firstName} ${middleName} ${lastName}`,
-      fullName:{
-          "firstName":firstName,
-          "middleName":middleName,
-          "lastName":lastName
-      },
-      email,
-      password,
-      dob: formattedDOB,
-      gender: userGender,
-    });
+      if (response.success) {
+        toast.success("Account created successfully!", {
+          position: "top-center",
+          autoClose: 2000,
+          theme: "colored",
+          style: { backgroundColor: "#8e44ad", color: "white" },
+        });
 
-    localStorage.setItem("name", firstName);
-    localStorage.setItem("email", email);
-    toast(response.message);
-    if (response.success && response.token) {
-      localStorage.setItem("token", response.token);
-      router.push("/feed");
-    } else {
-      setError(response.message || "Signup failed. Please try again.");
-    }}
-    catch(e){
-
-    }finally{
-      setLoading(false)
+        // Now log the user in
+        const loginResponse = await loginUser({ email: form.email, password: form.password });
+        
+        if (loginResponse.success) {
+          toast.success("Login successful!", { position: "top-center" });
+          Cookies.set("token", loginResponse.token!);
+          window.location.href="/feed"
+        } else {
+          toast.error(loginResponse.message || "Login failed", { position: "top-center" });
+        }
+      } else {
+        toast.error(response.message || "Registration failed", { position: "top-center" });
+      }
+    } catch (err) {
+      toast.error("Something went wrong!", { position: "top-center" });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form className="" onSubmit={handleSubmit} autoComplete="off">
-      {error && <p className="text-red-500 text-center">{error}</p>}
+    <>
+      <ToastContainer />
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm">
+          <div className="h-12 w-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
 
-      <input
-        type="text"
-        className="w-full px-4 py-1 mb-2 border rounded-md"
-        placeholder="First Name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        required
-      />
+      <div className="max-w-2xl w-full backdrop-blur-md bg-white/30 border border-white/60 shadow-xl rounded-2xl px-8 py-4 space-y-2">
+        <div className="text-center">
+          <LogoFile />
+          <h2 className="mt-2 text-3xl font-bold text-gray-800">Create an Account</h2>
+          <p className="mt-1 text-sm text-gray-600">Your Talent journey begins here</p>
+        </div>
 
-      <input
-        type="text"
-        className="w-full px-4 py-1 mb-2 border rounded-md"
-        placeholder="Middle Name"
-        value={middleName}
-        onChange={(e) => setMiddleName(e.target.value)}
-        
-      />
-
-      <input
-        type="text"
-        className="w-full px-4 py-1 mb-2 border rounded-md"
-        placeholder="Last Name"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        required
-      />
-
-      <DatePicker
-        selected={dob}
-        onChange={(date: Date | null) => date == null ? null : setDob(date)}
-        dateFormat="dd/MM/yy"
-        placeholderText="DD/MM/YY"
-        className="px-4 py-1 mb-2 border rounded-md"
-        showMonthDropdown
-        showYearDropdown
-        dropdownMode="select"
-        required
-      />
-
-      <div className="flex justify-between mb-2">
-        {gender.map((g, index) => (
-          <div key={index} className={`${index == 1 ? "px-1" : ""} w-1/3`}>
-            <button
-              type="button"
-              className={`text-xs ${
-                userGender == g
-                  ? "bg-blue-800 text-white"
-                  : "bg-blue-100 text-blue-900"
-              } rounded-md w-full p-2`}
-              onClick={() => setUserGender(g)}
-            >
-              {g}
-            </button>
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          {/* Row with First, Middle, Last Name */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
+            <input
+              id="firstName"
+              type="text"
+              value={form.firstName}
+              onChange={handleChange}
+              placeholder="First Name"
+              required
+              className="mt-1 w-full px-4 py-2 bg-white/70 text-gray-800 border border-gray-300 rounded-md"
+            />
+            <input
+              id="middleName"
+              type="text"
+              value={form.middleName}
+              onChange={handleChange}
+              placeholder="Middle Name"
+              className="mt-1 w-full px-4 py-2 bg-white/70 text-gray-800 border border-gray-300 rounded-md"
+            />
+            <input
+              id="lastName"
+              type="text"
+              value={form.lastName}
+              onChange={handleChange}
+              placeholder="Last Name"
+              required
+              className="mt-1 w-full px-4 py-2 bg-white/70 text-gray-800 border border-gray-300 rounded-md"
+            />
           </div>
-        ))}
+
+          {/* DOB and Gender */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              id="dob"
+              type="date"
+              value={form.dob}
+              onChange={handleChange}
+              required
+              className="mt-1 w-full px-4 py-2 bg-white/70 text-gray-800 border border-gray-300 rounded-md"
+            />
+            <select
+              id="gender"
+              value={form.gender}
+              onChange={handleChange}
+              required
+              className="mt-1 w-full px-4 py-2 bg-white/70 text-gray-800 border border-gray-300 rounded-md"
+            >
+              <option value="">Select Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+              <option>Prefer Not to Say</option>
+            </select>
+          </div>
+
+          {/* Email */}
+          <input
+            id="email"
+            type="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="you@example.com"
+            required
+            className="mt-1 w-full px-4 py-2 bg-white/70 text-gray-800 border border-gray-300 rounded-md"
+          />
+
+          {/* Password and Confirm */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              id="password"
+              type="password"
+              value={form.password}
+              onChange={handleChange}
+              placeholder="••••••••"
+              required
+              className="mt-1 w-full px-4 py-2 bg-white/70 text-gray-800 border border-gray-300 rounded-md"
+            />
+            <input
+              id="confirmPassword"
+              type="password"
+              value={form.confirmPassword}
+              onChange={handleChange}
+              placeholder="••••••••"
+              required
+              className="mt-1 w-full px-4 py-2 bg-white/70 text-gray-800 border border-gray-300 rounded-md"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-md flex items-center justify-center"
+          >
+            {loading ? (
+              <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              "Register →"
+            )}
+          </button>
+        </form>
+
+        <p className="text-center text-sm text-gray-600">
+          Already have an account?{" "}
+          <a href="/login" className="text-indigo-600 hover:underline font-medium">
+            Login Here
+          </a>
+        </p>
       </div>
-
-      <input
-        type="email"
-        className="w-full px-4 py-1 my-3 mb-2 border rounded-md"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-
-      <input
-        type="password"
-        className="w-full px-4 py-1 border mb-2 rounded-md"
-        placeholder="Create a password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-
-      <input
-        type="password"
-        className="w-full px-4 py-1 border mb-5 rounded-md"
-        placeholder="Confirm your password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        required
-      />
-
-    {loading? <LoadingSpinner/> :
-      <button
-        type="submit"
-        className="w-full py-1 bg-[#3113d6] mb-2 text-white rounded-md hover:bg-[#3113d6b8] focus:outline-none"
-      >
-        Submit
-      </button>
-}
-
-      <p className="text-sm text-gray-600 text-center">
-        Already have an account?{" "}
-        <Link href="/login" className="text-blue-600 hover:underline">
-          Sign in
-        </Link>
-      </p>
-    </form>
+    </>
   );
-};
-
-export default Register;
+}

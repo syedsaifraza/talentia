@@ -10,6 +10,7 @@ import {
 import { useSelector } from "react-redux";
 import { CgChevronRight } from "react-icons/cg";
 import DefaultAvatar from "@/component/components/defaultAvatar";
+import Link from "next/link";
 
 interface StepProps {
     setStep: (step: number) => void;
@@ -122,13 +123,12 @@ function OptionCards({ setStep, setInstitutionType }: StepProps) {
                     <div 
                         key={index} 
                         className={`border p-4 rounded-lg cursor-pointer hover:bg-indigo-100 text-center ${option.gradient}`} 
-                        onClick={() => {
-                            setInstitutionType(option.name);
-                            setStep(2);
-                        }}
+                         
                     >
+                      <Link href={`/pages/add?type=${option.name.toLowerCase()}`}>
                         <Image src={option.icon} width={80} height={80} alt={option.name} className="m-auto mb-3 mt-3"/>
                         <p className="text-[18px] font-medium">{option.name}</p>
+                        </Link>
                     </div>
                 ))}
             </div>

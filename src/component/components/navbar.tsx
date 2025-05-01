@@ -25,6 +25,7 @@ import LeaderBoard from "../Icons/LeaderBoard";
 import MessageIcon from "../Icons/MessageIcon";
 import BellIcon from "../Icons/BellIcon";
 import SettingsIcon from "../Icons/SettingsIcon";
+import LogoFile from "./LogoFile";
 
 
 export default function Navbar() {
@@ -57,13 +58,7 @@ export default function Navbar() {
        
       <div className="flex items-center justify-center">
             <div className="flex w-2/5">
-              <Image
-                width={200}
-                height={80}
-                alt="Logo"
-                className="px-2"
-                src="https://content.acetians.in/uploads/logo%20(2).png"
-              />
+              <LogoFile/>
               <p className="bg-orange-400 font-bold">BETA</p>
              </div>
              {appState!=null &&

@@ -111,7 +111,7 @@ function BaseForm({ title, setStep }: { title: string, setStep: (step: number) =
             <form onSubmit={handleSubmit}>
                 <div className="flex flex-col md:flex-row">
                     <div className="w-full md:w-1/4">
-                        <div className="rounded-t-sm h-[20vh] overflow-hidden relative">
+                        <div className="rounded-t-sm h-[10vh] overflow-hidden relative">
                             {bannerPreview ? (
                                 <Image
                                     alt="banner preview"
@@ -122,7 +122,7 @@ function BaseForm({ title, setStep }: { title: string, setStep: (step: number) =
                             ) : (
                                 <Image
                                     alt="default banner"
-                                    height={100}
+                                    height={40}
                                     width={100}
                                     className="object-cover object-top w-full h-full"
                                     src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
@@ -254,7 +254,7 @@ function BaseForm({ title, setStep }: { title: string, setStep: (step: number) =
                     <div className="w-full md:w-3/4 p-2"> 
                         <div className="flex flex-col md:flex-row flex-wrap">
                             <div className="mb-4 w-full md:w-1/2 md:pr-2">
-                                <label className="block text-gray-700">Institution Name:</label>
+                                <label className="block text-gray-700">Institution Name :</label>
                                 <input
                                     type="text"
                                     className="border w-full p-2 rounded"
