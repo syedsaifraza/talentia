@@ -56,8 +56,8 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-md w-full sticky top-0 z-50">
        
-      <div className="flex items-center justify-center">
-            <div className="flex w-2/5">
+      <div className="flex items-center justify-between">
+            <div className="flex w-1/5">
               <LogoFile/>
               <p className="bg-orange-400 font-bold">BETA</p>
              </div>
@@ -95,7 +95,7 @@ export default function Navbar() {
            {appState==null &&
            <div className="flex justify-end items-center w-2/5 px-2 mt-2">
             <Link href="/login" type="button" className="mx-2 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Signin</Link>
-            <Link type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="/signup">Signup</Link>
+            <Link type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="/register">Signup</Link>
 
 
             </div>

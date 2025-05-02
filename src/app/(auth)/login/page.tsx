@@ -62,7 +62,7 @@ export default function Login() {
 
       <div className="max-w-md w-full backdrop-blur-md bg-white/30 border border-white/60 shadow-xl rounded-2xl px-8 py-10 space-y-6 relative z-10">
         <div className="text-center">
-          <LogoFile />
+          <span className="m-auto"><LogoFile /></span>
           <h2 className="mt-4 text-3xl font-bold text-gray-800">Welcome Back</h2>
           <p className="mt-2 text-sm text-gray-600">Login to your Talentia account</p>
         </div>
