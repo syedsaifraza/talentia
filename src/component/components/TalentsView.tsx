@@ -21,14 +21,16 @@ export default function TalentsView (){
              
         {reelsState.slice(0,4).map((rState:any,idx:number)=>
         <li className="px-1" key={idx}>
+            <Link href="/reels/all">
             <div className="bg-gray-200 rounded-lg h-full w-[55px] relative">
-               <video src={rState.fileURL} className="rounded-lg h-full"  />
+               <video src={rState.fileURL} className="rounded-lg h-full" style={{maxWidth:'120px',height:'auto'}}  />
                <div className="absolute bottom-0 p-2">
                 {reelsState.userDetails==null?<NameAvatar name={"User"} size={30}/>: <Image src={reelsState.userDetails.profilePhoto} alt="M" height={100} width={100} className="rounded-full" style={{height:'40px',width:'40px'}} /> }
                   
                  {}
                </div>
             </div>
+            </Link>
         </li>
         )}
         </ul>

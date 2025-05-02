@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Step1Form from "@/component/create-institute/StepForm";
 import Step2Upload from "@/component/create-institute/Step2Upload";
 import Step3Links from "@/component/create-institute/Step3Link";
@@ -9,7 +9,7 @@ import FormHeader from "@/component/create-institute/FormHeader";
 import { createInstitution } from "@/utils/apis/institute";
 import { useSearchParams } from "next/navigation";
 
-export default function Home() {
+function Home() {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<any>({
     pageName: "", category: "", bio: "",
@@ -107,3 +107,10 @@ export default function Home() {
     </div>
   );
 }
+
+export function AddPagesHome(){
+  return <Suspense>
+         <Home/>
+        </Suspense>
+}
+
