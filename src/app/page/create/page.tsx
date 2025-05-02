@@ -28,9 +28,9 @@ export default function InstitutionalPage() {
             {
               (step==1|| step==null) && 
               <div className="px-2 flex flex-justify-start flex-wrap">
-  {appState.institutes.map((ins:any) => (
+  {appState.institutes.map((ins:any,index:number) => (
      
-      <div className="w-1/4 p-1">
+      <div className="w-1/4 p-1" key={index}>
         <div className="shadow-lg min-h-[300px]">
         <div className="rounded-t-lg h-[12vh] overflow-hidden">
           <Image
@@ -43,7 +43,7 @@ export default function InstitutionalPage() {
           />
         </div>
         <div className="mx-auto w-[6vw] h-[6vw] relative left-[-80px] -mt-10 overflow-hidden"> 
-          <Image src={ins.logoURL} height={60} width={60} className="rounded-full" alt={ins.namea} />
+          <Image src={ins.logoURL} height={60} width={60} className="rounded-full" alt={ins.name} />
          
           
         </div>

@@ -28,6 +28,7 @@ import SettingsIcon from "../Icons/SettingsIcon";
 import LogoFile from "./LogoFile";
 import LogoFileAlt from "./LogoFileAlt";
 import "../../app/globals.css"
+import { CircleChevronDown } from "lucide-react";
 
 
 export default function Navbar() {
@@ -53,6 +54,7 @@ export default function Navbar() {
     pathname === route ? "#3113d6" : "gray";
 
   const appState = useSelector((state:any)=>state.auth.user)
+  const instituteState = useSelector((state:any)=>state.institute);
 
   return (
     <nav className="bg-white shadow-md w-full sticky top-0 z-50">
@@ -104,6 +106,18 @@ export default function Navbar() {
 {appState!=null &&
             <div className="flex justify-end items-center w-2/5 px-2">
               <div className="p-2 rounded-full">
+              {instituteState.institutes.length>0? <>
+              <Link href="page/create">
+              <div className="flex gap-2 items-center bg-blue-100 py-1 hover:cursor-pointer px-2 rounded-md relative shadow-md">
+                <p>Pages({instituteState.institutes.length}) -</p>
+                <Image alt={instituteState.institutes[0].name} width={30} height={30} className="rounded-full" src={instituteState.institutes[0].logoURL} />
+                
+                 </div>
+                 </Link>
+               </>:""}
+                </div>
+              <div className="p-2 rounded-full">
+                
                 <Link href="/settings/view">
                   <SettingsIcon/>
                   {/* <IoMdSettings className="text-black text-bold" size={25} /> */}

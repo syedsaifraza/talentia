@@ -9,9 +9,11 @@ import FormHeader from "@/component/create-institute/FormHeader";
 import { createInstitution } from "@/utils/apis/institute";
 import { useSearchParams } from "next/navigation";
 import { ToastContainer } from "react-toastify";
+import "../../../app/globals.css";
 
 function Home() {
   const [step, setStep] = useState(1);
+  const [loading,setLoading]=useState(false);
   const [form, setForm] = useState<any>({
     pageName: "", category: "", bio: "",
     facebook: "", instagram: "", linkedin: "", website: "", contact: "",address:"",email:"",city:"",country:""
@@ -31,6 +33,8 @@ function Home() {
   const searchParams = useSearchParams();
    
   const submitForm = async () => {
+   
+    
     const requiredFields:string[] = [
       "pageName", "category", "bio",
       "address", "city", "country", "contact", "email"  ];
@@ -75,9 +79,7 @@ function Home() {
     }
   
     try {
-      
-     // console.log(formData);
-      
+      setLoading(true);   
       const response = await createInstitution(formData); // You must define this API call
       alert(response.message);
       window.location.href="/feed";
@@ -85,6 +87,8 @@ function Home() {
     } catch (error) {
       console.error("Submission failed", error);
       alert("Failed to submit. Please try again.");
+    }finally{
+      setLoading(false);
     }
   };
   
@@ -93,6 +97,12 @@ function Home() {
   const prevStep = () => setStep((s) => s - 1);
 
   return (
+    <>
+    {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm">
+          <div className="h-12 w-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
     <div className="flex h-screen">
       {/* Sidebar Form */}
       <div className="w-full md:w-1/3 bg-gray-100 p-6 overflow-y-auto border-r relative">
@@ -110,6 +120,7 @@ function Home() {
         <PagePreview form={form} profilePhoto={profilePhoto} coverPhoto={coverPhoto} />
       </div>
     </div>
+    </>
   );
 }
 
