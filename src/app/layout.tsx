@@ -1,7 +1,7 @@
 "use client";
 
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+// import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import {store} from "@/store/index" 

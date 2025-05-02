@@ -26,6 +26,8 @@ import MessageIcon from "../Icons/MessageIcon";
 import BellIcon from "../Icons/BellIcon";
 import SettingsIcon from "../Icons/SettingsIcon";
 import LogoFile from "./LogoFile";
+import LogoFileAlt from "./LogoFileAlt";
+import "../../app/globals.css"
 
 
 export default function Navbar() {
@@ -41,8 +43,7 @@ export default function Navbar() {
     localStorage.removeItem("token");
     Cookies.remove("token")
     dispatch(logout());
-    router.push("/login");
-    alert("logout success") 
+    router.push("/signin"); 
   };
   
 
@@ -57,9 +58,9 @@ export default function Navbar() {
     <nav className="bg-white shadow-md w-full sticky top-0 z-50">
        
       <div className="flex items-center justify-between">
-            <div className="flex w-1/5">
+            <div className="flex w-2/5 justify-start px-5">
               <LogoFile/>
-              <p className="bg-orange-400 font-bold">BETA</p>
+              {/* <p className="bg-orange-400 font-bold">BETA</p> */}
              </div>
              {appState!=null &&
             <div className="w-2/5 px-2">

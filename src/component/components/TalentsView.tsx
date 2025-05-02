@@ -14,7 +14,7 @@ export default function TalentsView (){
                 <h4 className="font-semibold">Talents View</h4>
             </li>
             <li className="text-sm">
-                <Link href="/reels/all">View all</Link>
+                <Link href="/reels/all" className="hover:text-purple">View all</Link>
             </li>
         </ul>
         <ul className="flex" style={{height:'200px',overflowX:'scroll'}}>
@@ -23,7 +23,7 @@ export default function TalentsView (){
         <li className="px-1" key={idx}>
             <Link href="/reels/all">
             <div className="bg-gray-200 rounded-lg h-full w-[55px] relative">
-               <video src={rState.fileURL} className="rounded-lg h-full" style={{maxWidth:'120px',height:'auto'}}  />
+               <video src={rState.fileURL} className="rounded-lg h-full object-cover" style={{maxWidth:'120px',height:'200px'}}  />
                <div className="absolute bottom-0 p-2">
                 {reelsState.userDetails==null?<NameAvatar name={"User"} size={30}/>: <Image src={reelsState.userDetails.profilePhoto} alt="M" height={100} width={100} className="rounded-full" style={{height:'40px',width:'40px'}} /> }
                   

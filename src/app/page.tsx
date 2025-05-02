@@ -1,25 +1,28 @@
-import React from "react"; 
+"use client"
+import React, { useState } from "react"; 
 import CardCarousel from "@/component/components/CardCarousel";
 import { cardData } from "@/lib/CardData";
 import Image from "next/image";
 import "../app/talentia.css"
 import Navbar from "@/component/components/navbar";
 import Footer from "@/component/Footer";
+import NavbarAlt from "@/component/components/NavbarAlt";
+import { usePathname } from "next/navigation";
  
 
 export default function  Homepage()  {
+  const [hide, setHide] = useState("");
+  const location  = usePathname()  
+  const isHomepage = location=="/";
   return (
     <>
-    <Navbar/>
+    <NavbarAlt/>
     <div className="homepage">
     <div className="homepage-container">
       <div className="image-container">
-        <Image
-          src="/assets/trophyGirl.png"
-          alt="Trophy Girl"
-          width={100}
-          height={100}
-          style={{height:'auto',width:'500px'}}
+        <img
+          src={"/assets/trophyGirl.png"}
+          alt="Trophy Girl"  
         />
       </div>
       <div className="text-container">

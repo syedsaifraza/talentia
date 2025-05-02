@@ -8,6 +8,7 @@ import StepNavigation from "@/component/create-institute/StepNavigation";
 import FormHeader from "@/component/create-institute/FormHeader";
 import { createInstitution } from "@/utils/apis/institute";
 import { useSearchParams } from "next/navigation";
+import { ToastContainer } from "react-toastify";
 
 function Home() {
   const [step, setStep] = useState(1);
@@ -27,7 +28,8 @@ function Home() {
       type === "profile" ? setProfilePhoto(url) : setCoverPhoto(url);
     }
   };
-
+  const searchParams = useSearchParams();
+   
   const submitForm = async () => {
     const requiredFields:string[] = [
       "pageName", "category", "bio",
@@ -44,7 +46,7 @@ function Home() {
     //   alert("You must agree to the terms and conditions.");
     //   return;
     // }
-    const searchParams = useSearchParams();
+   
     const formData = new FormData();
     formData.append("institutionType", searchParams.get("type")!); // Assuming category is type
     formData.append("name", form.pageName);
@@ -73,9 +75,12 @@ function Home() {
     }
   
     try {
-      const response = await createInstitution(formData); // You must define this API call
-      alert(response.message);
-      window.location.href="/feed";
+      
+      console.log(formData);
+      
+      // const response = await createInstitution(formData); // You must define this API call
+      // alert(response.message);
+      // window.location.href="/feed";
       // Optionally: router.push("/feed");
     } catch (error) {
       console.error("Submission failed", error);
@@ -101,7 +106,7 @@ function Home() {
       </div>
 
       {/* Preview */}
-      <div className="hidden md:flex flex-1 items-center justify-center bg-white">
+      <div className="hidden md:flex flex-1 items-center justify-center bg-white p-4">
         <PagePreview form={form} profilePhoto={profilePhoto} coverPhoto={coverPhoto} />
       </div>
     </div>
@@ -109,8 +114,10 @@ function Home() {
 }
 
 export default function AddPagesHome(){
-  return <Suspense>
+  return (<>
+  <ToastContainer/>
+  <Suspense>
          <Home/>
-        </Suspense>
+        </Suspense></>);
 }
 

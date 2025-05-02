@@ -35,19 +35,28 @@ export default function SelfProfile  ()  {
             width={100}
             className="object-cover object-top w-full"
             src={userState==null?coverPhoto: (userState.coverPhoto==undefined) ? coverPhoto :userState.coverPhoto }
+            style={{maxHeight:'200px'}}
 
           />
         </div>
-        <div className="mx-auto w-[6vw] h-[6vw] relative left-[-40px] -mt-50 overflow-hidden">
+        <div style={{
+          width: '6vw',
+          height: '6vw', 
+          marginRight: 'auto',
+          position: 'relative',
+          left: 20,
+          marginTop: '-50px',
+          overflow: 'hidden',
+        }}>
           {/* <Link href="/account/profile"> */}
           {userState==null ? <DefaultAvatar  size={60} />: <DefaultAvatar imageUrl={userState.profilePhoto}  size={80} />}
        
         </div>
-        <div className=" mx-4">
+        <div className="mx-4">
           <h2 className="font-semibold">{userState.name|| 'Guest'}</h2>
           <p className="text-gray-500">{userState.jobTitle|| ''}</p>
         </div>
-        <ul className="py-4  text-gray-700 flex items-center justify-around">
+        <ul className="py-1 pb-2  text-gray-700 flex items-center justify-around">
           <li className="flex flex-col items-center justify-around">
             <div>{followers.length}</div>
             <p className="text-xs">Followers</p>
@@ -62,36 +71,6 @@ export default function SelfProfile  ()  {
           </li>
         </ul>
         
-        <div className="px-2">
-          <p>Pages ({appState.institutes.length})</p>
-          <ul>
-          {appState.institutes.slice(0,1).map((ins:any) => (
-            <li
-              key={ins.id}
-              className="p-1  mb-2 flex items-center justify-between rounded-lg shadow-sm hover:bg-blue-100 transition duration-300"
-            >
-              {/* Logo & Name Section */}
-              <div className="flex items-center gap-x-3">
-                <Image
-                  src={ins.logoURL}
-                  alt={ins.name}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-                <span className="font-semibold text-gray-800 g text-sm hover:cursor-pointer"><Link href={`/account/${ins.id}`}>{ins.name}</Link></span>
-                <span>{appState.institutes.length>1?(<Link href="/page/create">+{appState.institutes.length-1}</Link>):''}</span>
-              </div>
-
-              {/* Arrow Icon */}
-              <span className="text-gray-600 hover:text-gray-800 transition">
-                <CgChevronRight size={25} />
-              </span>
-            </li>
-          ))}
-          </ul>
-        </div>
-        <hr className="mt-4 border-gray-300" />
 
 
 

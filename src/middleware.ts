@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 // List of routes that require user to be unauthenticated
-const publicRoutes = ["/login", "/register", "/forgot-password"];
+const publicRoutes = ["/signin", "/signup", "/forgot-password"];
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
@@ -33,7 +33,7 @@ export async function middleware(request: NextRequest) {
   // 🛑 If not authenticated and tries to access protected route → redirect to login
   const protectedRoutes = ["/feed", "/watch", "/job", "/achievements", "/account/profile"];
   if (!isAuthenticated && protectedRoutes.some((path) => currentPath.startsWith(path))) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(new URL("/signin", request.url));
   }
 
   return NextResponse.next();
@@ -47,6 +47,8 @@ export const config = {
     "/achievements",
     "/account/profile",
     "/login",
+    "/signin",
+    "/signup",
     "/register",
     "/forgot-password",
   ],

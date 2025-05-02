@@ -4,7 +4,7 @@ const LogoFile=()=>{
                     width={200}
                     height={80}
                     alt="Logo"
-                    className="m-auto"
+                    className=""
                     src="https://content.acetians.in/uploads/logo%20(2).png"
                   />;
 }
