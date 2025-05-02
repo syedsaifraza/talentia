@@ -108,7 +108,7 @@ function Home() {
   );
 }
 
-export function AddPagesHome(){
+export default function AddPagesHome(){
   return <Suspense>
          <Home/>
         </Suspense>
