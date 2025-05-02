@@ -81,7 +81,7 @@ function Home() {
       const response = await createInstitution(formData); // You must define this API call
       alert(response.message);
       window.location.href="/feed";
-      Optionally: router.push("/feed");
+      // Optionally: router.push("/feed");
     } catch (error) {
       console.error("Submission failed", error);
       alert("Failed to submit. Please try again.");
