@@ -1,7 +1,7 @@
 
 import Navbar from "@/component/components/navbar";
-import Sidebar from "./FeedSideBar";
-
+import Sidebar from "@/component/components/sidebar";
+ 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-[#f2f4f7] h-screen overflow-scroll">

@@ -10,6 +10,15 @@ export interface Feelings {
   nextInput?: string | null;
 }
 
+export interface ResetPasswordData {
+  email: string;
+}
+
+export interface ResetPasswordResponse {
+  success: boolean;
+  message: string;
+}
+
 export interface FeelingsList {
   feelings: Feelings[];
   activities: Feelings[];

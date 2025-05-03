@@ -22,7 +22,7 @@ const Login = () => {
   
   useEffect(() => {
     if (user!=null) {
-       router.push("/feed");  // Redirect to home if user is logged in
+       router.push("/home");  // Redirect to home if user is logged in
     }
     setLoading(false)
   }, [user, router]);
@@ -36,7 +36,7 @@ const Login = () => {
       localStorage.setItem("email", email);
       if (response.success && response.token) {
         Cookies.set("token", response.token);
-        window.location.href="/feed"
+        window.location.href="/home"
       } else {
         setError(response.message || "Invalid credentials");
       }

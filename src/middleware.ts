@@ -27,11 +27,11 @@ export async function middleware(request: NextRequest) {
 
   // 🛑 If authenticated user tries to access login/register/forgot → redirect to feed/home
   if (isAuthenticated && publicRoutes.includes(currentPath)) {
-    return NextResponse.redirect(new URL("/feed", request.url));
+    return NextResponse.redirect(new URL("/home", request.url));
   }
 
   // 🛑 If not authenticated and tries to access protected route → redirect to login
-  const protectedRoutes = ["/feed", "/watch", "/job", "/achievements", "/account/profile"];
+  const protectedRoutes = ["/home", "/watch", "/job", "/achievements", "/account/profile"];
   if (!isAuthenticated && protectedRoutes.some((path) => currentPath.startsWith(path))) {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
@@ -41,7 +41,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/feed",
+    "/home",
     "/watch",
     "/job",
     "/achievements",

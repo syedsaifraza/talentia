@@ -30,7 +30,7 @@ const Sidebar = () => {
     { name: "Feed", icon:  <Image
                         alt="user"
                         height={10}
-                        width={10} src="https://cdn3d.iconscout.com/3d/premium/thumb/social-media-feed-3d-icon-download-in-png-blend-fbx-gltf-file-formats--like-logo-pack-user-interface-icons-9091452.png?f=webp"  className="w-[25px]"/>, link: "/page/feed/" },
+                        width={10} src="https://cdn3d.iconscout.com/3d/premium/thumb/social-media-feed-3d-icon-download-in-png-blend-fbx-gltf-file-formats--like-logo-pack-user-interface-icons-9091452.png?f=webp"  className="w-[25px]"/>, link: "/page/home/" },
     {
       name: "Connections",
       icon:<FaBookmark size={25} />,

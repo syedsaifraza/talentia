@@ -31,7 +31,7 @@ export default function Login() {
           style: { backgroundColor: "#8e44ad", color: "white" },
         });
         setTimeout(() => {
-          window.location.href = "/feed";
+          window.location.href = "/home";
         }, 100);
       } else {
         setError(response.message || "Invalid credentials");

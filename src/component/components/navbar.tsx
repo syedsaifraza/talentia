@@ -67,10 +67,10 @@ export default function Navbar() {
              {appState!=null &&
             <div className="w-2/5 px-2">
               <div className="flex justify-between">
-                <div className={`hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive("/feed")}`}>
-                  <Link href="/feed" prefetch={true}>
+                <div className={`hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive("/home")}`}>
+                  <Link href="/home" prefetch={true}>
                     <HomeIcon/>
-                    {/* <AiOutlineHome color={activeColor("/feed")} size={28} /> */}
+                    {/* <AiOutlineHome color={activeColor("/home")} size={28} /> */}
                   </Link>
                 </div>
                 <div className={`hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive("/watch")}`}>

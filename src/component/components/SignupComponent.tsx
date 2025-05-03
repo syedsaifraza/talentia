@@ -69,7 +69,7 @@ const SignUpComponent = () => {
         if (loginResponse.success) {
           toast.success("Login successful!", { position: "top-center" });
           Cookies.set("token", loginResponse.token!);
-          window.location.href = "/feed";
+          window.location.href = "/home";
         } else {
           toast.error(loginResponse.message || "Login failed", {
             position: "top-center",

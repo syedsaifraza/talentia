@@ -97,7 +97,7 @@ export const addPost = async (postData:FormData): Promise<AuthResponse> => {
       credentials: "include", 
       body:postData,
     });
-    // revalidatePath("/feed");
+    // revalidatePath("/home");
     return await response.json();
   } catch (error) {
     console.error("Error during adding post:", error);

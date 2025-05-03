@@ -67,7 +67,7 @@ export default function ReelsView() {
           color="white"
           size={24}
           className="cursor-pointer"
-          onClick={() => router.push("/feed")}
+          onClick={() => router.push("/home")}
         />
       </div>
 

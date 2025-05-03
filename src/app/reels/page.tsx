@@ -61,7 +61,7 @@ const ReelsPage = () => {
     setSubmitting(true)
     await addReels(formData);
     setSubmitting(false)
-    window.location.href="/feed";
+    window.location.href="/home";
     // closeStatusBox();
   };
 
@@ -150,7 +150,7 @@ const ReelsPage = () => {
           <FaTimes
             size={20}
             className="cursor-pointer text-gray-900 hover:text-red-500"
-            onClick={() => window.location.href="/feed"}
+            onClick={() => window.location.href="/home"}
           />
         </div>
         <div className="bg-white shadow-sm py-5 px-1" style={{ width: "350px", margin: "auto",textAlign:'center' }}>

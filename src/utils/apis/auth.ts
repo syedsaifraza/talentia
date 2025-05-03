@@ -1,5 +1,6 @@
 import { statSync } from "fs";
 import { AuthResponse, LoginData, RegisterData, UserAsResponse } from "../auth-helper";
+import { ResetPasswordData, ResetPasswordResponse } from "@/lib/interfaces/types";
 
 const API_BASE_URL = "https://talentia.org.in/auth"; // Replace with your actual API URL
 
@@ -61,6 +62,28 @@ export const registerUser = async (userData: RegisterData): Promise<AuthResponse
     return { success: false,  message: "Registration failed" };
   }
 };
+
+
+export const resetPassword = async (
+  data: ResetPasswordData
+): Promise<ResetPasswordResponse> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/reset-password/mail`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error during password reset:", error);
+    return {
+      success: false,
+      message: "Password reset request failed",
+    };
+  }
+};
+
 
 export const loginUser = async (credentials: LoginData): Promise<AuthResponse> => {
   try {

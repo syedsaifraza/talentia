@@ -34,7 +34,8 @@ const  LoginComponent =()=>{
       </button>
 
       <div className="option" >
-        <p >Don't have an account? <span className='highlight-option'  >Create one</span> </p>
+        <p>Don't have an account? <span className='highlight-option'  >Create one</span> </p>
+         
       </div>
     </form>
   </div>

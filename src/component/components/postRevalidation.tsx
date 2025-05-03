@@ -5,5 +5,5 @@
 import { revalidatePath } from 'next/cache'
 
 export async function handlePostRevalidation() {
-  revalidatePath('/feed');
+  revalidatePath('/home');
 }

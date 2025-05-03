@@ -31,7 +31,7 @@ export default function SignInComponent() {
           style: { backgroundColor: "#8e44ad", color: "white" },
         });
         setTimeout(() => {
-          window.location.href = "/feed";
+          window.location.href = "/home";
         }, 100);
       } else {
         setError(response.message || "Invalid credentials");
@@ -94,8 +94,8 @@ export default function SignInComponent() {
           </div>
         </button>
 
-        <div className="option">
-          <p>
+        <div className="options" style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
+          <p   style={{display:'block'}}>
             Don't have an account?{" "}
             <span className="highlight-option">
               <Link
@@ -106,6 +106,18 @@ export default function SignInComponent() {
               </Link>
             </span>
           </p>
+          <p style={{display:'block'}}>
+            Forgot Password?{" "}
+            <span className="highlight-option">
+              <Link
+                href="/forgot-password"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                Reset Now
+              </Link>
+            </span>
+          </p>
+
         </div>
       </form>
     </div>
