@@ -17,6 +17,7 @@ export interface PostType {
     fileURL: any;
     id: number;
     text: string;
+    isDeleted:boolean|undefined,
     media: {
       type: "image" | "video";
       url: string;
@@ -24,7 +25,9 @@ export interface PostType {
     user: {
       name: string;
       avatar: string;
+      user_id:string;
     };
+     
     timestamp: string;
   }
   

@@ -13,19 +13,19 @@ export default function Layout({ children}: { children: React.ReactNode }) {
     <>
     <Suspense fallback={<h1>Loading</h1>}>
         <Navbar/>
-      </Suspense>
+    </Suspense>
     <div className="bg-[#f2f4f7] h-[91vh] overflow-scroll">
       
-      <div className="w-full mx-auto flex justify-between">
+      <div className="w-full mx-auto px-2 flex justify-between">
         {/* Left Sidebar */}
 
-        <aside 
-          className="lg:w-1/4  gap-y-2 px-2"
+        <div 
+          className="lg:w-1/4  gap-y-2"
           aria-label="Sidebar"
         > 
          <Sidebar/>
 
-        </aside>
+        </div>
 
         {/* Centered Content */}
         <main className=" w-full w-[100vw] lg:w-[40vw]   ">

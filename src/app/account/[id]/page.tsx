@@ -1,5 +1,9 @@
 export const dynamic = 'force-dynamic';
+import AccountTabs from "@/component/components/AccountTabs";
 import EditButton from "@/component/components/EditProfileButton";
+import UserGallery from "@/component/components/UserGallery";
+import UserPosts from "@/component/components/UserPosts";
+import UserVideos from "@/component/components/UserVideos";
 import { fetchUserByUid } from "@/utils/apis/auth";
 import { cookies } from "next/headers";
 import Image from "next/image";
@@ -69,33 +73,11 @@ export default async function ProfileView({params}:{params:any}) {
 
       {/* Tabs */}
       <div className="border-b bg-white mt-2 px-8 md:px-16">
-        <div className="flex space-x-8">
-          {["Posts", "About", "Photos", "Videos", "More"].map((tab, index) => (
-            <button
-              key={index}
-              className="py-4 text-gray-600 hover:text-blue-600 font-medium border-b-2 border-transparent hover:border-blue-600 transition"
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+        <AccountTabs userGallery={ <UserGallery id={id} /> } userPosts={<UserPosts id={id}/>} userVideos={<UserVideos id={id}/>} />
       </div>
 
       {/* Main Content */}
-      <div className="px-8 md:px-16 py-8">
-        <h2 className="text-xl font-semibold mb-4">Intro</h2>
-        <p className="text-gray-700">{user.bio || "No bio available."}</p>
-
-        {/* Skills section */}
-        <div className="mt-6">
-          <h2 className="text-xl font-semibold mb-2">Skills</h2>
-          <ul className="list-disc list-inside text-gray-700">
-            {user.skills?.filter((skill:any) => skill !== "undefined").map((skill: string, index: number) => (
-              <li key={index}>{skill}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
+       
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { statSync } from "fs";
-import { AuthResponse, LoginData, RegisterData, UserAsResponse } from "../auth-helper";
+import { AuthResponse, InstituteLoginData, LoginData, RegisterData, UserAsResponse } from "../auth-helper";
 import { ResetPasswordData, ResetPasswordResponse } from "@/lib/interfaces/types";
 
 const API_BASE_URL = "https://talentia.org.in/auth"; // Replace with your actual API URL
@@ -84,6 +84,20 @@ export const resetPassword = async (
   }
 };
 
+export const loginUserInstitute = async (credentials: InstituteLoginData ): Promise<AuthResponse> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/login/institute`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credentials),
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error during login:", error);
+    return {  success: false, message: "Login failed",token:"no" };
+  }
+};
 
 export const loginUser = async (credentials: LoginData): Promise<AuthResponse> => {
   try {

@@ -21,6 +21,16 @@ const authSlice = createSlice({
     setUserInfo:(state,action)=>{
        state.userInfo=action.payload
     },
+    setUserAccounts:(state,action)=>{
+       state.associatedAccounts=action.payload
+    },
+    setUserFollowers:(state,action)=>{
+       state.followers=action.payload
+    },
+    setUserFollowings:(state,action)=>{
+       state.followings=action.payload
+    },
+
     logout: (state) => {
       state.user = null;
       state.token = null;
@@ -34,7 +44,7 @@ const authSlice = createSlice({
 });
 
 // Export actions
-export const { setLoggedInUser, logout, setLoading,setUserInfo } = authSlice.actions;
+export const { setLoggedInUser, logout, setLoading,setUserInfo,setUserAccounts ,setUserFollowers,setUserFollowings } = authSlice.actions;
 
 // Correctly export the reducer
 export default authSlice.reducer;

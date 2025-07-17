@@ -35,11 +35,11 @@ const Sidebar = () => {
   };
   //const { user } = useSelector((state: any) => state.auth);
   const sideOptions = [
-    { name: "Feed", icon: <FaHome size={20} />, link: "/page/home/" },
+    { name: "Feed", icon: <FaHome size={20} />, link: "/feed/" },
     {
       name: "Connections",
       icon: <FaUserFriends size={20} />,
-      link: "/page/connections",
+      link: "/connection",
     },
     { name: "Blog", icon: <FaBookBookmark size={20} />, link: "/Blogs/BlogView" },
     {
@@ -77,11 +77,11 @@ const Sidebar = () => {
   return (
     <aside
     id="default-sidebar"
-    className="w-[18vw] h-[90vh]"
+    className="w-full h-[90vh] relative"
     aria-label="Sidebar"
   >
-      <div className="h-full pt-2 pl-4 pr-6 pb-2  overflow-y-auto   dark:bg-gray-800 no-scrollbar fixed z-40 ">
-        <ul className="space-y-2 w-[25vw] font-medium  ">
+      <div className="h-full pt-2 pb-2  overflow-y-auto   dark:bg-gray-800 no-scrollbar absolute sticky z-40 left-0 right-0">
+        <ul className="space-y-2   font-medium  ">
           <li key={321} className="">
             
           <Suspense fallback={<SelfProfileSkelatal />}>
@@ -100,7 +100,7 @@ const Sidebar = () => {
             </a>
           </li>
           :""}
-          <li>
+          <li key={289890}>
             {appState.user!=null ?
             <ul className="space-y-2 font-medium">
               {sideOptions &&

@@ -8,6 +8,7 @@ import {store} from "@/store/index"
 import ProtectedRoute from "@/component/ProtectedRoute";
  
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

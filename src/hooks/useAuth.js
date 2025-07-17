@@ -3,7 +3,7 @@
 import Cookies from 'js-cookie';
 
 import { useDispatch } from 'react-redux';
-import { setLoggedInUser, setUserInfo } from '@/store/slices/authSlices';
+import { setLoggedInUser, setUserInfo ,setUserAccounts ,setUserFollowers,setUserFollowings } from '@/store/slices/authSlices';
 import { setInstitue } from '@/store/slices/institutionSlice';
 import {setStatus} from '@/store/slices/statusSlice';
 import { fetchUserProfileAndInstitute } from '@/utils/apis/auth';
@@ -61,6 +61,9 @@ const useAuth = () => {
         //console.log(reelsData)
         dispatch(setReels(reelsData.posts))
         dispatch(setUserInfo(profileData.data));
+        dispatch(setUserAccounts(profileData.associated_account));
+        dispatch(setUserFollowers(profileData.followers));
+        dispatch(setUserFollowings(profileData.followings));
         dispatch(setInstitue(instituteData.institutions));
         dispatch(setStatus(statusData.posts))
 

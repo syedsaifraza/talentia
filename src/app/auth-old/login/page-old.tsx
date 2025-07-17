@@ -97,7 +97,7 @@ const Login = () => {
       </p>
       <hr />
       <div className="text-center">
-        <Link href="/register">
+        <Link href="/signup">
           <button
             type="button"
             className="w-auto px-4 py-4 bg-green-500 text-white rounded-md focus:outline-none font-bold align-center"

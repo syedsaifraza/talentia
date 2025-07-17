@@ -24,6 +24,10 @@ export interface FeelingsList {
   activities: Feelings[];
 }
 
+export interface SpecificPost{
+  id:string
+}
+
  
   
 export 

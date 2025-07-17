@@ -168,3 +168,33 @@ body {
   background-size: 200% 200%;
   animation: gradient-x 10s ease infinite;
 }
+
+.gradient-account-moving {
+  background: linear-gradient(
+    135deg,
+    #f5af19,
+    #f12711,
+    #000000,
+    #ffd700,
+    #ffcc00,
+    #2c2c2c
+  );
+  background-size: 400% 400%;
+  animation: moveGradient 5s ease infinite;
+  padding: 4px;
+  border-radius: 50%;
+  display: inline-block;
+  /* box-shadow: 0 0 1px rgba(255, 215, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.8); */
+}
+
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

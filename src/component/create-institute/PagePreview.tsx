@@ -7,9 +7,11 @@ import {
   FaGlobe,
   FaPhone,
 } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa6";
 
 type Props = {
   form: {
+    email?:string,
     pageName?: string;
     category?: string;
     bio?: string;
@@ -91,6 +93,13 @@ export default function PagePreview({ form, profilePhoto, coverPhoto }: Props) {
           </div>
         )}
 
+{form.email && (
+          <div className="mt-4 flex items-center gap-2 text-sm text-gray-700">
+            <FaEnvelope className="text-gray-500" />
+            {form.email}
+          </div>
+        )}
+
         {/* Website */}
         {form.website && (
           <div className="mt-2 flex items-center gap-2 text-sm text-blue-600">
@@ -107,7 +116,7 @@ export default function PagePreview({ form, profilePhoto, coverPhoto }: Props) {
         )}
 
         {/* Social Media Links */}
-        <div className="mt-4 flex flex-col gap-2 text-sm">
+        <div className="mt-4 flex flex-row gap-2 text-sm">
           {form.facebook && (
             <a
               href={form.facebook}
@@ -115,7 +124,7 @@ export default function PagePreview({ form, profilePhoto, coverPhoto }: Props) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-blue-600 hover:underline"
             >
-              <FaFacebook /> Facebook
+              <FaFacebook  size={40} />  
             </a>
           )}
           {form.instagram && (
@@ -125,7 +134,7 @@ export default function PagePreview({ form, profilePhoto, coverPhoto }: Props) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-pink-500 hover:underline"
             >
-              <FaInstagram /> Instagram
+              <FaInstagram  size={40} color="purple" />  
             </a>
           )}
           {form.linkedin && (
@@ -135,7 +144,7 @@ export default function PagePreview({ form, profilePhoto, coverPhoto }: Props) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-blue-700 hover:underline"
             >
-              <FaLinkedin /> LinkedIn
+              <FaLinkedin size={40} color="navy" /> 
             </a>
           )}
         </div>

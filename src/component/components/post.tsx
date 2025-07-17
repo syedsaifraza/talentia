@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, useState } from "react";
+import { Suspense, useRef,useEffect, useState } from "react";
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa"; 
@@ -23,10 +23,17 @@ import PostSkelatal from "../skelatal/PostSkelatal";
 import { handlePostRevalidation } from "./postRevalidation";
 import TalentsView from "./TalentsView";
 import Link from "next/link";
+import { MoreVertical } from "lucide-react";
+import EditDeleteModal from "./EditDeleteModal";
+ 
+ 
 
-const Post = ( {post}:{post:any}) => {
-  // alert(JSON.stringify(post))
+const Post = ( {post,ogImageLoader}:{post:any,ogImageLoader:React.ReactNode}) => { 
+
   const [likeCount, setLikeCount] = useState(post.likes==undefined?0: post.likes.length);
+
+  const [moreView,setMoreView]=useState(false);
+  const [setDeleteModal,deleteModal]=useState(false);
   
   const [isCommentSectionOpen, setIsCommentSectionOpen] = useState(false);
   const [comments, setComments] = useState<CommentType[]>(post.comments==undefined?[]:post.comments);
@@ -79,6 +86,11 @@ const Post = ( {post}:{post:any}) => {
     setIsShareOverlayOpen(true);
   };
 
+  const extractFirstURL = (text: string): string | null => {
+  const match = text.match(/https?:\/\/[^\s"'<>()]+/);
+  return match ? match[0] : null;
+  };
+
   // Close share overlay
   const closeShareOverlay = () => {
     setIsShareOverlayOpen(false);
@@ -90,11 +102,10 @@ const Post = ( {post}:{post:any}) => {
     <>
     <div className="bg-white  rounded-lg p-4 space-y-4 mb-2">
       {/* Post Header */} 
-       
-      <div className="flex items-center space-x-3">
-        {/* <DefaultAvatar/> */}
-        {/* {JSON.stringify(post.userDetails)} */}
-        {post.userDetails==null  ? (<div
+        
+      <div className="flex justify-between">
+        <div className="flex items-center space-x-3">
+          {post.userDetails==null  ? (<div
           style={{
             width: 40,
             height: 40,
@@ -111,7 +122,8 @@ const Post = ( {post}:{post:any}) => {
         >
           
           {post.user.name.charAt(0).toUpperCase()}
-        </div>):(post.userDetails.profilePhoto==undefined? 
+           
+        </div>):((post.userDetails.profilePhoto==undefined && post.userDetails.logoURL==undefined)? 
         <div
         style={{
           width: 40,
@@ -126,10 +138,10 @@ const Post = ( {post}:{post:any}) => {
           borderRadius: "50%",
           cursor: "pointer",
         }}
-      >
+      >  
         {post.user.name.charAt(0).toUpperCase()}
       </div>:
-      <Image src={post.userDetails.profilePhoto} 
+      <Image src={post.userDetails.profilePhoto||post.userDetails.logoURL} 
       width={40} height={40} alt={post.user.name} style={{
         borderRadius: "50%",
         objectFit: "cover",
@@ -138,17 +150,14 @@ const Post = ( {post}:{post:any}) => {
         )}
 
         
+         
+
         
-        {/* <Image
-          width={40}
-          height={40}
-          src={post.user.avatar}
-          alt="User Avatar"
-          className="w-10 h-10 rounded-full"
-        /> */}
+
         <div>
-          <h3 className="font-semibold text-gray-800">
-            <Link href={`account/${post.user.uid}`}> {post.user.name}</Link>
+          
+          <h3 className="font-semibold text-gray-800">  
+            <Link href={`account/${post.user.uid||post.user.instituteId}`}> {post.user.name}</Link>
             
             <span className="font-normal px-2">{post.activityOrFeeling != null ? getFeelingType(post.activityOrFeeling,post.currentFeeling)+" "+post.activityInfo : ""}</span>
           </h3>
@@ -159,10 +168,34 @@ const Post = ( {post}:{post:any}) => {
           </p>
         </div>
       </div>
-  
-      {post.text.length>100?<ReadMore text={post.text}/>:<p>{post.text}</p>}   
-      
+       
+    
+      {post.isSelfPost==true &&  <div className="relative"><span onClick={()=>setMoreView(!moreView)} className="hover:cursor-pointer"> <MoreVertical  /></span>  
 
+      {moreView==true &&
+      <div className="absolute right-0 mt-3   bg-white shadow-md rounded-md py-2" style={{zIndex:1000}}>
+                          <div className="p-2">
+                            <ul style={{width:'100px',fontSize:'12px'}}> 
+                            <li className="hover:cursor-pointer">
+                              <EditDeleteModal id={post.id}/>
+                            </li>
+                            <li className="hover:cursor-pointer">Change Privacy</li>
+                            </ul>
+                          </div>
+                           
+                        </div>
+
+      }
+      </div> }
+      </div>
+      {
+      extractFirstURL(post.text)!=post.text &&  
+        <>
+       {post.text.length>100?<ReadMore text={post.text}/>:<p>{post.text}</p>}    
+        </>
+      }
+      {ogImageLoader}
+     
      
       {post.fileURL!="" && post.fileURL!=null && (
         !post.fileURL.includes(".mp4")  ? (
@@ -179,6 +212,7 @@ const Post = ( {post}:{post:any}) => {
           
         ) : (
            <Suspense fallback={<p>Loading</p>}>
+             
             <video
             controls
             className="w-full min-h-[60vh] object-cover rounded-md"
@@ -290,7 +324,7 @@ const Post = ( {post}:{post:any}) => {
         {post.userComments.map((comment:any,idc:number) => (
           <div key={idc} className="mb-4">
             <div className="flex items-center space-x-2">
-              {comment.userDetails.profilePhoto==undefined?<NameAvatar name={comment.userDetails.name} size={30} />:<Image className="rounded-full" width={30} height={30} alt="saif" src={comment.userDetails.profilePhoto}/>}
+              {comment.userDetails.profilePhoto==undefined || comment.userDetails==null ?<NameAvatar key={18029012} name={comment.userDetails.name} size={30} />:<Image className="rounded-full" width={30} height={30} alt="saif" src={comment.userDetails.profilePhoto||comment.userDetails.logoURL}/>}
               <div className="bg-gray-100 p-2 rounded-lg">
                 <p className="font-bold text-sm">{comment.userDetails.name}</p>
                 <p className="text-sm">{comment.comment}</p>

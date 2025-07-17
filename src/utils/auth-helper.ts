@@ -14,6 +14,10 @@ export interface RegisterData {
     email: string;
     password: string;
   }
+
+  export interface InstituteLoginData {
+    docId: string; 
+  }
   
   export interface AuthResponse {
     

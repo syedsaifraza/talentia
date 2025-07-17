@@ -24,6 +24,19 @@ export default function SelfProfile  ()  {
   }
   const followers=userState.followers||[];
   const followings = userState.followings||[];
+  function getCoverPhoto(userState: any, coverPhoto: string): string {
+  if (userState == null) return coverPhoto;
+
+  if (userState.coverPhoto !== undefined) {
+    return userState.coverPhoto;
+  }
+
+  if (userState.bannerURL !== undefined) {
+    return userState.bannerURL;
+  }
+
+  return coverPhoto;
+}
   return (
     <>
     
@@ -34,7 +47,7 @@ export default function SelfProfile  ()  {
             height={100}
             width={100}
             className="object-cover object-top w-full"
-            src={userState==null?coverPhoto: (userState.coverPhoto==undefined) ? coverPhoto :userState.coverPhoto }
+            src={getCoverPhoto(userState, coverPhoto)}
             style={{maxHeight:'200px'}}
 
           />
@@ -49,11 +62,13 @@ export default function SelfProfile  ()  {
           overflow: 'hidden',
         }}>
           {/* <Link href="/account/profile"> */}
-          {userState==null ? <DefaultAvatar  size={60} />: <DefaultAvatar imageUrl={userState.profilePhoto}  size={80} />}
+          {userState==null ? <DefaultAvatar  size={50} />: <DefaultAvatar imageUrl={userState.profilePhoto||userState.logoURL}  size={80} />}
        
         </div>
         <div className="mx-4">
-          <h2 className="font-semibold">{userState.name|| 'Guest'}</h2>
+         <Link href={`/account/${userState.id}`}>
+         <h2 className="font-semibold">{userState.name|| 'Guest'}</h2>
+         </Link> 
           <p className="text-gray-500">{userState.jobTitle|| ''}</p>
         </div>
         <ul className="py-1 pb-2  text-gray-700 flex items-center justify-around">

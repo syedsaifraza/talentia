@@ -29,6 +29,7 @@ import LogoFile from "./LogoFile";
 import LogoFileAlt from "./LogoFileAlt";
 import "../../app/globals.css"
 import { CircleChevronDown } from "lucide-react";
+import ProfileDropdown from "./ProfileDropdown";
 
 
 export default function Navbar() {
@@ -98,24 +99,14 @@ export default function Navbar() {
            {appState==null &&
            <div className="flex justify-end items-center w-2/5 px-2 mt-2">
             <Link href="/login" type="button" className="mx-2 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Signin</Link>
-            <Link type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="/register">Signup</Link>
+            <Link type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="/signup">Signup</Link>
 
 
             </div>
            }
 {appState!=null &&
             <div className="flex justify-end items-center w-2/5 px-2">
-              <div className="p-2 rounded-full">
-              {instituteState.institutes.length>0? <>
-              <Link href="page/create">
-              <div className="flex gap-2 items-center bg-blue-100 py-1 hover:cursor-pointer px-2 rounded-md relative shadow-md">
-                <p>Pages({instituteState.institutes.length}) -</p>
-                <Image alt={instituteState.institutes[0].name} width={30} height={30} className="rounded-full" src={instituteState.institutes[0].logoURL} />
-                
-                 </div>
-                 </Link>
-               </>:""}
-                </div>
+               
               <div className="p-2 rounded-full">
                 
                 <Link href="/settings/view">
@@ -148,13 +139,9 @@ export default function Navbar() {
                 </div>
 
                 {showMenu && (
-                  <div className="absolute right-0 mt-3 w-48 bg-white shadow-md rounded-md py-2" style={{zIndex:1000}}>
-                    <Link href={`/account/${appState.user_id}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Profile Settings
-                    </Link>
-                    <button onClick={()=>handleLogout()} className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
-                      Logout
-                    </button>
+                  <div className="absolute right-0 mt-3 w-[400px] bg-white shadow-md rounded-md py-2" style={{zIndex:1000}}>
+                    <ProfileDropdown/>
+                     
                   </div>
                 )}
               </div>
