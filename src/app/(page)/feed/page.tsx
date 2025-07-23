@@ -23,86 +23,82 @@ export default async function Feed() {
 
     if (res && res.posts) {
       posts = res.posts.filter((post)=>post.isDeleted!=true);
-      
     }
   } catch (error) {
     console.error("Failed to fetch posts:", error);
   }
 
   return (
-    <> 
-       <div className="flex justify-end"> 
-          <div className="w-3/5 lg:w-[40vw]">
-            {posts.length === 0 ? (
-              <div className="" key={Math.random()*1000}>
-                <PostSkelatal key={"cas1"} />
-                <PostSkelatal key={"cas2"} />
-              </div>
-            ) : (
-              <div key={Math.random()*1000}>
-                {posts.map((post, idz) => 
-                (idz==0 || idz%3==0)? <div  key={idz} >
-                  <TalentsView />
-                <Post post={post} ogImageLoader={<OgImageLoader text={post.text}/>} />
-                </div>:<Post post={post}  ogImageLoader={<OgImageLoader text={post.text}/>} />
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className="w-2/5 mx-2 p-5 bg-white rounded-xl shadow-md">
-              <h1 className="text-xl font-semibold mb-4">Filters for Posts </h1>
-
-              {/* Media Type */}
-              <div className="mb-4">
-                <ul className="flex">
-                  <li className="bg-blue-100 py-2 px-4 border-blue-200 mx-1 rounded-lg text-sm hover:cursor-pointer hover:bg-blue-300 flex items-center" style={{fontWeight:500}}>
-                   <IoSquare   size={20} className="mr-2"/> All
-                  </li>
-                  
-
-                  <li className="bg-blue-100 py-2 px-4 border-blue-200 mx-1 rounded-lg text-sm hover:cursor-pointer hover:bg-blue-300 flex items-center" style={{fontWeight:500}}>
-                   <IoVideocam   size={20} className="mr-2"/> Videos
-                  </li>
-                    
-                </ul>
-                 
-              </div>
-
-              {/* Date Range */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
-                <div className="flex"> 
-                <input type="date" className="w-full p-2 border rounded mb-2" />
-                <input type="date" className="w-full p-2 border rounded" />
-                </div>
-              </div>
-
-              {/* Hashtag */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Hashtag</label>
-                <input type="text" placeholder="#keyword" className="w-full p-2 border rounded" />
-              </div>
-
-              
-              {/* Sort */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
-                <select className="w-full p-2 border rounded">
-                  <option value="newest">Newest First</option>
-                  <option value="popular">Most Liked</option>
-                  <option value="comments">Most Commented</option>
-                </select>
-              </div>
-
-              {/* Apply Filters Button */}
-              <button className="mt-2 w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition">
-                Apply Filters
-              </button>
+    <div className="flex h-full">
+      {/* Feed Content - Scrollable */}
+      <div className="flex-1 overflow-y-auto h-[89vh] pr-4">
+        <div className="max-w-2xl mx-auto">
+          {posts.length === 0 ? (
+            <div key={Math.random()*1000}>
+              <PostSkelatal key={"cas1"} />
+              <PostSkelatal key={"cas2"} />
             </div>
+          ) : (
+            <div key={Math.random()*1000}>
+              {posts.map((post, idz) => 
+                (idz == 0 || idz % 3 == 0) ? 
+                <div key={idz}>
+                  <TalentsView />
+                  <Post post={post} ogImageLoader={<OgImageLoader text={post.text}/>} />
+                </div> : 
+                <Post post={post} ogImageLoader={<OgImageLoader text={post.text}/>} />
+              )}
+            </div>
+          )}
+        </div>
+      </div>
 
+      {/* Filters - Fixed */}
+      <div className="w-80 p-5 bg-white rounded-xl shadow-md h-[89vh] sticky top-20 overflow-y-auto">
+        <h1 className="text-xl font-semibold mb-4">Filters for Posts</h1>
 
-       </div>
-    </>
+        {/* Media Type */}
+        <div className="mb-4">
+          <ul className="flex">
+            <li className="bg-blue-100 py-2 px-4 border-blue-200 mx-1 rounded-lg text-sm hover:cursor-pointer hover:bg-blue-300 flex items-center" style={{fontWeight:500}}>
+              <IoSquare size={20} className="mr-2"/> All
+            </li>
+            <li className="bg-blue-100 py-2 px-4 border-blue-200 mx-1 rounded-lg text-sm hover:cursor-pointer hover:bg-blue-300 flex items-center" style={{fontWeight:500}}>
+              <IoVideocam size={20} className="mr-2"/> Videos
+            </li>
+          </ul>
+        </div>
+
+        {/* Date Range */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
+          <div className="flex gap-2">
+            <input type="date" className="flex-1 p-2 border rounded" />
+            <input type="date" className="flex-1 p-2 border rounded" />
+          </div>
+        </div>
+
+        {/* Hashtag */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Hashtag</label>
+          <input type="text" placeholder="#keyword" className="w-full p-2 border rounded" />
+        </div>
+        
+        {/* Sort */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+          <select className="w-full p-2 border rounded">
+            <option value="newest">Newest First</option>
+            <option value="popular">Most Liked</option>
+            <option value="comments">Most Commented</option>
+          </select>
+        </div>
+
+        {/* Apply Filters Button */}
+        <button className="mt-2 w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition">
+          Apply Filters
+        </button>
+      </div>
+    </div>
   );
 }

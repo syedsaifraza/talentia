@@ -9,7 +9,7 @@ interface SponserCardProps {
   
   export default function SponserCard({ image, name, description, link }: SponserCardProps) {
     return (
-      <div className="bg-white rounded-xl shadow-lg p-2 w-full max-w-sm mx-auto hover:shadow-2xl transition-shadow mb-2 mt-2 duration-300">
+      <div className="bg-white rounded-[5px] shadow-lg p-2 w-full max-w-sm mx-auto hover:shadow-2xl transition-shadow mb-2  duration-300">
         <div className="flex items-center text-center">
           <Image
           width={200}

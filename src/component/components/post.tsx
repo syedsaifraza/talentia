@@ -100,7 +100,7 @@ const Post = ( {post,ogImageLoader}:{post:any,ogImageLoader:React.ReactNode}) =>
   }
   return (
     <>
-    <div className="bg-white  rounded-lg p-4 space-y-4 mb-2">
+    <div className="bg-white box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;  rounded-[5px] p-4 space-y-4 mb-2">
       {/* Post Header */} 
         
       <div className="flex justify-between">
@@ -225,12 +225,14 @@ const Post = ( {post,ogImageLoader}:{post:any,ogImageLoader:React.ReactNode}) =>
         )
       )}
 
-     
-      <div className="flex justify-between items-center mb-4">
-      <span className="text-sm text-gray-500 hover:text-[#6366f1] cursor-pointer">
-  {likeCount} likes
-    
-</span>
+      
+      <div className="flex justify-between items-center pb-4 border-b ">
+        <span 
+        className="text-sm text-gray-500 hover:text-[#6366f1]    cursor-pointer">
+
+        {likeCount} likes
+      
+        </span>
  
         <div className="flex gap-3">
           <span className="text-sm text-gray-500 hover:text-[#6366f1] cursor-pointer">
@@ -243,9 +245,10 @@ const Post = ( {post,ogImageLoader}:{post:any,ogImageLoader:React.ReactNode}) =>
       </div>
     
       
-      <div className="flex justify-between text-gray-600 text-sm border-t pt-2">
+      <div
+       className="flex justify-between text-gray-600 text-sm">
         <button
-          className="flex items-center rounded-md justify-center space-x-1 hover:bg-gray-100 p-2 w-32"
+          className="flex items-center gap-1 rounded-md justify-start space-x-1 hover:bg-gray-100 p-2 "
           onClick={()=>handleLikeClick(post.id)}
         >
           {isLiked ? (
@@ -258,14 +261,14 @@ const Post = ( {post,ogImageLoader}:{post:any,ogImageLoader:React.ReactNode}) =>
           </span>
         </button>
         <button
-          className="flex items-center rounded-md justify-center space-x-1 hover:bg-gray-100 p-2 w-32"
+          className="flex items-center rounded-md gap-1 justify-center space-x-1 hover:bg-gray-100 p-2 "
           onClick={() => setIsCommentSectionOpen((prev) => !prev)}
         >
           <FiMessageSquare className="text-[21px]" />
           <span>Comment</span>
         </button>
         <button
-          className="flex items-center rounded-md justify-center space-x-1 hover:bg-gray-100 p-2 w-32"
+          className="flex items-center gap-1 rounded-md justify-start space-x-1 hover:bg-gray-100 p-2 "
           onClick={handleShareClick}
         >
           <IoIosShareAlt className="text-[21px] text-[#6366f1]" />
@@ -275,46 +278,86 @@ const Post = ( {post,ogImageLoader}:{post:any,ogImageLoader:React.ReactNode}) =>
 
 
       {isShareOverlayOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded-lg w-[90vw] max-w-md">
-            <div className="flex justify-between items-center mb-5">
-              <h2 className="text-lg">Share</h2>
-              <button
-                className="flex justify-center items-center rounded-[50%] p-2 bg-gray-200"
-                onClick={closeShareOverlay}
-              >
-                <IoClose className="text-[22px] text-black" />
-              </button>
-            </div>
+        // <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        //   <div className="bg-white p-4 rounded-lg  max-w-md">
+        //     <div className="flex justify-between items-center mb-5">
+        //       <h2 className="text-lg">Share</h2>
+        //       <button
+        //         className="flex justify-center items-center rounded-[50%] p-2 bg-gray-200"
+        //         onClick={closeShareOverlay}
+        //       >
+        //         <IoClose className="text-[22px] text-black" />
+        //       </button>
+        //     </div>
 
-            <div className="flex flex-row justify-between">
-              <button
-                className="flex items-center justify-center bg-gray-700 rounded-full p-[10px] border-2"
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-                  alert("Link copied to clipboard!");
-                }}
-              >
-                <FiCopy className="text-[30px] text-white" />
-              </button>
-              <button className="flex items-center justify-center bg-green-500 rounded-full p-[10px] border-2">
-                <FaWhatsapp className="text-[30px] text-white" />
-              </button>
-              <button className="flex items-center justify-center bg-[#1877F2] rounded-full p-[10px] border-2">
-                <FaFacebookF className="text-[30px] text-white" />
-              </button>
-              <button className="flex items-center justify-center bg-black rounded-full p-[10px] border-2">
-                <FaXTwitter className="text-[30px] text-white" />
-              </button>
-              <button className="flex items-center justify-center bg-[#0077b5] rounded-full p-[10px] border-2">
-                <FaLinkedinIn className="text-[30px] text-white" />
-              </button>
-              <button className="flex items-center justify-center bg-[#bd081c] rounded-full p-[10px] border-2">
-                <IoMail className="text-[30px] text-white" />
-              </button>
-            </div>
-          </div>
-        </div>
+        //     <div className="flex flex-row justify-between gap-3">
+        //       <button
+        //         className="flex items-center justify-center bg-gray-700 rounded-full p-[10px] border-2"
+        //         onClick={() => {
+        //           navigator.clipboard.writeText(window.location.href);
+        //           alert("Link copied to clipboard!");
+        //         }}
+        //       >
+        //         <FiCopy className="text-[30px] text-white" />
+        //       </button>
+        //       <button className="flex items-center justify-center bg-green-500 rounded-full p-[10px] border-2">
+        //         <FaWhatsapp className="text-[30px] text-white" />
+        //       </button>
+        //       <button className="flex items-center justify-center bg-[#1877F2] rounded-full p-[10px] border-2">
+        //         <FaFacebookF className="text-[30px] text-white" />
+        //       </button>
+        //       <button className="flex items-center justify-center bg-black rounded-full p-[10px] border-2">
+        //         <FaXTwitter className="text-[30px] text-white" />
+        //       </button>
+        //       <button className="flex items-center justify-center bg-[#0077b5] rounded-full p-[10px] border-2">
+        //         <FaLinkedinIn className="text-[30px] text-white" />
+        //       </button>
+        //       <button className="flex items-center justify-center bg-[#bd081c] rounded-full p-[10px] border-2">
+        //         <IoMail className="text-[30px] text-white" />
+        //       </button>
+        //     </div>
+        //   </div>
+        // </div>
+          <div className="fixed inset-0 z-50 mt-0 flex items-center justify-center bg-black bg-opacity-50">
+                  <div className="bg-white p-4 rounded-lg w-[90vw] max-w-md">
+                    <div className="flex justify-between items-center mb-5">
+                      <h2 className="text-lg">Share</h2>
+                      <button
+                        className="flex justify-center items-center rounded-[50%] p-2 bg-gray-200"
+                        onClick={closeShareOverlay}
+                      >
+                        <IoClose className="text-[22px] text-black" />
+                      </button>
+                    </div>
+        
+                    <div className="flex flex-row justify-between">
+                      <button
+                        className="flex items-center justify-center bg-gray-700 rounded-full p-[10px] border-2"
+                        onClick={() => {
+                          navigator.clipboard.writeText(window.location.href);
+                          alert("Link copied to clipboard!");
+                        }}
+                      >
+                        <FiCopy className="text-[30px] text-white" />
+                      </button>
+                      <button className="flex items-center justify-center bg-green-500 rounded-full p-[10px] border-2">
+                        <FaWhatsapp className="text-[30px] text-white" />
+                      </button>
+                      <button className="flex items-center justify-center bg-[#1877F2] rounded-full p-[10px] border-2">
+                        <FaFacebookF className="text-[30px] text-white" />
+                      </button>
+                      <button className="flex items-center justify-center bg-black rounded-full p-[10px] border-2">
+                        <FaXTwitter className="text-[30px] text-white" />
+                      </button>
+                      <button className="flex items-center justify-center bg-[#0077b5] rounded-full p-[10px] border-2">
+                        <FaLinkedinIn className="text-[30px] text-white" />
+                      </button>
+                      <button className="flex items-center justify-center bg-[#bd081c] rounded-full p-[10px] border-2">
+                        <IoMail className="text-[30px] text-white" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
       )}
 
      

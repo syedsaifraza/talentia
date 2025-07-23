@@ -2,7 +2,7 @@ import React from "react";
 
 const PostSkelatal: React.FC = () => {
   return (
-    <div className="w-full w-full mx-auto p-4 mb-4 bg-white rounded-xl shadow animate-pulse space-y-4">
+    <div className="w-full  mx-auto p-4 mb-4 bg-white rounded-xl shadow animate-pulse space-y-4">
       {/* Header: Avatar + Username */}
       <div className="flex items-center gap-4">
         <div className="w-10 h-10 bg-gray-300 rounded-full" />

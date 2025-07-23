@@ -40,8 +40,8 @@ export default function SelfProfile  ()  {
   return (
     <>
     
-      <div className="sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white shadow-xl rounded-lg text-gray-900">
-        <div className="rounded-t-lg h-[20vh] overflow-hidden">
+      <div className="sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white  rounded-[5px] text-gray-900">
+        <div className="rounded-[5px] h-[20vh] overflow-hidden">
           <Image
             alt="user"
             height={100}
@@ -61,9 +61,10 @@ export default function SelfProfile  ()  {
           marginTop: '-50px',
           overflow: 'hidden',
         }}>
+            <Link href={`/account/${userState.id}`}>
           {/* <Link href="/account/profile"> */}
           {userState==null ? <DefaultAvatar  size={50} />: <DefaultAvatar imageUrl={userState.profilePhoto||userState.logoURL}  size={80} />}
-       
+        </Link> 
         </div>
         <div className="mx-4">
          <Link href={`/account/${userState.id}`}>

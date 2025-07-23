@@ -14,7 +14,7 @@ interface CompanyListTileProps {
     link,
   }: CompanyListTileProps) {
     return (
-      <div className="flex items-center justify-between bg-white p-2 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer mt-2">
+      <div className="flex items-center justify-between bg-white p-2 rounded-[5px] shadow-sm hover:shadow-md transition cursor-pointer mt-2">
         <div className="flex items-center gap-4">
           <Image
             src={logo}

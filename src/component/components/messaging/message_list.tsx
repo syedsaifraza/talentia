@@ -41,9 +41,9 @@ export default function MessageList() {
   ];
 
   return (
-    <div className="flex flex-col w-80 text-gray-900 border-r border-gray-300 h-screen ">
+    <div className="flex flex-col bg-white w-80 text-gray-900 h-[87vh]">
       {/* Search Bar */}
-      <div className="px-3">
+      {/* <div className="px-3">
         <input
           type="text"
           placeholder="Search messages..."
@@ -51,12 +51,55 @@ export default function MessageList() {
           onChange={(e) => setSearch(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
+      </div> */}
+        <div className="p-4 border-b border-gray-200">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-gray-900">Chats</h2>
+          <button className="p-1 hover:bg-gray-100 rounded">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Filter and Search */}
+        <div className="flex items-center gap-2 mb-3">
+          <button className="px-3 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50">All Chats</button>
+        </div>
+
+        <div className="relative">
+          
+          <input
+            type="text"
+            placeholder="Search users"
+            className="w-full pl-10 px-8 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          <svg
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </div>
       </div>
 
       {/* Message List */}
-      <div className="h-full overflow-y-auto">
-        {users.map((user, index) => (
-          <div key={index} className="flex items-center px-4 py-2 hover:bg-gray-200 cursor-pointer">
+      <div className="flex-1 overflow-y-auto">
+         <div className="px-6 py-4">
+          <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+            <span>💬</span>
+            <span>ALL MESSAGES</span>
+          </div>
+          <div className="space-y-1">
+               {users.map((user, index) => (
+          <div key={index} className="flex items-center gap-3 py-2 hover:bg-gray-50 rounded-lg cursor-pointer">
             <div className="relative">
               <Image
                                   alt="user"
@@ -68,14 +111,30 @@ export default function MessageList() {
                 }`}
               ></div>
             </div>
-            <div className="ml-3 flex-1">
+
+
+             <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium text-gray-900 truncate">{user.name}</p>
+                    {/* <span className="text-xs text-gray-500">{chat.time}</span> */}
+                  </div>
+                  {/* <p className="text-xs text-gray-500 truncate">{chat.message}</p> */}
+                  <p className="text-xs text-gray-500 truncate">{messages[index % messages.length]}</p>
+                </div>
+
+            {/* <div className="ml-3 flex-1">
               <div className="font-semibold">{user.name}</div>
               <div className="text-sm text-gray-500 truncate w-48">
                 {messages[index % messages.length]}
               </div>
-            </div>
+            </div> */}
           </div>
         ))}
+          </div>
+
+        
+         </div>
+       
       </div>
     </div>
   );

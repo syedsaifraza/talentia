@@ -209,34 +209,40 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
         <PostCustomizer closeStatusBox={()=>setOpenStatusAdd(false)} />
       </div>  
     }
-    <div className="bg-white p-2 m-2 rounded-lg relative select-none">
+    <div className="bg-white p-4 flex flex-col gap-5 rounded-[5px] relative select-none">
  
-    <ul className="w-full flex justify-between items-center hover:bg-green-400  transition duration-300 bg-indigo " style={{}}>
-       <li className="hover:cursor-pointer hover:text-indigo-900"><BiChevronLeft onClick={() => scrollToRight()} className="bg-opacity-10" size={40} /></li>
+    <ul className="w-full flex justify-between items-center" >
+       <li className="hover:cursor-pointer flex justify-start items-start hover:text-indigo-900 hover:bg-gray-300"><BiChevronLeft onClick={() => scrollToRight()} className="bg-opacity-10" size={40} /></li>
        <li className="font-semibold">
         Status
        </li>
        <li className="hover:cursor-pointer hover:text-indigo-900"> <BiChevronRight onClick={() => scrollToLeft()} className="bg-white" size={40} /> </li>
-       </ul>
-       <ul className="flex" ref={arrayName} style={{overflow:'scroll',height:'100px'}}>
-       <li key={23111} className="text-indigo-500 px-2 ">
-          <div className="bg-gray-200 rounded-full  border-2 border-green-500 hover:cursor-pointer">
-            <FaPlus size={68} color="green" onClick={()=>setOpenStatusAdd(true)}/>
-          </div>
-        </li>
-        {statusUpdates.status.map((stat:any,i:number)=><li key={i} onClick={()=>setSelectedStatus(i)} className="text-indigo-500 px-2">
-          
-          {stat.userDetails.profilePhoto==undefined?<NameAvatar name={stat.userDetails.name} size={70}/>:
-          <Image src={stat.userDetails.profilePhoto}
-          width={100}
-          height={100}
-          alt={stat.text}
-          className="rounded-full inset border-4 border-green-500"
-          style={{minWidth:'70px',width:'70px',height:'70px'}}
-          /> 
-}
+    </ul>
+
+
+
+
+    <ul className="flex border-1 border-black" 
+        ref=  {arrayName} style={{overflow:'scroll',height:'100px'}}>
+          <li key={23111} className="text-indigo-500 px-2 ">
+                <div className="bg-gray-200 rounded-full 
+                 border-2 border-green-500 hover:cursor-pointer">
+                  <FaPlus size={68} color="green" onClick={()=>setOpenStatusAdd(true)}/>
+                </div>
+           </li>
+              {statusUpdates.status.map((stat:any,i:number)=><li key={i} onClick={()=>setSelectedStatus(i)} className="text-indigo-500 px-2">
+                
+                {stat.userDetails.profilePhoto==undefined?<NameAvatar name={stat.userDetails.name} size={70}/>:
+                  <Image src={stat.userDetails.profilePhoto}
+                  width={100}
+                  height={100}
+                  alt={stat.text}
+                  className="rounded-full inset border-2 border-green-500"
+                  style={{minWidth:'70px',width:'70px',height:'70px'}}
+                  /> 
+                }
         </li>)}
-       </ul>
+    </ul>
        
        
        

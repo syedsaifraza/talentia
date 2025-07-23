@@ -29,14 +29,13 @@ export default async function PostList() {
   }
 
   return (
-    <>
-      <br />
+    < >
       <AddPost />
       <div className="mt-2 mb-2">
         <ReelsScroller limit={6} size="large" />
       </div>
 
-      <div className="mt-1">
+      <div className="" >
         {posts.length === 0 ? (
           <div className="" key={Math.random()*1000}>
             <PostSkelatal key={"cas1"} />

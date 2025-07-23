@@ -12,9 +12,9 @@ export default function AddPost(){
 const [postModal,setPostModal]=useState(false);
      return (
          <>
-      <div className="bg-white my-5">
-      <div className="flex flex-col justify-center px-[1vw] bg-white rounded-lg p-2" style={{paddingBlockStart:'20px'}}>
-       <div className="flex items-center space-x-3 pt-2">
+      <div className="bg-white  rounded-[5px] p-4 flex flex-col gap-5">
+      <div className="flex flex-col justify-center " >
+       <div className="flex items-center justify-center space-x-3 ">
        <DefaultAvatar size={40}/>
          <input
           type="text"
@@ -25,25 +25,25 @@ const [postModal,setPostModal]=useState(false);
         />
       </div> 
       </div>
-      <div className="flex justify-evenly items-center">
-        <button className="flex items-center justify-center px-2 py- w-[13vw] rounded-md space-x-2 hover:bg-gray-100" onClick={() => setPostModal(true)}>
+      <div className="flex justify-between items-center">
+        <button className="flex items-center p-3 justify-center  rounded-md space-x-2 hover:bg-gray-100" onClick={() => setPostModal(true)}>
          <Image width={20} height={20} alt="Photo Icon"
          src="https://static.xx.fbcdn.net/rsrc.php/v4/y7/r/Ivw7nhRtXyo.png"/>
  
           <span className="text-sm text-gray-600 font-bold">Photo</span>
         </button>
 
-        <button className="flex items-center justify-center px-2 py-3 w-[13vw] rounded-md space-x-2 hover:bg-gray-100" onClick={() => setPostModal(true)}>
+        <button className="flex items-center p-3 justify-center  rounded-md space-x-2 hover:bg-gray-100" onClick={() => setPostModal(true)}>
           <Image width={20} height={20} src="https://static.xx.fbcdn.net/rsrc.php/v4/yr/r/c0dWho49-X3.png" alt="Video Icon" />
           <span className="text-sm text-gray-600 font-bold">Video</span>
         </button>
 
-        <button className="flex items-center justify-center px-2 py-3 w-[13vw] rounded-md space-x-2 hover:bg-gray-100" onClick={() => setPostModal(true)}>
+        <button className="flex items-center p-3 justify-center rounded-md space-x-2 hover:bg-gray-100" onClick={() => setPostModal(true)}>
           <MdEmojiEmotions />
           <span className="text-sm text-gray-600 font-bold">Feeling/Activity</span>
         </button>
 
-        <button className="flex items-center justify-center px-2 py- w-[13vw] rounded-md space-x-2 hover:bg-gray-100" onClick={() => window.location.href="/reels"  }>
+        <button className="flex items-center p-3 justify-center  rounded-md space-x-2 hover:bg-gray-100" onClick={() => window.location.href="/reels"  }>
          <Image width={20} height={20} alt="Reels Icon"
          src="https://content.acetians.in/uploads/reels.png"/>
  

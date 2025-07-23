@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AiOutlineHome } from "react-icons/ai";
 import { IoMdSettings } from "react-icons/io";
 import { MdOutlineVideoLibrary, MdLeaderboard } from "react-icons/md";
-import { PiBagSimpleFill } from "react-icons/pi"; 
+import { PiBagSimpleFill } from "react-icons/pi";
 import { usePathname } from "next/navigation";
 import { BiSolidBell, BiSolidMessageAlt } from "react-icons/bi";
 
@@ -40,82 +40,88 @@ export default function Navbar() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    
+
     // Clear session (e.g., remove token from localStorage)
     localStorage.removeItem("token");
     Cookies.remove("token")
     dispatch(logout());
-    router.push("/signin"); 
+    router.push("/signin");
   };
-  
+
 
   const isActive = (route: string) =>
     pathname === route ? "border-b-4 border-[#3113d6]" : "";
   const activeColor = (route: string) =>
     pathname === route ? "#3113d6" : "gray";
 
-  const appState = useSelector((state:any)=>state.auth.user)
-  const instituteState = useSelector((state:any)=>state.institute);
+  const appState = useSelector((state: any) => state.auth.user)
+  const instituteState = useSelector((state: any) => state.institute);
 
   return (
     <nav className="bg-white shadow-md w-full sticky top-0 z-50">
-       
-      <div className="flex items-center justify-between">
-            <div className="flex w-2/5 justify-start px-5">
-              <LogoFile/>
-              {/* <p className="bg-orange-400 font-bold">BETA</p> */}
-             </div>
-             {appState!=null &&
-            <div className="w-2/5 px-2">
-              <div className="flex justify-between">
-                <div className={`hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive("/home")}`}>
-                  <Link href="/home" prefetch={true}>
-                    <HomeIcon/>
-                    {/* <AiOutlineHome color={activeColor("/home")} size={28} /> */}
-                  </Link>
-                </div>
-                <div className={`hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive("/watch")}`}>
-                  <Link href="/watch"  prefetch={true}>
-                    <WatchIcon/>
-                    {/* <MdOutlineVideoLibrary color={activeColor("/watch")} size={28} /> */}
-                  </Link>
-                </div>
-                <div className={`hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive("/job")}`}>
-                  <Link href="/job"  prefetch={true}>
-                   <WorkIcon/>
-                    {/* <PiBagSimpleFill color={activeColor("/job")} size={28} /> */}
-                  </Link>
-                </div>
-                <div className={`hover:bg-gray-100 cursor-pointer flex justify-center items-center ${isActive("/achievements")}`}>
-                  <Link href="/achievements"  prefetch={true}>
-                  <LeaderBoard/>
-                    {/* <MdLeaderboard color={activeColor("/Deachievements")} size={28} /> */}
-                  </Link>
-                </div>
-              </div>
+
+      <div className="grid grid-cols-3 justify-center items-center px-5 ">
+        <div className="flex justify-start ">
+          <LogoFile />
+          {/* <p className="bg-orange-400 font-bold">BETA</p> */}
+        </div>
+
+        <div>
+          {appState != null &&
+
+          <div className="flex flex-row justify-evenly items-center">
+            <div className={`hover:bg-gray-100 border-red-600 border-b-4 cursor-pointer py-5 px-10 flex justify-center items-center ${isActive("/home")}`}>
+              <Link href="/home" prefetch={true}>
+                <HomeIcon />
+                {/* <AiOutlineHome color={activeColor("/home")} size={28} /> */}
+              </Link>
             </div>
-}
-           
-           {appState==null &&
-           <div className="flex justify-end items-center w-2/5 px-2 mt-2">
-            <Link href="/login" type="button" className="mx-2 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Signin</Link>
-            <Link type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="/signup">Signup</Link>
+            <div className={`hover:bg-gray-100  border-red-900 cursor-pointer py-5 px-10 flex justify-center items-center ${isActive("/watch")}`}>
+              <Link href="/watch" prefetch={true}>
+                <WatchIcon />
+                {/* <MdOutlineVideoLibrary color={activeColor("/watch")} size={28} /> */}
+              </Link>
+            </div>
+            <div className={`hover:bg-gray-100 cursor-pointer  py-5 px-10 flex justify-center items-center ${isActive("/job")}`}>
+              <Link href="/job" prefetch={true}>
+                <WorkIcon />
+                {/* <PiBagSimpleFill color={activeColor("/job")} size={28} /> */}
+              </Link>
+            </div>
+            <div className={`hover:bg-gray-100 cursor-pointer  py-5 px-10 flex justify-center items-center ${isActive("/achievements")}`}>
+              <Link href="/achievements" prefetch={true}>
+                <LeaderBoard />
+                {/* <MdLeaderboard color={activeColor("/Deachievements")} size={28} /> */}
+              </Link>
+            </div>
+          </div>
+
+        }
+        </div>
+      
+        <div>
+
+          {appState == null &&
+            <div className="flex justify-end items-center  ">
+              <Link href="/login" type="button" className="mx-2 py-2.5 px-5 me-2  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Signin</Link>
+              <Link type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="/signup">Signup</Link>
 
 
             </div>
-           }
-{appState!=null &&
-            <div className="flex justify-end items-center w-2/5 px-2">
-               
+          } 
+
+          {appState != null &&
+            <div className="flex justify-end items-center  ">
+
               <div className="p-2 rounded-full">
-                
+
                 <Link href="/settings/view">
-                  <SettingsIcon/>
+                  <SettingsIcon />
                   {/* <IoMdSettings className="text-black text-bold" size={25} /> */}
                 </Link>
               </div>
               <div className="p-1 rounded-full relative">
-                <BellIcon/>
+                <BellIcon />
                 {/* <BiSolidBell size={25} onClick={() => setShowNotifications(!showNotifications)} className="cursor-pointer text-black text-bold" />
                 {showNotifications && (
                   <div className="absolute right-0 mt-3 w-64 bg-white shadow-lg rounded-lg p-4">
@@ -127,7 +133,7 @@ export default function Navbar() {
 
               <div className="px-3 rounded-full">
                 <Link href="/messaging/view">
-                   <MessageIcon/>
+                  <MessageIcon />
                   {/* <BiSolidMessageAlt size={25} className="cursor-pointer text-black text-bold" /> */}
                 </Link>
               </div>
@@ -139,19 +145,21 @@ export default function Navbar() {
                 </div>
 
                 {showMenu && (
-                  <div className="absolute right-0 mt-3 w-[400px] bg-white shadow-md rounded-md py-2" style={{zIndex:1000}}>
-                    <ProfileDropdown/>
-                     
+                  <div className="absolute right-0 mt-3 w-[400px] bg-white shadow-md rounded-md py-2" style={{ zIndex: 1000 }}>
+                    <ProfileDropdown />
+
                   </div>
                 )}
               </div>
 
             </div>
           }
+          
+        </div>
 
       </div>
-         
-     
+
+
     </nav>
   );
 }

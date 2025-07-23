@@ -58,6 +58,25 @@ input:focus{
   display: block;
 }
 
+/* For WebKit browsers (Chrome, Safari) */
+.hover\:scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.hover\:scrollbar-thumb-gray-400::-webkit-scrollbar-thumb {
+  background-color: #9ca3af;
+  border-radius: 3px;
+}
+
+.hover\:scrollbar-track-gray-200::-webkit-scrollbar-track {
+  background-color: #e5e7eb;
+}
+
+/* For Firefox */
+.hover\:scrollbar-thin {
+  scrollbar-width: thin;
+}
+
 ul{
   padding: 0;
   margin: 0;
@@ -125,7 +144,7 @@ body {
 
 .self-profile{
   background-color: wheat;
-  height: 35vh;
+  height: 30vh;
   width: 100%;
 }
 
