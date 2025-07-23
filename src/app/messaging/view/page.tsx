@@ -33,7 +33,6 @@ export default function MessageView() {
 
     }else{
     //  messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
- 
     }
      }, [messages]);
 

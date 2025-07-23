@@ -26,9 +26,10 @@ import Link from "next/link";
 import { MoreVertical } from "lucide-react";
 import EditDeleteModal from "./EditDeleteModal";
  
- 
+// Make ogImageLoader optional for type safety
+type PostProps = { post: any; ogImageLoader?: React.ReactNode };
 
-const Post = ( {post,ogImageLoader}:{post:any,ogImageLoader:React.ReactNode}) => { 
+const Post = ( {post,ogImageLoader}:{post:any,ogImageLoader?:React.ReactNode}) => { 
 
   const [likeCount, setLikeCount] = useState(post.likes==undefined?0: post.likes.length);
 
@@ -194,7 +195,11 @@ const Post = ( {post,ogImageLoader}:{post:any,ogImageLoader:React.ReactNode}) =>
        {post.text.length>100?<ReadMore text={post.text}/>:<p>{post.text}</p>}    
         </>
       }
-      {ogImageLoader}
+
+     {ogImageLoader}
+     
+
+     
      
      
       {post.fileURL!="" && post.fileURL!=null && (

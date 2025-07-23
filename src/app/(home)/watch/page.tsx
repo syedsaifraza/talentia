@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { getPosts } from "@/utils/apis/post";
 import Post from "@/component/components/post";
+import OgImageLoader from "@/component/components/OgImageLoader";
 import { PostType } from "@/types/PostType";
 import PostSkelatal from "@/component/skelatal/PostSkelatal";
 import { cookies } from "next/headers";
@@ -41,7 +42,9 @@ export default async function WatchList() {
           {
             posts
               .filter((post) => post.fileURL && post.fileURL.includes(".mp4"))
-              .map((post, id) => <Post post={post} key={id} />)}
+              .map((post, id) => (
+                <Post post={post} ogImageLoader={<OgImageLoader text={post.text} />} key={id} />
+              ))}
         </ul>
       )}
     </div>
