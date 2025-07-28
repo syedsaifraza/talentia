@@ -146,7 +146,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
               </button>
             </div>
 
-            <div className="flex flex-col flex">
+            <div className="flex flex-col">
               <div className="flex p-2 w-[350px] absolute gap-2 bg-[#000000ba] items-center">
                 <div className="w-12 h-12 border-2 border-blue-500 rounded-full">
                   <Image
@@ -205,7 +205,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
           </div>
         )}
     {openStatusAdd===true &&
-      <div className="w-screen h-screen fixed top-0 left-0 w-full h-full bg-white" style={{zIndex:200}}>
+      <div className=" fixed top-0 left-0 w-full h-full bg-white" style={{zIndex:200}}>
         <PostCustomizer closeStatusBox={()=>setOpenStatusAdd(false)} />
       </div>  
     }

@@ -58,7 +58,7 @@ export default function Navbar() {
   const instituteState = useSelector((state: any) => state.institute);
 
   return (
-    <nav className="bg-white shadow-md w-full sticky top-0 z-50">
+    <nav className="bg-white shadow-sm w-full sticky top-0 z-50">
 
       <div className="grid grid-cols-3 justify-center items-center px-5 ">
         <div className="flex justify-start ">
