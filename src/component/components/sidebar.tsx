@@ -21,9 +21,9 @@ const Sidebar = () => {
     { name: "Blog", icon: "https://content.acetians.in/uploads/blog.png", link: "/blogs" },
     { name: "TalentVerse", icon: "https://content.acetians.in/uploads/confidence.png", link: "/page/reels" },
     { name: "Saved", icon: "https://content.acetians.in/uploads/bookmark.png", link: "/page/saved" },
-    { name: "Watch History", icon: "https://content.acetians.in/uploads/reload.png", link: "/page/watches" },
+    { name: "Watch History", icon: "https://content.acetians.in/uploads/reload.png", link: "/watches" },
     { name: "Communities", icon: "https://content.acetians.in/uploads/group.png", link: "/page/communities" },
-    { name: "Birthday", icon: "https://content.acetians.in/uploads/birthday-cake.png", link: "/page/birthdays" },
+    { name: "Birthday", icon: "https://content.acetians.in/uploads/birthday-cake.png", link: "/birthdays" },
     { name: "Messages", icon: "https://content.acetians.in/uploads/chatting.png", link: "/messaging/view" },
     { name: "Memories", icon: "https://content.acetians.in/uploads/history.png", link: "/page/memories" },
     { name: "Events", icon: "https://content.acetians.in/uploads/shield.png", link: "/page/events" },
@@ -51,7 +51,7 @@ const Sidebar = () => {
           {appState.user != null && (
             <li key={211231}>
               <Link
-                href="/page/create"
+                href="/create"
                 className="bg-indigo-500 flex items-center gap-2 rounded-[5px] shadow-sm p-2 w-full text-white"
               >
                 <FaCirclePlus style={{ color: "white" }} /> Create Institutional Page

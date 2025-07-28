@@ -39,11 +39,7 @@ export default function Layout({ children}: { children: React.ReactNode }) {
         {/* Right Sidebar */}
 
          <div className="relative flex-col  p-2 overflow-scroll   lg:w-[60vw] h-[89vh] ">
-         
-       
-         
-         
-         {/* <h4 className=" font-bold sticky top-50">Sponsers</h4> */}
+         <h4 className=" font-bold sticky top-50">Sponsers</h4>
          <SponserCard image="https://content.acetians.in/uploads/itacademy.jpg"
           name="Acetians IT Academy" description="At Acetians IT Academy, you won’t just attend classes—you’ll actively build, create, and solve real-world challenges" link="https://acetiansitacademy.com/"/>
           
