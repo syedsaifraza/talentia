@@ -38,7 +38,7 @@ export default function Layout({ children}: { children: React.ReactNode }) {
 
         {/* Right Sidebar */}
 
-         <div className="relative flex-col  p-2 overflow-scroll   lg:w-[60vw] h-[89vh] ">
+         <div className="relative flex-col  p-2 overflow-scroll   lg:w-[60vw] md:w-0 h-[89vh] ">
          
        
          

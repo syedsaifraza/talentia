@@ -5,6 +5,7 @@ import { FiSend } from "react-icons/fi";
 import { FastAverageColor } from "fast-average-color";
 import { addReels } from "@/utils/apis/reels";
 import Image from "next/image";
+import { handlePostRevalidation } from "@/component/components/postRevalidation";
 
 const ReelsPage = () => {
   const [step, setStep] = useState<1 | 2 | 3>(1);
@@ -15,10 +16,13 @@ const ReelsPage = () => {
   const [message, setMessage] = useState<string>("");
   const [imageURL, setImageURL] = useState<string | null>(null);
   const [fileV, setFileV] = useState<File | null>(null);
+  const [thumbnailFile,setThumbnailFile]=useState<File|null>(null);
   const [zoom, setZoom] = useState<number>(100);
   const [isVideo, setIsVideo] = useState<boolean>(false);
   const [submitting, setSubmitting] = useState(false);
   const [dragActive, setDragActive] = useState(false);
+
+  const [thumbnl,setThumbnl]=useState<string|null>(null);
 
   const extractDominantColor = async () => {
     if (selectedVideoRef.current) {
@@ -52,7 +56,7 @@ const ReelsPage = () => {
       handleFile(e.dataTransfer.files[0]);
     }
   };
-
+ 
   const handleFile = (file: File) => {
     setFileV(file);
     const reader = new FileReader();
@@ -66,10 +70,63 @@ const ReelsPage = () => {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) handleFile(file);
+    if(file) generateThumbnails(file)
   };
+  
+  const [thumbnails,setThumbnails]=useState<File[]>([]);
+  const generateThumbnails = async (file: File) => {
+    const url = URL.createObjectURL(file);
+    const video = document.createElement('video');
+    video.src = url;
+    video.crossOrigin = 'anonymous';
+    video.preload = 'auto';
 
+    // Wait for metadata to load to get video duration
+    await new Promise<void>((resolve) => {
+      video.onloadedmetadata = () => resolve();
+    });
+
+    const duration = video.duration;
+    const captureTimes = [0, 0.50, 1].map(p => p * duration);
+    const thumbnailsArray: File[] = [];
+
+    for (const time of captureTimes) {
+      await new Promise<void>((resolve) => {
+        video.currentTime = time;
+        video.onseeked = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/png'); 
+
+// Convert base64 to Blob
+const byteString = atob(imageData.split(',')[1]);
+const mimeString = imageData.split(',')[0].split(':')[1].split(';')[0];
+const ab = new ArrayBuffer(byteString.length);
+const ia = new Uint8Array(ab);
+for (let i = 0; i < byteString.length; i++) {
+  ia[i] = byteString.charCodeAt(i);
+}
+const blob = new Blob([ab], { type: mimeString });
+
+// Create File object
+const file = new File([blob], `thumbnail-${time}.png`, { type: mimeString });
+thumbnailsArray.push(file);
+          }
+          resolve();
+        };
+      });
+    }
+
+    setThumbnails(thumbnailsArray);
+    URL.revokeObjectURL(url);
+  };
   const handlePublish = async () => {
     if (!fileV) return;
+
     
     const formData = new FormData();
     formData.append("type", isVideo ? "video" : "image");
@@ -77,10 +134,12 @@ const ReelsPage = () => {
     formData.append("zoom", zoom.toString());
     formData.append("dominantColor", dominantColor);
     formData.append("file", fileV);
+    formData.append("thumbnail",thumbnailFile!);
     
     setSubmitting(true);
     await addReels(formData);
-    window.location.href = "/reels";
+    // window.location.href = "/reels";
+    handlePostRevalidation()
   };
 
   useEffect(() => {
@@ -150,6 +209,7 @@ const ReelsPage = () => {
             </h2>
 
             {step === 1 && (
+              <>
               <div 
                 className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all
                   ${dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-blue-400'}`}
@@ -159,7 +219,7 @@ const ReelsPage = () => {
                 onDragOver={handleDrag}
                 onDrop={handleDrop}
               >
-                <div className="flex flex-col items-center justify-center h-40">
+                <div className="flex flex-col items-center justify-center h-30">
                   <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-3">
                     <FaVideo className="text-blue-600 text-xl" />
                   </div>
@@ -167,6 +227,7 @@ const ReelsPage = () => {
                   <p className="text-sm text-gray-500">Drag & drop or click to browse</p>
                   <p className="text-xs text-gray-400 mt-2">Supports MP4, MOV, JPG, PNG</p>
                 </div>
+                
                 <input
                   type="file"
                   ref={inputVideoRef}
@@ -175,8 +236,13 @@ const ReelsPage = () => {
                   className="hidden"
                 />
               </div>
+              <p className="text-xs text-gray mt-2">Select thumbnail</p>
+                <div className="flex justify-between"> 
+                    {thumbnails.map((thm:File,key)=><Image className={thm==thumbnailFile?`border-4 border-solid border-indigo-500`:``} onClick={()=>setThumbnailFile(thm)} key={key} src={URL.createObjectURL(thm)} width={80} height={160} alt={key+"a"} />)}
+                </div>
+</>
             )}
-
+ 
             {step === 2 && (
               <div className="bg-blue-50 p-4 rounded-lg">
                 <h3 className="font-medium text-blue-800 mb-2">Trim Options</h3>
