@@ -43,7 +43,7 @@ const [postModal,setPostModal]=useState(false);
           <span className="text-sm text-gray-600 font-bold">Feeling/Activity</span>
         </button>
 
-        <button className="flex items-center p-3 justify-center  rounded-md space-x-2 hover:bg-gray-100" onClick={() => window.location.href="/reels"  }>
+        <button className="flex items-center p-3 justify-center  rounded-md space-x-2 hover:bg-gray-100" onClick={() => window.location.href="/reels/add-reels"  }>
          <Image width={20} height={20} alt="Reels Icon"
          src="https://content.acetians.in/uploads/reels.png"/>
  
