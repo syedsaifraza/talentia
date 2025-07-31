@@ -9,10 +9,10 @@ import TalentsView from "@/component/components/TalentsView";
 import OgImageLoader from "@/component/components/OgImageLoader";
 import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
 
-export default async function PostList({ searchParams }: { searchParams: { filter?: string } }) {
+export default async function PostList({ searchParams }: { searchParams?: { filter?: string } }) {
   const activeFilter = searchParams?.filter || 'all';
   const cookieStore = cookies();
-  const token = (await cookieStore).get("token");  
+  const token = (await cookieStore).get("token");
 
   // Fetch user profile data
   let savedPostIds: string[] = [];
