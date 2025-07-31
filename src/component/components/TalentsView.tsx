@@ -24,7 +24,9 @@ export default function TalentsView (){
             <Link href="/reels" >
             <div className=" rounded-lg h-full w-[55px] relative">
                <Image  alt={rState.id} src={rState.thumbnail} width="130" height="100" className="rounded-lg h-full object-cover" style={{maxWidth:'120px',height:'200px'}}  />
+               <Image  alt={rState.id} src={rState.thumbnail} width="130" height="100" className="rounded-lg h-full object-cover" style={{maxWidth:'120px',height:'200px'}}  />
                <div className="absolute bottom-0 p-2">
+                {reelsState.userDetails==null?<NameAvatar name={rState.user.name} size={30}/>: <Image src={reelsState.userDetails.profilePhoto} alt="M" height={100} width={100} className="rounded-full" style={{height:'40px',width:'40px'}} /> }
                 {reelsState.userDetails==null?<NameAvatar name={rState.user.name} size={30}/>: <Image src={reelsState.userDetails.profilePhoto} alt="M" height={100} width={100} className="rounded-full" style={{height:'40px',width:'40px'}} /> }
                   
                  {}
