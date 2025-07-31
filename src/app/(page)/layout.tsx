@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="w-full mx-auto  flex justify-between">
           {/* Left Sidebar */}
           <div
-            className="lg:w-[470px] py-3 pl-5 pr-3 box-border shadow-[1px_0px_1px_1px_#00000024] bg-white overflow-scroll h-[89vh] gap-y-2"
+            className="lg:w-[470px] py-3 pl-5 pr-3 box-border   overflow-scroll h-[89vh] gap-y-2"
             aria-label="Sidebar"
           >
             {/* <Sidebar /> */}

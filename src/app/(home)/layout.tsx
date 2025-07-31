@@ -14,35 +14,31 @@ export default function Layout({ children}: { children: React.ReactNode }) {
     <Suspense fallback={<h1>Loading</h1>}>
         <Navbar/>
     </Suspense>
-    <div className=" bg-gray-200 overflow-hidden">
+    <div className="  overflow-hidden">
       
       <div className="w-full mx-auto gap-3  flex justify-between">
         {/* Left Sidebar */}
 
         <div 
-          className="lg:w-[55vw] py-3 pl-5 pr-3 box-border shadow-[1px_0px_1px_1px_#00000024] bg-white overflow-scroll h-[89vh] gap-y-2"
+          className="lg:w-[55vw] py-3 pl-5 pr-3 box-border  overflow-scroll h-[89vh] gap-y-2"
           aria-label="Sidebar"
         > 
          <Sidebar/>
-    
-         
-
         </div>
 
         {/* Centered Content */}
-        <main  className=" w-full  p-2  overflow-scroll h-[89vh]   ">
-          
-         
+
+        <main  className=" w-full  p-2  overflow-scroll h-[89vh]">
           <div className=" rounded-lg ">{children}</div>
         </main>
 
         {/* Right Sidebar */}
 
          <div className="relative flex-col  p-2 overflow-scroll   lg:w-[60vw] md:w-0 h-[89vh] ">
-         
-       
-         
-         
+
+          
+          
+            
          {/* <h4 className=" font-bold sticky top-50">Sponsers</h4> */}
          <SponserCard image="https://content.acetians.in/uploads/itacademy.jpg"
           name="Acetians IT Academy" description="At Acetians IT Academy, you won’t just attend classes—you’ll actively build, create, and solve real-world challenges" link="https://acetiansitacademy.com/"/>

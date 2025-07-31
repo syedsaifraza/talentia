@@ -40,22 +40,21 @@ export default async function ProfileView({params}:{params:any}) {
 
 const { instituteData, profileData,statusData,reelsData } = await fetchUserProfileAndInstitute(token)
 
-const getuse = user.followers.forEach((id:any)=>(
-            <NotFoundPage user = {fetchUserByUid(token, id)}/>
-            
-          ))
-
+const getuse = followers.map((id: any) => (
+  <NotFoundPage user={fetchUserByUid(token, id)} />
+));
 
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Cover Photo */}
-      <div className="relative w-full h-72 bg-gray-300">
+      <div className="relative w-full h-96 bg-gray-300">
         <Image
           src={user.coverPhoto || "/default-cover.jpg"}
           alt="Cover Photo"
           layout="fill"
           objectFit="cover"
-          className="object-cover"
+          
+          className="object-cover "
         />
         {/* Profile Picture */}
         <div className="absolute left-8 bottom-[-64px] w-32 h-32 rounded-full border-4 border-white overflow-hidden shadow-lg">
@@ -69,7 +68,11 @@ const getuse = user.followers.forEach((id:any)=>(
       </div>
 
       <div> 
-        <NotFoundPage user = {await fetchUserByUid(token, user.followers[0])}/>
+       {followers.length > 0 ? (
+  <NotFoundPage user={await fetchUserByUid(token, followers[0])} />
+) : (
+  <div></div>
+)}
       </div>
 
     

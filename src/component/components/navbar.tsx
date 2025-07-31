@@ -139,9 +139,9 @@ export default function Navbar() {
               </div>
 
               {/* Avatar with Dropdown Menu */}
-              <div className="relative px-2">
-                <div className="w-16 h-16 flex justify-center items-center rounded-full shadow-md cursor-pointer" onClick={() => setShowMenu(!showMenu)}>
-                  <DefaultAvatar size={35} />
+              <div className="relative">
+                <div className=" flex justify-center items-center rounded-full shadow-md cursor-pointer" onClick={() => setShowMenu(!showMenu)}>
+                  <DefaultAvatar size={50} />
                 </div>
 
                 {showMenu && (

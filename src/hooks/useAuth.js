@@ -56,6 +56,7 @@ const useAuth = () => {
       try {
         const userData = await validateTokenAndFetchUser(token);
         const { instituteData, profileData,statusData,reelsData } = await fetchUserProfileAndInstitute(token)
+        console.log(profileData.data)
 
         dispatch(setLoggedInUser(userData));
         //console.log(reelsData)

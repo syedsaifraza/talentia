@@ -74,7 +74,7 @@ const Sidebar = () => {
                       <img 
                         src={side.icon} 
                         alt={side.name} 
-                        className="w-7 h-7 object-contain" 
+                        className="w-5 h-5 object-contain" 
                       />
                       <span className="flex-1 font-[20px] ml-3 whitespace-nowrap">
                         {side.name}

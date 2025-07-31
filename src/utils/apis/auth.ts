@@ -107,6 +107,8 @@ export const loginUser = async (credentials: LoginData): Promise<AuthResponse> =
       body: JSON.stringify(credentials),
     });
 
+    console.log("Response from loginUser:", response);
+
     return await response.json();
   } catch (error) {
     console.error("Error during login:", error);

@@ -52,7 +52,9 @@ export default function SelfProfile  ()  {
 
           />
         </div>
-        <div style={{
+        <div
+        className="border border-gray-200 rounded-full"
+        style={{
           width: '6vw',
           height: '6vw', 
           marginRight: 'auto',
