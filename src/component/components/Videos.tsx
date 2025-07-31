@@ -5,7 +5,7 @@ export default function Post() {
 
 
         <div className=" p-4 rounded-lg ">
-            <div className="w-full h-40 h-[70vh] bg-gray-300 rounded-lg mb-2">
+            <div className="w-full  h-[70vh] bg-gray-300 rounded-lg mb-2">
                 <iframe
                     width="100%"
                     height="100%"

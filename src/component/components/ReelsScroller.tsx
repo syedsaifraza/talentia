@@ -35,85 +35,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
     }
   };
 
-  const initialReelsData = [
-    {
-      id: 1,
-      user: "Alice Johnson",
-      avatar: "https://picsum.photos/20/20?random=1",
-      thumbnail: "https://picsum.photos/300/500?random=1",
-      video: "https://content.acetians.in/uploads/video15.mp4",
-    },
-    {
-      id: 7,
-      user: "Grace Lee",
-      avatar: "https://picsum.photos/20/20?random=2",
-      thumbnail: "https://picsum.photos/300/500?random=2",
-      video: "https://content.acetians.in/uploads/video4.mp4",
-    },
-    {
-      id: 8,
-      user: "Henry Martinez",
-      avatar: "https://picsum.photos/20/20?random=1",
-      thumbnail: "https://picsum.photos/300/500?random=1",
-      video: "https://content.acetians.in/uploads/video2.mp4",
-    },
-    {
-      id: 9,
-      user: "Ivy Nguyen",
-      avatar: "https://picsum.photos/20/20?random=2",
-      thumbnail: "https://picsum.photos/300/500?random=2",
-      video: "https://content.acetians.in/uploads/VID-20250310-WA0020.mp4",
-    },
-    {
-      id: 10,
-      user: "Jack Wilson",
-      avatar: "https://picsum.photos/20/20?random=1",
-      thumbnail: "https://picsum.photos/300/500?random=1",
-      video: "https://content.acetians.in/uploads/VID-20250310-WA0021.mp4",
-    },
-    {
-      id: 10,
-      user: "Jack Wilson",
-      avatar: "https://picsum.photos/20/20?random=1",
-      thumbnail: "https://picsum.photos/300/500?random=1",
-      video: "https://content.acetians.in/uploads/VID-20250310-WA0021.mp4",
-    },
-    {
-      id: 10,
-      user: "Jack Wilson",
-      avatar: "https://picsum.photos/20/20?random=1",
-      thumbnail: "https://picsum.photos/300/500?random=1",
-      video: "https://content.acetians.in/uploads/VID-20250310-WA0021.mp4",
-    },
-    {
-      id: 10,
-      user: "Jack Wilson",
-      avatar: "https://picsum.photos/20/20?random=1",
-      thumbnail: "https://picsum.photos/300/500?random=1",
-      video: "https://content.acetians.in/uploads/VID-20250310-WA0021.mp4",
-    },
-    {
-      id: 10,
-      user: "Jack Wilson",
-      avatar: "https://picsum.photos/20/20?random=1",
-      thumbnail: "https://picsum.photos/300/500?random=1",
-      video: "https://content.acetians.in/uploads/VID-20250310-WA0021.mp4",
-    },
-    {
-      id: 10,
-      user: "Jack Wilson",
-      avatar: "https://picsum.photos/20/20?random=1",
-      thumbnail: "https://picsum.photos/300/500?random=1",
-      video: "https://content.acetians.in/uploads/VID-20250310-WA0021.mp4",
-    },
-    {
-      id: 11,
-      user: "Karen Taylor",
-      avatar: "https://picsum.photos/20/20?random=1",
-      thumbnail: "https://picsum.photos/300/500?random=1",
-      video: "https://content.acetians.in/uploads/VID-20250310-WA0023.mp4",
-    },
-  ];
+  
   const [openStatusAdd,setOpenStatusAdd]=useState(false);
     const handleNext = () => {
     if (selectedStatus !== null && selectedStatus < statusUpdates.status.length - 1) {
@@ -128,6 +50,9 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
     if (selectedStatus !== null && selectedStatus > 0) {
       setSelectedStatus(selectedStatus - 1);
     }
+
+
+   
   };
 
 
@@ -146,7 +71,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
               </button>
             </div>
 
-            <div className="flex flex-col flex">
+            <div className="flex flex-col">
               <div className="flex p-2 w-[350px] absolute gap-2 bg-[#000000ba] items-center">
                 <div className="w-12 h-12 border-2 border-blue-500 rounded-full">
                   <Image
@@ -191,7 +116,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
               <button
                 onClick={handleNext}
                 className="mr-5 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 z-50"
-                disabled={selectedStatus === initialReelsData.length - 1}
+                // disabled={selectedStatus === initialReelsData.length - 1}
               >
                 <FaAngleRight className="text-[25px]" />
               </button>
@@ -205,7 +130,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
           </div>
         )}
     {openStatusAdd===true &&
-      <div className="w-screen h-screen fixed top-0 left-0 w-full h-full bg-white" style={{zIndex:200}}>
+      <div className=" fixed top-0 left-0 w-full h-full bg-white" style={{zIndex:200}}>
         <PostCustomizer closeStatusBox={()=>setOpenStatusAdd(false)} />
       </div>  
     }

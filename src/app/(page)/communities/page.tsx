@@ -1,11 +1,10 @@
 "use client";
-import { useState, useRef } from "react"; 
-import Image from "next/image"; 
+import { useState, useRef } from "react";
+import Image from "next/image";
 import { IoClose } from "react-icons/io5";
-import { MdNoteAdd } from "react-icons/md"; 
-import { IoIosPeople } from "react-icons/io"; 
+import { MdNoteAdd } from "react-icons/md";
+import { IoIosPeople } from "react-icons/io";
 
- 
 interface Media {
   type: "image" | "video";
   url: string;
@@ -64,20 +63,53 @@ export default function JobsPage() {
   };
 
   return (
-    <ul className="flex flex-col gap-4 mt-2 ">
-      <li>
-        <button
-          onClick={() => {
-            setIsModalOpen(true);
-            setShowEmojiSection(false);
-          }}
-          className="bg-blue-600  rounded-[1px] text-white font-bold py-2 px-3 hover:bg-blue-700"
-        >
-          Create Communities
-        </button>
-      </li>
+    <ul className="flex flex-col gap-4 p-1 ">
+      <div className="bg-white static top-0 shadow-lg border-b border-purple-100">
+        <div className="max-w-4xl mx-auto px-2 py-8">
+          <div className="flex items-center justify-between ">
+            <div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Communities
+              </h1>
+              <p className="text-gray-600 mt-2 text-[15px] font-medium">
+                Here are your precious memories from previous years
+              </p>
+            </div>
+            <div className="text-right">
+              {/* <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-2">
+                <div className="text-gray-600 mt-2 text-[15px] font-medium">{today}</div>
+              </div> */}
+              <div className="text-center">
+                <button
+                  onClick={() => {
+                    setIsModalOpen(true);
+                    setShowEmojiSection(false);
+                  }}
+                  className="inline-flex items-center gap-3 bg-white rounded-full px-6 py-3 shadow-lg border border-purple-100 "
+                >
+                  <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                    <span className="text-white text-sm">
+                      <Image 
+                      src={"https://content.acetians.in/uploads/button.png"}
+                      alt="Create Community"
+                      height={30}
+                      width={30}
+                        />
+                     
+                    </span>
+                  </div>
+                  <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                   Create Communities
+                  </h2>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     
 
-      <li className="bg-white flex flex-col  gap-2 p-1 rounded-[10px]">
+      <li className="bg-white flex flex-col box-border mx-4 shadow-lg  gap-2 p-1 rounded-[10px]">
         <div className="max-w-screen-xl sm:p-10 md:p-8">
           <div className="border-b mb-5 flex justify-between text-sm">
             <div className="text-indigo-600 flex items-center pb-2 pr-2 border-b-2 border-indigo-600 uppercase">
@@ -93,12 +125,12 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <Image 
-                                      height={56}
-                                      width={56}
-                    className="w-full"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiakQQXPgmJxsCp9rb8_2Jm7uWrGCvbUHGoQ&s"
+                  <img
+                                      
+                    className="w-full h-full "
+                    src="https://content.acetians.in/uploads/object-education-green-nature-background-with-stack-of-ancient-books-or-old-bible-open-paper-book-on-wooden-table-with-copy-space-concept-of-back-to-school-research-study-photo.jpg"
                     alt="Sunset in the mountains"
+                    
                   />
                   <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
                 </a>
@@ -111,7 +143,7 @@ export default function JobsPage() {
               <div className="px-6 py-4 mb-auto">
                 <a
                   href="#"
-                  className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
+                  className="font-medium text-lg  hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
                 >
                   The Student Room
                 </a>
@@ -135,12 +167,11 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <Image
+                  <img
                 
-                    height={10}
-                    width={10}
-                    className="w-full"
-                    src="https://www.si.com/.image/t_share/MTczMzYxMjQzODkxOTY3ODk3/x163129_tk1_00818.jpg"
+                  
+                    className="w-full h-full"
+                    src="https://content.acetians.in/uploads/images%20(2).jpeg"
                     alt="Sunset in the mountains"
                   />
                   <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
@@ -154,7 +185,7 @@ export default function JobsPage() {
               <div className="px-6 py-4 mb-auto">
                 <a
                   href="#"
-                  className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
+                  className="font-medium text-lg  hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
                 >
                   GameOn Nation
                 </a>
@@ -179,12 +210,11 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <Image
+                  <img
                 
-                    height={10}
-                    width={10}
-                    className="w-full"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO96z3T-2CqY__oEdjBER62VMH94j4lv9Yb7VYbey4nMUKaoOq3hER3d-3PKNmd3_UWxw&usqp=CAU"
+                   
+                    className="w-full h-full"
+                    src="https://content.acetians.in/uploads/images%20(3).jpeg"
                     alt="Sunset in the mountains"
                   />
                   <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
@@ -198,7 +228,7 @@ export default function JobsPage() {
               <div className="px-6 py-4 mb-auto">
                 <a
                   href="#"
-                  className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
+                  className="font-medium text-lg  hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
                 >
                   Sports Insight Lab
                 </a>
@@ -222,7 +252,7 @@ export default function JobsPage() {
         </div>
       </li>
 
-      <li className="bg-white flex flex-col  gap-2 p-1 rounded-[10px]">
+      <li className="bg-white flex flex-col box-border mx-4 shadow-lg  gap-2 p-1 rounded-[10px]">
         <div className="max-w-screen-xl sm:p-10 md:p-8">
           <div className="border-b mb-5 flex justify-between text-sm">
             <div className="text-indigo-600 flex items-center pb-2 pr-2 border-b-2 border-indigo-600 uppercase">
@@ -238,12 +268,11 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <Image
+                   <img
                 
-                    height={10}
-                    width={10}
-                    className="w-full"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiakQQXPgmJxsCp9rb8_2Jm7uWrGCvbUHGoQ&s"
+                   
+                    className="w-full h-full"
+                    src="https://content.acetians.in/uploads/images%20(3).jpeg"
                     alt="Sunset in the mountains"
                   />
                   <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
@@ -257,7 +286,7 @@ export default function JobsPage() {
               <div className="px-6 py-4 mb-auto">
                 <a
                   href="#"
-                  className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
+                  className="font-medium text-lg  hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
                 >
                   The Student Room
                 </a>
@@ -281,12 +310,11 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <Image
+                 <img
                 
-                    height={10}
-                    width={10}
-                    className="w-full"
-                    src="https://www.si.com/.image/t_share/MTczMzYxMjQzODkxOTY3ODk3/x163129_tk1_00818.jpg"
+                  
+                    className="w-full h-full"
+                    src="https://content.acetians.in/uploads/images%20(2).jpeg"
                     alt="Sunset in the mountains"
                   />
                   <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
@@ -300,7 +328,7 @@ export default function JobsPage() {
               <div className="px-6 py-4 mb-auto">
                 <a
                   href="#"
-                  className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
+                  className="font-medium text-lg  hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
                 >
                   GameOn Nation
                 </a>
@@ -325,12 +353,11 @@ export default function JobsPage() {
               <a href="#" />
               <div className="relative">
                 <a href="#">
-                  <Image
+                  <img
                 
-                    height={10}
-                    width={10}
-                    className="w-full"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO96z3T-2CqY__oEdjBER62VMH94j4lv9Yb7VYbey4nMUKaoOq3hER3d-3PKNmd3_UWxw&usqp=CAU"
+                   
+                    className="w-full h-full"
+                    src="https://content.acetians.in/uploads/images%20(3).jpeg"
                     alt="Sunset in the mountains"
                   />
                   <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
@@ -344,7 +371,7 @@ export default function JobsPage() {
               <div className="px-6 py-4 mb-auto">
                 <a
                   href="#"
-                  className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
+                  className="font-medium text-lg  hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
                 >
                   Sports Insight Lab
                 </a>
@@ -368,7 +395,7 @@ export default function JobsPage() {
         </div>
       </li>
 
-      <li className="bg-white flex flex-col  gap-2 p-1 rounded-[10px]">
+      <li className="bg-white flex flex-col box-border mx-4 shadow-lg    rounded-[10px]">
         <div className=" bg-gray-100 flex justify-center items-center">
           <div className="container mx-auto bg-indigo-500 rounded-lg p-14">
             <form>
@@ -379,7 +406,7 @@ export default function JobsPage() {
                 </p>
                 <div className="sm:flex items-center bg-white rounded-lg overflow-hidden px-2 py-1 justify-between">
                   <input
-                    className="text-base text-gray-400 flex-grow outline-none px-2 "
+                    className="text-base text-gray-400 flex-grow outline-none px-2  "
                     type="text"
                     placeholder="Search Communities"
                   />
@@ -392,7 +419,7 @@ export default function JobsPage() {
             </form>
           </div>
         </div>
-        <div>
+        <div className="py-4">
           <h1 className="text-center font-bold">No Communities</h1>
         </div>
       </li>
@@ -412,15 +439,16 @@ export default function JobsPage() {
 
             <div className="overflow-y-auto">
               <div className=" mb-2 ">
-                <div className=" border-gray rounded-[12px] mb-4">
+                <div className=" border-gray   ">
                   <div
                     onClick={handleAddButtonClick}
-                    className="flex justify-center align-center flex-col  bg-gray-100 h-[40vh] relative"
+                    className="flex justify-center items-center flex-col max-h-[50vh]"
                   >
+             
                     {media ? (
-                      <div className="w-full h-full relative">
+                      <div className="w-full h-[300px] relative">
                         <button
-                          className="absolute top-5 right-2 z-10 p-1 bg-white rounded-full shadow-md hover:bg-gray-100"
+                          className="absolute top-4  left-4 z-50 p-1 bg-white rounded-full shadow-md hover:bg-gray-100"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleRemoveMedia();
@@ -430,12 +458,11 @@ export default function JobsPage() {
                         </button>
 
                         {media.type === "image" ? (
-                          <Image
-                            width={100}
-                            height={100}
+                          <img
+                         
                             src={media.url}
                             alt="Preview"
-                            className="w-full h-full object-cover rounded-md"
+                            className="w-full h-full object-cover "
                           />
                         ) : (
                           <video
@@ -448,11 +475,26 @@ export default function JobsPage() {
                         )}
                       </div>
                     ) : (
-                      <div className="flex bg-blue-500 w-[70px] flex-row justify-center items-center relative top-[38%] gap-1 p-2 rounded-[5px] left-[86%]">
-                        <MdNoteAdd className="text-[30px] text-white" />
+                      
+                      <div className=" w-full h-[300px] relative border-2 border-gray-100 hover:bg-gray-100   p-6" id="dropzone">
 
-                        <h2 className=" text-white">Add</h2>
-                      </div>
+  <div className="text-center flex flex-col items-center justify-center h-full cursor-pointer">
+    <img className="mx-auto h-12 w-12" src="https://www.svgrepo.com/show/357902/image-upload.svg" alt="" />
+    <h3 className="mt-2 text-sm font-medium text-gray-900">
+      <label htmlFor="file-upload" className="relative cursor-pointer">
+        <span>Drag and drop</span>
+        <span className="text-indigo-600"> or browse</span>
+        <span>to upload</span>
+      
+      </label>
+    </h3>
+    <p className="mt-1 text-xs text-gray-500">
+      PNG, JPG, GIF up to 10MB
+    </p>
+  </div>
+ 
+</div>
+
                     )}
 
                     <input
@@ -466,7 +508,7 @@ export default function JobsPage() {
                 </div>
               </div>
 
-              <div className="flex px-4 items-center space-x-3 mb-5">
+              <div className="flex px-4 items-center space-x-3 my-5">
                 <Image
                   width={10}
                   height={10}
@@ -509,7 +551,7 @@ export default function JobsPage() {
                   onClick={() => setShowEmojiSection(false)}
                 >
                   <Image
-                  alt=""
+                    alt=""
                     height={10}
                     width={10}
                     src="https://static.xx.fbcdn.net/rsrc.php/v4/y7/r/Ivw7nhRtXyo.png"
@@ -522,7 +564,7 @@ export default function JobsPage() {
                   onClick={handleFeelingButtonClick}
                 >
                   <Image
-                  alt=""
+                    alt=""
                     height={10}
                     width={10}
                     src="https://static.xx.fbcdn.net/rsrc.php/v4/yd/r/Y4mYLVOhTwq.png"

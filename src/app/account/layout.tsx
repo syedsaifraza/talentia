@@ -1,3 +1,4 @@
+
 import Navbar from "@/component/components/navbar";
 
 export default function ReelsLayout({children}:{children:React.ReactNode}){

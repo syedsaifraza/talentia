@@ -30,26 +30,6 @@ export const getPosts = async (token:string): Promise<{ posts: PostType[] }> => 
 
 
 
-// export const getPosts = async (): Promise<{posts:PostType[]}> => {
-//   try {
-     
-//     const token = Cookies.get("token");
-//     console.log("API URL:", API_BASE_URL);
-//     const response = await fetch(`${API_BASE_URL}/list`, {
-//       method: "GET",
-//       headers: {  
-//         "Authorization":`Bearer ${token}`
-//        },
-//       credentials: "include", 
-//     });
-
-//     return await response.json() as PostType[];
-//   } catch (error) {
-//     console.error("Error during adding post:", error);
-//     return [];
-//   }
-// };
-
 export const addComment = async (postId: string, comment: string): Promise<AuthResponse> => {
   try {
     const token = Cookies.get("token");

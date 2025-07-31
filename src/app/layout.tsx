@@ -32,7 +32,7 @@ export default function RootLayout({
 
     <html lang="en" data-theme="light"  className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       
-      <body className="bg-[#f2f4f7] w-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors">
+      <body className="bg-[#f2f4f7] w-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors suarj">
           
         <div style={{width:'100%'}}>
       

@@ -58,6 +58,8 @@ const useAuth = () => {
         const { instituteData, profileData,statusData,reelsData } = await fetchUserProfileAndInstitute(token)
 
         dispatch(setLoggedInUser(userData));
+        console.log("profile data")
+        console.log(profileData.data)
         //console.log(reelsData)
         dispatch(setReels(reelsData.posts))
         dispatch(setUserInfo(profileData.data));

@@ -20,7 +20,7 @@ export default function Layout({ children}: { children: React.ReactNode }) {
         {/* Left Sidebar */}
 
         <div 
-          className="lg:w-[60vw]  p-2  overflow-scroll h-[89vh]  gap-y-2"
+          className="lg:w-[55vw] py-3 pl-5 pr-3 box-border shadow-[1px_0px_1px_1px_#00000024] bg-white overflow-scroll h-[89vh] gap-y-2"
           aria-label="Sidebar"
         > 
          <Sidebar/>
@@ -38,7 +38,7 @@ export default function Layout({ children}: { children: React.ReactNode }) {
 
         {/* Right Sidebar */}
 
-         <div className="relative flex-col  p-2 overflow-scroll   lg:w-[60vw] h-[89vh] ">
+         <div className="relative flex-col  p-2 overflow-scroll   lg:w-[60vw] md:w-0 h-[89vh] ">
          
        
          

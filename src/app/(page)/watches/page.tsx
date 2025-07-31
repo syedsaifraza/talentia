@@ -1,197 +1,103 @@
-"use client";
+// Force Next.js to treat this as a dynamic server-rendered route
+export const dynamic = 'force-dynamic';
 
+import { getPosts } from "@/utils/apis/post";
 import Post from "@/component/components/post";
- 
-import { ImProfile } from "react-icons/im";
-import { FaUserFriends } from "react-icons/fa";
-import { MdGroups } from "react-icons/md"; 
+import { PostType } from "@/types/PostType";
+import PostSkelatal from "@/component/skelatal/PostSkelatal";
+import { cookies } from "next/headers";
+import AddPost from "@/component/components/AddPost";
+import ReelsScroller from "@/component/components/ReelsScroller";
+import TalentsView from "@/component/components/TalentsView";
+import OgImageLoader from "@/component/components/OgImageLoader";
+import { IoSquare, IoVideocam } from "react-icons/io5";
 
-export default function FeedPage() {
-  // Sample post data
-  interface Post {
-     id: number;
-     text: string;
-     media: {
-       type: string;
-       url: string;
-     } | null;
-     user: {
-       name: string;
-       avatar: string;
-     };
-     timestamp: string;
-   }
-   
-  const samplePosts:Post[] = [
-    {
-      id: 1,
-      text: "Enjoying a beautiful sunset at the beach! 🌅 #NatureLover",
-      media: {
-        type: "image",
-        url: "https://picsum.photos/500/500.jpg?random=1",
-      },
-      user: {
-        name: "John Doe",
-        avatar: "https://randomuser.me/api/portraits/men/69.jpg",
-      },
-      timestamp: "2023-10-01T12:00:00Z",
-    },
-    {
-      id: 2,
-      text: "Just finished a 10k run! Feeling amazing. 🏃‍♂️ #FitnessGoals",
-      media: {
-        type: "image",
-        url: "https://picsum.photos/500/500.jpg?random=2",
-      },
-      user: {
-        name: "Jane Doe",
-        avatar: "https://randomuser.me/api/portraits/women/68.jpg",
-      },
-      timestamp: "2023-10-02T12:00:00Z",
-    },
-    {
-      id: 3,
-      text: "Exploring the mountains today. The view is breathtaking! 🏔️ #AdventureTime",
-      media: {
-        type: "image",
-        url: "https://picsum.photos/500/500.jpg?random=3",
-      },
-      user: {
-        name: "Alice",
-        avatar: "https://randomuser.me/api/portraits/women/67.jpg",
-      },
-      timestamp: "2023-10-03T12:00:00Z",
-    },
-    {
-      id: 4,
-      text: "Cooking up a storm in the kitchen today. Who's hungry? 🍳 #Foodie",
-      media: {
-        type: "image",
-        url: "https://picsum.photos/500/500.jpg?random=4",
-      },
-      user: {
-        name: "Bob",
-        avatar: "https://randomuser.me/api/portraits/men/70.jpg",
-      },
-      timestamp: "2023-10-04T12:00:00Z",
-    },
-    {
-      id: 5,
-      text: "Check out this amazing street art I found downtown! 🎨 #UrbanArt",
-      media: {
-        type: "image",
-        url: "https://picsum.photos/500/500.jpg?random=5",
-      },
-      user: {
-        name: "Charlie",
-        avatar: "https://randomuser.me/api/portraits/men/71.jpg",
-      },
-      timestamp: "2023-10-05T12:00:00Z",
-    },
-    {
-      id: 6,
-      text: "Weekend vibes with my favorite playlist. 🎶 #MusicLover",
-      media: {
-        type: "video",
-        url: "https://www.w3schools.com/html/mov_bbb.mp4",
-      },
-      user: {
-        name: "Diana",
-        avatar: "https://randomuser.me/api/portraits/women/72.jpg",
-      },
-      timestamp: "2023-10-06T12:00:00Z",
-    },
-    {
-      id: 7,
-      text: "Morning coffee and a good book. Perfect start to the day. ☕📚 #Relaxation",
-      media: {
-        type: "image",
-        url: "https://picsum.photos/500/500.jpg?random=7",
-      },
-      user: {
-        name: "Eve",
-        avatar: "https://randomuser.me/api/portraits/women/73.jpg",
-      },
-      timestamp: "2023-10-07T12:00:00Z",
-    },
-    {
-      id: 8,
-      text: "Throwback to my last vacation. Can't wait to travel again! ✈️ #Wanderlust",
-      media: {
-        type: "image",
-        url: "https://picsum.photos/500/500.jpg?random=8",
-      },
-      user: {
-        name: "Frank",
-        avatar: "https://randomuser.me/api/portraits/men/74.jpg",
-      },
-      timestamp: "2023-10-08T12:00:00Z",
-    },
-    {
-      id: 9,
-      text: "Game night with friends! 🎲 #FunTimes",
-      media: {
-        type: "image",
-        url: "https://picsum.photos/500/500.jpg?random=9",
-      },
-      user: {
-        name: "Grace",
-        avatar: "https://randomuser.me/api/portraits/women/75.jpg",
-      },
-      timestamp: "2023-10-09T12:00:00Z",
-    },
-    {
-      id: 10,
-      text: "Just adopted a new puppy! Meet Max. 🐶 #DogLover",
-      media: {
-        type: "image",
-        url: "https://picsum.photos/500/500.jpg?random=10",
-      },
-      user: {
-        name: "Hank",
-        avatar: "https://randomuser.me/api/portraits/men/76.jpg",
-      },
-      timestamp: "2023-10-10T12:00:00Z",
-    },
-  ];
+export default async function Feed() {
+  const cookieStore = cookies();
+  const token = (await cookieStore).get("token");  
+
+  let posts: PostType[] = [];
+
+  try {
+    const res = await getPosts(token?.value || "no token");
+
+    if (res && res.posts) {
+      posts = res.posts.filter((post)=>post.isDeleted!=true);
+    }
+  } catch (error) {
+    console.error("Failed to fetch posts:", error);
+  }
 
   return (
-    <div className=" flex flex-row gap-2">
-      <div className="flex flex-1 flex-col gap-4 mt-2 ">
-        {samplePosts.map((post,index) => (
-          <div key={index}>
-            <p></p>
-          </div>
-        ))}
+    <div className="flex h-full">
+      {/* Feed Content - Scrollable */}
+      <div className="flex-1 flex justify-center overflow-y-auto h-[89vh] pr-4">
+        <div className="max-w-2xl mx-auto">
+          {posts.length === 0 ? (
+            <div key={Math.random()*1000}>
+              <PostSkelatal key={"cas1"} />
+              <PostSkelatal key={"cas2"} />
+            </div>
+          ) : (
+            <div key={Math.random()*1000}>
+              {posts.map((post, idz) => 
+                (idz == 0 || idz % 3 == 0) ? 
+                <div key={idz}>
+                  <TalentsView />
+                  <Post post={post} ogImageLoader={<OgImageLoader text={post.text}/>} />
+                </div> : 
+                <Post post={post} ogImageLoader={<OgImageLoader text={post.text}/>} />
+              )}
+            </div>
+          )}
+        </div>
       </div>
-      <div className="w-[25vw] ">
-        <div>
-          <ul className="fixed p-3 bg-white w-[25vw] h-[85vh] gap-1 flex flex-col  ">
-            <li className="flex rounded-[10px] flex-row gap-4 items-center px-3 py-[8px] hover:bg-slate-100 cursor-pointer">
-              <p className="bg-sky-600 rounded-full p-2">
-                <ImProfile className="size-[20] text-white" />
-              </p>
 
-              <p className="font-bold">All</p>
-            </li>
-            
-            <li className="flex rounded-[10px] flex-row gap-4 items-center px-3 py-[8px] hover:bg-slate-100 cursor-pointer">
-              <p className="bg-sky-600 rounded-full p-2">
-                <FaUserFriends className="size-[20] text-white" />
-              </p>
+      {/* Filters - Fixed */}
+      <div className="w-[310px] p-5 bg-white  shadow-md h-[89vh] sticky top-20 overflow-y-auto">
+        <h1 className="text-xl font-semibold mb-4">Filters for Posts</h1>
 
-              <p className="font-bold">Videos</p>
+        {/* Media Type */}
+        <div className="mb-4">
+          <ul className="flex">
+            <li className="bg-blue-100 py-2 px-4 border-blue-200 mx-1 rounded-lg text-sm hover:cursor-pointer hover:bg-blue-300 flex items-center" style={{fontWeight:500}}>
+              <IoSquare size={20} className="mr-2"/> All
             </li>
-            <li className="flex rounded-[10px] flex-row gap-4 items-center px-3 py-[8px] hover:bg-slate-100 cursor-pointer">
-              <p className="bg-sky-600 rounded-full p-2">
-                <MdGroups className="size-[20] text-white" />
-              </p>
-
-              <p className="font-bold">Reels</p>
+            <li className="bg-blue-100 py-2 px-4 border-blue-200 mx-1 rounded-lg text-sm hover:cursor-pointer hover:bg-blue-300 flex items-center" style={{fontWeight:500}}>
+              <IoVideocam size={20} className="mr-2"/> Videos
             </li>
-           
           </ul>
         </div>
+
+        {/* Date Range */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
+          <div className="flex gap-2">
+            <input type="date" className="flex-1 p-2 border rounded" />
+            <input type="date" className="flex-1 p-2 border rounded" />
+          </div>
+        </div>
+
+        {/* Hashtag */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Hashtag</label>
+          <input type="text" placeholder="#keyword" className="w-full p-2 border rounded" />
+        </div>
+        
+        {/* Sort */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+          <select className="w-full p-2 border rounded">
+            <option value="newest">Newest First</option>
+            <option value="popular">Most Liked</option>
+            <option value="comments">Most Commented</option>
+          </select>
+        </div>
+
+        {/* Apply Filters Button */}
+        <button className="mt-2 w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition">
+          Apply Filters
+        </button>
       </div>
     </div>
   );

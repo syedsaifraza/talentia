@@ -57,6 +57,81 @@ export const addFollower = async (followerId: string): Promise<AuthResponse> => 
     return { success: false,  message: "Following failed" };
   }
 };
+
+
+export const savePost = async (type: string,postId:string): Promise<AuthResponse> => {
+  const formData = {
+    "type":type,
+    "postId": postId
+  }
+
+console.log(JSON.stringify(formData))
+
+const data ={
+  type,  postId}
+console.log(data);
+
+const raw = JSON.stringify({
+  "type": type,
+  "postId": postId
+});
+  try {
+    const token = Cookies.get("token");
+    const response = await fetch(`${API_BASE_URL}/save/post-reels`, {
+      method: "POST",
+      headers: { "Authorization": `Bearer ${token}` ,
+        "Content-Type": "application/json"},
+      body:raw,
+      credentials: "include",
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error following user:", error);
+    return { success: false,  message: "Following failed" };
+  }
+};
+
+
+export const watchPostReels = async (type: string,postId:string): Promise<AuthResponse> => {
+  const formData = {
+    "type":type,
+    "postId": postId
+  }
+
+console.log(JSON.stringify(formData))
+
+const data ={
+  type,  postId}
+console.log(data);
+
+const raw = JSON.stringify({
+  "type": type,
+  "postId": postId
+});
+  try {
+    const token = Cookies.get("token");
+    const response = await fetch(`${API_BASE_URL}/watch/post-reels`, {
+      method: "POST",
+      headers: { "Authorization": `Bearer ${token}` ,
+        "Content-Type": "application/json"},
+      body:raw,
+      credentials: "include",
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error following user:", error);
+    return { success: false,  message: "Following failed" };
+  }
+};
+
+
+
+
+
+
+
 export const getProfiles = async (
   type?: string,
   city?: string,
@@ -83,6 +158,8 @@ export const getProfiles = async (
     };
   }
 };
+
+
 
 export const getUser = async (id: string): Promise<ProfileResponse> => {
   try {
