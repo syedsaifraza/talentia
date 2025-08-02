@@ -59,7 +59,7 @@ function Page() {
 
         ))}
       </div>
-      <h2 className="text-xl font-semibold mb-4 mt-4">Followings</h2>
+      {/* <h2 className="text-xl font-semibold mb-4 mt-4">Followings</h2>
       {followings.length<1 &&  <NoData/> }
       <div className="flex flex-wrap gap-4">
         {followings.map((user: any, index: number) => (
@@ -129,7 +129,7 @@ function Page() {
           </div>
 
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

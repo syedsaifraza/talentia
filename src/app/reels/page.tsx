@@ -35,9 +35,23 @@ export default function ReelsView() {
   const reelsState = useSelector((state: any) => state.reels.reels);
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const router = useRouter();
   const [mutedState, setMutedState] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Get reel index from query string
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const reelIdx = params.get('reel');
+      if (reelIdx && containerRef.current) {
+        const idx = parseInt(reelIdx, 10);
+        const reelDivs = containerRef.current.querySelectorAll('.snap-start');
+        if (reelDivs[idx]) {
+          (reelDivs[idx] as HTMLElement).scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
+      }
+    }
+  }, []);
 
   // Scroll vertically by one reel
   const scrollByReel = (direction: "up" | "down") => {

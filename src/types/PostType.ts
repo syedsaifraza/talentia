@@ -1,3 +1,4 @@
+
 export interface StatusType{
   fileURL: any;
   id: number; 
@@ -18,6 +19,9 @@ export interface PostType {
     id: number;
     text: string;
     isDeleted:boolean|undefined,
+    likes :string[]|undefined,
+    comments:string[]|undefined,
+    createdAt:any|undefined,
     media: {
       type: "image" | "video";
       url: string;

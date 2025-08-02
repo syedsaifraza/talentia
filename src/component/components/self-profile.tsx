@@ -65,7 +65,7 @@ export default function SelfProfile  ()  {
         }}>
             <Link href={`/account/${userState.id}`}>
           {/* <Link href="/account/profile"> */}
-          {userState==null ? <DefaultAvatar  size={50} />: <DefaultAvatar imageUrl={userState.profilePhoto||userState.logoURL}  size={80} />}
+          {userState==null ? <DefaultAvatar  size={50} />: <DefaultAvatar imageUrl={userState.profilePhoto||userState.logoURL}  size={120} />}
         </Link> 
         </div>
         <div className="mx-4">

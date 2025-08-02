@@ -22,7 +22,7 @@ const getBackgroundColor = (char: string): string => {
     return colors[code - 65];
   }
   // Fallback color for non-alphabet characters
-  return "#7f8c8d";
+  return "#7f8c8ds";
 };
 
 const NameAvatar: React.FC<NameAvatarProps> = ({ name, size }) => {

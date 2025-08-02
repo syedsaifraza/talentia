@@ -60,19 +60,19 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
   return (
     <>
     {selectedStatus !== null && (
-          <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-95 gap-10" style={{zIndex:5000}}>
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-95 gap-10" style={{zIndex:5000}}>
             <div>
               <button
                 onClick={handlePrevious}
-                className="ml-5 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 z-50"
+                 className="bg-white/20 hover:bg-white/30 p-2 kabir-suraj rounded-full text-white"
                 disabled={selectedStatus === 0}
               >
-                <FaAngleLeft className="text-[25px]" />
+                <FaAngleLeft size={28} color="white" />
               </button>
             </div>
 
             <div className="flex flex-col">
-              <div className="flex p-2 w-[350px] absolute gap-2 bg-[#000000ba] items-center">
+              <div className="flex p-2 w-[300px] absolute gap-2 bg-[#000000ba] items-center">
                 <div className="w-12 h-12 border-2 border-blue-500 rounded-full">
                   <Image
                     width={100}
@@ -91,7 +91,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
                 </div>
               </div>
 
-              <div className="w-[350px] h-[550px]">
+              <div className="w-[400px] h-full flex justify-center border-1 border-white">
                  {statusUpdates.status[selectedStatus].fileURL!=null?
                   <div className="flex justify-center items-center p-5" style={{  minHeight:'80vh',width:'500px' }}>
                   <span className="text-white"></span>
@@ -104,7 +104,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
                     className="w-full h-full object-cover"
                   />}
                   </div>:
-                  <div className="flex justify-center items-center p-5" style={{ background: "#f87171",minHeight:'80vh',width:'500px' }}>
+                  <div className="flex justify-center items-center p-5" style={{ background: "#f87171",height:'90vh',width:'400px' }}>
                     
                     <div className="text-white text-lg">{statusUpdates.status[selectedStatus].text}  </div>
                     </div>}
@@ -115,16 +115,16 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
             <div>
               <button
                 onClick={handleNext}
-                className="mr-5 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 z-50"
+               className="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white"
                 // disabled={selectedStatus === initialReelsData.length - 1}
               >
-                <FaAngleRight className="text-[25px]" />
+                <FaAngleRight size={28} color="white"/>
               </button>
               <button
                 onClick={closeOverlay}
-                className="absolute top-4 right-4 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 z-50"
+                className="absolute top-4 left-4 bg-white bg-opacity-50 rounded-full bg-white/20 hover:bg-white/30 p-2  hover:bg-opacity-75 z-50"
               >
-                <IoClose className="text-[30px]" />
+                <IoClose className="text-[30px]" color="white" />
               </button>
             </div>
           </div>

@@ -5,7 +5,7 @@ import { FaWhatsapp, FaFacebookF, FaXTwitter, FaLinkedinIn } from "react-icons/f
 import { IoMail, IoClose} from "react-icons/io5";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { FiMessageSquare, FiCopy } from "react-icons/fi";
-import { Bookmark, EyeOff, MoreVertical } from "lucide-react";
+import { Bookmark, EyeOff, MoreVertical, SquarePen, Trash } from "lucide-react";
 import moment from "moment";
 import { addComment, addLike } from "@/utils/apis/post";
 import { savePost, watchPostReels } from "@/utils/apis/profile";
@@ -17,14 +17,24 @@ import PostSkelatal from "../skelatal/PostSkelatal";
 import { handlePostRevalidation } from "./postRevalidation";
 import Link from "next/link";
 import { IoIosShareAlt,IoIosSend } from "react-icons/io";
+import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
+
 
 type PostProps = { 
   post: any; 
   ogImageLoader?: React.ReactNode;
   className?: string;
+  profileData?:any
 };
 
-const Post = ({ post, ogImageLoader, className = "" }: PostProps) => { 
+
+
+
+const Post = ({ post, ogImageLoader,profileData, className = "" }: PostProps) => { 
+  
+
+
+
   const [likeCount, setLikeCount] = useState(post.likes?.length || 0);
   const [isCommentSectionOpen, setIsCommentSectionOpen] = useState(false);
   const [comments, setComments] = useState<CommentType[]>(post.comments || []);
@@ -46,6 +56,13 @@ const Post = ({ post, ogImageLoader, className = "" }: PostProps) => {
     addLike(postId);
     setLikeCount((prev:any) => (isLiked ? prev - 1 : prev + 1));
     setIsLiked((prev:any) => !prev);
+
+  
+    
+console.log(post.user.user_id)
+    console.log(profileData.data.id)
+    console.log(profileData)
+    console.log(post)
   };  
   
   const handleSavePost = (postId: any) => {
@@ -53,6 +70,7 @@ const Post = ({ post, ogImageLoader, className = "" }: PostProps) => {
     setIsSaved(!isSaved);
     setIsMenuOpen(false);
   };
+
 
 
  
@@ -81,7 +99,7 @@ const Post = ({ post, ogImageLoader, className = "" }: PostProps) => {
     const match = text.match(/https?:\/\/[^\s"'<>()]+/);
     return match ? match[0] : null;
   };
-
+  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -159,6 +177,23 @@ const Post = ({ post, ogImageLoader, className = "" }: PostProps) => {
                   <EyeOff className="w-4 h-4 mr-2" />
                   Ignore Post
                 </button>
+                {/* Show Edit/Delete only for user's own post, safely check profileData */}
+                {profileData && profileData.data && post.user.user_id === profileData.data.id && (
+                  <>
+                    <button
+                      onClick={() => {/* TODO: Add edit logic here */}}
+                       className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                    >
+                      <SquarePen className="w-4 h-4 mr-2"/> Edit Post
+                    </button>
+                    <button
+                      onClick={() => {/* TODO: Add delete logic here */}}
+                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                    >
+                      <Trash  className="w-4 h-4 mr-2"/> Delete Post
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           )}
@@ -168,7 +203,7 @@ const Post = ({ post, ogImageLoader, className = "" }: PostProps) => {
       {/* Post Content */}
       <div className="px-4 pb-2">
         {extractFirstURL(post.text) !== post.text && (
-          <div className="mb-3 text-gray-800">
+          <div className="mb-2 text-gray-800">
             {post.text.length > 100 ? <ReadMore text={post.text} /> : <p>{post.text}</p>}
           </div>
         )}
@@ -177,22 +212,26 @@ const Post = ({ post, ogImageLoader, className = "" }: PostProps) => {
 
         {/* Media Content */}
         {post.fileURL && (
-          <div className="rounded-lg overflow-hidden bg-gray-50 my-2 flex justify-center items-center">
+          <div className="rounded-lg overflow-hidden bg-gray-50 my-0 flex justify-center items-center">
             {!post.fileURL.includes(".mp4") ? (
-              <Suspense fallback={<div className="w-full h-64 bg-gray-200 animate-pulse" />}>
-                <Image
-                  width={600}
-                  height={500}
+             <Suspense
+                fallback={
+                  <div className="w-full aspect-square max-w-[500px] bg-gray-200 animate-pulse" />
+                }
+              >
+                <img
                   src={post.fileURL}
                   alt="Post Media"
-                  className="w-full max-h-[70vh] object-contain"
+                  className="w-full aspect-square max-w-[500px] object-contain"
+                  style={{ width: '100%', height: 'auto', maxWidth: '500px', aspectRatio: '1/1' }}
                 />
               </Suspense>
             ) : (
               <Suspense fallback={<div className="w-full h-64 bg-gray-200 animate-pulse" />}>
                 <video
                   controls
-                  className="w-full max-h-[70vh] object-contain"
+                  
+                  className="w-full max-h-[30vh] object-contain"
                   onPlay={() => watchPost(post.id)}
                 >
                   <source src={post.fileURL} type="video/mp4" />
@@ -307,55 +346,86 @@ const Post = ({ post, ogImageLoader, className = "" }: PostProps) => {
               </button>
             </div>
 
-            <div className="p-6 grid grid-cols-3 gap-4">
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-                  alert("Link copied to clipboard!");
-                }}
-                className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50"
-              >
-                <div className="bg-gray-700 p-3 rounded-full">
-                  <FiCopy className="text-2xl text-white" />
-                </div>
-                <span className="text-sm">Copy Link</span>
-              </button>
-              
-              <button className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
-                <div className="bg-green-500 p-3 rounded-full">
-                  <FaWhatsapp className="text-2xl text-white" />
-                </div>
-                <span className="text-sm">WhatsApp</span>
-              </button>
+          <div className="p-6 grid grid-cols-3 gap-4">
+  {/* Copy Link Button */}
+  <button
+    onClick={() => {
+      navigator.clipboard.writeText(window.location.href);
+      alert("Link copied to clipboard!");
+    }}
+    className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50"
+  >
+    <div className="bg-gray-700 p-3 rounded-full">
+      <FiCopy className="text-2xl text-white" />
+    </div>
+    <span className="text-sm">Copy Link</span>
+  </button>
+  
+  {/* WhatsApp Button */}
+  <button 
+    onClick={() => {
+      window.open(`https://wa.me/?text=${encodeURIComponent(window.location.href)}`, '_blank');
+    }}
+    className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50"
+  >
+    <div className="bg-green-500 p-3 rounded-full">
+      <FaWhatsapp className="text-2xl text-white" />
+    </div>
+    <span className="text-sm">WhatsApp</span>
+  </button>
 
-              <button className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
-                <div className="bg-blue-600 p-3 rounded-full">
-                  <FaFacebookF className="text-2xl text-white" />
-                </div>
-                <span className="text-sm">Facebook</span>
-              </button>
+  {/* Facebook Button */}
+  <button 
+    onClick={() => {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+    }}
+    className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50"
+  >
+    <div className="bg-blue-600 p-3 rounded-full">
+      <FaFacebookF className="text-2xl text-white" />
+    </div>
+    <span className="text-sm">Facebook</span>
+  </button>
 
-              <button className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
-                <div className="bg-black p-3 rounded-full">
-                  <FaXTwitter className="text-2xl text-white" />
-                </div>
-                <span className="text-sm">Twitter</span>
-              </button>
+  {/* Twitter Button */}
+  <button 
+    onClick={() => {
+      window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`, '_blank');
+    }}
+    className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50"
+  >
+    <div className="bg-black p-3 rounded-full">
+      <FaXTwitter className="text-2xl text-white" />
+    </div>
+    <span className="text-sm">Twitter</span>
+  </button>
 
-              <button className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
-                <div className="bg-blue-700 p-3 rounded-full">
-                  <FaLinkedinIn className="text-2xl text-white" />
-                </div>
-                <span className="text-sm">LinkedIn</span>
-              </button>
+  {/* LinkedIn Button */}
+  <button 
+    onClick={() => {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank');
+    }}
+    className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50"
+  >
+    <div className="bg-blue-700 p-3 rounded-full">
+      <FaLinkedinIn className="text-2xl text-white" />
+    </div>
+    <span className="text-sm">LinkedIn</span>
+  </button>
 
-              <button className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
-                <div className="bg-red-600 p-3 rounded-full">
-                  <IoMail className="text-2xl text-white" />
-                </div>
-                <span className="text-sm">Email</span>
-              </button>
-            </div>
+  {/* Email Button */}
+  <button 
+    onClick={() => {
+      window.open(`mailto:?body=${encodeURIComponent(window.location.href)}`, '_blank');
+    }}
+    className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50"
+  >
+    <div className="bg-red-600 p-3 rounded-full">
+      <IoMail className="text-2xl text-red-600" />
+    </div>
+    <span className="text-sm">Email</span>
+  </button>
+</div>
           </div>
         </div>
       )}

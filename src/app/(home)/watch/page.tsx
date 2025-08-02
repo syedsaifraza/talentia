@@ -10,6 +10,7 @@ import { cookies } from "next/headers";
 
 export default async function WatchList() {
   let posts: PostType[] = [];
+  
 
   try {
      
@@ -23,7 +24,9 @@ export default async function WatchList() {
   } catch (error) {
     console.error("Failed to fetch posts:", error);
   }
-
+//  const handleScroll = (e:any) => {
+// 		 alert("I am scrolling")
+// 	};
   return (
     <>
     
