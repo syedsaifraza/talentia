@@ -9,15 +9,21 @@ import TalentsView from "@/component/components/TalentsView";
 import OgImageLoader from "@/component/components/OgImageLoader";
 import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
 
-export default async function PostList({ searchParams, }: { searchParams?: { filter?: string } }) {
-  const activeFilter = searchParams?.filter || 'all';
+interface PageProps {
+  searchParams?: {
+    filter?: string;
+  };
+}
+
+export default async function PostList({ searchParams = {} }: PageProps) {
+  const activeFilter = searchParams.filter || 'all';
   const cookieStore = cookies();
-  const token = (await cookieStore).get("token");
+  const token = await cookieStore.get("token")?.value;
 
   // Fetch user profile data
   let savedPostIds: string[] = [];
   try {
-    const { profileData } = await fetchUserProfileAndInstitute(token?.value ?? "");
+    const { profileData } = await fetchUserProfileAndInstitute(token ?? "");
     savedPostIds = profileData?.data?.savedPosts ?? [];
   } catch (error) {
     console.error("Failed to fetch user profile:", error);
@@ -26,7 +32,7 @@ export default async function PostList({ searchParams, }: { searchParams?: { fil
   // Fetch all posts
   let posts: PostType[] = [];
   try {
-    const res = await getPosts(token?.value ?? "");
+    const res = await getPosts(token ?? "");
     if (res?.posts) {
       posts = res.posts.filter((post): post is PostType => post.isDeleted !== true);
     }
