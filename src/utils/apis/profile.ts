@@ -42,6 +42,8 @@ export const createProfile= async (formData: FormData): Promise<ProfileResponse>
     };
   }
 };
+
+
 export const addFollower = async (followerId: string): Promise<AuthResponse> => {
   try {
     const token = Cookies.get("token");
@@ -84,6 +86,44 @@ const raw = JSON.stringify({
       body:raw,
       credentials: "include",
     });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error following user:", error);
+    return { success: false,  message: "Following failed" };
+  }
+};
+
+
+
+export const blogPost = async (formData: object): Promise<AuthResponse> => {
+
+
+console.log(JSON.stringify(formData))
+
+// const data ={
+//   type,  postId}
+// console.log(data);
+
+// const raw = JSON.stringify({
+//   "title": "Talentia Blog Post",
+//   "description": "This is a sample blog post content.",
+//   "file": "https://example.com/image.jpg",
+//   "category": "Education",
+//   "subcategory": "Technology",
+//   "tags": ["education", "technology"],
+// });
+  try {
+    const token = Cookies.get("token");
+    const response = await fetch(`https://talentia.org.in/api/blogs/add`, {
+      method: "POST",
+      headers: { "Authorization": `Bearer ${token}` ,
+        "Content-Type": "application/json"},
+      body:JSON.stringify(formData),
+      credentials: "include",
+    });
+
+    console.log("Response from blogPost:", response);
 
     return await response.json();
   } catch (error) {

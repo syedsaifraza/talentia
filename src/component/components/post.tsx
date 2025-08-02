@@ -13,7 +13,7 @@ import { FiMessageSquare, FiCopy } from "react-icons/fi";
 import { Bookmark, EyeOff, MoreVertical, SquarePen, Trash } from "lucide-react";
 import moment from "moment";
 import { addComment, addLike } from "@/utils/apis/post";
-import { savePost, watchPostReels } from "@/utils/apis/profile";
+import { blogPost, savePost, watchPostReels } from "@/utils/apis/profile";
 import { useSelector } from "react-redux";
 import { CommentType, Feelings, PostType } from "@/lib/interfaces/types";
 import ReadMore from "./ReadMore";
@@ -62,6 +62,7 @@ const Post = ({
     addLike(postId);
     setLikeCount((prev: any) => (isLiked ? prev - 1 : prev + 1));
     setIsLiked((prev: any) => !prev);
+   
 
     console.log(post.user.user_id);
     console.log(post);

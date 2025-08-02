@@ -57,6 +57,10 @@ export default function MainPostCard({
     }
   };
 
+  
+
+
+
   const handlePostTextAdd = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const length = e.target.value.length;
     setPostText(e.target.value); // Update postText
