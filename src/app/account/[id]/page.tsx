@@ -95,7 +95,7 @@ const getuse = followers.map((id: any) => (
 
       {/* Tabs */}
       <div className="border-b bg-white mt-2 px-8 md:px-16">
-        <AccountTabs userGallery={ <UserGallery id={id} /> } userPosts={<UserPosts id={id}/>} userVideos={<UserVideos id={id}/>} />
+        <AccountTabs userGallery={ <UserGallery id={id} /> } userPosts={<UserPosts  id={id}/>} userVideos={<UserVideos id={id}/>} />
       </div>
 
       {/* Main Content */}

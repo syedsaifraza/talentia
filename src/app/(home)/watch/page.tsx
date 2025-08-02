@@ -5,17 +5,20 @@ import OgImageLoader from "@/component/components/OgImageLoader";
 import { PostType } from "@/types/PostType";
 import PostSkelatal from "@/component/skelatal/PostSkelatal";
 import { cookies } from "next/headers";
+import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
 
 
 
 export default async function WatchList() {
   let posts: PostType[] = [];
+
+    const cookieStore = cookies();  // Get the cookie store
+    const token = (await cookieStore).get('token');
   
 
   try {
      
-    const cookieStore = cookies();  // Get the cookie store
-    const token = (await cookieStore).get('token');
+  
     const res = await getPosts(token?.value||"no token");
     
     if (res && res.posts) {
@@ -27,6 +30,8 @@ export default async function WatchList() {
 //  const handleScroll = (e:any) => {
 // 		 alert("I am scrolling")
 // 	};
+
+  const { profileData } =  await fetchUserProfileAndInstitute(token?.value ?? "")
   return (
     <>
     
@@ -46,7 +51,7 @@ export default async function WatchList() {
             posts
               .filter((post) => post.fileURL && post.fileURL.includes(".mp4"))
               .map((post, id) => (
-                <Post post={post} ogImageLoader={<OgImageLoader text={post.text} />} key={id} />
+                <Post post={post} profileData={profileData} ogImageLoader={<OgImageLoader text={post.text} />} key={id} />
               ))}
         </ul>
       )}

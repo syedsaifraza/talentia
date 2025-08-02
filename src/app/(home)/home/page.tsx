@@ -10,6 +10,7 @@ import AddPost from "@/component/components/AddPost";
 import ReelsScroller from "@/component/components/ReelsScroller";
 import TalentsView from "@/component/components/TalentsView";
 import OgImageLoader from "@/component/components/OgImageLoader";
+import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
 
 export default async function PostList() {
   const cookieStore = cookies();
@@ -28,6 +29,7 @@ export default async function PostList() {
     console.error("Failed to fetch posts:", error);
   }
 
+   const { profileData } =  await fetchUserProfileAndInstitute(token?.value ?? "")
   return (
     < >
       <AddPost />
@@ -46,8 +48,8 @@ export default async function PostList() {
             {posts.map((post, idz) => 
             (idz==0 || idz%3==0)? <div  key={idz} >
               <TalentsView />
-            <Post post={post} ogImageLoader={<OgImageLoader text={post.text}/>} />
-            </div>:<Post post={post}  ogImageLoader={<OgImageLoader text={post.text}/>} />
+            <Post post={post} profileData={profileData} ogImageLoader={<OgImageLoader text={post.text}/>} />
+            </div>:<Post post={post} profileData={profileData}  ogImageLoader={<OgImageLoader text={post.text}/>} />
              )}
           </div>
         )}

@@ -10,6 +10,7 @@ import TalentsView from "@/component/components/TalentsView";
 import NotFoundPage from "@/app/not-found";
 import EmptyState from "./EmptyState";
 import OgImageLoader from "./OgImageLoader";
+import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
 
 export default async function UserPosts({id}:{id:string}) {
   const cookieStore = cookies();
@@ -29,6 +30,9 @@ export default async function UserPosts({id}:{id:string}) {
     console.error("Failed to fetch posts:", error);
   }
 
+
+    const { profileData } =  await fetchUserProfileAndInstitute(token?.value ?? "")
+
   return (
     <>
        
@@ -43,7 +47,7 @@ export default async function UserPosts({id}:{id:string}) {
             {posts.map((post, idz) => 
             <>
           
-            <Post post={post} ogImageLoader={<OgImageLoader text={post.text}/>} /></>
+            <Post profileData={profileData} post={post} ogImageLoader={<OgImageLoader text={post.text}/>} /></>
              )}
           </div>
         )}
