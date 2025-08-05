@@ -20,10 +20,10 @@ export interface RegisterData {
   }
   
   export interface AuthResponse {
-    
     success: boolean;
     message: string;
-    token?: string; 
+    token?: string;
+    posts?: any[];
   }
   export interface UserAsResponse {
     
