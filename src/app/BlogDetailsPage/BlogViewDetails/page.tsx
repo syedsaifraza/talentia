@@ -3,19 +3,32 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { getBlog } from "@/utils/apis/blog";
+
+import { getBlog, getUser } from "@/utils/apis/blog";
 import { FaArrowLeft } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 
+interface Blog {
+  blogId :string
+}
 
 
-// Next.js app router: get searchParams from props
-export default function MainBlogPage({ searchParams }: { searchParams: { [key: string]: string } }) {
-  const blogId = searchParams?.id;
+export default function MainBlogPage() {
+  
+
+
+
+  let blogId = null;
   const [blog, setBlog] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(()=>{
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    blogId = id || null;
+  },[])
 
   useEffect(() => {
     if (!blogId) {
