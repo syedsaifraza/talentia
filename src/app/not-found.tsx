@@ -1,11 +1,24 @@
 "use client"
+import { getUser } from "@/utils/apis/profile";
 import Image from "next/image";
+import { useEffect } from "react";
 
-export default function NotFoundPage({user}:any) {
+export default async function NotFoundPage({followings,followers}:any) {
+
+
+ 
+  async function getthedata (id:string){
+    console.log("yahi hai is ", id)
+    const userData = await getUser(id)
+    console.log(userData)
+  }
+
+
+
     return (
       <div className="flex items-center justify-center h-screen bg-gray-100">
         <div className="text-center">
-          <button onClick={()=>console.log(user)}>
+          <button onClick={()=>getthedata(followers[0]) }>
             hello
           </button>
           

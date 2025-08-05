@@ -202,6 +202,8 @@ export const getProfiles = async (
 
 
 export const getUser = async (id: string): Promise<ProfileResponse> => {
+
+  
   try {
     const response = await fetch(`${API_BASE_URL}/${id}`, {
       method: "GET",
@@ -217,6 +219,8 @@ export const getUser = async (id: string): Promise<ProfileResponse> => {
     };
   }
 };
+
+
 
 export const updateUser = async (
   id: string, 

@@ -38,6 +38,9 @@ export default async function ProfileView({params}:{params:any}) {
   const followers  =  user.followers||[];
   const followings = user.followings||[];
 
+
+
+
 const { instituteData, profileData,statusData,reelsData } = await fetchUserProfileAndInstitute(token)
 
 const getuse = followers.map((id: any) => (
@@ -69,7 +72,7 @@ const getuse = followers.map((id: any) => (
 
       <div> 
        {followers.length > 0 ? (
-  <NotFoundPage user={await fetchUserByUid(token, followers[0])} />
+  <NotFoundPage followers={followers} followings={followings}  />
 ) : (
   <div></div>
 )}

@@ -2,6 +2,7 @@ import { statSync } from "fs";
 import { AuthResponse, InstituteLoginData, LoginData, RegisterData, UserAsResponse } from "../auth-helper";
 import { ResetPasswordData, ResetPasswordResponse } from "@/lib/interfaces/types";
 
+
 const API_BASE_URL = "https://talentia.org.in/auth"; // Replace with your actual API URL
 
 export const fetchUserProfileAndInstitute = async (token:string) => {
@@ -47,6 +48,16 @@ export const fetchUserProfileAndInstitute = async (token:string) => {
   return { instituteData, profileData ,statusData,reelsData };
 };
 
+
+
+// export const getTokken = async () => {
+//    const cookieStore = cookies();
+//   const token = (await cookieStore).get("token");  
+
+//   return token
+
+// }
+ 
 
 export const registerUser = async (userData: RegisterData): Promise<AuthResponse> => {
   try { 
@@ -150,6 +161,8 @@ export const fetchUserByUid = async (token: string,uid:string): Promise<UserAsRe
     return {  success: false, message: "Failed to fetch user",token:"no" };
   }
 };
+
+
 export const fetchUser = async (token: string): Promise<AuthResponse> => {
   try {
     const response = await fetch(`${API_BASE_URL}/me`, {

@@ -22,7 +22,7 @@ import PostSkelatal from "../skelatal/PostSkelatal";
 import { handlePostRevalidation } from "./postRevalidation";
 import Link from "next/link";
 import { IoIosShareAlt, IoIosSend } from "react-icons/io";
-import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
+
 
 type PostProps = {
   post: any;
@@ -64,7 +64,8 @@ const Post = ({
     setIsLiked((prev: any) => !prev);
    
 
-    console.log(post.user.user_id);
+    // console.log(post.user.user_id);
+   
     console.log(post);
     console.log("hello sir");
     console.log(profileData);
@@ -102,6 +103,10 @@ const Post = ({
   };
 
   useEffect(() => {
+
+
+
+
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsMenuOpen(false);

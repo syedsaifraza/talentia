@@ -18,6 +18,10 @@ export default async function PostList() {
 
   let posts: PostType[] = [];
 
+
+
+  
+
   try {
     const res = await getPosts(token?.value || "no token");
 
