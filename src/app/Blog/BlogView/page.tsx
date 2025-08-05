@@ -142,7 +142,8 @@
 
 "use client";
 
-import { blogPost } from "@/utils/apis/profile";
+ 
+import { addBlog } from "@/utils/apis/blog";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, ChangeEvent } from "react";
@@ -255,18 +256,28 @@ export default function BlogPage() {
     }
     
     // Prepare form data for submission
-    const formData = {
-      title: blogForm.title,
-      description: blogForm.description,
-      image: imageBinary,
-      category: blogForm.category,
-      tags: blogForm.tags,
-      subcategory: blogForm.subcategory,
-      content: blogForm.content,
-    };
+    // const formData = {
+    //   title: blogForm.title,
+    //   description: blogForm.description,
+    //   image: imageBinary,
+    //   category: blogForm.category,
+    //   tags: blogForm.tags,
+    //   subcategory: blogForm.subcategory,
+    //   content: blogForm.content,
+    // };
+     
+    const formData = new FormData();
+    formData.append('title',blogForm.title)
+    formData.append('description',blogForm.description);
+    formData.append('category',blogForm.category);
+    formData.append('subcategory',blogForm.subcategory);
+    formData.append('tags',"name");
+    formData.append('content',"some conent");
+    formData.append('file',blogForm.file!)
 
-    blogPost(formData)
+    const response =await  addBlog(formData);
     
+    if(response.success===true){
     console.log("Form Data to Submit:", formData);
     
     // Here you would typically send the data to your API
@@ -284,6 +295,9 @@ export default function BlogPage() {
       content: "",
     });
     setShowForm(false);
+  }else{
+  alert(response.message)
+  }
   };
 
   const readFileAsBinary = (file: File): Promise<string> => {

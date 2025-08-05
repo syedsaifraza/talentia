@@ -6,6 +6,8 @@ import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import {store} from "@/store/index" 
 import ProtectedRoute from "@/component/ProtectedRoute";
+import { useEffect, useState } from "react";
+import useSocket from "../hooks/useSocket";
  
 
 
@@ -24,7 +26,28 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
  
+ const socketRef = useSocket('https://talentia.org.in/socket.io');  // <-- Your Node.js server URL
+    const [messages, setMessages] = useState([]);
 
+    useEffect(() => {
+        if (!socketRef.current) return;
+
+        socketRef.current.on('connect', () => {
+            console.log('Connected to socket server');
+        });
+
+        // socketRef.current.on('receive-message', (msg) => {
+        //     setMessages((prev) => [...prev, msg]);
+        // });
+
+        return () => {
+            if (socketRef.current) {
+                socketRef.current.off('receive-message');
+            }
+        };
+    }, [socketRef]);
+
+   
 
    
 
