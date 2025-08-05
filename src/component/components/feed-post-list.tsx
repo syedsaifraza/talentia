@@ -71,8 +71,8 @@ export default function FeedPostList({posts}:{posts:PostType[]}){
   
    return <>
     {/* <p>URL PArsms is {JSON.stringify(headersList)}</p> */}
-          <div className="flex-1 overflow-y-auto h-[89vh]">
-            <div className="max-w-2xl mx-auto px-4 w-[50vh]">
+          <div className="flex-1 overflow-y-auto pt-4 ">
+            <div className="max-w-2xl mx-auto px-4  w-[50vh]">
               {filteredPosts.length === 0 ? (
                 <div key={Math.random()*1000}>
                   <PostSkelatal key={"cas1"} />

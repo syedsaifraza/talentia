@@ -32,7 +32,7 @@ export default async function Feed() {
 
   return (
     
-    <div className="flex h-full">
+    <div className="flex  h-[89vh]">
       {/* Feed Content - Scrollable */}
        {/* Content Here  */}
        

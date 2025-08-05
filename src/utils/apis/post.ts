@@ -9,7 +9,6 @@ const API_BASE_URL = "https://talentia.org.in/api/posts";
 
 export const getPosts = async (token:string): Promise<{ posts: PostType[] }> => {
   try {
-   
     const response = await fetch(`${API_BASE_URL}/`, {  
       method: "GET",
       headers: {
@@ -17,10 +16,7 @@ export const getPosts = async (token:string): Promise<{ posts: PostType[] }> => 
       },
       credentials: "include",
     });
-
     const data = await response.json();
- 
-
     return { posts: data.posts || [] }; // Safely handle if posts is undefined
   } catch (error) {
     console.error("Error during fetching posts:", error);

@@ -243,7 +243,7 @@ const Post = ({
                   style={{
                     width: "100%",
                     height: "auto",
-                    maxWidth: "500px",
+                    maxWidth: "auto",
                     aspectRatio: "1/1",
                   }}
                 />
@@ -256,8 +256,14 @@ const Post = ({
               >
                 <video
                   controls
-                  className="w-full max-h-[30vh] object-contain"
+                  className="w-full  object-contain"
                   onPlay={() => watchPost(post.id)}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    maxWidth: "600px",
+                    aspectRatio: "1/1",
+                  }}
                 >
                   <source src={post.fileURL} type="video/mp4" />
                   Your browser does not support the video tag.

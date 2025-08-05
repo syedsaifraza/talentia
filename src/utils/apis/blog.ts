@@ -43,6 +43,26 @@ export const addBlog = async (formData: FormData): Promise<AuthResponse> => {
   }
 };
 
+export const getBlog = async (): Promise<AuthResponse> => {
+  try {
+    const token = Cookies.get("token");
+    const response = await fetch(`${API_BASE_URL}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      },
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    // console.log("Blog data:", data);
+    return await data;
+  } catch (error) {
+    console.error("Error following user:", error);
+    return { success: false,  message: "Following failed" };
+  }
+};
+
 
 export const watchPostReels = async (type: string,postId:string): Promise<AuthResponse> => {
   const formData = {

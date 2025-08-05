@@ -58,7 +58,7 @@ const OgImageLoader = async ({ text }: Props) => {
     <div className="space-y-4">
       {ogData && (
         <Link href={url||""} target='_blank'> 
-        <div className="border rounded-lg overflow-hidden shadow-md max-w-lg">
+        <div className="rounded-lg shadow-lg  max-w-full">
           {ogData.image && (
             <img src={ogData.image} alt={ogData.title} className="w-full h-auto" />
           )}

@@ -29,7 +29,7 @@ export default function FilterForm() {
  
 
   return (
-    <div className="lg:block w-72 p-0 bg-white rounded-xl shadow-sm border border-gray-100 h-[89vh] sticky top-20 overflow-y-auto">
+    <div className="lg:block w-72  bg-white rounded-xl shadow-sm border border-red-100 top-4   pt-4 overflow-y-auto">
       <form method='get' action=""   className="w-72 p-5 bg-white rounded-xl">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-xl font-bold text-gray-800">Filters</h1>

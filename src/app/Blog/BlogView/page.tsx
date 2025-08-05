@@ -1,163 +1,25 @@
-// "use client";
-// import { useState } from "react"; 
-// import { IoClose } from "react-icons/io5";
-// import { MdOutlineArticle } from "react-icons/md"; 
-// import Image from "next/image";
-// import { IoMdCamera } from "react-icons/io";
-// import { useRef } from "react"; 
-
-// interface Media {
-//   type: "image" | "video";
-//   url: string;
-// }
-
-// export default function BlogPage() {
-//   const [media, setMedia] = useState<Media | null>(null);
-
-//   const fileInputRef = useRef<HTMLInputElement>(null);
-//   const handleMediaUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     const file = event.target.files?.[0];
-//     if (file) {
-//       const mediaUrl = URL.createObjectURL(file);
-//       if (file.type.startsWith("image/")) {
-//         setMedia({ type: "image", url: mediaUrl });
-//       } else if (file.type.startsWith("video/")) {
-//         setMedia({ type: "video", url: mediaUrl });
-//       }
-//     }
-//   };
-
-//   const handleRemoveMedia = () => {
-//     setMedia(null);
-//   };
-
-//   const handleAddButtonClick = () => {
-//     fileInputRef.current?.click();
-//   };
-
-//   return (
-//     <>
-//       <div>
-//         <ul className="flex flex-col gap-1 bg-white rounded-[12px]">
-//           <li className="flex flex-row gap-2 items-center bg-gray-200 py-6 px-3 rounded-t-[12px]">
-//             <MdOutlineArticle className="size-[30]" />
-//             <p className="font-bold">Write New Article</p>
-//           </li>
-//           <li className="p-3 flex flex-col gap-4 ">
-           
-//             <label className="flex flex-row  gap-[135px] ">
-//               <p className="text-black font-[500]">Title</p>
-//               <input
-//                 className="py-2 px-1 border w-full border-gray-200"
-//                 type="text"
-//               />
-//             </label>
-//             <label className="flex flex-row  gap-[107px] ">
-//             <p className="text-black font-[500]">Contant</p>
-//               <textarea
-//                 className="py-2 px-1 border w-full border-gray-200 resize-y min-h-[40vh]"
-//                 placeholder="Write your content here..."
-//               />
-//             </label>
-//             <label className="flex flex-row  gap-[125px] ">
-//             <p className="text-black font-[500]">Cover</p>
-//               <div
-//                 onClick={handleAddButtonClick}
-//                 className="flex justify-center align-center flex-col rounded-[10px]  w-[15vw] border border-blue-500 h-[30vh] relative"
-//               >
-//                 {media ? (
-//                   <div className=" relative">
-//                     <button
-//                       className="absolute top-2 right-2 z-10 p-1 bg-white rounded-full shadow-md hover:bg-gray-100"
-//                       onClick={(e) => {
-//                         e.stopPropagation();
-//                         handleRemoveMedia();
-//                       }}
-//                     >
-//                       <IoClose className="text-lg text-gray-700" />
-//                     </button>
-
-//                     {media.type === "image" ? (
-//                       <Image
-//                         width={100}
-//                         height={100}
-//                         src={media.url}
-//                         alt="Preview"
-//                         className="w-full h-full object-cover rounded-md"
-//                       />
-//                     ) : (
-//                       <video
-//                         controls
-//                         className="w-full h-full object-cover rounded-md"
-//                       >
-//                         <source src={media.url} type="video/mp4" />
-//                         Your browser does not support the video tag.
-//                       </video>
-//                     )}
-//                   </div>
-//                 ) : (
-//                   <div className="flex  flex-col justify-center items-center">
-//                     <IoMdCamera className="text-black text-[30px]" />
-//                   </div>
-//                 )}
-
-//                 <input
-//                   type="file"
-//                   accept="image/*, video/*"
-//                   onChange={handleMediaUpload}
-//                   className="hidden"
-//                   ref={fileInputRef}
-//                 />
-//               </div>
-//             </label>
-//             <label className="flex flex-row   gap-[100px] ">
-//             <p className="text-black font-[500]">Category</p>
-//               <select className=" w-full border text-[500] text-black py-3 px-1 border-gray-200">
-//                 <option className="text-black" selected>
-//                   Select Category
-//                 </option>
-//                 <option className="text-black">Only Friends</option>
-//                 <option className="text-black">EveryOne</option>
-//               </select>
-//             </label>
-//             <label className="flex flex-row  gap-[134px] ">
-//             <p className="text-black font-[500]">Tags</p>
-//               <input className="py-2 px-1 border w-full border-gray-200" />
-//             </label>
-//             <label className="flex flex-row  gap-[80px] ">
-//             <p className="text-black font-[500]">Enable Tips</p>
-//               <input type="checkbox" />
-//             </label>
-//           </li>
-//           <li className="flex flex-row gap-2 items-center bg-gray-200 py-6 px-3 rounded-b-[12px]">
-//             <button className="bg-blue-800 text-white font-bold px-4 py-2 rounded-[5px]">
-//               Publish
-//             </button>
-//           </li>
-//         </ul>
-//       </div>
-//     </>
-//   );
-// }
-
 "use client";
 
- 
-import { addBlog } from "@/utils/apis/blog";
+import { addBlog, getBlog } from "@/utils/apis/blog";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef, ChangeEvent } from "react";
+import { useState, useRef, ChangeEvent, useEffect } from "react";
 import { FiEdit } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 
 interface Blog {
-  id: number;
+  id: string;
   title: string;
   description: string;
   image: string;
-  avatar: string;
-  author: string;
-  date: string;
+  userDetails: {
+    name: string;
+    profilePhoto: string;
+  };
+  createdAt: {
+    _seconds: number;
+    _nanoseconds: number;
+  };
 }
 
 interface BlogForm {
@@ -172,22 +34,7 @@ interface BlogForm {
 }
 
 export default function BlogPage() {
-  const blogs: Blog[] = [
-    {
-      id: 1,
-      title: "I Built A Successful Blog In One Year",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris egestas quam volutpat viverra. In pretium nec senectus erat. Et malesuada lobortis.",
-      image:
-        "https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-      avatar:
-        "https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60",
-      author: "Jone Doe",
-      date: "21 SEP 2015",
-    },
-    // ... (keep your existing blog data)
-  ];
-
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [blogForm, setBlogForm] = useState<BlogForm>({
     title: "",
@@ -201,6 +48,22 @@ export default function BlogPage() {
   });
   const [tagInput, setTagInput] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await getBlog();
+        setBlogs(res.posts || []);
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch posts:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -249,67 +112,43 @@ export default function BlogPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Convert image to binary data if file exists
-    let imageBinary = null;
-    if (blogForm.file) {
-      imageBinary = await readFileAsBinary(blogForm.file);
-    }
-    
-    // Prepare form data for submission
-    // const formData = {
-    //   title: blogForm.title,
-    //   description: blogForm.description,
-    //   image: imageBinary,
-    //   category: blogForm.category,
-    //   tags: blogForm.tags,
-    //   subcategory: blogForm.subcategory,
-    //   content: blogForm.content,
-    // };
-     
     const formData = new FormData();
-    formData.append('title',blogForm.title)
-    formData.append('description',blogForm.description);
-    formData.append('category',blogForm.category);
-    formData.append('subcategory',blogForm.subcategory);
-    formData.append('tags',"name");
-    formData.append('content',"some conent");
-    formData.append('file',blogForm.file!)
+    formData.append('title', blogForm.title);
+    formData.append('description', blogForm.description);
+    formData.append('category', blogForm.category);
+    formData.append('subcategory', blogForm.subcategory);
+    formData.append('tags', "name");
+    formData.append('content', "some content");
+    if (blogForm.file) {
+      formData.append('file', blogForm.file);
+    }
 
-    const response =await  addBlog(formData);
+    const response = await addBlog(formData);
     
-    if(response.success===true){
-    console.log("Form Data to Submit:", formData);
-    
-    // Here you would typically send the data to your API
-    // For now, we'll just log it to the console
-    
-    // Reset form after submission
-    setBlogForm({
-      title: "",
-      description: "",
-      file: null,
-      filePreview: "",
-      category: "",
-      tags: [],
-      subcategory: "",
-      content: "",
-    });
-    setShowForm(false);
-  }else{
-  alert(response.message)
-  }
-  };
-
-  const readFileAsBinary = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const binaryString = reader.result as string;
-        resolve(binaryString);
-      };
-      reader.onerror = reject;
-      reader.readAsBinaryString(file);
-    });
+    if(response.success === true) {
+      // Refresh the blog list after successful submission
+      try {
+        const res = await getBlog();
+        setBlogs(res.posts || []);
+      } catch (error) {
+        console.error("Failed to fetch posts:", error);
+      }
+      
+      // Reset form after submission
+      setBlogForm({
+        title: "",
+        description: "",
+        file: null,
+        filePreview: "",
+        category: "",
+        tags: [],
+        subcategory: "",
+        content: "",
+      });
+      setShowForm(false);
+    } else {
+      alert(response.message);
+    }
   };
 
   const triggerFileInput = () => {
@@ -318,16 +157,34 @@ export default function BlogPage() {
     }
   };
 
+  // Function to format the date from Firebase timestamp
+  const formatDate = (firebaseTimestamp: { _seconds: number, _nanoseconds: number }) => {
+    const date = new Date(firebaseTimestamp._seconds * 1000);
+    return date.toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
   return (
     <>
-      <div className="flex felx-row justify-between gap-2 bg-white px-4">
+      <div className="flex flex-row justify-between gap-2 bg-white px-4">
         {/* Left column - Blog list */}
         <div className="flex-1 mt-2">
           <div className="space-y-6">
             {blogs.map((blog) => (
               <div
                 key={blog.id}
-                className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
+                className="max-w-2xl overflow-hidden bg-white rounded-lg  border-2 border-gray-300 dark:bg-gray-800"
               >
                 <Image
                   alt="blog cover"
@@ -335,6 +192,7 @@ export default function BlogPage() {
                   width={800}
                   className="object-cover w-full h-64"
                   src={blog.image}
+                  priority
                 />
                 <div className="p-4">
                   <div className="mt-4">
@@ -344,7 +202,7 @@ export default function BlogPage() {
                           height={40}
                           width={40}
                           className="object-cover h-10 rounded-full"
-                          src={blog.avatar}
+                          src={blog.userDetails.profilePhoto}
                           alt="Avatar"
                         />
                         <a
@@ -353,17 +211,17 @@ export default function BlogPage() {
                           tabIndex={0}
                           role="link"
                         >
-                          {blog.author}
+                          {blog.userDetails.name}
                         </a>
                       </div>
                       <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
-                        {blog.date}
+                        {formatDate(blog.createdAt)}
                       </span>
                     </div>
                   </div>
                   <div>
                     <Link
-                      href="/BlogDetailsPage/BlogViewDetails"
+                      href={`/BlogDetailsPage/BlogViewDetails?id=${blog.id}`}
                       className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
                       tabIndex={0}
                       role="link"
@@ -393,8 +251,6 @@ export default function BlogPage() {
                   Write New Article
                 </button>
               </div>
-              
-              {/* ... (keep your existing sidebar content) */}
             </ul>
           </div>
         </div>
