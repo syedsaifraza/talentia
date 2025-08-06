@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-
 import { getBlog, getUser } from "@/utils/apis/blog";
 import { FaArrowLeft } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";

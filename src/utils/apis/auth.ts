@@ -57,6 +57,8 @@ export const fetchUserProfileAndInstitute = async (token:string) => {
 //   return token
 
 // }
+
+
  
 
 export const registerUser = async (userData: RegisterData): Promise<AuthResponse> => {
