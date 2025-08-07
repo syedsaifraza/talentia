@@ -15,11 +15,11 @@ const Sidebar = () => {
   const appState = useSelector((state: any) => state.auth);
 
   const sideOptions = [
-    { name: "Feed", icon: "https://content.acetians.in/uploads/home.png", link: "/feed" },
+    { name: "Feed", icon: "https://content.acetians.in/uploads/home.png", link: "/env-pages/feed" },
     { name: "Connections", icon: "https://content.acetians.in/uploads/people.png", link: "/connection" },
     { name: "Blog", icon: "https://content.acetians.in/uploads/blog.png", link: "/Blog/blogview" },
     { name: "TalentVerse", icon: "https://content.acetians.in/uploads/confidence.png", link: "/reels" },
-    { name: "Saved", icon: "https://content.acetians.in/uploads/bookmark.png", link: "/saved" },
+    { name: "Saved", icon: "https://content.acetians.in/uploads/bookmark.png", link: "/env-pages/saved" },
     { name: "Watch History", icon: "https://content.acetians.in/uploads/reload.png", link: "/watches" },
     { name: "Communities", icon: "https://content.acetians.in/uploads/group.png", link: "/communities" },
     { name: "Birthday", icon: "https://content.acetians.in/uploads/birthday-cake.png", link: "/birthdays" },

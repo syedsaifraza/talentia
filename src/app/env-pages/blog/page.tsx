@@ -221,7 +221,7 @@ export default function BlogPage() {
                   </div>
                   <div>
                     <Link
-                      href={`/BlogDetailsPage/BlogViewDetails?id=${blog.id}`}
+                      href={`/env-pages/blog/view-blog?id=${blog.id}`}
                       className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
                       tabIndex={0}
                       role="link"

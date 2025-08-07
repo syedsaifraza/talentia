@@ -13,11 +13,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Suspense fallback={<h1>Loading</h1>}>
         <Navbar />
       </Suspense>
-      <div className="bg-gradient-to-br  from-purple-50 via-white to-pink-50 overflow-hidden">
+      <div className="bg-gradient-to-br  from-purple-50 via-white to-pink-50 overflow-none">
         <div className="w-full mx-auto  flex justify-between">
           {/* Left Sidebar */}
           <div
-            className="lg:w-[470px] py-3 pl-5 pr-3 box-border   overflow-scroll h-[89vh] gap-y-2"
+            className="lg:w-[400px] py-3 pl-5 pr-3 box-border   overflow-y-scroll h-[89vh] gap-y-2 relative"
             aria-label="Sidebar"
           >
             {/* <Sidebar /> */}

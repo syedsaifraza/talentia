@@ -14,9 +14,8 @@ interface Blog {
 
 
 export default function MainBlogPage() {
+
   
-
-
 
   let blogId = null;
   const [blog, setBlog] = useState<any>(null);
@@ -68,7 +67,7 @@ export default function MainBlogPage() {
     <>
       <div className="flex flex-row justify-evenly mx-auto px-[15vw]">
         <div className="">
-          <Link href="/Blog/blogview">
+          <Link href="/env-pages/blog">
             <FaArrowLeft />
           </Link>
           <main className="mt-10">

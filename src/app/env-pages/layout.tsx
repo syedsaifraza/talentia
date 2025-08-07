@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Navbar />
       <div className="w-full">
         {/* Centered Content */}
-        <main className="w-full  mt-4 px-4">
+        <main className="">
           <div className="">{children}</div>
         </main>
       </div>

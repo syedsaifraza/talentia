@@ -13,11 +13,11 @@ const Sidebar = () => {
   const appState = useSelector((state: any) => state.auth);
 
   const sideOptions = [
-    { name: "Feed", icon: "https://content.acetians.in/uploads/home.png", link: "/feed" },
+    { name: "Feed", icon: "https://content.acetians.in/uploads/home.png", link: "/env-pages/feed" },
     { name: "Connections", icon: "https://content.acetians.in/uploads/people.png", link: "/connection" },
-    { name: "Blog", icon: "https://content.acetians.in/uploads/blog.png", link: "/Blog/BlogView" },
+    { name: "Blog", icon: "https://content.acetians.in/uploads/blog.png", link: "/env-pages/blog" },
     { name: "TalentVerse", icon: "https://content.acetians.in/uploads/confidence.png", link: "/reels" },
-    { name: "Saved", icon: "https://content.acetians.in/uploads/bookmark.png", link: "/saved" },
+    { name: "Saved", icon: "https://content.acetians.in/uploads/bookmark.png", link: "/env-pages/saved" },
     { name: "Watch History", icon: "https://content.acetians.in/uploads/reload.png", link: "/watches" },
     { name: "Communities", icon: "https://content.acetians.in/uploads/group.png", link: "/communities" },
     { name: "Birthday", icon: "https://content.acetians.in/uploads/birthday-cake.png", link: "/birthdays" },
@@ -38,13 +38,12 @@ const Sidebar = () => {
   return (
     <aside id="default-sidebar" className="h-full relative " aria-label="Sidebar">
       <div className="h-full  overflow-y-auto dark:bg-gray-800 no-scrollbar">
-        <ul className="space-y-2 w-[310px] font-medium">
+        <ul className="space-y-2 pr-6 w-full font-medium">
           <li key={321} className="">
             <Suspense fallback={<SelfProfileSkelatal />}>
 
             </Suspense>
           </li>
-
           {appState.user != null && (
             <li key={211231}>
               <Link

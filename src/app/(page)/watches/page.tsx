@@ -55,8 +55,8 @@ const token = (await cookieStore).get("token");
           </div>
         )}
       </div>
-       <div className="w-[400px]  ">
-        {/* Content for the right sidebar */}
+       {/* <div className="w-[400px]  ">
+        
         <div className="fixed top-16 right-0 w-[400px] flex justify-end h-screen overflow-y-auto ">
 <aside
         style={{
@@ -94,7 +94,7 @@ const token = (await cookieStore).get("token");
       </aside>
         </div>
         
-      </div>
+      </div> */}
     </div>
   );
 }
