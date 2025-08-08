@@ -9,8 +9,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
-  display: block;
+  width: 1px;
+  display: none;
 }
 
 /* Track */
@@ -50,10 +50,43 @@ input:focus{
   transform: rotate(-45deg); 
 }
 
-/* #default-sidebar:hover ::-webkit-scrollbar {
+
+
+#default-sidebar ::-webkit-scrollbar {
   width: 8px;
   display: block;
-} */
+}
+
+#default-sidebar-1 ::-webkit-scrollbar {
+  width: 8px;
+  display: block;
+
+}
+
+#default-sidebar-1 ::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+/* Handle */
+#default-sidebar-1 ::-webkit-scrollbar-thumb {
+  background: #ffffff00;
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+#default-sidebar-1:hover ::-webkit-scrollbar-thumb {
+  background: #969696;
+}
+
+#default-sidebar-1:hover ::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+#default-sidebar-1:hover ::-webkit-scrollbar {
+  width: 8px;
+  display: block;
+}
+
 
 /* For WebKit browsers (Chrome, Safari) */
 .hover\:scrollbar-thin::-webkit-scrollbar {

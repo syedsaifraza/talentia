@@ -60,11 +60,11 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
   return (
     <>
     {selectedStatus !== null && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-95 gap-10" style={{zIndex:5000}}>
+          <div id="default-sidebar"   className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-95 gap-10 overflow-hidden" >
             <div>
               <button
                 onClick={handlePrevious}
-                 className="bg-white/20 hover:bg-white/30 p-2 kabir-suraj rounded-full text-white"
+                 className="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white"
                 disabled={selectedStatus === 0}
               >
                 <FaAngleLeft size={28} color="white" />
@@ -148,7 +148,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
 
 
     <ul className="flex border-1 border-black" 
-        ref=  {arrayName} style={{overflow:'scroll',height:'100px'}}>
+        ref=  {arrayName} style={{overflow:'scroll',scrollbarWidth:"none",height:'100px'}}>
           <li key={23111} className="text-indigo-500 px-2 ">
                 <div className="bg-gray-200 rounded-full 
                  border-2 border-green-500 hover:cursor-pointer">

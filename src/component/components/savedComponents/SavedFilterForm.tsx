@@ -38,7 +38,7 @@ export default function SavedFilter() {
     router.replace("/feed", { scroll: false });
   };
 
-   const menuItems = [
+  const menuItems = [
     {
       id: "all",
       label: "All Posts",
@@ -63,7 +63,7 @@ export default function SavedFilter() {
 
   return (
     <div className="w-[300px] h-full">
-      <div className="fixed bg-white left-0 w-[300px] flex flex-col h-screen overflow-y-auto">
+      <div className="fixed bg-white right-0 w-[300px] flex flex-col h-screen overflow-y-auto">
 
 
         <div className="flex items-center p-4 border-b border-gray-200 sticky top-0 bg-white z-10">
@@ -73,7 +73,7 @@ export default function SavedFilter() {
           >
             <IoClose size={24} className="text-gray-600" />
           </Link>
-          <h2 className="text-xl font-semibold text-gray-800">Feed</h2>
+          <h2 className="text-xl font-semibold text-gray-800">Saved</h2>
         </div>
 
 
@@ -109,16 +109,12 @@ export default function SavedFilter() {
               >
                 {item.label}
               </span>
-              {/* {activeTab === item.id && (
-                <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>
-              )} */}
+             
             </div>
           ))}
         </div>
       </div>
-      {/* Header */}
-
-      {/* Menu Items */}
+      
     </div>
   );
 }

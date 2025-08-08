@@ -20,7 +20,7 @@ const Sidebar = () => {
     { name: "Blog", icon: "https://content.acetians.in/uploads/blog.png", link: "/env-pages/blog" },
     { name: "TalentVerse", icon: "https://content.acetians.in/uploads/confidence.png", link: "/reels" },
     { name: "Saved", icon: "https://content.acetians.in/uploads/bookmark.png", link: "/env-pages/saved" },
-    { name: "Watch History", icon: "https://content.acetians.in/uploads/reload.png", link: "/watches" },
+    { name: "Watch History", icon: "https://content.acetians.in/uploads/reload.png", link: "/env-pages/watch-history" },
     { name: "Communities", icon: "https://content.acetians.in/uploads/group.png", link: "/communities" },
     { name: "Birthday", icon: "https://content.acetians.in/uploads/birthday-cake.png", link: "/birthdays" },
     { name: "Messages", icon: "https://content.acetians.in/uploads/chatting.png", link: "/messaging/view" },
@@ -38,8 +38,8 @@ const Sidebar = () => {
   };
 
   return (
-    <aside id="default-sidebar" className="h-full relative " aria-label="Sidebar">
-      <div className="h-full  w-full overflow-y-auto dark:bg-gray-800 no-scrollbar">
+    <aside id="default-sidebar-1" className="h-full relative " aria-label="Sidebar">
+      <div className="h-full  w-full overflow-y-auto dark:bg-gray-800 " style={{paddingRight:"14px"}}>
         <ul className="space-y-2 w-[310px] font-medium">
           <li key={321} className="">
             <Suspense fallback={<SelfProfileSkelatal />}>

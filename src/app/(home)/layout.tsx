@@ -30,13 +30,13 @@ export default function Layout({ children}: { children: React.ReactNode }) {
     <Suspense fallback={<h1>Loading</h1>}>
         <Navbar/>
     </Suspense>
-    <div className="overflow-hidden">
+    <div className="overflow-hidden ">
       
-      <div className="w-full mx-auto gap-3  flex justify-between overflow-hidden">
+      <div id="default-sidebar"  className="w-full mx-auto gap-3   flex justify-between" >
         {/* Left Sidebar */}
 
         <div 
-          className="lg:w-[55vw] py-3 pl-5 pr-3 box-border  overflow-hidden h-[89vh] gap-y-2"
+          className="lg:w-[350px] py-3  px-3 box-border  overflow-hidden h-[90vh] gap-y-2"
           aria-label="Sidebar"
         > 
          <Sidebar/>
@@ -44,13 +44,13 @@ export default function Layout({ children}: { children: React.ReactNode }) {
 
         {/* Centered Content */}
 
-        <main  className=" w-full  p-2  overflow-scroll h-[89vh]"  onScroll={handleScroll}>
+        <main   className=" w-[580px]  p-2  overflow-y-scroll h-[90vh]"  onScroll={handleScroll} style={{paddingRight:"50px"}}>
           <div className=" rounded-lg ">{children}</div>
         </main>
 
         {/* Right Sidebar */}
 
-         <div className="relative flex-col  p-2 overflow-scroll   lg:w-[60vw] md:w-0 h-[89vh] ">
+         <div className="relative flex-col  p-2 overflow-y-scroll   lg:w-[350px] md:w-0 h-[89vh] ">
 
           
           

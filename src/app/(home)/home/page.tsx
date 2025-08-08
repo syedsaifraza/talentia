@@ -35,13 +35,13 @@ export default async function PostList() {
 
    const { profileData } =  await fetchUserProfileAndInstitute(token?.value ?? "")
   return (
-    < >
+    <div id="default-sidebar" >
       <AddPost />
       <div className="mt-2 mb-2">
         <ReelsScroller limit={6} size="large" />
       </div>
 
-      <div className="" >
+      <div>
         {posts.length === 0 ? (
           <div className="" key={Math.random()*1000}>
             <PostSkelatal key={"cas1"} />
@@ -58,6 +58,6 @@ export default async function PostList() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

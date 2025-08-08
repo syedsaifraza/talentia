@@ -19,7 +19,7 @@ export default function TalentsView (){
                 <Link href="/reels" className="hover:text-purple">View all</Link>
             </li>
         </ul>
-        <ul className="flex flex-row gap-4  rounded-lg" style={{height:'',overflowX:'scroll'}}>
+        <ul className="flex flex-row gap-4 scrollbar-hide rounded-lg" style={{overflow:'scroll',scrollbarWidth:"none"}}>
              
         {reelsState.slice(0,7).map((rState:any,idx:number)=>
 

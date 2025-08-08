@@ -7,14 +7,18 @@ import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
 import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default  function PostList({posts,savedPostIds}:any) {
+export default  function PostList({posts}:any) {
  
+
+
 
 
   const params = useSearchParams();
   const tab = params.get('tab') || 'videos';
 
   // Fetch user profile data
+
+  let savedPostIds =[];
 
   // Filter posts to only include saved ones
   const savedPosts = posts.filter((post:any) => savedPostIds.includes(post.id));
@@ -68,6 +72,7 @@ export default  function PostList({posts,savedPostIds}:any) {
                   </div>
   
                   {/* Content Section */}
+                  
                   <div className="p-8 text-center">
                     <h2 className="text-3xl font-bold text-gray-800">No Saved available</h2>
                     <p className="mt-4 text-gray-600">
@@ -94,49 +99,7 @@ export default  function PostList({posts,savedPostIds}:any) {
           )}
         </div>
       </div>
-      {/* <SavedFilter/>
-      <div className="w-[300px] h-full">
-        <div className="fixed bg-white right-0 w-[300px] flex flex-col h-screen overflow-y-auto">
-          <div className="flex items-center p-4 border-b border-gray-200 justify-between sticky top-0 bg-white z-10">
-            <h2 className="text-xl font-semibold text-gray-800">Saved</h2>
-            <Link 
-              href="/home" 
-              className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 mr-2"
-            >
-              <IoClose size={24} className="text-gray-600" />
-            </Link>
-          </div>
-
-          <aside className="space-y-2 w-[300px] p-[1rem]">
-            {menuItems.map((filter) => (
-              <Link
-                key={filter.id}
-                href={`?filter=${filter.id}`}
-                className={`flex items-center p-3 rounded-lg cursor-pointer transition-colors duration-200 ${
-                  activeFilter === filter.id 
-                    ? "bg-blue-50 border border-blue-100"
-                    : "hover:bg-gray-50"
-                }`}
-              >
-                <div className={`p-2 rounded-full mr-3 ${
-                  activeFilter === filter.id ? "bg-blue-500" : "bg-gray-200"
-                }`}>
-                  <div className={`${
-                    activeFilter === filter.id ? "text-white" : "text-black"
-                  }`}>
-                    {filter.icon}
-                  </div>
-                </div>
-                <span className={`font-medium ${
-                  activeFilter === filter.id ? "text-blue-600" : "text-gray-700"
-                }`}>
-                  {filter.label}
-                </span>
-              </Link>
-            ))}
-          </aside>
-        </div>
-      </div> */}
+     
       
     </div>
   );
