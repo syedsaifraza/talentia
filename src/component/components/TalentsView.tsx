@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function TalentsView (){
     const reelsState= useSelector((state:any)=>state.reels.reels);
     return (
-    <div className=" flex flex-col gap-4 bg-white  mt-2 mb-2 rounded-[5px] p-4">
+    <div className=" flex flex-col gap-4 bg-white  mt-2 mb-2 overflow-hidden rounded-[5px] p-4">
         <ul className="flex justify-between">
             <li>
                 <h4 className="font-semibold" onClick={()=>{
@@ -19,7 +19,7 @@ export default function TalentsView (){
                 <Link href="/reels" className="hover:text-purple">View all</Link>
             </li>
         </ul>
-        <ul className="flex flex-row gap-4  rounded-lg" style={{height:'200px',overflowX:'scroll'}}>
+        <ul className="flex flex-row gap-4  rounded-lg" style={{height:'',overflowX:'scroll'}}>
              
         {reelsState.slice(0,7).map((rState:any,idx:number)=>
 

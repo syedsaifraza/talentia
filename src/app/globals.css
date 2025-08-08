@@ -9,8 +9,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  display: none;
+  width: 7px;
+  display: block;
 }
 
 /* Track */
@@ -50,10 +50,10 @@ input:focus{
   transform: rotate(-45deg); 
 }
 
-#default-sidebar:hover ::-webkit-scrollbar {
+/* #default-sidebar:hover ::-webkit-scrollbar {
   width: 8px;
   display: block;
-}
+} */
 
 /* For WebKit browsers (Chrome, Safari) */
 .hover\:scrollbar-thin::-webkit-scrollbar {

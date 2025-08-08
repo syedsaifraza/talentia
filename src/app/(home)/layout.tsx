@@ -32,11 +32,11 @@ export default function Layout({ children}: { children: React.ReactNode }) {
     </Suspense>
     <div className="overflow-hidden">
       
-      <div className="w-full mx-auto gap-3  flex justify-between">
+      <div className="w-full mx-auto gap-3  flex justify-between overflow-hidden">
         {/* Left Sidebar */}
 
         <div 
-          className="lg:w-[55vw] py-3 pl-5 pr-3 box-border  overflow-scroll h-[89vh] gap-y-2"
+          className="lg:w-[55vw] py-3 pl-5 pr-3 box-border  overflow-hidden h-[89vh] gap-y-2"
           aria-label="Sidebar"
         > 
          <Sidebar/>

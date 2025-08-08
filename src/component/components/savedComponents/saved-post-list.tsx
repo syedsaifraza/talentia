@@ -1,59 +1,28 @@
+"use client"
 export const dynamic = 'force-dynamic';
-import { getPosts } from "@/utils/apis/post";
-import Post from "@/component/components/post";
 import { PostType } from "@/types/PostType";
-import PostSkelatal from "@/component/skelatal/PostSkelatal";
-import { cookies } from "next/headers";
-import TalentsView from "@/component/components/TalentsView";
+import Post from "@/component/components/post";
 import OgImageLoader from "@/component/components/OgImageLoader";
 import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
-import Link from "next/link";
-import { IoClose } from "react-icons/io5";
-import { FaLayerGroup, FaLink } from "react-icons/fa6";
-import { BiImages, BiSolidVideos } from "react-icons/bi";
-import { RiFilmAiFill } from "react-icons/ri";
-import NoPost from "@/component/components/NoPost"
-import SavedFilter from "@/component/components/savedComponents/SavedFilterForm";
+import { useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 
-export default async function PostList({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
-  const activeFilter = searchParams?.filter || 'all';
-  const cookieStore = cookies();
-  const token = cookieStore.get("token");
+export default  function PostList({posts,savedPostIds}:any) {
+ 
+
+
+  const params = useSearchParams();
+  const tab = params.get('tab') || 'videos';
 
   // Fetch user profile data
-  let savedPostIds: string[] = [];
-  try {
-    const { profileData } = await fetchUserProfileAndInstitute(token?.value ?? "");
-    savedPostIds = profileData?.data?.savedPosts ?? [];
-  } catch (error) {
-    console.error("Failed to fetch user profile:", error);
-  }
-
-
-
-  // Fetch all posts
-  let posts: PostType[] = [];
-  try {
-    const res = await getPosts(token?.value ?? "");
-    if (res?.posts) {
-      posts = res.posts.filter((post): post is PostType => post.isDeleted !== true);
-    }
-  } catch (error) {
-    console.error("Failed to fetch posts:", error);
-  }
-
-
 
   // Filter posts to only include saved ones
-  const savedPosts = posts.filter((post: PostType) => savedPostIds.includes(post.id));
+  const savedPosts = posts.filter((post:any) => savedPostIds.includes(post.id));
 
-  // Function to filter posts by type
-  const filterPosts = (type: string) => {
-    switch (type) {
+
+
+    const filteredPosts = useMemo(() => {
+    switch (tab) {
       case 'videos':
         return savedPosts.filter(post => 
           post.fileURL && post.fileURL.toLowerCase().endsWith('.mp4')
@@ -76,32 +45,8 @@ export default async function PostList({
       default:
         return savedPosts;
     }
-  };
+  },[posts,tab]);
 
-  const menuItems = [
-    {
-      id: "all",
-      label: "All Posts",
-      icon: <FaLayerGroup />
-    },
-    {
-      id: "videos",
-      label: "Videos",
-      icon: <BiSolidVideos />
-    },
-    {
-      id: "images",
-      label: "Images",
-      icon: <BiImages />
-    },
-    {
-      id: "reels",
-      label: "Reels",
-      icon: <RiFilmAiFill />
-    },
-  ];
-
-  const filteredPosts = filterPosts(activeFilter as string);
 
   return (
     <div className="flex flex-row">
@@ -149,7 +94,7 @@ export default async function PostList({
           )}
         </div>
       </div>
-      {/* <SavedFilter/> */}
+      {/* <SavedFilter/>
       <div className="w-[300px] h-full">
         <div className="fixed bg-white right-0 w-[300px] flex flex-col h-screen overflow-y-auto">
           <div className="flex items-center p-4 border-b border-gray-200 justify-between sticky top-0 bg-white z-10">
@@ -191,7 +136,7 @@ export default async function PostList({
             ))}
           </aside>
         </div>
-      </div>
+      </div> */}
       
     </div>
   );
@@ -206,10 +151,13 @@ export default async function PostList({
 // export const dynamic = 'force-dynamic';
 // import { getPosts } from "@/utils/apis/post";
 // import { PostType } from "@/types/PostType";
-// import { cookies, } from "next/headers";
-// import SavedFilterForm from "@/component/components/savedComponents/SavedFilterForm";
+// import { cookies, headers } from "next/headers";
+// import { IoSquare, IoVideocam, IoFilter } from "react-icons/io5";
+// import { FiCalendar, FiHash, FiTrendingUp } from "react-icons/fi";
+// import FeedPostList from "@/component/components/feed-post-list";
+// import { Suspense } from "react";
+// import FilterForm from "@/component/components/savedComponents/FilterForm";
 // import SavedPostList from "@/component/components/savedComponents/saved-post-list"
-// import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
 
 
 // export default async function Saved() {
@@ -233,23 +181,12 @@ export default async function PostList({
 //   }
 
 
-//    let savedPostIds = [];
-
-
-//   try {
-//       const { profileData } = await fetchUserProfileAndInstitute(token?.value ?? "");
-//       savedPostIds = profileData?.data?.savedPosts ?? [];
-//     } catch (error) {
-//       console.error("Failed to fetch user profile:", error);
-//     }
-
-
 
 //   return (
     
 //     <div className="flex flex-row overflow-hidden h-[89.8vh]">
-//        <SavedFilterForm/>
-//        <SavedPostList savedPostIds={savedPostIds} posts={posts} /> 
+//        <FilterForm/>
+//        <SavedPostList posts={posts} /> 
 //     </div>
 //   );
 // }
