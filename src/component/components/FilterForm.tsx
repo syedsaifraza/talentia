@@ -4,15 +4,19 @@ import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { FaLink } from "react-icons/fa6";
+import { FaLayerGroup, FaLink } from "react-icons/fa6";
 import { FiCalendar, FiHash, FiTrendingUp } from "react-icons/fi";
+import { GrLink } from "react-icons/gr";
+import { HiUserGroup } from "react-icons/hi";
 import { IoClose, IoFilter, IoSquare, IoVideocam } from "react-icons/io5";
+import { RiUserFollowFill } from "react-icons/ri";
+import { SiWikibooks } from "react-icons/si";
 
 export default function FilterForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  
+
   const [activeTab, setActiveTab] = useState<string>("all");
 
   useEffect(() => {
@@ -37,76 +41,89 @@ export default function FilterForm() {
     {
       id: "all",
       label: "All",
-      icon: <FaLink />
+      icon: <FaLayerGroup />,
     },
     {
       id: "connections",
       label: "Connections",
-      icon: <FaLink />
+      icon: <GrLink />,
     },
     {
       id: "following",
       label: "Following",
-      icon: <FaLink />
+      icon: <RiUserFollowFill />,
     },
     {
       id: "communities",
       label: "Communities",
-      icon: <FaLink />
+      icon: <HiUserGroup />,
     },
-    
+
     {
       id: "pages",
       label: "Pages",
-      icon: <FaLink />
-    }
+      icon: <SiWikibooks />,
+    },
   ];
 
   return (
-    <div style={{width: "320px"}} className="bg-white shadow-xl h-screen fixed overflow-y-auto">
-      {/* Header */}
-      <div className="flex items-center p-4 border-b border-gray-200 sticky top-0 bg-white z-10">
-        <Link href="/home" className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 mr-2">
-          <IoClose size={24} className="text-gray-600" />
-        </Link>
-        <h2 className="text-xl font-semibold text-gray-800">Feed</h2>
+    <div className="w-[300px] h-full">
+      <div className="fixed bg-white left-0 w-[300px] flex flex-col h-screen overflow-y-auto">
+
+
+        <div className="flex items-center p-4 border-b border-gray-200 sticky top-0 bg-white z-10">
+          <Link
+            href="/home"
+            className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 mr-2"
+          >
+            <IoClose size={24} className="text-gray-600" />
+          </Link>
+          <h2 className="text-xl font-semibold text-gray-800">Feed</h2>
+        </div>
+
+
+
+        <div className="space-y-2 w-[300px] p-[1rem]">
+          {menuItems.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => handleTabChange(item.id)}
+              className={`flex items-center p-3 rounded-lg cursor-pointer transition-colors duration-200 ${
+                activeTab === item.id
+                  ? "bg-blue-50 border border-blue-100"
+                  : "hover:bg-gray-50"
+              }`}
+            >
+              <div
+                className={`p-2 rounded-full mr-3 ${
+                  activeTab === item.id ? "bg-blue-500" : "bg-gray-200"
+                }`}
+              >
+                <div
+                  className={`${
+                    activeTab === item.id ? "text-white" : "text-black"
+                  }`}
+                >
+                  {item.icon}
+                </div>
+              </div>
+              <span
+                className={`font-medium ${
+                  activeTab === item.id ? "text-blue-600" : "text-gray-700"
+                }`}
+              >
+                {item.label}
+              </span>
+              {/* {activeTab === item.id && (
+                <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>
+              )} */}
+            </div>
+          ))}
+        </div>
       </div>
+      {/* Header */}
 
       {/* Menu Items */}
-      <div className="p-3 space-y-1">
-        {menuItems.map((item) => (
-          <div 
-            key={item.id}
-            onClick={() => handleTabChange(item.id)}
-            className={`flex items-center p-3 rounded-lg cursor-pointer transition-colors duration-200 ${
-              activeTab === item.id 
-                ? "bg-blue-50 border border-blue-100"
-                : "hover:bg-gray-50"
-            }`}
-          >
-            <div className={`p-2 rounded-full mr-3 ${
-              activeTab === item.id ? "bg-blue-500" : "bg-gray-200"
-            }`}>
-
-              <div className={`${
-              activeTab === item.id ? "text-white" : "text-black"
-            }`} >
-                {item.icon}
-              </div>
-            </div>
-            <span className={`font-medium ${
-              activeTab === item.id ? "text-blue-600" : "text-gray-700"
-            }`}>
-              {item.label}
-            </span>
-            {activeTab === item.id && (
-              <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>
-            )}
-          </div>
-        ))}
-
-        
-      </div>
     </div>
   );
 }

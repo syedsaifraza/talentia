@@ -7,7 +7,7 @@ import OgImageLoader from "./OgImageLoader";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
-
+import NoPOst from "@/component/components/NoPost"
 export default function FeedPostList({posts}:{posts:PostType[]}){
   const params = useSearchParams();
   const tab = params.get('tab') || 'all';
@@ -100,13 +100,10 @@ export default function FeedPostList({posts}:{posts:PostType[]}){
   return (
     <div className="flex-1 overflow-y-auto pt-4">
       <div className="max-w-2xl mx-auto px-4 w-[20vw]">
-        {filteredPosts.length === 0 ? (
-          <div className="text-center py-10">
-            <p className="text-gray-500 dark:text-gray-400">No posts available</p>
-            <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">
-              {tab === 'connections' ? "Your connections haven't posted anything yet" : 
-               "Try adjusting your filters or check back later"}
-            </p>
+        <div className="w-[500px]">
+  {filteredPosts.length === 0 ? (
+          <div>
+            <NoPOst value={"Post"}/>
           </div>
         ) : (
           <div key={Math.random()*1000} className="space-y-6">
@@ -114,17 +111,19 @@ export default function FeedPostList({posts}:{posts:PostType[]}){
               (idz == 0 || idz % 3 == 0) ? 
               <div key={idz}>
                 <Post post={post} ogImageLoader={
-                  <Suspense fallback={"Loading"}><p>l</p></Suspense>} 
+                  <Suspense fallback={"Loading"}></Suspense>} 
                 />
               </div> :   
               <div key={"as"+idz}>
                 <Post post={post} ogImageLoader={
-                  <Suspense fallback={"Loading"}><p>l</p></Suspense>} 
+                  <Suspense fallback={"Loading"}></Suspense>} 
                 />
               </div>
             )}
           </div>
         )}
+        </div>
+      
       </div>
     </div>
   );

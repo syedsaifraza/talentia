@@ -18,7 +18,7 @@ const Sidebar = () => {
     { name: "Blog", icon: "https://content.acetians.in/uploads/blog.png", link: "/env-pages/blog" },
     { name: "TalentVerse", icon: "https://content.acetians.in/uploads/confidence.png", link: "/reels" },
     { name: "Saved", icon: "https://content.acetians.in/uploads/bookmark.png", link: "/env-pages/saved" },
-    { name: "Watch History", icon: "https://content.acetians.in/uploads/reload.png", link: "/watches" },
+    { name: "Watch History", icon: "https://content.acetians.in/uploads/reload.png", link: "/env-pages//watch-history" },
     { name: "Communities", icon: "https://content.acetians.in/uploads/group.png", link: "/communities" },
     { name: "Birthday", icon: "https://content.acetians.in/uploads/birthday-cake.png", link: "/birthdays" },
     { name: "Messages", icon: "https://content.acetians.in/uploads/chatting.png", link: "/messaging/view" },

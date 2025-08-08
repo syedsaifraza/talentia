@@ -121,6 +121,7 @@ const Post = ({
 
   return (
     <div
+    // style={{width:"500px"}}
       className={`bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mb-4 ${className}`}
     >
       {/* Post Header */}
