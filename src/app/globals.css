@@ -13,14 +13,18 @@
   display: none;
 }
 
+.rsw-ce{
+  height: 300px;
+}
+
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #ffffff00;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #969696;
+ background: #c2c2c2;
   border-radius: 2px;
 }
 
@@ -75,11 +79,11 @@ input:focus{
 
 /* Handle on hover */
 #default-sidebar-1:hover ::-webkit-scrollbar-thumb {
-  background: #969696;
+  background: #c2c2c2;
 }
 
 #default-sidebar-1:hover ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #ffffff00;
 }
 
 #default-sidebar-1:hover ::-webkit-scrollbar {

@@ -6,6 +6,7 @@ import { PostType } from "@/types/PostType";
 import PostSkelatal from "@/component/skelatal/PostSkelatal";
 import { cookies } from "next/headers";
 import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
+import { AdComponents } from "@/component/components/adComponents";
 
 
 
@@ -33,9 +34,11 @@ export default async function WatchList() {
 
   const { profileData } =  await fetchUserProfileAndInstitute(token?.value ?? "")
   return (
-    <>
+      <div className="flex flex-row  justify-around ">
     
-    <div className="mt-4">
+    <div id="default-sidebar" className="" style={{width:"570px"}}>
+
+
       <h2 className="text-xl font-bold mb-2">Recent Watches</h2>
 
       {posts.length === 0 ? (
@@ -56,7 +59,11 @@ export default async function WatchList() {
         </ul>
       )}
     </div>
-    </>
+
+     <div className="w-[300px]">
+          <AdComponents/>
+        </div>
+    </div>
   );
 }
 

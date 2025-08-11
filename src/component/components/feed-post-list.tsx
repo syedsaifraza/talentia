@@ -11,11 +11,9 @@ import NoPOst from "@/component/components/NoPost"
 export default function FeedPostList({posts}:{posts:PostType[]}){
   const params = useSearchParams();
   const tab = params.get('tab') || 'all';
-  const mediaType = params.get('mediaType') || 'all';
-  const fromDate = params.get('fromDate');
-  const toDate = params.get('toDate');
-  const hashtag = params.get('hashtag');
-  const sortBy = params.get('sortBy');
+
+
+
 
   // Get user connections from Redux
   const followings = useSelector((state: any) => state.auth.followings || []);
@@ -36,66 +34,23 @@ export default function FeedPostList({posts}:{posts:PostType[]}){
     } 
 
     if (tab === 'following') {
-      // followings is array of objects, get their uids
+     
       const followingIds = followings.map((f: any) => f.uid);
       result = result.filter(post => 
         post.user && followingIds.includes(post.user.uid));
     }
 
 
-    // Add similar filters for communities and pages when implemented
     else if (tab === 'communities') {
-      result = []; // No posts for communities yet
+      result = []; 
     } 
 
 
     else if (tab === 'pages') {
-      result = []; // No posts for pages yet
+      result = [];
     }
-
-    // Then apply other filters
-    if (mediaType === 'video') {
-      result = result.filter(
-        (post) => post.fileURL && post.fileURL.toString().endsWith('.mp4')
-      );
-    }
-
-    if (fromDate && toDate) {
-      const from = new Date(fromDate);
-      const to = new Date(toDate);
-     
-      result = result.filter((post) => {
-        const ts = post.createdAt;
-        const created = ts?._seconds ? new Date(post.createdAt?._seconds * 1000) : null;
-        return created! >= from && created! <= to;
-      });
-    }
-
-    if (hashtag) {
-      result = result.filter(
-        (post) => post.text?.includes?.(hashtag)
-      );
-    }
-
-    // Sorting
-    if (sortBy === 'latest') {
-      result.sort(
-        (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-      );
-    }
-    if (sortBy === 'popular') {
-      result.sort(
-        (a, b) => (b.likes?.length||0) - (a.likes?.length||0)
-      );
-    }
-    if (sortBy === 'comments') {
-      result.sort(
-        (a, b) => (b.comments?.length||0) - (a.comments?.length||0)
-      );
-    }
-
     return result;
-  }, [posts, tab, mediaType, fromDate, toDate, hashtag, sortBy, connectionIds]);
+  }, [posts, tab, connectionIds]);
 
   return (
     <div className="flex-1 overflow-y-auto pt-4">
@@ -103,13 +58,15 @@ export default function FeedPostList({posts}:{posts:PostType[]}){
         <div className="w-[500px]">
   {filteredPosts.length === 0 ? (
           <div>
-            <NoPOst value={"Post"}/>
+            <NoPOst value={`${tab} Post`}/>
           </div>
         ) : (
           <div key={Math.random()*1000} className="space-y-6">
             {filteredPosts.map((post, idz) => 
               (idz == 0 || idz % 3 == 0) ? 
               <div key={idz}>
+
+                {/* <button onClick={()=>console.log(tab)}>hello</button> */}
                 <Post post={post} ogImageLoader={
                   <Suspense fallback={"Loading"}></Suspense>} 
                 />

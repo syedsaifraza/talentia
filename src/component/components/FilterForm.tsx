@@ -1,18 +1,20 @@
 "use client";
 
-import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { FaLayerGroup, FaLink } from "react-icons/fa6";
-import { FiCalendar, FiHash, FiTrendingUp } from "react-icons/fi";
+import { FaLayerGroup} from "react-icons/fa6";
 import { GrLink } from "react-icons/gr";
 import { HiUserGroup } from "react-icons/hi";
-import { IoClose, IoFilter, IoSquare, IoVideocam } from "react-icons/io5";
+import { IoClose} from "react-icons/io5";
 import { RiUserFollowFill } from "react-icons/ri";
 import { SiWikibooks } from "react-icons/si";
 
+
 export default function FilterForm() {
+
+
+
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -32,10 +34,7 @@ export default function FilterForm() {
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
-  const handleResetForm = () => {
-    setActiveTab("all");
-    router.replace("/feed", { scroll: false });
-  };
+
 
   const menuItems = [
     {
@@ -114,16 +113,12 @@ export default function FilterForm() {
               >
                 {item.label}
               </span>
-              {/* {activeTab === item.id && (
-                <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>
-              )} */}
+             
             </div>
           ))}
         </div>
       </div>
-      {/* Header */}
-
-      {/* Menu Items */}
+     
     </div>
   );
 }

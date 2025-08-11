@@ -52,29 +52,50 @@ export default function SelfProfile  ()  {
 
           />
         </div>
-        <div
-        className=" rounded-full"
-        style={{
-          width: '6vw',
-          height: '6vw', 
-          marginRight: 'auto',
-          position: 'relative',
-          left: 20,
-          marginTop: '-50px',
-          overflow: 'hidden',
-        }}>
-            <Link href={`/account/${userState.id}`}>
-          {/* <Link href="/account/profile"> */}
-          {userState==null ? <DefaultAvatar  size={50} />: <DefaultAvatar imageUrl={userState.profilePhoto||userState.logoURL}  size={120} />}
-        </Link> 
+        <div className="flex flex-row justify-between ">
+            <div
+            className=" rounded-full"
+            style={{
+              width: '6vw',
+              height: '6vw', 
+              position: 'relative',
+              left: 10,
+              marginTop: '-20px',
+              overflow: 'hidden',
+            }}>
+                <Link href={`/account/${userState.id}`}>
+                  {/* <Link href="/account/profile"> */}
+                  {userState==null ? <DefaultAvatar  size={50} />: <DefaultAvatar imageUrl={userState.profilePhoto||userState.logoURL}  size={120} />}
+                </Link> 
+            </div>
+            <ul 
+            style={{
+              position: 'relative',
+              marginTop: '0px',
+              overflow: 'hidden',
+            }} className=" gap-4 px-5 py-3 text-gray-700 flex items-center justify-between">
+              <li className="flex flex-col items-center justify-around">
+                <div>{followers.length}</div>
+                <p className="text-xs">Followers</p>
+              </li>
+              <li className="flex flex-col items-center justify-between">
+                <div>{followings.length}</div>
+                <p className="text-xs">Following</p>
+              </li>
+              <li className="flex flex-col items-center justify-around">
+                <div>0</div>
+                <p className="text-xs">Post</p>
+              </li>
+            </ul>
         </div>
-        <div className="mx-4">
+        
+        <div className="px-4 pb-4">
          <Link href={`/account/${userState.id}`}>
          <h2 className="font-semibold">{userState.name|| 'Guest'}</h2>
          </Link> 
-          <p className="text-gray-500">{userState.jobTitle|| ''}</p>
+          <p className="text-gray-500 text-[12px]">{userState.jobTitle|| ''}</p>
         </div>
-        <ul className="py-1 pb-2  text-gray-700 flex items-center justify-around">
+        {/* <ul className="py-1 pb-2  text-gray-700 flex items-center justify-around">
           <li className="flex flex-col items-center justify-around">
             <div>{followers.length}</div>
             <p className="text-xs">Followers</p>
@@ -88,7 +109,7 @@ export default function SelfProfile  ()  {
             <p className="text-xs">Post</p>
           </li>
         </ul>
-        
+         */}
 
 
 

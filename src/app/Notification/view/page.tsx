@@ -1,5 +1,6 @@
 "use client"
 
+import { AdComponents } from "@/component/components/adComponents"
 import { useState } from "react"
 
 interface Notification {
@@ -522,7 +523,9 @@ export default function NotificationsPage() {
   const filteredNotifications = filter === "unread" ? notifications.filter((n) => !n.isRead) : notifications
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="flex flex-row  justify-around ">
+
+      <div className="min-h-screen bg-gray-50" style={{ width: "570px" }}>
       <div className="max-w-2xl mx-auto bg-white min-h-screen">
         <NotificationHeader
           unreadCount={unreadCount}
@@ -560,5 +563,12 @@ export default function NotificationsPage() {
         </div>
       </div>
     </div>
+
+   <div className="w-[300px]">
+           <AdComponents />
+         </div>
+
+    </div>
+    
   )
 }

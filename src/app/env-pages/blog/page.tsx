@@ -1,11 +1,21 @@
 "use client";
 
 import { addBlog, getBlog } from "@/utils/apis/blog";
+import { log } from "console";
+import { PencilLine } from "lucide-react";
+import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
+import Editor from 'react-simple-wysiwyg';
 import { useState, useRef, ChangeEvent, useEffect } from "react";
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaWhatsapp,
+  FaXTwitter,
+} from "react-icons/fa6";
 import { FiEdit } from "react-icons/fi";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoMail } from "react-icons/io5";
 
 interface Blog {
   id: string;
@@ -34,6 +44,42 @@ interface BlogForm {
 }
 
 export default function BlogPage() {
+
+
+
+ 
+
+ 
+
+
+
+
+
+  const categories = [
+    "ART",
+    "CAUSES",
+    "CRAFTS",
+    "DANCE",
+    "DRINKS",
+    "FILM",
+    "FITNESS",
+    "FOOD",
+    "GAMES",
+    "GARDENING",
+    "HEALTH",
+    "HOME",
+    "LITERATURE",
+    "MUSIC",
+    "NETWORKING",
+    "OTHER",
+    "PARTY",
+    "RELIGION",
+    "SHOPPING",
+    "SPORTS",
+    "THEATER",
+    "WELLNESS",
+  ];
+
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [blogForm, setBlogForm] = useState<BlogForm>({
@@ -50,11 +96,26 @@ export default function BlogPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(true);
 
+
+     const [html, setHtml] = useState('');
+  
+  function onChange(e) {
+    // setHtml(e.target.value);
+
+     const value  = e.target.value;
+     const name  = e.target.name;
+    setBlogForm({ ...blogForm, [name]: value });
+  }
+
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
         const res = await getBlog();
         setBlogs(res.posts || []);
+
+        console.log(res);
+        console.log(res.posts);
+
         setLoading(false);
       } catch (error) {
         console.error("Failed to fetch posts:", error);
@@ -76,15 +137,15 @@ export default function BlogPage() {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       const reader = new FileReader();
-      
+
       reader.onloadend = () => {
         setBlogForm({
           ...blogForm,
           file,
-          filePreview: reader.result as string
+          filePreview: reader.result as string,
         });
       };
-      
+
       reader.readAsDataURL(file);
     }
   };
@@ -111,21 +172,21 @@ export default function BlogPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const formData = new FormData();
-    formData.append('title', blogForm.title);
-    formData.append('description', blogForm.description);
-    formData.append('category', blogForm.category);
-    formData.append('subcategory', blogForm.subcategory);
-    formData.append('tags', "name");
-    formData.append('content', "some content");
+    formData.append("title", blogForm.title);
+    formData.append("description", blogForm.description);
+    formData.append("category", blogForm.category);
+    formData.append("subcategory", blogForm.subcategory);
+    formData.append("tags", "name");
+    formData.append("content", "some content");
     if (blogForm.file) {
-      formData.append('file', blogForm.file);
+      formData.append("file", blogForm.file);
     }
 
     const response = await addBlog(formData);
-    
-    if(response.success === true) {
+
+    if (response.success === true) {
       // Refresh the blog list after successful submission
       try {
         const res = await getBlog();
@@ -133,7 +194,7 @@ export default function BlogPage() {
       } catch (error) {
         console.error("Failed to fetch posts:", error);
       }
-      
+
       // Reset form after submission
       setBlogForm({
         title: "",
@@ -158,12 +219,15 @@ export default function BlogPage() {
   };
 
   // Function to format the date from Firebase timestamp
-  const formatDate = (firebaseTimestamp: { _seconds: number, _nanoseconds: number }) => {
+  const formatDate = (firebaseTimestamp: {
+    _seconds: number;
+    _nanoseconds: number;
+  }) => {
     const date = new Date(firebaseTimestamp._seconds * 1000);
-    return date.toLocaleDateString('en-US', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
+    return date.toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     });
   };
 
@@ -176,73 +240,198 @@ export default function BlogPage() {
   }
 
   return (
-    <>
-      <div className="flex flex-row justify-between gap-2 bg-white px-4">
+    <div className="flex flex-row  justify-around ">
+      <div className="flex flex-row justify-between bg-white mx-auto">
         {/* Left column - Blog list */}
-        <div className="flex-1 mt-2">
-          <div className="space-y-6">
+        <div className="flex-1">
+          <div className="">
             {blogs.map((blog) => (
-              <div
-                key={blog.id}
-                className="max-w-2xl overflow-hidden bg-white rounded-lg  border-2 border-gray-300 dark:bg-gray-800"
-              >
-                <Image
-                  alt="blog cover"
-                  height={400}
-                  width={800}
-                  className="object-cover w-full h-64"
-                  src={blog.image}
-                  priority
-                />
-                <div className="p-4">
-                  <div className="mt-4">
-                    <div className="flex items-center">
-                      <div className="flex items-center">
-                        <Image
-                          height={40}
-                          width={40}
-                          className="object-cover h-10 rounded-full"
-                          src={blog.userDetails.profilePhoto}
-                          alt="Avatar"
-                        />
-                        <a
-                          href="#"
-                          className="mx-2 font-semibold text-gray-700 dark:text-gray-200"
-                          tabIndex={0}
-                          role="link"
-                        >
-                          {blog.userDetails.name}
-                        </a>
+              <div className="min-h-screen bg-gray-100 p-4 sm:p-6 lg:p-8">
+                <div className="mx-auto max-w-4xl bg-white rounded-lg shadow-md p-6 sm:p-8 lg:p-10 relative">
+                  {/* Edit Button */}
+                  {/* <button className="absolute top-4 right-4 px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
+          Edit
+        </button> */}
+
+                  {/* Category Tag */}
+                  <div className="mb-4">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                      {blog.category}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+
+                  <Link href={`/env-pages/blog/view-blog?id=${blog.id}`}>
+                    <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
+                      {blog.title}
+                    </h1>
+                  </Link>
+
+                  {/* Author Info and Engagement Metrics */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 space-y-4 sm:space-y-0">
+                    <div className="flex items-center space-x-3">
+                      <img
+                        src={
+                          blog.userDetails.profilePhoto ||
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCpY5LtQ47cqncKMYWucFP41NtJvXU06-tnQ&s"
+                        }
+                        alt="superadmin avatar"
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                      />
+                      <div>
+                        <div className="flex items-center space-x-1">
+                          <span className="font-semibold text-gray-800">
+                            {blog.userDetails.name}
+                          </span>
+                        </div>
+                        <span className="text-sm text-gray-500">
+                          Posted{" "}
+                          {moment(blog.createdAt._seconds * 1000).fromNow()}
+                        </span>
                       </div>
-                      <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
-                        {formatDate(blog.createdAt)}
-                      </span>
+                    </div>
+                    <div className="flex space-x-3">
+                      <div className="flex items-center space-x-1 px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-700">
+                        {/* Chat Icon SVG */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-4 h-4"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H16.5m-1.275-3.034c-.07-.017-.14-.034-.21-.051C13.453 9.034 12.002 8.25 10.5 8.25c-1.501 0-2.953.784-3.99 1.965a.75.75 0 0 0-.19.734c.06.27.27.47.53.53.26.06.47-.15.53-.42.78-.35 1.6-.54 2.42-.54 1.01 0 1.97.3 2.79.86.26.17.59.1.75-.16.16-.26.09-.59-.16-.75Z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"
+                          />
+                        </svg>
+                        <span>0</span>
+                      </div>
+                      <div className="flex items-center space-x-1 px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-700">
+                        {/* Eye Icon SVG */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-4 h-4"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                          />
+                        </svg>
+                        <span>22</span>
+                      </div>
                     </div>
                   </div>
-                  <div>
-                    <Link
-                      href={`/env-pages/blog/view-blog?id=${blog.id}`}
-                      className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
-                      tabIndex={0}
-                      role="link"
+
+                  {/* Social Share Icons */}
+                  <div className="flex space-x-3 mb-8">
+                    {/* Facebook */}
+                    <a
+                      href="#"
+                      className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white hover:opacity-80"
+                      aria-label="Share on Facebook"
                     >
-                      {blog.title}
-                    </Link>
-                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                      {blog.description}
-                    </p>
+                      <FaFacebookF className="text-2xl text-white" />
+                    </a>
+                    {/* Twitter */}
+                    <a
+                      href="#"
+                      className="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center text-white hover:opacity-80"
+                      aria-label="Share on Twitter"
+                    >
+                      <FaXTwitter className="text-2xl text-white" />
+                    </a>
+
+                    <a
+                      href="#"
+                      className="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center text-white hover:opacity-80"
+                      aria-label="Share on LinkedIn"
+                    >
+                      <FaLinkedinIn className="text-2xl text-white" />
+                    </a>
+                    {/* WhatsApp */}
+                    <a
+                      href="#"
+                      className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white hover:opacity-80"
+                      aria-label="Share on WhatsApp"
+                    >
+                      <FaWhatsapp className="text-2xl text-white" />
+                    </a>
+                    {/* Email */}
+                    <a
+                      href="#"
+                      className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-white hover:opacity-80"
+                      aria-label="Share via Email"
+                    >
+                      <IoMail className="text-2xl text-red-600" />
+                    </a>
+                    {/* Pinterest */}
+                    <a
+                      href="#"
+                      className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white hover:opacity-80"
+                      aria-label="Share on Pinterest"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.5 17.5h-2v-7h2v7zm.5-8c-.828 0-1.5-.672-1.5-1.5s.672-1.5 1.5-1.5 1.5.672 1.5 1.5-.672 1.5-1.5 1.5zm6.5 8h-2v-4.5c0-.828-.672-1.5-1.5-1.5s-1.5.672-1.5 1.5v4.5h-2v-7h2v.5c.31-.354.79-.5 1.5-.5s1.5.672 1.5 1.5v6.5z" />
+                      </svg>
+                    </a>
+                  </div>
+
+                  {/* Cover Image */}
+                  <div className="mb-8">
+                    <img
+                      // src={blog.userDetails.profilePhoto}
+                      src={blog.image}
+                      alt="Hand holding holographic AI projection"
+                      className="rounded-lg max-h-[400px] object-contain w-full"
+                    />
+                  </div>
+
+                  {/* Article Content */}
+                  <div className="prose max-w-none text-gray-700 leading-relaxed line-clamp-3">
+                    {blog.description}
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
+      </div>
 
-        {/* Right column - Sidebar */}
-        <div className="w-[25vw]">
-          <div>
-            <ul className="p-3 gap-5 flex flex-col">
-              <div
+      <div className="w-[350px]">
+        <div
+          className="fixed flex-col right-2 px-2  md:w-0 h-[89vh]"
+          id="default-sidebar-1"
+          style={{ width: "330px" }}
+        >
+          <ul className="py-5 gap-5 flex flex-col">
+            <div
                 onClick={() => setShowForm(true)}
                 className="bg-[#2dce89] w-full gap-2 rounded-[8px] flex flex-row justify-center items-center align-middle p-4 cursor-pointer hover:bg-[#28b67b] transition-colors"
               >
@@ -251,8 +440,69 @@ export default function BlogPage() {
                   Write New Article
                 </button>
               </div>
-            </ul>
-          </div>
+
+            {/* <div
+              onClick={() => setShowForm(true)}
+              className="min-h-screen overflow-y-scroll  bg-[#f0f2f5]"
+            >
+       
+              <div className="mb-8">
+                <button className="w-full bg-[#2ecc71] text-white py-3 px-4 rounded-lg shadow-md flex items-center justify-center text-lg font-semibold transition-colors hover:bg-[#27ae60]">
+                  <PencilLine className="w-5 h-5 mr-2" />
+                  Write New Article
+                </button>
+              </div>
+
+             
+              <div className="mb-8">
+                <h2 className="text-lg font-bold text-gray-700 mb-4 relative pb-2">
+                  SEARCH
+                  <span className="absolute bottom-0 left-0 w-12 h-0.5 bg-gray-400"></span>
+                </h2>
+                <div className="flex rounded-lg overflow-hidden shadow-sm">
+                  <input
+                    type="text"
+                    placeholder="Search for articles"
+                    className="flex-1 p-3 text-gray-700 bg-white border border-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  />
+                  <button className="bg-gray-100 text-gray-800 font-semibold px-5 py-3 border border-l-0 border-gray-200 transition-colors hover:bg-gray-200">
+                    Search
+                  </button>
+                </div>
+              </div>
+
+             
+              <div className="mb-8">
+                <h2 className="text-lg font-bold text-gray-700 mb-4 relative pb-2 flex items-center">
+                  CATEGORIES
+                  <span className="absolute bottom-0 left-0 w-12 h-0.5 bg-gray-400"></span>
+                  <span className="w-3 h-3 bg-[#2ecc71] rounded-full ml-2"></span>
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      className="bg-[#e0e7ff] text-[#6a5acd] text-sm font-medium py-2 px-4 shadow-sm transition-colors hover:bg-[#cdd5f5] whitespace-nowrap"
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+           
+              <div>
+                <h2 className="text-lg font-bold text-gray-700 mb-4 relative pb-2">
+                  READ MORE
+                  <span className="absolute bottom-0 left-0 w-12 h-0.5 bg-gray-400"></span>
+                </h2>
+               
+                <div className="h-24 bg-white rounded-lg shadow-sm flex items-center justify-center text-gray-400">
+                  {"{"}Content goes here{"}"}
+                </div>
+              </div>
+            </div> */}
+          </ul>
         </div>
       </div>
 
@@ -262,7 +512,9 @@ export default function BlogPage() {
           <div className="bg-white shadow-xl rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
             {/* Header */}
             <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-gray-800">Create New Blog Post</h2>
+              <h2 className="text-2xl font-bold text-gray-800">
+                Create New Blog Post
+              </h2>
               <button
                 onClick={() => setShowForm(false)}
                 className="text-gray-500 hover:text-gray-700 transition-colors"
@@ -276,7 +528,10 @@ export default function BlogPage() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Title */}
                 <div className="space-y-2">
-                  <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="title"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Title <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -292,27 +547,14 @@ export default function BlogPage() {
                 </div>
 
                 {/* Description */}
-                <div className="space-y-2">
-                  <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-                    Description
-                  </label>
-                  <textarea
-                    id="description"
-                    name="description"
-                    onChange={handleInputChange}
-                    value={blogForm.description}
-                    rows={3}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                    placeholder="A short summary of your post (optional)"
-                  />
-                </div>
+                
 
                 {/* Image Upload */}
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
                     Featured Image
                   </label>
-                  <div 
+                  <div
                     onClick={triggerFileInput}
                     className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:border-blue-500 transition-colors"
                   >
@@ -347,7 +589,9 @@ export default function BlogPage() {
                           </span>
                           <p className="pl-1">or drag and drop</p>
                         </div>
-                        <p className="text-xs text-gray-500">PNG, JPG, GIF up to 5MB</p>
+                        <p className="text-xs text-gray-500">
+                          PNG, JPG, GIF up to 5MB
+                        </p>
                       </div>
                     )}
                     <input
@@ -365,7 +609,10 @@ export default function BlogPage() {
                 {/* Category and Subcategory */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="category"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Category <span className="text-red-500">*</span>
                     </label>
                     <select
@@ -385,7 +632,10 @@ export default function BlogPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="subcategory" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="subcategory"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Subcategory
                     </label>
                     <select
@@ -405,7 +655,10 @@ export default function BlogPage() {
 
                 {/* Tags */}
                 <div className="space-y-2">
-                  <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="tags"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Tags
                   </label>
                   <div className="flex flex-wrap gap-2 items-center px-4 py-3 border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all">
@@ -435,15 +688,23 @@ export default function BlogPage() {
                       placeholder="Add tags (press enter or comma)"
                     />
                   </div>
-                  <p className="text-xs text-gray-500">Add relevant tags to help readers find your content</p>
+                  <p className="text-xs text-gray-500">
+                    Add relevant tags to help readers find your content
+                  </p>
                 </div>
 
                 {/* Content */}
                 <div className="space-y-2">
-                  <label htmlFor="content" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="description"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Content <span className="text-red-500">*</span>
                   </label>
-                  <textarea
+
+                  <Editor  name={"description"}  value={blogForm.description} onChange={onChange} />
+                  
+                  {/* <textarea
                     id="content"
                     name="content"
                     onChange={handleInputChange}
@@ -452,7 +713,7 @@ export default function BlogPage() {
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                     placeholder="Write your amazing content here..."
-                  />
+                  /> */}
                 </div>
 
                 {/* Form Actions */}
@@ -475,7 +736,164 @@ export default function BlogPage() {
             </div>
           </div>
         </div>
+
+//         <div className="fixed inset-0 z-[99] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+//            <div className="bg-white shadow-xl rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+//       <div className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-6 md:p-8">
+//         <div className="flex items-center mb-6">
+//           <svg
+//             xmlns="http://www.w3.org/2000/svg"
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             stroke="currentColor"
+//             strokeWidth="2"
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//             className="text-gray-600 mr-2"
+//           >
+//             <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+//             <polyline points="14 2 14 8 20 8" />
+//           </svg>
+//           <h1 className="text-xl font-semibold text-gray-800">Write New Article</h1>
+//         </div>
+
+//         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+//             <div className="mb-6">
+//           <label htmlFor="cover" className="block text-sm font-medium text-gray-700 mb-2">
+//             Cover
+//           </label>
+//           <div className="flex items-center justify-center h-24 w-24 border border-gray-300 rounded-lg bg-gray-50 text-gray-400 flex-shrink-0 cursor-pointer">
+//             <svg
+//               xmlns="http://www.w3.org/2000/svg"
+//               width="24"
+//               height="24"
+//               viewBox="0 0 24 24"
+//               fill="none"
+//               stroke="currentColor"
+//               strokeWidth="2"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               className="h-8 w-8"
+//             >
+//               <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+//               <circle cx="12" cy="13" r="3" />
+//             </svg>
+//           </div>
+//         </div>
+//           <div className="md:col-span-3">
+//             <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+//               Title
+//             </label>
+//             <input
+//               type="text"
+//               id="title"
+//               className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+//               placeholder=""
+//             />
+//           </div>
+//         </div>
+//         <div className="md:col-span-3 mb-2">
+//             <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+//               Descripition
+//             </label>
+//             <input
+//               type="text"
+//               id="title"
+//               className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+//               placeholder=""
+//             />
+//           </div>
+
+//         <div className="mb-6">
+//           <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
+//             Content
+//           </label>
+//           <div className="border border-gray-300 rounded-md overflow-hidden">
+           
+//             <textarea
+//               id="content"
+//               rows={10}
+//               className="block w-full px-3 py-2 text-sm text-gray-700 focus:outline-none resize-y"
+//               placeholder=""
+//             ></textarea>
+            
+//           </div>
+//         </div>
+
+//       <div className="flex flex-row gap-5">
+// <div className="mb-6 w-full">
+//           <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
+//             Category
+//           </label>
+//           <div className="relative">
+//             <select
+//               id="category"
+//               className="block appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm pr-8"
+//             >
+//               <option>Select Category</option>
+//               <option>Technology</option>
+//               <option>Lifestyle</option>
+//               <option>Travel</option>
+//             </select>
+//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+//               <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+//                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+//               </svg>
+//             </div>
+//           </div>
+//         </div>
+//         <div className="mb-6 w-full">
+//           <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
+//             Sub Category
+//           </label>
+//           <div className="relative">
+//             <select
+//               id="category"
+//               className="block appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm pr-8"
+//             >
+//               <option>Select Category</option>
+//               <option>Technology</option>
+//               <option>Lifestyle</option>
+//               <option>Travel</option>
+//             </select>
+//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+//               <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+//                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+//               </svg>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+        
+
+//         <div className="mb-6">
+//           <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-2">
+//             Tags
+//           </label>
+//           <input
+//             type="text"
+//             id="tags"
+//             className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+//             placeholder="Type a tag name and press Enter or Comma to add it"
+//           />
+//         </div>
+
+//         <div className="flex justify-end">
+//           <button
+//             type="submit"
+//             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+//           >
+//             Publish
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//         </div>
+       
       )}
-    </>
+    </div>
   );
 }

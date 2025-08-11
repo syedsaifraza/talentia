@@ -1,71 +1,51 @@
 "use client";
 
-import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { BiImages, BiSolidVideos } from "react-icons/bi";
-import { FaLayerGroup, FaLink } from "react-icons/fa6";
-import { FiCalendar, FiHash, FiTrendingUp } from "react-icons/fi";
-import { GrLink } from "react-icons/gr";
-import { HiUserGroup } from "react-icons/hi";
-import { IoClose, IoFilter, IoSquare, IoVideocam } from "react-icons/io5";
-import { RiFilmAiFill, RiUserFollowFill } from "react-icons/ri";
-import { SiWikibooks } from "react-icons/si";
+import { FaLayerGroup } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
+import { RiFilmAiFill} from "react-icons/ri";
+
+const menuItems = [
+  {
+    id: "all",
+    label: "All Posts",
+    icon: <FaLayerGroup />
+  },
+  {
+    id: "videos",
+    label: "Videos",
+    icon: <BiSolidVideos />
+  },
+  {
+    id: "images",
+    label: "Images",
+    icon: <BiImages />
+  },
+  {
+    id: "reels",
+    label: "Reels",
+    icon: <RiFilmAiFill />
+  },
+];
 
 export default function SavedFilter() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-
-  const [activeTab, setActiveTab] = useState<string>("all");
-
-  useEffect(() => {
-    // Set active tab based on URL params when component mounts
-    const tabFromUrl = searchParams.get("tab") || "all";
-    setActiveTab(tabFromUrl);
-  }, [searchParams]);
+  const activeTab = searchParams.get("tab") || "all";
 
   const handleTabChange = (tab: string) => {
-    setActiveTab(tab);
     const params = new URLSearchParams(searchParams.toString());
     params.set("tab", tab);
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
-  const handleResetForm = () => {
-    setActiveTab("all");
-    router.replace("/feed", { scroll: false });
-  };
-
-  const menuItems = [
-    {
-      id: "all",
-      label: "All Posts",
-      icon: <FaLayerGroup />
-    },
-    {
-      id: "videos",
-      label: "Videos",
-      icon: <BiSolidVideos />
-    },
-    {
-      id: "images",
-      label: "Images",
-      icon: <BiImages />
-    },
-    {
-      id: "reels",
-      label: "Reels",
-      icon: <RiFilmAiFill />
-    },
-  ];
-
   return (
     <div className="w-[300px] h-full">
       <div className="fixed bg-white right-0 w-[300px] flex flex-col h-screen overflow-y-auto">
-
-
         <div className="flex items-center p-4 border-b border-gray-200 sticky top-0 bg-white z-10">
           <Link
             href="/home"
@@ -75,8 +55,6 @@ export default function SavedFilter() {
           </Link>
           <h2 className="text-xl font-semibold text-gray-800">Saved</h2>
         </div>
-
-
 
         <div className="space-y-2 w-[300px] p-[1rem]">
           {menuItems.map((item) => (
@@ -94,11 +72,7 @@ export default function SavedFilter() {
                   activeTab === item.id ? "bg-blue-500" : "bg-gray-200"
                 }`}
               >
-                <div
-                  className={`${
-                    activeTab === item.id ? "text-white" : "text-black"
-                  }`}
-                >
+                <div className={activeTab === item.id ? "text-white" : "text-black"}>
                   {item.icon}
                 </div>
               </div>
@@ -109,12 +83,10 @@ export default function SavedFilter() {
               >
                 {item.label}
               </span>
-             
             </div>
           ))}
         </div>
       </div>
-      
     </div>
   );
 }

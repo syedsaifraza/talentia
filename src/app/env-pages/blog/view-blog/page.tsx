@@ -98,6 +98,8 @@ export default function MainBlogPage() {
                 <p className="pb-6">{blog.description}</p>
                 {/* Add more blog fields as needed */}
               </div>
+
+              
               <div className="w-full lg:w-1/4 m-auto mt-12 max-w-screen-sm">
                 <div className="p-4 border-t border-b md:border md:rounded">
                   <div className="flex py-2">

@@ -2,11 +2,8 @@
 export const dynamic = 'force-dynamic';
 import { getPosts } from "@/utils/apis/post";
 import { PostType } from "@/types/PostType";
-import { cookies, headers } from "next/headers";
-import { IoSquare, IoVideocam, IoFilter } from "react-icons/io5";
-import { FiCalendar, FiHash, FiTrendingUp } from "react-icons/fi";
+import { cookies } from "next/headers";
 import FeedPostList from "@/component/components/feed-post-list";
-import { Suspense } from "react";
 import FilterForm from "@/component/components/FilterForm";
 
 

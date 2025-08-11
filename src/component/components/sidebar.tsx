@@ -38,9 +38,9 @@ const Sidebar = () => {
   };
 
   return (
-    <aside id="default-sidebar-1" className="h-full relative " aria-label="Sidebar">
-      <div className="h-full  w-full overflow-y-auto dark:bg-gray-800 " style={{paddingRight:"14px"}}>
-        <ul className="space-y-2 w-[310px] font-medium">
+    <aside id="default-sidebar-1" className="h-full relative  " aria-label="Sidebar">
+      <div className="h-full  w-full overflow-y-auto p-2 dark:bg-gray-800 " style={{paddingRight:"14px"}}>
+        <ul className="space-y-2  font-medium" style={{width:"290px"}}>
           <li key={321} className="">
             <Suspense fallback={<SelfProfileSkelatal />}>
  <SelfProfile />
@@ -69,14 +69,14 @@ const Sidebar = () => {
                         isActive(side.link)
                           ? "bg-blue-100 text-blue-600 font-semibold"
                           : "text-gray-700 hover:bg-gray-100"
-                      } flex items-center px-3 py-2 rounded-[5px] group transition-colors duration-200`}
+                      } flex hover:bg-gray-100 items-center px-3 py-2 rounded-[5px] group transition-colors duration-200`}
                     >
                       <img 
                         src={side.icon} 
                         alt={side.name} 
-                        className="w-5 h-5 object-contain" 
+                        className="w-6 h-6 object-contain" 
                       />
-                      <span className="flex-1 font-[20px] ml-3 whitespace-nowrap">
+                      <span className="flex-1 ml-3 font-[20px] whitespace-nowrap">
                         {side.name}
                       </span>
                     </Link>
@@ -84,7 +84,7 @@ const Sidebar = () => {
                 ))}
               </ul>
             ) : (
-              <ul className="space-y-2 font-medium">
+              <ul className="space-y-2 font-[15px]" >
                 {sideOptions.map((_, index) => (
                   <ListTileSkelatal key={index} />
                 ))}

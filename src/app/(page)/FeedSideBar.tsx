@@ -11,7 +11,6 @@ import ListTileSkelatal from "@/component/skelatal/ListTileSkelatal";
 const Sidebar = () => {
   const currentPath = usePathname();
   const appState = useSelector((state: any) => state.auth);
-
   const sideOptions = [
     { name: "Feed", icon: "https://content.acetians.in/uploads/home.png", link: "/env-pages/feed" },
     { name: "Connections", icon: "https://content.acetians.in/uploads/people.png", link: "/connection" },
@@ -27,7 +26,6 @@ const Sidebar = () => {
     { name: "Jobs", icon: "https://content.acetians.in/uploads/job-search.png", link: "/job" },
   ];
 
-  // Improved active link detection
   const isActive = (path: string) => {
     if (path === "/feed") {
       return currentPath === path || currentPath.startsWith("/feed/");

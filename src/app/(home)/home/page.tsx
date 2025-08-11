@@ -11,6 +11,7 @@ import ReelsScroller from "@/component/components/ReelsScroller";
 import TalentsView from "@/component/components/TalentsView";
 import OgImageLoader from "@/component/components/OgImageLoader";
 import { fetchUserProfileAndInstitute } from "@/utils/apis/auth";
+import { AdComponents } from "@/component/components/adComponents";
 
 export default async function PostList() {
   const cookieStore = cookies();
@@ -35,7 +36,8 @@ export default async function PostList() {
 
    const { profileData } =  await fetchUserProfileAndInstitute(token?.value ?? "")
   return (
-    <div id="default-sidebar" >
+    <div className="flex flex-row  justify-around ">
+    <div id="default-sidebar" className="" style={{width:"570px"}} >
       <AddPost />
       <div className="mt-2 mb-2">
         <ReelsScroller limit={6} size="large" />
@@ -59,5 +61,14 @@ export default async function PostList() {
         )}
       </div>
     </div>
+
+    <div className="w-[350px]">
+      <AdComponents/>
+    </div>
+
+    
+
+    </div>
+ 
   );
 }

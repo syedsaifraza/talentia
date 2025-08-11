@@ -60,74 +60,94 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
   return (
     <>
     {selectedStatus !== null && (
-          <div id="default-sidebar"   className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-95 gap-10 overflow-hidden" >
-            <div>
-              <button
-                onClick={handlePrevious}
-                 className="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white"
-                disabled={selectedStatus === 0}
-              >
-                <FaAngleLeft size={28} color="white" />
-              </button>
-            </div>
+        <div 
+  id="default-sidebar" 
+  className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-95 gap-4 md:gap-10 overflow-hidden z-50"
+>
+  {/* Navigation Arrows */}
+  <div className="z-50">
+    <button
+      onClick={handlePrevious}
+      className="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-all duration-200"
+      disabled={selectedStatus === 0}
+    >
+      <FaAngleLeft size={28} color="white" />
+    </button>
+  </div>
 
-            <div className="flex flex-col">
-              <div className="flex p-2 w-[300px] absolute gap-2 bg-[#000000ba] items-center">
-                <div className="w-12 h-12 border-2 border-blue-500 rounded-full">
-                  <Image
-                    width={100}
-                    height={100}
-                    src={statusUpdates.status[selectedStatus].userDetails.profilePhoto}
-                    alt={statusUpdates.status[selectedStatus].userDetails.name}
-                    className="w-full h-full rounded-full"
-                  />
-                </div>
+  {/* Main Content Container */}
+  <div className="relative flex flex-col items-center w-full max-w-2xl h-[90vh] mx-4">
+    {/* User Header */}
+    <div className="flex items-center w-full p-4 bg-[#000000ba]">
+      <div className="w-10 h-10 border-2 border-blue-500 rounded-full overflow-hidden">
+        <Image
+          width={40}
+          height={40}
+          src={statusUpdates.status[selectedStatus].userDetails.profilePhoto}
+          alt={statusUpdates.status[selectedStatus].userDetails.name}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="ml-3">
+        <h3 className="text-white text-md font-semibold">
+          {statusUpdates.status[selectedStatus].userDetails.name}
+        </h3>
+        <p className="text-xs text-gray-300">
+          {moment(statusUpdates.status[selectedStatus].createdAt._seconds*1000).fromNow()}
+        </p>
+      </div>
+    </div>
 
-                <div>
-                  <h3 className="text-white text-lg font-semibold">
-                    {statusUpdates.status[selectedStatus].userDetails.name}
-                  </h3>
-                  <p className="text-xs text-white">{moment(statusUpdates.status[selectedStatus].createdAt._seconds*1000).fromNow()}</p>
-                </div>
-              </div>
-
-              <div className="w-[400px] h-full flex justify-center border-1 border-white">
-                 {statusUpdates.status[selectedStatus].fileURL!=null?
-                  <div className="flex justify-center items-center p-5" style={{  minHeight:'80vh',width:'500px' }}>
-                  <span className="text-white"></span>
-                  {statusUpdates.status[selectedStatus].fileURL.endsWith(".mp4")?<video controls src={statusUpdates.status[selectedStatus].fileURL} autoPlay={true}/>:
-                  <Image
-                    width={300}
-                    height={500}
-                    src={statusUpdates.status[selectedStatus].fileURL}
-                    alt={statusUpdates.status[selectedStatus].text}
-                    className="w-full h-full object-cover"
-                  />}
-                  </div>:
-                  <div className="flex justify-center items-center p-5" style={{ background: "#f87171",height:'90vh',width:'400px' }}>
-                    
-                    <div className="text-white text-lg">{statusUpdates.status[selectedStatus].text}  </div>
-                    </div>}
-                
-              </div>
-            </div>
-
-            <div>
-              <button
-                onClick={handleNext}
-               className="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white"
-                // disabled={selectedStatus === initialReelsData.length - 1}
-              >
-                <FaAngleRight size={28} color="white"/>
-              </button>
-              <button
-                onClick={closeOverlay}
-                className="absolute top-4 left-4 bg-white bg-opacity-50 rounded-full bg-white/20 hover:bg-white/30 p-2  hover:bg-opacity-75 z-50"
-              >
-                <IoClose className="text-[30px]" color="white" />
-              </button>
-            </div>
+    {/* Media Container - Keeping your original background handling */}
+    <div className="w-full h-full flex justify-center">
+      {statusUpdates.status[selectedStatus].fileURL ? (
+        <div className="flex justify-center items-center" style={{ minHeight: '80vh', width: '500px' }}>
+          {statusUpdates.status[selectedStatus].fileURL.endsWith(".mp4") ? (
+            <video 
+              controls 
+              src={statusUpdates.status[selectedStatus].fileURL} 
+              autoPlay={true}
+              className="h-full max-h-[80vh] object-contain"
+            />
+          ) : (
+            <Image
+              width={300}
+              height={500}
+              src={statusUpdates.status[selectedStatus].fileURL}
+              alt={statusUpdates.status[selectedStatus].text}
+              className="h-full max-h-[80vh] object-contain"
+            />
+          )}
+        </div>
+      ) : (
+        <div 
+          className="flex justify-center items-center w-full h-full" 
+          style={{ background: "#f87171", height: '90vh', width: '400px' }}
+        >
+          <div className="text-white text-lg p-4 text-center">
+            {statusUpdates.status[selectedStatus].text}
           </div>
+        </div>
+      )}
+    </div>
+  </div>
+
+  {/* Navigation and Close Button */}
+  <div className="z-50 flex flex-col items-center gap-4">
+    <button
+      onClick={handleNext}
+      className="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-all duration-200"
+    >
+      <FaAngleRight size={28} color="white"/>
+    </button>
+    <button
+      onClick={closeOverlay}
+      className="absolute top-4 left-4 bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-all duration-200"
+    >
+      <IoClose size={24} color="white" />
+    </button>
+  </div>
+</div>
         )}
     {openStatusAdd===true &&
       <div className=" fixed top-0 left-0 w-full h-full bg-white" style={{zIndex:200}}>

@@ -66,7 +66,8 @@ const Post = ({
 
     // console.log(post.user.user_id);
    
-    console.log(post);
+    console.log();
+    console.log(postId);
     console.log("hello sir");
     console.log(profileData);
     // console.log(profileData)

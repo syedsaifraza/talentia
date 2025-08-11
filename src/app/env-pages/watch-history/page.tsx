@@ -13,6 +13,7 @@ import { RiFilmAiFill } from "react-icons/ri";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { IoClose } from "react-icons/io5";
+import NoPOst from "@/component/components/NoPost";
 
 
 
@@ -22,7 +23,7 @@ export default async function PostList({ searchParams }: { searchParams?: { filt
 
     const activeFilter = searchParams?.filter || 'all';
     const cookieStore = cookies();
-    const token = cookieStore.get("token");
+    const token =  (await cookieStore).get("token");
   
     // Fetch user profile data
     let videosWatchIds: string[] = [];
@@ -47,7 +48,7 @@ export default async function PostList({ searchParams }: { searchParams?: { filt
     }
 
       // Filter posts to only include saved ones
-  const videosWatch = posts.filter((post:PostType) => videosWatchIds.includes(post.id));
+  const videosWatch = posts.filter((post:any) => videosWatchIds.includes(post.id));
 
 
   const filterPosts = (type: string) => {
@@ -98,8 +99,7 @@ export default async function PostList({ searchParams }: { searchParams?: { filt
          <div className="w-[500px]">
         {filteredPosts.length === 0 ? (
           <div key="skeleton-container">
-            <PostSkelatal key="cas1" />
-            <PostSkelatal key="cas2" />
+             <NoPOst value={activeFilter}/>
           </div>
         ) : (
           <div key="posts-container">
