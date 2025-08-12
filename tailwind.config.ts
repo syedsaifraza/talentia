@@ -14,7 +14,8 @@ export default {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        roboto: ["Roboto", "sans-serif"],
+        // roboto: ["Roboto", "sans-serif"],
+        inter:["Inter", "sans-serif"]
       },
       animation: {
         "float-slow": "float 6s ease-in-out infinite",

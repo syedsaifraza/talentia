@@ -59,8 +59,8 @@ export default function SelfProfile  ()  {
               width: '6vw',
               height: '6vw', 
               position: 'relative',
-              left: 10,
-              marginTop: '-20px',
+              left: 25,
+              marginTop: '-18px',
               overflow: 'hidden',
             }}>
                 <Link href={`/account/${userState.id}`}>
@@ -82,14 +82,11 @@ export default function SelfProfile  ()  {
                 <div>{followings.length}</div>
                 <p className="text-xs">Following</p>
               </li>
-              <li className="flex flex-col items-center justify-around">
-                <div>0</div>
-                <p className="text-xs">Post</p>
-              </li>
+          
             </ul>
         </div>
         
-        <div className="px-4 pb-4">
+        <div className="px-4 pb-4 pt-2">
          <Link href={`/account/${userState.id}`}>
          <h2 className="font-semibold">{userState.name|| 'Guest'}</h2>
          </Link> 

@@ -95,7 +95,7 @@ export default function MainBlogPage() {
             <div className="flex flex-col lg:flex-row lg:space-x-12">
               <div className="px-4 lg:px-0 mt-12 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
                 <p className="pb-6">{blog.content}</p>
-                <p className="pb-6">{blog.description}</p>
+              <div dangerouslySetInnerHTML={{ __html: blog.description }} />
                 {/* Add more blog fields as needed */}
               </div>
 

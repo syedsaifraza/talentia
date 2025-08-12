@@ -35,7 +35,6 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
     }
   };
 
-  
   const [openStatusAdd,setOpenStatusAdd]=useState(false);
     const handleNext = () => {
     if (selectedStatus !== null && selectedStatus < statusUpdates.status.length - 1) {
@@ -50,12 +49,7 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
     if (selectedStatus !== null && selectedStatus > 0) {
       setSelectedStatus(selectedStatus - 1);
     }
-
-
-   
   };
-
-
 
   return (
     <>
@@ -98,7 +92,6 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
       </div>
     </div>
 
-    {/* Media Container - Keeping your original background handling */}
     <div className="w-full h-full flex justify-center">
       {statusUpdates.status[selectedStatus].fileURL ? (
         <div className="flex justify-center items-center" style={{ minHeight: '80vh', width: '500px' }}>
@@ -163,10 +156,6 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
        </li>
        <li className="hover:cursor-pointer hover:text-indigo-900"> <BiChevronRight onClick={() => scrollToLeft()} className="bg-white" size={40} /> </li>
     </ul>
-
-
-
-
     <ul className="flex border-1 border-black" 
         ref=  {arrayName} style={{overflow:'scroll',scrollbarWidth:"none",height:'100px'}}>
           <li key={23111} className="text-indigo-500 px-2 ">
@@ -188,11 +177,6 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
                 }
         </li>)}
     </ul>
-       
-       
-       
-       
- 
     </div>
     </>
   );

@@ -2,7 +2,7 @@ import React from "react";
 
 const SelfProfileSkelatal: React.FC = () => {
   return (
-    <div className="max-w-sm w-full mx-auto bg-white shadow-md rounded-2xl p-6 animate-pulse">
+    <div className="max-w-sm w-full mx-auto bg-white shadow-md rounded-lg p-6 animate-pulse">
       <div className="flex flex-col items-center space-y-4">
         {/* Avatar */}
         <div className="w-24 h-24 bg-gray-300 rounded-full"></div>

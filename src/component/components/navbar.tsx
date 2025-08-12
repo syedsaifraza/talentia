@@ -1,34 +1,23 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { AiOutlineHome } from "react-icons/ai";
-import { IoMdSettings } from "react-icons/io";
-import { MdOutlineVideoLibrary, MdLeaderboard } from "react-icons/md";
-import { PiBagSimpleFill } from "react-icons/pi";
 import { usePathname } from "next/navigation";
-import { BiSolidBell, BiSolidMessageAlt } from "react-icons/bi";
-
+import { BiSolidBell } from "react-icons/bi";
 import DefaultAvatar from "./defaultAvatar";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-// import { logout, setLoggedInUser } from "@/store/slices/authSlices";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/slices/authSlices";
 import HomeIcon from "../Icons/HomeIcon";
-import TvIcon from "../Icons/TvIcon";
 import WorkIcon from "../Icons/WorkIcon";
-import BadgeIcon from "../Icons/BadgeIcon";
 import WatchIcon from "../Icons/WatchIcon";
 import LeaderBoard from "../Icons/LeaderBoard";
 import MessageIcon from "../Icons/MessageIcon";
-import BellIcon from "../Icons/BellIcon";
 import SettingsIcon from "../Icons/SettingsIcon";
 import LogoFile from "./LogoFile";
-import LogoFileAlt from "./LogoFileAlt";
 import "../../app/globals.css";
-import { CircleChevronDown } from "lucide-react";
 import ProfileDropdown from "./ProfileDropdown";
+import { HiMiniChatBubbleLeftRight } from "react-icons/hi2";
 
 export default function Navbar() {
   const notifications = [
@@ -69,8 +58,6 @@ export default function Navbar() {
     },
   ];
 
-  const unreadCount = notifications.filter((n) => n.unread).length;
-
   const pathname = usePathname();
   const router = useRouter();
   const [showNotifications, setShowNotifications] = useState(false);
@@ -78,78 +65,83 @@ export default function Navbar() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    // Clear session (e.g., remove token from localStorage)
     localStorage.removeItem("token");
     Cookies.remove("token");
     dispatch(logout());
     router.push("/signin");
   };
 
-  const isActive = (route: string) =>
-    pathname === route ? "border-b-4 border-[#3113d6]" : "";
   const activeColor = (route: string) =>
     pathname === route ? "#3113d6" : "gray";
 
   const appState = useSelector((state: any) => state.auth.user);
   const instituteState = useSelector((state: any) => state.institute);
 
+  const tabs = [
+    {
+      id: "home",
+      icon: <img src="https://content.acetians.in/uploads/h%20o%20m%20e%20-%20%20a%20g%20r%20e%20e%20m%20e%20n%20t.png" color={activeColor("/home")}/>,
+      path: "/home",
+      label: "Home",
+    },
+    {
+      id: "watch",
+      icon:  <img src="https://content.acetians.in/uploads/v%20i%20d%20e%20o%20-%20%20m%20a%20r%20k%20%20e%20t%20i%20n%20g%20.%20png.png" color={activeColor("/hom")}/>,
+      path: "/watch",
+      label: "Watch",
+    },
+    {
+      id: "job",
+      icon:  <img src="https://content.acetians.in/uploads/s%20u%20i%20t%20%20c%20a%20%20s%20e.png" color={activeColor("/hom")}/>,
+      path: "/job",
+      label: "Jobs",
+    },
+    {
+      id: "leaderboard",
+      icon:  <img src="https://content.acetians.in/uploads/m%20e%20d%20a%20l.png" color={activeColor("/hom")}/>,
+      path: "/leaderboard",
+      label: "Leaderboard",
+    },
+  ];
+
   return (
     <nav className="bg-white shadow-sm w-full sticky top-0 z-50">
       <div className="grid grid-cols-3 justify-center items-center px-5 ">
         <div className="flex justify-start ">
           <LogoFile />
-          {/* <p className="bg-orange-400 font-bold">BETA</p> */}
         </div>
 
         <div>
           {appState != null && (
-            <div className="flex flex-row justify-evenly items-center">
-              <div
-                className={`hover:bg-gray-100 border-red-600 border-b-4 cursor-pointer py-5 px-10 flex justify-center items-center ${isActive(
-                  "/home"
-                )}`}
-              >
-                <Link href="/home" prefetch={true}>
-                  <HomeIcon />
-                  {/* <AiOutlineHome color={activeColor("/home")} size={28} /> */}
+            <div className="grid  grid-cols-4 gap-3">
+              {tabs.map((tab) => (
+                <Link
+                title={tab.label}
+                  key={tab.id}
+                  href={tab.path}
+                  className={`py-3  ${
+                    pathname === tab.path
+                      ? "bg-gray-00 border-b-2 border-gray-900"
+                      : ""
+                  }  flex flex-col ${
+                    pathname === tab.path ? "" : "hover:bg-gray-100"
+                  } items-center ${
+                    pathname === tab.path ? "text-[#3113d6]" : "text-gray-500"
+                  }`}
+                >
+                  <div className={`p-2 rounded-lg w-10 h-10 `}>
+                   {tab.icon}
+                  </div>
+                  {/* <span className="text-xs mt-1">{tab.label}</span> */}
                 </Link>
-              </div>
-              <div
-                className={`hover:bg-gray-100  border-red-900 cursor-pointer py-5 px-10 flex justify-center items-center ${isActive(
-                  "/watch"
-                )}`}
-              >
-                <Link href="/watch" prefetch={true}>
-                  <WatchIcon />
-                  {/* <MdOutlineVideoLibrary color={activeColor("/watch")} size={28} /> */}
-                </Link>
-              </div>
-              <div
-                className={`hover:bg-gray-100 cursor-pointer  py-5 px-10 flex justify-center items-center ${isActive(
-                  "/job"
-                )}`}
-              >
-                <Link href="/job" prefetch={true}>
-                  <WorkIcon />
-                  {/* <PiBagSimpleFill color={activeColor("/job")} size={28} /> */}
-                </Link>
-              </div>
-              <div
-                className={`hover:bg-gray-100 cursor-pointer  py-5 px-10 flex justify-center items-center ${isActive(
-                  "/achievements"
-                )}`}
-              >
-                <Link href="/achievements" prefetch={true}>
-                  <LeaderBoard />
-                  {/* <MdLeaderboard color={activeColor("/Deachievements")} size={28} /> */}
-                </Link>
-              </div>
+              ))}
             </div>
           )}
         </div>
 
+        {/* Rest of your navbar code remains the same */}
         <div>
-          {appState == null && (
+          {/* {appState == null && (
             <div className="flex justify-end items-center  ">
               <Link
                 href="/login"
@@ -166,19 +158,16 @@ export default function Navbar() {
                 Signup
               </Link>
             </div>
-          )}
+          )} */}
 
           {appState != null && (
-            <div className="flex justify-end items-center  ">
-              <div className="p-2 rounded-full">
-                <Link href="/Settings/view">
+            <div className="flex justify-end items-center gap-3">
+              <div className="p-2 rounded-full bg-gray-200 text-white">
+                <Link href="/Settings/view" className="text-white">
                   <SettingsIcon />
-                  {/* <IoMdSettings className="text-black text-bold" size={25} /> */}
                 </Link>
               </div>
-              <div className="p-1 rounded-full relative">
-                
-
+              <div className="p-2 rounded-full bg-gray-200 text-white relative">
                 <BiSolidBell
                   size={25}
                   onClick={() => setShowNotifications(!showNotifications)}
@@ -186,35 +175,26 @@ export default function Navbar() {
                 />
                 {showNotifications && (
                   <>
-                   
-                    {/* Modal Content */}
                     <div className="absolute right-0 top-12 w-80 z-50 bg-white border border-gray-200 rounded-lg shadow-lg">
-                      {/* Header */}
                       <div className="px-4 py-3 border-b border-gray-100">
                         <h3 className="text-sm font-medium text-gray-900">
                           Notifications
                         </h3>
                       </div>
-
-                      {/* Notifications List */}
-                      <div className="h-[30vh] w-[40vw]  overflow-y-auto" >
+                      <div className="h-[30vh] w-[40vw]  overflow-y-auto">
                         {notifications.map((notification) => (
                           <div
-                          // href="/Notification/view"
                             key={notification.id}
                             className={`px-4 py-3 border-b w-[40vw] border-gray-50 hover:bg-gray-50 cursor-pointer ${
                               notification.unread ? "bg-blue-50" : ""
                             }`}
                           >
                             <div className="flex items-start space-x-3">
-                              {/* Unread indicator */}
                               <div className="flex-shrink-0 mt-1">
                                 {notification.unread && (
                                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                                 )}
                               </div>
-
-                              {/* Content */}
                               <div className="flex-1 min-w-0">
                                 <p className="text-sm font-medium text-gray-900 truncate">
                                   {notification.title}
@@ -230,11 +210,9 @@ export default function Navbar() {
                           </div>
                         ))}
                       </div>
-
-                      {/* Footer */}
                       <div className="px-4 py-3 border-t border-gray-100">
                         <Link
-                        href="/Notification/view"
+                          href="/Notification/view"
                           onClick={() => {
                             console.log("View all notifications");
                           }}
@@ -248,20 +226,18 @@ export default function Navbar() {
                 )}
               </div>
 
-              <div className="px-3 rounded-full">
+              <div className="p-2 rounded-full bg-gray-200 text-white">
                 <Link href="/messaging/view">
-                  <MessageIcon />
-                  {/* <BiSolidMessageAlt size={25} className="cursor-pointer text-black text-bold" /> */}
+                 <MessageIcon />
                 </Link>
               </div>
 
-              {/* Avatar with Dropdown Menu */}
               <div className="relative">
                 <div
                   className=" flex justify-center items-center rounded-full shadow-md cursor-pointer"
                   onClick={() => setShowMenu(!showMenu)}
                 >
-                  <DefaultAvatar size={30} />
+                  <DefaultAvatar size={40} />
                 </div>
 
                 {showMenu && (

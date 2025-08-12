@@ -30,6 +30,7 @@ interface Blog {
     _seconds: number;
     _nanoseconds: number;
   };
+  category:string
 }
 
 interface BlogForm {
@@ -99,7 +100,7 @@ export default function BlogPage() {
 
      const [html, setHtml] = useState('');
   
-  function onChange(e) {
+  function onChange(e:any) {
     // setHtml(e.target.value);
 
      const value  = e.target.value;
@@ -414,8 +415,8 @@ export default function BlogPage() {
                   </div>
 
                   {/* Article Content */}
-                  <div className="prose max-w-none text-gray-700 leading-relaxed line-clamp-3">
-                    {blog.description}
+                  <div  className="max-w-none text-gray-700 leading-relaxed line-clamp-3">
+                    <div dangerouslySetInnerHTML={{ __html: blog.description }} />
                   </div>
                 </div>
               </div>
@@ -506,7 +507,7 @@ export default function BlogPage() {
         </div>
       </div>
 
-      {/* Blog Form Modal */}
+   
       {showForm && (
         <div className="fixed inset-0 z-[99] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
           <div className="bg-white shadow-xl rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
@@ -547,6 +548,28 @@ export default function BlogPage() {
                 </div>
 
                 {/* Description */}
+
+                 <div className="space-y-2">
+                  <label
+                    htmlFor="description"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    description <span className="text-red-500">*</span>
+                  </label>
+
+                  {/* <Editor  name={"description"}  value={blogForm.description} onChange={onChange} /> */}
+                  
+                  <textarea
+                    id="description"
+                    name="description"
+                    onChange={handleInputChange}
+                    value={blogForm.description}
+                    rows={10}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 max-h-20 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                    placeholder="Write your amazing description here..."
+                  />
+                </div>
                 
 
                 {/* Image Upload */}
@@ -702,18 +725,9 @@ export default function BlogPage() {
                     Content <span className="text-red-500">*</span>
                   </label>
 
-                  <Editor  name={"description"}  value={blogForm.description} onChange={onChange} />
+                  <Editor  name={"content"}  value={blogForm.content} onChange={onChange} />
                   
-                  {/* <textarea
-                    id="content"
-                    name="content"
-                    onChange={handleInputChange}
-                    value={blogForm.content}
-                    rows={10}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                    placeholder="Write your amazing content here..."
-                  /> */}
+                  
                 </div>
 
                 {/* Form Actions */}
@@ -737,162 +751,6 @@ export default function BlogPage() {
           </div>
         </div>
 
-//         <div className="fixed inset-0 z-[99] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-//            <div className="bg-white shadow-xl rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-//       <div className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-6 md:p-8">
-//         <div className="flex items-center mb-6">
-//           <svg
-//             xmlns="http://www.w3.org/2000/svg"
-//             width="24"
-//             height="24"
-//             viewBox="0 0 24 24"
-//             fill="none"
-//             stroke="currentColor"
-//             strokeWidth="2"
-//             strokeLinecap="round"
-//             strokeLinejoin="round"
-//             className="text-gray-600 mr-2"
-//           >
-//             <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-//             <polyline points="14 2 14 8 20 8" />
-//           </svg>
-//           <h1 className="text-xl font-semibold text-gray-800">Write New Article</h1>
-//         </div>
-
-//         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-//             <div className="mb-6">
-//           <label htmlFor="cover" className="block text-sm font-medium text-gray-700 mb-2">
-//             Cover
-//           </label>
-//           <div className="flex items-center justify-center h-24 w-24 border border-gray-300 rounded-lg bg-gray-50 text-gray-400 flex-shrink-0 cursor-pointer">
-//             <svg
-//               xmlns="http://www.w3.org/2000/svg"
-//               width="24"
-//               height="24"
-//               viewBox="0 0 24 24"
-//               fill="none"
-//               stroke="currentColor"
-//               strokeWidth="2"
-//               strokeLinecap="round"
-//               strokeLinejoin="round"
-//               className="h-8 w-8"
-//             >
-//               <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-//               <circle cx="12" cy="13" r="3" />
-//             </svg>
-//           </div>
-//         </div>
-//           <div className="md:col-span-3">
-//             <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
-//               Title
-//             </label>
-//             <input
-//               type="text"
-//               id="title"
-//               className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-//               placeholder=""
-//             />
-//           </div>
-//         </div>
-//         <div className="md:col-span-3 mb-2">
-//             <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
-//               Descripition
-//             </label>
-//             <input
-//               type="text"
-//               id="title"
-//               className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-//               placeholder=""
-//             />
-//           </div>
-
-//         <div className="mb-6">
-//           <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
-//             Content
-//           </label>
-//           <div className="border border-gray-300 rounded-md overflow-hidden">
-           
-//             <textarea
-//               id="content"
-//               rows={10}
-//               className="block w-full px-3 py-2 text-sm text-gray-700 focus:outline-none resize-y"
-//               placeholder=""
-//             ></textarea>
-            
-//           </div>
-//         </div>
-
-//       <div className="flex flex-row gap-5">
-// <div className="mb-6 w-full">
-//           <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
-//             Category
-//           </label>
-//           <div className="relative">
-//             <select
-//               id="category"
-//               className="block appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm pr-8"
-//             >
-//               <option>Select Category</option>
-//               <option>Technology</option>
-//               <option>Lifestyle</option>
-//               <option>Travel</option>
-//             </select>
-//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-//               <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-//                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-//               </svg>
-//             </div>
-//           </div>
-//         </div>
-//         <div className="mb-6 w-full">
-//           <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
-//             Sub Category
-//           </label>
-//           <div className="relative">
-//             <select
-//               id="category"
-//               className="block appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm pr-8"
-//             >
-//               <option>Select Category</option>
-//               <option>Technology</option>
-//               <option>Lifestyle</option>
-//               <option>Travel</option>
-//             </select>
-//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-//               <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-//                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-//               </svg>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-        
-
-//         <div className="mb-6">
-//           <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-2">
-//             Tags
-//           </label>
-//           <input
-//             type="text"
-//             id="tags"
-//             className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-//             placeholder="Type a tag name and press Enter or Comma to add it"
-//           />
-//         </div>
-
-//         <div className="flex justify-end">
-//           <button
-//             type="submit"
-//             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-//           >
-//             Publish
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//         </div>
-       
       )}
     </div>
   );

@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function TalentsView (){
     const reelsState= useSelector((state:any)=>state.reels.reels);
     return (
-    <div className=" flex flex-col gap-4 bg-white  mt-2 mb-2 overflow-hidden rounded-[5px] p-4">
+    <div className=" flex flex-col gap-4 mt-2 mb-2 overflow-hidden rounded-[5px] p-4"  style={{backgroundColor:"#fefefe",boxShadow: "0px 1px 1px 1px rgba(0, 0, 0, 0.1)"}}>
         <ul className="flex justify-between">
             <li>
                 <h4 className="font-semibold" onClick={()=>{

@@ -10,7 +10,7 @@ import {
 import { IoMail, IoClose } from "react-icons/io5";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { FiMessageSquare, FiCopy } from "react-icons/fi";
-import { Bookmark, EyeOff, MoreVertical, SquarePen, Trash } from "lucide-react";
+import { Bookmark, EyeOff, MoreVertical, SquarePen, Trash, X } from "lucide-react";
 import moment from "moment";
 import { addComment, addLike } from "@/utils/apis/post";
 import { blogPost, savePost, watchPostReels } from "@/utils/apis/profile";
@@ -58,29 +58,27 @@ const Post = ({
     } ${feelingInfo.emoji}`;
   };
 
-  const handleLikeClick = (postId: any) => {
+  const handleLikeClick = (postId: any,postLikes:any) => {
     addLike(postId);
     setLikeCount((prev: any) => (isLiked ? prev - 1 : prev + 1));
     setIsLiked((prev: any) => !prev);
-   
-
     // console.log(post.user.user_id);
-   
-    console.log();
-    console.log(postId);
+    // console.log(postLikes);
+    // console.log(postId);
     console.log("hello sir");
     console.log(profileData);
     // console.log(profileData)
     // console.log(post)
   };
 
-  const handleSavePost = (postId: any) => {
+  const handleSavePost = (postId: any,postLikes:any) => {
     savePost("post", postId);
     setIsSaved(!isSaved);
     setIsMenuOpen(false);
+    console.log(postLikes);
   };
 
-  const watchPost = (postId: any) => {
+  const watchPost = (postId: any,) => {
     watchPostReels("post", postId);
   };
 
@@ -103,7 +101,14 @@ const Post = ({
     return match ? match[0] : null;
   };
 
+
+  const [IsLiked,setIsLIked] = useState()
+
   useEffect(() => {
+
+    // const Like = post.like(()=)
+
+    // console.log(profileData.data.id)
 
 
 
@@ -123,7 +128,8 @@ const Post = ({
   return (
     <div
     // style={{width:"500px"}}
-      className={`bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mb-4 ${className}`}
+      className={` rounded-xl shadow-sm  overflow-hidden mb-4 ${className}`}
+      style={{backgroundColor:"#fefefe",boxShadow: "0px 1px 1px 1px rgba(0, 0, 0, 0.1)"}}
     >
       {/* Post Header */}
       <div className="flex justify-between items-center p-4">
@@ -160,7 +166,7 @@ const Post = ({
         </div>
 
         {/* Three-dot menu */}
-        <div className="relative" ref={menuRef}>
+        <div className="relative " ref={menuRef}>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="p-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -168,24 +174,26 @@ const Post = ({
           >
             <MoreVertical className="w-5 h-5 text-gray-500" />
           </button>
+          <button
+          onClick={() => setIsIgnored(true)}
+            className="p-1 ml-4 rounded-full hover:bg-gray-100 transition-colors"
+            aria-label="More options"
+          >
+            <X  className="w-5 h-5 text-gray-500" />
+            {/* <MoreVertical className="w-5 h-5 text-gray-500" /> */}
+          </button>
 
           {isMenuOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200">
               <div className="py-1">
                 <button
-                  onClick={() => handleSavePost(post.id)}
+                  onClick={() => handleSavePost(post.id,post.likes)}
                   className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                 >
                   <Bookmark className="w-4 h-4 mr-2" />
                   {isSaved ? "Unsave Post" : "Save Post"}
                 </button>
-                <button
-                  onClick={() => setIsIgnored(true)}
-                  className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                >
-                  <EyeOff className="w-4 h-4 mr-2" />
-                  Ignore Post
-                </button>
+                
                 {/* Show Edit/Delete only for user's own post, safely check profileData */}
                 {profileData &&
                   profileData.data &&
@@ -216,9 +224,9 @@ const Post = ({
       </div>
 
       {/* Post Content */}
-      <div className="px-4 pb-2">
+      <div className=" pb-2">
         {extractFirstURL(post.text) !== post.text && (
-          <div className="mb-2 text-gray-800">
+          <div className="mb-2 px-4 font-inter font-normal text-gray-800">
             {post.text.length > 100 ? (
               <ReadMore text={post.text} />
             ) : (
@@ -231,7 +239,7 @@ const Post = ({
 
         {/* Media Content */}
         {post.fileURL && (
-          <div className="rounded-lg overflow-hidden bg-gray-50 my-0 flex justify-center items-center">
+          <div className="overflow-hidden bg-gray-50 my-0 border-t border-b border-gray-200  flex justify-center items-center">
             {!post.fileURL.includes(".mp4") ? (
               <Suspense
                 fallback={
@@ -277,7 +285,7 @@ const Post = ({
       </div>
 
       {/* Post Stats */}
-      <div className="px-4 py-2 border-t border-gray-100 flex justify-between text-sm text-gray-500">
+      <div className="px-4 py-2  flex justify-between text-sm text-gray-500">
         <span className="hover:text-blue-600 cursor-pointer">
           {likeCount} likes
         </span>
@@ -290,9 +298,9 @@ const Post = ({
       </div>
 
       {/* Post Actions */}
-      <div className="px-4 py-2 border-t border-gray-100 grid grid-cols-3 gap-1 text-gray-600">
+      <div className="px-4 py-2 border-t border-gray-200 grid grid-cols-3 gap-1 text-gray-600">
         <button
-          onClick={() => handleLikeClick(post.id)}
+          onClick={() => handleLikeClick(post.id,post.likes)}
           className={`flex items-center justify-center gap-1 py-2 rounded-lg hover:bg-gray-100 transition-colors ${
             isLiked ? "text-blue-600" : ""
           }`}

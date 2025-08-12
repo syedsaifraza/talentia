@@ -36,7 +36,7 @@ export default function Layout({ children}: { children: React.ReactNode }) {
         {/* Left Sidebar */}
 
         <div 
-          className="lg:w-[350px]  box-border  overflow-hidden h-[90vh] gap-y-2"
+          className="lg:w-[330px]  box-border  overflow-hidden h-[90vh] gap-y-2"
           aria-label="Sidebar"
         > 
          <Sidebar/>
@@ -44,7 +44,7 @@ export default function Layout({ children}: { children: React.ReactNode }) {
 
         {/* Centered Content */}
 
-        <main   className=" p-2 flex-1 overflow-y-scroll h-[90vh]"  onScroll={handleScroll}>
+        <main   className=" p-2 flex-1 overflow-y-scroll h-[90vh] pl-[40px]"  onScroll={handleScroll}>
           <div className=" rounded-lg ">{children}</div>
         </main>
 
