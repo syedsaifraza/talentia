@@ -12,20 +12,9 @@ import { IoClose } from "react-icons/io5";
 import { FaLayerGroup, FaLink } from "react-icons/fa6";
 import { BiImages, BiSolidVideos } from "react-icons/bi";
 import { RiFilmAiFill } from "react-icons/ri";
-import NoPost from "@/component/components/NoPost"
-import SavedFilter from "@/component/components/savedComponents/SavedFilterForm";
 
-type SearchParams = Record<string, string | string[] | undefined>;
-
-interface Props {
-  searchParams?: SearchParams;
-}
-
-export default async function PostList({
-  searchParams,
-}: {
-   searchParams?: Record<string, string | string[] | undefined>;
-}) {
+ 
+export default async function PostList() {
   const activeFilter = 'all';
   const cookieStore = cookies();
   const token = (await cookieStore).get("token");
