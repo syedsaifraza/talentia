@@ -15,14 +15,19 @@ import { RiFilmAiFill } from "react-icons/ri";
 import NoPost from "@/component/components/NoPost"
 import SavedFilter from "@/component/components/savedComponents/SavedFilterForm";
 
+interface PageProps {
+  filter: string;
+  searchParams?: Record<string, string | string[] | undefined>;
+}
+
 export default async function PostList({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: PageProps
 }) {
-  const activeFilter = searchParams?.filter || 'all';
+  const activeFilter = searchParams.filter || 'all';
   const cookieStore = cookies();
-  const token = cookieStore.get("token");
+  const token = (await cookieStore).get("token");
 
   // Fetch user profile data
   let savedPostIds: string[] = [];
@@ -49,7 +54,7 @@ export default async function PostList({
 
 
   // Filter posts to only include saved ones
-  const savedPosts = posts.filter((post: PostType) => savedPostIds.includes(post.id));
+  const savedPosts = posts.filter((post: PostType) => savedPostIds.includes(post.id.toString()));
 
   // Function to filter posts by type
   const filterPosts = (type: string) => {
