@@ -24,7 +24,7 @@ interface Props {
 export default async function PostList({
   searchParams,
 }: {
-  searchParams: Props
+   searchParams?: Record<string, string | string[] | undefined>;
 }) {
   const activeFilter = 'all';
   const cookieStore = cookies();
