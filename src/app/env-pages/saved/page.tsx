@@ -16,7 +16,6 @@ import NoPost from "@/component/components/NoPost"
 import SavedFilter from "@/component/components/savedComponents/SavedFilterForm";
 
 interface PageProps {
-  filter: string;
   searchParams?: Record<string, string | string[] | undefined>;
 }
 
@@ -25,7 +24,7 @@ export default async function PostList({
 }: {
   searchParams: PageProps
 }) {
-  const activeFilter = searchParams.filter || 'all';
+  const activeFilter = 'all';
   const cookieStore = cookies();
   const token = (await cookieStore).get("token");
 
