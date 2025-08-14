@@ -9,7 +9,7 @@ import { FiEdit } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 
 interface Blog {
-  blogId :string
+  blogId :any
 }
 
 
@@ -17,7 +17,7 @@ export default function MainBlogPage() {
 
   
 
-  let blogId = null;
+  let blogId:any = null;
   const [blog, setBlog] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
