@@ -15,14 +15,16 @@ import { RiFilmAiFill } from "react-icons/ri";
 import NoPost from "@/component/components/NoPost"
 import SavedFilter from "@/component/components/savedComponents/SavedFilterForm";
 
-interface PageProps {
-  searchParams?: Record<string, string | string[] | undefined>;
+type SearchParams = Record<string, string | string[] | undefined>;
+
+interface Props {
+  searchParams?: SearchParams;
 }
 
 export default async function PostList({
   searchParams,
 }: {
-  searchParams: PageProps
+  searchParams: Props
 }) {
   const activeFilter = 'all';
   const cookieStore = cookies();
