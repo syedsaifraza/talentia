@@ -1,7 +1,12 @@
 "use client"
 
 import { AdComponents } from "@/component/components/adComponents"
-import { useState } from "react"
+import NameAvatar from "@/component/components/nameAvatar"
+import { getNotifications } from "@/utils/apis/notification"
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import moment from "moment"
+import useSocket from "@/hooks/useSocket"
 
 interface Notification {
   id: string
@@ -97,12 +102,12 @@ function NotificationHeader({
 }
 
 // Notification Item Component
-function NotificationItem({ notification, onMarkAsRead }: NotificationItemProps) {
+function NotificationItem({ notification, onMarkAsRead }: any) {
   const getNotificationIcon = (type: string) => {
     const iconClasses = "w-4 h-4 text-gray-600"
 
-    switch (type) {
-      case "like":
+    switch (true) {
+      case type.includes("like"):
         return (
           <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
             <svg className={iconClasses} fill="currentColor" viewBox="0 0 24 24">
@@ -110,7 +115,7 @@ function NotificationItem({ notification, onMarkAsRead }: NotificationItemProps)
             </svg>
           </div>
         )
-      case "comment":
+      case type.includes("comment"):
         return (
           <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
             <svg className={iconClasses} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,7 +128,7 @@ function NotificationItem({ notification, onMarkAsRead }: NotificationItemProps)
             </svg>
           </div>
         )
-      case "follow":
+      case type.includes("follow"):
         return (
           <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
             <svg className={iconClasses} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,7 +141,7 @@ function NotificationItem({ notification, onMarkAsRead }: NotificationItemProps)
             </svg>
           </div>
         )
-      case "mention":
+      case type.includes("mention"):
         return (
           <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center">
             <svg className={iconClasses} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,7 +154,7 @@ function NotificationItem({ notification, onMarkAsRead }: NotificationItemProps)
             </svg>
           </div>
         )
-      case "share":
+      case type.includes("share"):
         return (
           <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center">
             <svg className={iconClasses} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -167,22 +172,7 @@ function NotificationItem({ notification, onMarkAsRead }: NotificationItemProps)
     }
   }
 
-  const getNotificationText = () => {
-    switch (notification.type) {
-      case "like":
-        return `${notification.user.name} liked your post`
-      case "comment":
-        return `${notification.user.name} commented on your post`
-      case "follow":
-        return `${notification.user.name} started following you`
-      case "mention":
-        return `${notification.user.name} mentioned you in a post`
-      case "share":
-        return `${notification.user.name} shared your post`
-      default:
-        return ""
-    }
-  }
+  
 
   const handleClick = () => {
     if (!notification.isRead) {
@@ -199,39 +189,33 @@ function NotificationItem({ notification, onMarkAsRead }: NotificationItemProps)
     >
       <div className="flex items-start space-x-3">
         <div className="relative">
-          <img
-            src={notification.user.avatar || "/placeholder.svg"}
-            alt={notification.user.name}
-            className="w-10 h-10 rounded-full object-cover"
-          />
-          <div className="absolute -bottom-1 -right-1">{getNotificationIcon(notification.type)}</div>
+         {notification.notificationImageUrl.toString().includes("https")? <>
+                                <Image
+                                              src={notification.notificationImageUrl.toString()}
+                                              width={40}
+                                              height={40}
+                                              alt={"a"}
+                                              className="rounded-full object-cover aspect-square"
+                                            />
+                                </>:<NameAvatar size={30} name={notification.notificationImageUrl} />
+ } 
+          <div className="absolute -bottom-1 -right-1">{getNotificationIcon(notification.notificationDescription)}</div>
         </div>
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-gray-900">{getNotificationText()}</p>
+            <p className="text-sm font-medium text-gray-900">{notification.notificationTitle}</p>
             <div className="flex items-center space-x-2">
-              <span className="text-xs text-gray-500">{notification.timestamp}</span>
+              <span className="text-xs text-gray-500"> {moment(notification.createdAt._seconds * 1000).fromNow()}</span>
               {!notification.isRead && <div className="w-2 h-2 bg-blue-600 rounded-full"></div>}
             </div>
           </div>
+           
+          
 
-          <p className="text-xs text-gray-500 mt-1">@{notification.user.username}</p>
+          {notification.notificationDescription && <p className="text-sm text-gray-700 mt-2">{notification.notificationDescription}</p>}
 
-          {notification.content && <p className="text-sm text-gray-700 mt-2">{notification.content}</p>}
-
-          {notification.post && (
-            <div className="mt-3 p-3 bg-gray-100 rounded-lg">
-              <p className="text-sm text-gray-800">{notification.post.content}</p>
-              {notification.post.image && (
-                <img
-                  src={notification.post.image || "/placeholder.svg"}
-                  alt="Post content"
-                  className="mt-2 rounded-md w-full h-24 object-cover"
-                />
-              )}
-            </div>
-          )}
+           
         </div>
       </div>
     </div>
@@ -521,7 +505,31 @@ export default function NotificationsPage() {
   }
 
   const filteredNotifications = filter === "unread" ? notifications.filter((n) => !n.isRead) : notifications
+   const [alerts,setAlerts]=useState<any[]>([]);
+const loadNotifications = async () => {
+  const notification = await getNotifications();
+  setAlerts(notification || []); // fallback to empty array if null/undefined
+};
+const socketRef = useSocket("https://talentia.co.in");
+    useEffect(() => {
+      loadNotifications()
+    if (!socketRef.current) return;
 
+        socketRef.current.on('connect', () => {
+            console.log('Connected to socket server');
+        });
+
+        socketRef.current.on('notification', (msg:any) => {
+            setAlerts((prev)=>[...prev,msg])
+        });
+
+        return () => {
+            if (socketRef.current) {
+                socketRef.current.off('random:number');
+            }
+        };
+
+    })  
   return (
     <div className="flex flex-row  justify-around ">
 
@@ -556,7 +564,7 @@ export default function NotificationsPage() {
               </p>
             </div>
           ) : (
-            filteredNotifications.map((notification) => (
+           alerts.reverse().map((notification) => (
               <NotificationItem key={notification.id} notification={notification} onMarkAsRead={markAsRead} />
             ))
           )}

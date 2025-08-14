@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BiSolidBell } from "react-icons/bi";
@@ -8,55 +8,46 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/slices/authSlices";
-import HomeIcon from "../Icons/HomeIcon";
-import WorkIcon from "../Icons/WorkIcon";
-import WatchIcon from "../Icons/WatchIcon";
-import LeaderBoard from "../Icons/LeaderBoard";
 import MessageIcon from "../Icons/MessageIcon";
 import SettingsIcon from "../Icons/SettingsIcon";
 import LogoFile from "./LogoFile";
 import "../../app/globals.css";
 import ProfileDropdown from "./ProfileDropdown";
 import { HiMiniChatBubbleLeftRight } from "react-icons/hi2";
+import useSocket from "../../hooks/useSocket";
+import { getNotifications } from "@/utils/apis/notification";
+import NameAvatar from "./nameAvatar";
+import Image from "next/image";
 
 export default function Navbar() {
-  const notifications = [
-    {
-      id: 1,
-      title: "New message received",
-      message: "You have a new message from John",
-      time: "2 min ago",
-      unread: true,
-    },
-    {
-      id: 2,
-      title: "Task completed",
-      message: "Your report has been processed",
-      time: "5 min ago",
-      unread: true,
-    },
-    {
-      id: 3,
-      title: "Meeting reminder",
-      message: "Team meeting starts in 30 minutes",
-      time: "25 min ago",
-      unread: false,
-    },
-    {
-      id: 4,
-      title: "System update",
-      message: "System maintenance completed",
-      time: "1 hour ago",
-      unread: false,
-    },
-    {
-      id: 5,
-      title: "New comment",
-      message: "Sarah commented on your post",
-      time: "2 hours ago",
-      unread: true,
-    },
-  ];
+  const socketRef = useSocket('https://talentia.org.in/');  // <-- Your Node.js server URL
+    const [messages, setMessages] = useState<number>();
+    const [alerts, setAlerts] = useState<any[]>([]);
+
+const loadNotifications = async () => {
+  const notification = await getNotifications();
+  setAlerts(notification || []); // fallback to empty array if null/undefined
+};
+
+    useEffect(() => {
+      loadNotifications()
+        if (!socketRef.current) return;
+
+        socketRef.current.on('connect', () => {
+            console.log('Connected to socket server');
+        });
+
+        socketRef.current.on('notification', (msg:any) => {
+            setAlerts((prev)=>[...prev,msg])
+        });
+
+        return () => {
+            if (socketRef.current) {
+                socketRef.current.off('random:number');
+            }
+        };
+    }, [socketRef]);
+ 
 
   const pathname = usePathname();
   const router = useRouter();
@@ -168,11 +159,15 @@ export default function Navbar() {
                 </Link>
               </div>
               <div className="p-2 rounded-full bg-gray-200 text-white relative">
+                <span style={{fontSize:'14px',color:'orangered',fontWeight:'bolder',position:'absolute',top:0,right:0}}>{alerts.length}</span>
+                
                 <BiSolidBell
                   size={25}
                   onClick={() => setShowNotifications(!showNotifications)}
                   className="cursor-pointer text-black text-bold"
                 />
+                
+                
                 {showNotifications && (
                   <>
                     <div className="absolute right-0 top-12 w-80 z-50 bg-white border border-gray-200 rounded-lg shadow-lg">
@@ -182,28 +177,35 @@ export default function Navbar() {
                         </h3>
                       </div>
                       <div className="h-[30vh] w-[40vw]  overflow-y-auto">
-                        {notifications.map((notification) => (
+                        {alerts.reverse().slice(0,4).map((notification,index) => (
                           <div
-                            key={notification.id}
+                            key={"not"+index}
                             className={`px-4 py-3 border-b w-[40vw] border-gray-50 hover:bg-gray-50 cursor-pointer ${
-                              notification.unread ? "bg-blue-50" : ""
+                              notification.id ? "bg-blue-50" : ""
                             }`}
                           >
                             <div className="flex items-start space-x-3">
                               <div className="flex-shrink-0 mt-1">
-                                {notification.unread && (
-                                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                )}
-                              </div>
+                                 
+                                {notification.notificationImageUrl.toString().includes("https")? <>
+                                <Image
+                                              src={notification.notificationImageUrl.toString()}
+                                              width={40}
+                                              height={40}
+                                              alt={"a"}
+                                              className="rounded-full object-cover aspect-square"
+                                            />
+                                </>:<NameAvatar size={30} name={notification.notificationImageUrl} />
+ } </div>
                               <div className="flex-1 min-w-0">
                                 <p className="text-sm font-medium text-gray-900 truncate">
-                                  {notification.title}
+                                  {notification.notificationTitle}
                                 </p>
                                 <p className="text-sm text-gray-500 truncate">
-                                  {notification.message}
+                                  {notification.notificationDescription}
                                 </p>
                                 <p className="text-xs text-gray-400 mt-1">
-                                  {notification.time}
+                                  {/* {notification.time} */}
                                 </p>
                               </div>
                             </div>

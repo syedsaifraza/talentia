@@ -166,8 +166,8 @@ export default function ReelsScroller({ limit, size }: { limit: number; size: st
            </li>
               {statusUpdates.status.map((stat:any,i:number)=><li key={i} onClick={()=>setSelectedStatus(i)} className="text-indigo-500 px-2">
                 
-                {stat.userDetails.profilePhoto==undefined?<NameAvatar name={stat.userDetails.name} size={70}/>:
-                  <Image src={stat.userDetails.profilePhoto}
+                {stat.userDetails.profilePhoto==undefined?<NameAvatar key={"key"+i} name={stat.userDetails.name} size={70}/>:
+                  <Image key={"k"+i} src={stat.userDetails.profilePhoto}
                   width={100}
                   height={100}
                   alt={stat.text}

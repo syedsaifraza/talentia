@@ -1,6 +1,5 @@
 "use client";
-
-import { usePathname } from "next/navigation";
+ 
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { FaCirclePlus } from "react-icons/fa6";
@@ -8,11 +7,11 @@ import { lazy, Suspense } from "react";
 import SelfProfileSkelatal from "@/component/skelatal/SelfProfileCard";
 import ListTileSkelatal from "@/component/skelatal/ListTileSkelatal";
 import SelfProfile from "./self-profile";
+import React from "react";
 
-const Sidebar = () => {
-  
-  const currentPath = usePathname();
-  const appState = useSelector((state: any) => state.auth);
+const Sidebar = ({currentPath,appState}:{currentPath:any,appState:any}) => {
+  alert("Side bar rendered"); 
+
 
   const sideOptions = [
     { name: "Feed", icon: "https://content.acetians.in/uploads/home.png", link: "/env-pages/feed" },
@@ -97,4 +96,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default React.memo(Sidebar);
