@@ -6,6 +6,8 @@ import Sidebar from "@/component/components/sidebar";
 import { Suspense } from "react";
 import SponserCard from "@/component/SponserCard";
 import CompanyTile from "@/component/components/CompanyTile";
+import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 
 
 export default function Layout({ children}: { children: React.ReactNode }) {
@@ -24,7 +26,9 @@ export default function Layout({ children}: { children: React.ReactNode }) {
     }
   });
   }
+const currentPath = usePathname();
 
+    const appState = useSelector((state: any) => state.auth);
   return (
     <>
     <Suspense fallback={<h1>Loading</h1>}>
@@ -39,7 +43,7 @@ export default function Layout({ children}: { children: React.ReactNode }) {
           className="lg:w-[350px]  box-border  overflow-hidden h-[90vh] gap-y-2"
           aria-label="Sidebar"
         > 
-         <Sidebar/>
+         <Sidebar currentPath={currentPath} appState={appState} />
         </div>
 
         {/* Centered Content */}
