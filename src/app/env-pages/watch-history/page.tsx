@@ -18,10 +18,10 @@ import NoPOst from "@/component/components/NoPost";
 
 
 
-export default async function PostList({ searchParams }: { searchParams?: { filter?: string } }) {
+export default async function PostList() {
 
 
-    const activeFilter = searchParams?.filter || 'all';
+    const activeFilter =  'all';
     const cookieStore = cookies();
     const token =  (await cookieStore).get("token");
   
