@@ -25,7 +25,8 @@ interface ProfileResponse extends AuthResponse {
 
 export const getNotifications = async (): Promise<any> => {
   try {
-    const token = Cookies.get("token");
+    const token = Cookies.get("token");  
+    //get notif
     const response = await fetch(`${API_BASE_URL}/`, {
       method: "GET",
       headers: {
@@ -33,6 +34,7 @@ export const getNotifications = async (): Promise<any> => {
       },
       credentials: "include",
     });
+    console.log("Getting Notifications")
 
     const data = await response.json();
     // console.log("Blog data:", data);
