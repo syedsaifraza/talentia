@@ -15,13 +15,11 @@ export default function SavedPostList({ initialPosts, savedPostIds }: Props) {
   const params = useSearchParams();
   const tab = params.get('tab') || 'all';
 
-  const filteredPosts = useMemo(() => {
-    // पहले सेव्ड पोस्ट्स फिल्टर करें
+  const filteredPosts = useMemo(() => { 
     const savedPosts = initialPosts.filter(post => 
-      savedPostIds.includes(post.id)
+      savedPostIds.includes(post.id.toString())
     );
-
-    // टैब के अनुसार फिल्टर करें
+ 
     switch (tab) {
       case 'videos':
         return savedPosts.filter(post => 

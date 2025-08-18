@@ -30,6 +30,7 @@ export interface PostType {
       name: string;
       avatar: string;
       user_id:string;
+      uid:string;
     };
      
     timestamp: string;

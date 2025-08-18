@@ -14,8 +14,16 @@ import { BiImages, BiSolidVideos } from "react-icons/bi";
 import { RiFilmAiFill } from "react-icons/ri";
 import NoPost from "@/component/components/NoPost"
 
-export default async function PostList({ searchParams }: { searchParams?: { filter?: string } }) {
-  const activeFilter = searchParams?.filter || 'all';
+interface PageProps {
+  params: {
+    filter: string;
+    [key: string]: string; // allow extra params if needed
+  };
+}
+
+export default async function PostList({params}:{params:any}) {
+  const {filter} = params;
+  const activeFilter = filter;
   const cookieStore = cookies();
   const token = (await cookieStore).get("token");
 
