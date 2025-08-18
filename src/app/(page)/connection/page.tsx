@@ -28,34 +28,74 @@ function Page() {
       <div className="flex flex-wrap gap-4">
 
         {connections.map((user: any, index: number) => (
+
+
+
+ <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden w-44">
+      {/* Profile Image Section */}
+      <div className="relative">
+        <img
+          src={user.avatar || "https://content.acetians.in/uploads/d%20u%20m%20m%20y%20-%20u%20s%20er%20-%20male.jpg"}
+          alt={user.avatar}
+          className="w-full h-40 object-cover"
+        />
+      </div>
+
+      {/* Card Content */}
+      <div className="p-3">
+        {/* Name */}
+        <h3 className="font-semibold text-base text-gray-900 mb-1 leading-tight"> {user.name}</h3>
+
+        {/* Followers */}
+        <p className="text-sm text-gray-600 mb-3"> {user.bio}</p>
+
+        {/* Action Buttons */}
+        <div className="space-y-2">
+         
+
+          <button
           
-         <div
-            key={index}
-            className="w-1/5 p-4 bg-white rounded-xl shadow-md flex flex-col items-center"
+            className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md transition-colors duration-200 text-sm"
           >
+            Message
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+          
+        //  <div
+        //     key={index}
+        //     className="w-1/5 p-4 bg-white rounded-xl shadow-md flex flex-col items-center"
+        //   >
              
            
-            {!user.avatar  && <NameAvatar name={user.name} size={70} /> }
+        //     {!user.avatar  && <NameAvatar name={user.name} size={70} /> }
 
-            {user.avatar  && <Image
-              src={user.avatar || '/default-avatar.png'}
-              alt={user.name || 'User'}
-              height={80}
-              width={80}
-              className="rounded-full object-cover"
-            />}
-            <Link href={`account/${user.uid}`}>  
-            <p className="mt-2 text-center text-md font-medium">
-              {user.name}
-            </p>
-            </Link>
-            <p className="mt-0 text-center text-sm  font-medium" style={{fontSize:'12px'}}>
-            <em>{user.bio}</em>   
-            </p>
+        //     {user.avatar  && <Image
+        //       src={user.avatar || '/default-avatar.png'}
+        //       alt={user.name || 'User'}
+        //       height={80}
+        //       width={80}
+        //       className="rounded-full object-cover"
+        //     />}
+        //     <Link href={`account/${user.uid}`}>  
+        //     <p className="mt-2 text-center text-md font-medium">
+        //       {user.name}
+        //     </p>
+        //     </Link>
+        //     <p className="mt-0 text-center text-sm  font-medium" style={{fontSize:'12px'}}>
+        //     <em>{user.bio}</em>   
+        //     </p>
 
            
              
-          </div>
+        //   </div>
 
         ))}
       </div>

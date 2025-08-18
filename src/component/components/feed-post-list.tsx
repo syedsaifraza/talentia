@@ -29,14 +29,14 @@ export default function FeedPostList({posts}:{posts:PostType[]}){
 
     // First filter by tab (All, Connections, Communities, Pages)
     if (tab === 'connections') {
-      result = result.filter(post => 
+      result = result.filter((post:any) => 
         post.user && connectionIds.includes(post.user.uid))
     } 
 
     if (tab === 'following') {
      
       const followingIds = followings.map((f: any) => f.uid);
-      result = result.filter(post => 
+      result = result.filter((post:any) => 
         post.user && followingIds.includes(post.user.uid));
     }
 
