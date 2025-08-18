@@ -18,12 +18,12 @@ import NoPOst from "@/component/components/NoPost";
 
 
 
-export default async function PostList() {
+export default async function PostList({ searchParams }: { searchParams?: { filter?: string } }) {
 
 
-    const activeFilter =  'all';
+    const activeFilter = searchParams?.filter || 'all';
     const cookieStore = cookies();
-    const token =  (await cookieStore).get("token");
+    const token = (await cookieStore).get("token");
   
     // Fetch user profile data
     let videosWatchIds: string[] = [];
@@ -99,7 +99,7 @@ export default async function PostList() {
          <div className="w-[500px]">
         {filteredPosts.length === 0 ? (
           <div key="skeleton-container">
-             <NoPOst value={activeFilter}/>
+            <NoPOst value={activeFilter}/>
           </div>
         ) : (
           <div key="posts-container">

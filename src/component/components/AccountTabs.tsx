@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UserPosts from './UserPosts';
 
 type AccountPageProps={
@@ -41,11 +41,14 @@ function AccountTabs({userPosts,userGallery,userVideos}:AccountPageProps) {
     </div>
   );
 
+
+  useEffect(()=>{console.log(userPosts)},[])
+
   const renderContent = () => {
     switch (activeTab) {
       case "Posts":
         return (
-          <div className="space-y-0">
+          <div className="space-y-0 w-[500px]">
             {userPosts}
           </div>
              
@@ -65,14 +68,9 @@ function AccountTabs({userPosts,userGallery,userVideos}:AccountPageProps) {
           </div>
         );
       case "Videos":
-        return (
-          <div className="p-4">
-            <Videos videos={[
-              '/sample-video1.mp4',
-              '/sample-video2.mp4',
-            ]} />
-          </div>
-        );
+
+       return (userVideos)
+
       case "More":
         return (
           <div className="p-4 space-y-2 text-gray-700">
@@ -86,38 +84,29 @@ function AccountTabs({userPosts,userGallery,userVideos}:AccountPageProps) {
   }
 
   return (
-    <div className="max-w-3xl mx-auto mt-6">
-      {/* Tabs */}
-      <div className="flex" >
-        <div className="w-1/4">
-            <div className="flex flex-col  border-b border-gray-200">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`py-2 px-4 font-medium transition-all duration-200 border-b-2 ${
-              activeTab === tab
-                ? "text-blue-600 border-blue-600 text-left "
-                : "text-gray-600 border-transparent hover:text-blue-500 text-left hover:border-blue-400"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
-         </div>
-        </div>
-            <div className="w-3/4 bg-gray-100 px-2" style={{maxHeight:'96vh',overflowY:'scroll'}}>
-                {renderContent()}
-            </div>
-        </div>
-
-      
-
-      
-
+  
+        <div className="flex justify-evenly w-full " >
+       
+          <div className="flex flex-col p-5 w-[300px]    border-2 border-gray-200">
+              {tabs.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`py-2 w-[200px] px-4 font-medium transition-all duration-200 border-b-2 ${
+                    activeTab === tab
+                      ? "text-blue-600 border-blue-600 text-left "
+                      : "text-gray-600 border-transparent hover:text-blue-500 text-left hover:border-blue-400"
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+          </div>
  
-      
-    </div>
+          <div className=" flex-1 flex justify-center px-2" style={{maxHeight:'96vh',overflowY:'scroll'}}>
+                  {renderContent()}
+          </div>
+        </div> 
   )
 }
 

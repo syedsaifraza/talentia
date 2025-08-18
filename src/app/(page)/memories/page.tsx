@@ -182,6 +182,8 @@ export default function MemoriesPage() {
     )
   }
 
+  
+
   return (
     <div className="min-h-screen m-1 bg-gradient-to-br  from-purple-50 via-white to-pink-50">
       {/* Header */}

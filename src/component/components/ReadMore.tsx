@@ -10,7 +10,7 @@ export default function ReadMore({ text }: { text: string }) {
       const lineHeight = parseFloat(
         getComputedStyle(contentRef.current).lineHeight || "1.5"
       );
-      setMaxHeight(`${lineHeight * 2}px`);
+      setMaxHeight(`${lineHeight * 3}px`);
     }
   }, [expanded]);
 

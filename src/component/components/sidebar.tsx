@@ -10,7 +10,10 @@ import SelfProfile from "./self-profile";
 import React from "react";
 
 const Sidebar = ({currentPath,appState}:{currentPath:any,appState:any}) => {
-  alert("Side bar rendered"); 
+  // alert("Side bar rendered"); 
+  
+  const ourfollowings = useSelector((state: any) => state.auth.followings || []);
+    const ourfollowers = useSelector((state: any) => state.auth.followers || []);
 
 
   const sideOptions = [
@@ -41,8 +44,8 @@ const Sidebar = ({currentPath,appState}:{currentPath:any,appState:any}) => {
       <div className="h-full  w-full overflow-y-auto p-2 dark:bg-gray-800 " >
         <ul className="space-y-2  font-medium" style={{width:"300px"}}>
           <li key={321} className="">
-            <Suspense fallback={<SelfProfileSkelatal />}>
- <SelfProfile />
+            <Suspense fallback={<SelfProfileSkelatal  />}>
+ <SelfProfile ourfollowers={ourfollowers} />
             </Suspense>
           </li>
 

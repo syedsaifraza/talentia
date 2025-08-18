@@ -48,35 +48,33 @@ const getuse = followers.map((id: any) => (
 ));
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-[#f2f4f7] min-h-screen px-[100px]">
       {/* Cover Photo */}
-      <div className="relative w-full h-96 bg-gray-300">
+      <div className="relative w-full h-96 rounded-b-2xl">
         <Image
-          src={user.coverPhoto || "/default-cover.jpg"}
+          src={user.coverPhoto || "https://content.acetians.in/uploads/360_F_705229898_6MV4F9FPWLFzz1pWVmr3BNnls9s8b1x4.jpg"}
           alt="Cover Photo"
           layout="fill"
           objectFit="cover"
           
-          className="object-cover "
+          className="object-contain rounded-b-2xl "
         />
         {/* Profile Picture */}
-        <div className="absolute left-8 bottom-[-64px] w-32 h-32 rounded-full border-4 border-white overflow-hidden shadow-lg">
+        <div className="absolute bg-white left-8 bottom-[-64px] w-32 h-32 rounded-full border-4 border-white overflow-hidden shadow-lg">
           <Image
-            src={user.profilePhoto || "/default-profile.jpg"}
+            src={user.profilePhoto || "https://content.acetians.in/uploads/d%20u%20m%20m%20y%20-%20u%20s%20er%20-%20male.jpg"}
             alt="Profile"
             layout="fill"
             objectFit="cover"
           />
         </div>
+
+        <div className="flex mt-4 md:mt-0 gap-3 absolute  bottom-3 right-3">
+          <EditButton userId={id} followers={followers} followings={followings}/>
+          
+        </div>
       </div>
 
-      <div> 
-       {followers.length > 0 ? (
-  <NotFoundPage followers={followers} followings={followings}  />
-) : (
-  <div></div>
-)}
-      </div>
 
     
 
@@ -84,20 +82,21 @@ const getuse = followers.map((id: any) => (
       <div className="mt-20 px-8 md:px-16 flex flex-col md:flex-row md:items-center justify-between bg-white py-6 shadow-sm">
         <div>
           <h1 className="text-3xl font-bold">{user.name}</h1>
-          <p className="text-gray-600">{followers.length} followers · {followings.length} following</p> {/* Dummy followers/following */}
+          
           <p className="mt-1 text-gray-700">{user.jobTitle}</p>
         </div>
+
+      <div>
+        <p className="text-gray-600">{followers.length} followers · {followings.length} following</p> 
+      </div>
         
 
         {/* Action Buttons */}
-        <div className="flex mt-4 md:mt-0 gap-3">
-          <EditButton userId={id} followers={followers} followings={followings}/>
-          
-        </div>
+        
       </div>
 
       {/* Tabs */}
-      <div className="border-b bg-white mt-2 px-8 md:px-16">
+      <div className="border-b bg-white p-3 mt-5">
         <AccountTabs userGallery={ <UserGallery id={id} /> } userPosts={<UserPosts  id={id}/>} userVideos={<UserVideos id={id}/>} />
       </div>
 

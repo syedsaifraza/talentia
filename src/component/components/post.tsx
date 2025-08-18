@@ -226,7 +226,7 @@ const Post = ({
       {/* Post Content */}
       <div className=" pb-2">
         {extractFirstURL(post.text) !== post.text && (
-          <div className="mb-2 px-4 font-inter font-normal text-gray-800">
+          <div style={{fontSize:"13px"}} className="mb-2 px-4 font-inter font-normal text-justify text-gray-800">
             {post.text.length > 100 ? (
               <ReadMore text={post.text} />
             ) : (

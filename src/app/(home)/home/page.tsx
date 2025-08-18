@@ -53,8 +53,10 @@ export default async function PostList() {
           <div key={Math.random()*1000}>
             {posts.map((post, idz) => 
             (idz==0 || idz%3==0)? <div  key={idz} >
-              <TalentsView />
+              {/* <TalentsView /> */}
             <Post post={post} profileData={profileData} ogImageLoader={<OgImageLoader text={post.text}/>} />
+              <TalentsView />
+
             </div>:<Post post={post} profileData={profileData}  ogImageLoader={<OgImageLoader text={post.text}/>} />
              )}
           </div>

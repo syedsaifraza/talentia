@@ -159,7 +159,7 @@ const loadNotifications = async () => {
                 </Link>
               </div>
               <div className="p-2 rounded-full bg-gray-200 text-white relative">
-                <span style={{fontSize:'14px',color:'orangered',fontWeight:'bolder',position:'absolute',top:0,right:0}}>{alerts.length}</span>
+                <span className="flex justify-center items-center"  style={{fontSize:'13px',color:'white',fontWeight:'bolder',backgroundColor:"red" , borderRadius:"50%",position:'absolute',top:-3,right:0,display:"flex",justifyContent:"center",alignItems:"center",height:"20px",width:"20px",}}>{alerts.length}</span>
                 
                 <BiSolidBell
                   size={25}
