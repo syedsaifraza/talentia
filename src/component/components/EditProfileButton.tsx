@@ -17,7 +17,7 @@ export default function EditButton({userId,followers,followings}:{userId:string,
         await addFollower(followerId);
         await handleAccountRevalidation();
         setSending(false);
-      }
+    }
     const appState = useSelector((state:any)=>state.auth.user);
     if(appState==null){
         return ;

@@ -18,7 +18,7 @@ const Sidebar = ({currentPath,appState}:{currentPath:any,appState:any}) => {
 
   const sideOptions = [
     { name: "Feed", icon: "https://content.acetians.in/uploads/home.png", link: "/env-pages/feed" },
-    { name: "Connections", icon: "https://content.acetians.in/uploads/Connection%20People%20Sidbar.png", link: "/connection" },
+    { name: "Connections", icon: "https://content.acetians.in/uploads/Connection%20People%20Sidbar.png", link: "/env-pages/connections" },
     { name: "Blog", icon: "https://content.acetians.in/uploads/blog%20side%20bar.png", link: "/env-pages/blog" },
     { name: "TalentVerse", icon: "https://content.acetians.in/uploads/l%20e%20a%20d%20e%20r%20s%20h%20i%20p.png", link: "/reels" },
     { name: "Saved", icon: "https://content.acetians.in/uploads/b%20o%20o%20k%20m%20a%20r%20k.png", link: "/env-pages/saved" },

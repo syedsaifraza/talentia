@@ -3,7 +3,7 @@ import React from 'react'
 
 function NoData() {
   return (
-    <div>
+    <div className='flex w-full justify-center items-center'>
         <Image
         alt='No Data'
         width={500}
