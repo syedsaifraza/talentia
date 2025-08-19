@@ -32,7 +32,7 @@ export default async function Feed() {
     
     <div className="flex flex-row overflow-hidden h-[89.8vh]">
        <FilterForm/>
-       <FeedPostList posts={posts} /> 
+       <FeedPostList/> 
     </div>
   );
 }
