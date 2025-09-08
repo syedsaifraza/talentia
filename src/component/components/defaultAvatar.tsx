@@ -24,9 +24,25 @@ const DefaultAvatar: React.FC<AvatarProps> = ({ size = 40 }) => {
 
       
       {userState==null ?<div className="w-10 h-10 bg-gray-300 rounded-full"></div>
-: (userState.profilePhoto==undefined && userState.logoURL==undefined)?<NameAvatar name={userState.name} size={size} /> : <Image
-        className="rounded-full"
-        src={userState.profilePhoto||userState.logoURL} height={size} width={size} alt={userState.name}/> }  
+: (userState.profilePhoto==undefined && userState.logoURL==undefined)?<NameAvatar name={userState.name} size={size} /> : 
+        // <Image
+        // className="rounded-full"
+        // src={userState.profilePhoto||userState.logoURL} height={size} width={size} alt={userState.name}/> 
+
+
+       
+                    <Image
+                      src={userState.profilePhoto||userState.logoURL}
+                      width={size}
+                      height={size}
+                      alt="User Avatar"
+                      className="rounded-full object-cover aspect-square"
+                    />
+                 
+        
+        
+        
+        }  
         
       
       

@@ -16,7 +16,7 @@ const [postModal,setPostModal]=useState(false);
       <div  className="rounded-[5px] p-4 flex flex-col gap-5" style={{backgroundColor:"#fefefe",boxShadow: "0px 2px 3px 1px rgba(0, 0, 0, 0.1)"}}>
       <div className="flex flex-col justify-center " >
        <div className="flex items-center justify-center space-x-3 ">
-       <DefaultAvatar size={54}/>
+       <DefaultAvatar size={50}/>
          <input
           type="text"
           placeholder="What's on your mind?"

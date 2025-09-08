@@ -44,7 +44,7 @@ export default function SelfProfile({ourfollowers}:any) {
   return (
     <>
       <div className="sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  bg-white  rounded-[5px] text-gray-900">
-        <div className="rounded-[5px] h-[20vh] overflow-hidden">
+        {/* <div className="rounded-[5px] h-[20vh] overflow-hidden">
           <Image
             alt="user"
             height={100}
@@ -53,16 +53,15 @@ export default function SelfProfile({ourfollowers}:any) {
             src={getCoverPhoto(userState, coverPhoto)}
             style={{ maxHeight: "200px" }}
           />
-        </div>
-        <div className="flex flex-row justify-between ">
+        </div> */}
+        <div className="flex px-5 py-3 flex-row justify-between ">
           <div
             className=" rounded-full"
             style={{
-              width: "6vw",
-              height: "6vw",
+             
               position: "relative",
-              left: 25,
-              marginTop: "-18px",
+              left: 0,
+              
               overflow: "hidden",
             }}
           >
@@ -73,7 +72,7 @@ export default function SelfProfile({ourfollowers}:any) {
               ) : (
                 <DefaultAvatar
                   imageUrl={userState.profilePhoto || userState.logoURL}
-                  size={120}
+                  size={80}
                 />
               )}
             </Link>
@@ -84,7 +83,7 @@ export default function SelfProfile({ourfollowers}:any) {
               marginTop: "0px",
               overflow: "hidden",
             }}
-            className=" gap-4 px-5 py-3 text-gray-700 flex items-center justify-between"
+            className=" gap-4  text-gray-700 flex items-center justify-between"
           >
             <li
               onClick={() => console.log(setshowModal(true))}
