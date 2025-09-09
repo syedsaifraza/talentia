@@ -8,22 +8,36 @@ import { lazy, Suspense } from "react";
 import SelfProfileSkelatal from "@/component/skelatal/SelfProfileCard";
 import ListTileSkelatal from "@/component/skelatal/ListTileSkelatal";
 
+import Feed from "../../assets/Sidebar-Home.png"
+import Connection from "../../assets/Sidebar-Connection.png"
+import Blog from "../../assets/Sidebar-Blog.png"
+import TalentVerse from "../../assets/Sidebar-TalentVerse.png"
+import Saved from "../../assets/Sidebar-Saved.png"
+import WatchHistory from "../../assets/Sidebar-Watch-History.png"
+import Communities from "../../assets/Sidebar-Communities.png"
+import Birthday from "../../assets/Sidebar-Birthday.png"
+import Message from "../../assets/Sidebar-Message.png"
+import Memories from "../../assets/Sidebar-Memories.png"
+import Events from "../../assets/Sidebar-Event.png"
+import Jobs from "../../assets/Sidebar-Jobs.png"
+import Image from "next/image";
+
 const Sidebar = () => {
   const currentPath = usePathname();
   const appState = useSelector((state: any) => state.auth);
   const sideOptions = [
-    { name: "Feed", icon: "https://content.acetians.in/uploads/home.png", link: "/env-pages/feed" },
-    { name: "Connections", icon: "https://content.acetians.in/uploads/people.png", link: "/connection" },
-    { name: "Blog", icon: "https://content.acetians.in/uploads/blog.png", link: "/env-pages/blog" },
-    { name: "TalentVerse", icon: "https://content.acetians.in/uploads/confidence.png", link: "/reels" },
-    { name: "Saved", icon: "https://content.acetians.in/uploads/bookmark.png", link: "/env-pages/saved" },
-    { name: "Watch History", icon: "https://content.acetians.in/uploads/reload.png", link: "/env-pages/watch-history" },
-    { name: "Communities", icon: "https://content.acetians.in/uploads/group.png", link: "/communities" },
-    { name: "Birthday", icon: "https://content.acetians.in/uploads/birthday-cake.png", link: "/birthdays" },
-    { name: "Messages", icon: "https://content.acetians.in/uploads/chatting.png", link: "/messaging/view" },
-    { name: "Memories", icon: "https://content.acetians.in/uploads/history.png", link: "/memories" },
-    { name: "Events", icon: "https://content.acetians.in/uploads/shield.png", link: "/events" },
-    { name: "Jobs", icon: "https://content.acetians.in/uploads/job-search.png", link: "/job" },
+    { name: "Feed", icon: Feed, link: "/env-pages/feed" },
+    { name: "Connections", icon: Connection, link: "/connection" },
+    { name: "Blog", icon: Blog, link: "/env-pages/blog" },
+    { name: "TalentVerse", icon: TalentVerse, link: "/reels" },
+    { name: "Saved", icon: Saved, link: "/env-pages/saved" },
+    { name: "Watch History", icon: WatchHistory, link: "/env-pages/watch-history" },
+    { name: "Communities", icon: Communities, link: "/communities" },
+    { name: "Birthday", icon: Birthday, link: "/birthdays" },
+    { name: "Messages", icon: Message, link: "/messaging/view" },
+    { name: "Memories", icon: Memories, link: "/memories" },
+    { name: "Events", icon: Events, link: "/events" },
+    { name: "Jobs", icon: Jobs, link: "/job" },
   ];
 
   const isActive = (path: string) => {
@@ -66,7 +80,7 @@ const Sidebar = () => {
                           : "text-gray-700 hover:bg-gray-100"
                       } flex items-center px-3 py-2 rounded-[5px] group transition-colors duration-200`}
                     >
-                      <img 
+                      <Image
                         src={side.icon} 
                         alt={side.name} 
                         className="w-6 h-6 object-contain" 

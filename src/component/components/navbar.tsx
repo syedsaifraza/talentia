@@ -19,6 +19,20 @@ import { getNotifications } from "@/utils/apis/notification";
 import NameAvatar from "./nameAvatar";
 import Image from "next/image";
 
+import Home from "../../assets/Navbar-Home-Icon.png"
+import Watch from "../../assets/Navbar-Watch-Icon.png"
+import Job from "../../assets/Navbar-Job-Icon.png"
+import Archivement from "../../assets/Navbar-Archivement-Icon.png"
+
+
+
+
+
+
+
+
+
+
 export default function Navbar() {
   const socketRef = useSocket('https://talentia.org.in/');  // <-- Your Node.js server URL
     const [messages, setMessages] = useState<number>();
@@ -71,25 +85,25 @@ const loadNotifications = async () => {
   const tabs = [
     {
       id: "home",
-      icon: <img src="https://content.acetians.in/uploads/h%20o%20m%20e%20-%20%20a%20g%20r%20e%20e%20m%20e%20n%20t.png" color={activeColor("/home")}/>,
+      icon: <Image alt="home" src={Home} color={activeColor("/home")}/>,
       path: "/home",
       label: "Home",
     },
     {
       id: "watch",
-      icon:  <img src="https://content.acetians.in/uploads/v%20i%20d%20e%20o%20-%20%20m%20a%20r%20k%20%20e%20t%20i%20n%20g%20.%20png.png" color={activeColor("/hom")}/>,
+      icon:  <Image alt="watch" src={Watch} color={activeColor("/hom")}/>,
       path: "/watch",
       label: "Watch",
     },
     {
       id: "job",
-      icon:  <img src="https://content.acetians.in/uploads/s%20u%20i%20t%20%20c%20a%20%20s%20e.png" color={activeColor("/hom")}/>,
+      icon:  <Image alt="job" src={Job} color={activeColor("/hom")}/>,
       path: "/job",
       label: "Jobs",
     },
     {
       id: "leaderboard",
-      icon:  <img src="https://content.acetians.in/uploads/m%20e%20d%20a%20l.png" color={activeColor("/hom")}/>,
+      icon:  <Image alt="leaderboard" src={Archivement} color={activeColor("/hom")}/>,
       path: "/leaderboard",
       label: "Leaderboard",
     },

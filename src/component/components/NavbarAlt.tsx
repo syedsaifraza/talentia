@@ -1,4 +1,6 @@
 import Link from "next/link";
+import AppLogo from "../../assets/AppLogo.png"
+import Image from "next/image";
 
 export default function NavbarAlt(){
     return (
@@ -7,7 +9,7 @@ export default function NavbarAlt(){
           <Link href="/" className="nav-link">
             <div className="nav-logo">
               <div className="logo">
-                <img src={"https://content.acetians.in/uploads/logo.png"} height={35} width={35} alt="logo" /><span>Talentia</span></div>
+                <Image src={AppLogo} height={35} width={35} alt="logo" /><span>Talentia</span></div>
             </div>
           </Link>
           <div className="nav-links">

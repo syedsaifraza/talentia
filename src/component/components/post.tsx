@@ -145,7 +145,7 @@ const Post = ({
           ) : (
 
             <Image
-              src={"https://content.acetians.in/uploads/d%20u%20m%20m%20y%20-%20u%20s%20er%20-%20male.jpg"}
+              src={"https://content.acetians.in/backup/uploads/d%20u%20m%20m%20y%20-%20u%20s%20er%20-%20male.jpg"}
               width={40}
               height={40}
               alt={post.user.name}

@@ -9,6 +9,9 @@ import { useSelector } from "react-redux";
 import NoPOst from "@/component/components/NoPost";
 import NoData from "../NoData";
 import ProfileCards from "../ProfileCards";
+import DummyUser from "../../../assets/Dummy-User.jpg";
+import Image from "next/image";
+
 export default function FeedPostList() {
   const params = useSearchParams();
   const tab = params.get("tab") || "connections";
@@ -22,21 +25,19 @@ export default function FeedPostList() {
   const connections = followings.filter((following: any) =>
     followersIds.includes(following.uid)
   );
-   const appState = useSelector((state:any)=>state.auth.user);
+  const appState = useSelector((state: any) => state.auth.user);
 
   // const followRequest = [];
 
-
   // Show loading spinner for 1s when tab changes
   useEffect(() => {
-    if (tab !== activeTab || tab==="connections") {
+    if (tab !== activeTab || tab === "connections") {
       setLoading(true);
       setActiveTab(tab);
       const timer = setTimeout(() => setLoading(false), 1000);
       return () => clearTimeout(timer);
     }
   }, [tab]);
- 
 
   return (
     <div className="flex-1 overflow-y-auto">
@@ -68,8 +69,12 @@ export default function FeedPostList() {
                   <div>
                     {followers.length < 1 && <NoData />}
                     <ProfileCards
-                    followings={followings}
-                     appState={appState} followers={followers} tab={tab} data={followers} />
+                      followings={followings}
+                      appState={appState}
+                      followers={followers}
+                      tab={tab}
+                      data={followers}
+                    />
                   </div>
                 </div>
               )}
@@ -77,10 +82,10 @@ export default function FeedPostList() {
                 <div className="p-4 flex  flex-1">
                   <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden w-48">
                     <div className="relative">
-                      <img
-                        src={
-                          "https://content.acetians.in/uploads/d%20u%20m%20m%20y%20-%20u%20s%20er%20-%20male.jpg"
-                        }
+                      <Image
+                        src={DummyUser}
+                        width={200}
+                        height={160}
                         alt={"ProfileImage"}
                         className="w-full h-40 object-cover"
                       />

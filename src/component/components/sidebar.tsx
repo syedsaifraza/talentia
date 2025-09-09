@@ -9,6 +9,21 @@ import ListTileSkelatal from "@/component/skelatal/ListTileSkelatal";
 import SelfProfile from "./self-profile";
 import React from "react";
 
+import Feed from "../../assets/Sidebar-Home.png"
+import Connection from "../../assets/Sidebar-Connection.png"
+import Blog from "../../assets/Sidebar-Blog.png"
+import TalentVerse from "../../assets/Sidebar-TalentVerse.png"
+import Saved from "../../assets/Sidebar-Saved.png"
+import WatchHistory from "../../assets/Sidebar-Watch-History.png"
+import Communities from "../../assets/Sidebar-Communities.png"
+import Birthday from "../../assets/Sidebar-Birthday.png"
+import Message from "../../assets/Sidebar-Message.png"
+import Memories from "../../assets/Sidebar-Memories.png"
+import Events from "../../assets/Sidebar-Event.png"
+import Jobs from "../../assets/Sidebar-Jobs.png"
+
+import Image from "next/image";
+
 const Sidebar = ({currentPath,appState}:{currentPath:any,appState:any}) => {
   // alert("Side bar rendered"); 
   
@@ -17,18 +32,18 @@ const Sidebar = ({currentPath,appState}:{currentPath:any,appState:any}) => {
 
 
   const sideOptions = [
-    { name: "Feed", icon: "https://content.acetians.in/uploads/home.png", link: "/env-pages/feed" },
-    { name: "Connections", icon: "https://content.acetians.in/uploads/Connection%20People%20Sidbar.png", link: "/env-pages/connections" },
-    { name: "Blog", icon: "https://content.acetians.in/uploads/blog%20side%20bar.png", link: "/env-pages/blog" },
-    { name: "TalentVerse", icon: "https://content.acetians.in/uploads/l%20e%20a%20d%20e%20r%20s%20h%20i%20p.png", link: "/reels" },
-    { name: "Saved", icon: "https://content.acetians.in/uploads/b%20o%20o%20k%20m%20a%20r%20k.png", link: "/env-pages/saved" },
-    { name: "Watch History", icon: "https://content.acetians.in/uploads/h%20i%20s%20t%20o%20r%20y.png", link: "/env-pages/watch-history" },
-    { name: "Communities", icon: "https://content.acetians.in/uploads/g%20r%20o%20u%20p%20.png", link: "/communities" },
-    { name: "Birthday", icon: "https://content.acetians.in/uploads/b%20i%20r%20t%20h%20d%20a%20y%20-%20c%20a%20k%20e.png", link: "/birthdays" },
-    { name: "Messages", icon: "https://content.acetians.in/uploads/c%20h%20a%20t%20t%20i%20n%20g.png", link: "/messaging/view" },
-    { name: "Memories", icon: "https://content.acetians.in/uploads/m%20e%20m%20o%20r%20%20i%20e%20s.png", link: "/memories" },
-    { name: "Events", icon: "https://content.acetians.in/uploads/i%20m%20p%20o%20r%20%20t%20a%20n%20t%20-d%20a%20t%20e%20.png", link: "/events" },
-    { name: "Jobs", icon: "https://content.acetians.in/uploads/b%20r%20i%20e%20f%20c%20a%20s%20e.png", link: "/job" },
+    { name: "Feed", icon: Feed, link: "/env-pages/feed" },
+    { name: "Connections", icon: Connection, link: "/env-pages/connections" },
+    { name: "Blog", icon: Blog, link: "/env-pages/blog" },
+    { name: "TalentVerse", icon: TalentVerse, link: "/reels" },
+    { name: "Saved", icon: Saved, link: "/env-pages/saved" },
+    { name: "Watch History", icon: WatchHistory, link: "/env-pages/watch-history" },
+    { name: "Communities", icon: Communities, link: "/communities" },
+    { name: "Birthday", icon: Birthday, link: "/birthdays" },
+    { name: "Messages", icon: Message, link: "/messaging/view" },
+    { name: "Memories", icon: Memories, link: "/memories" },
+    { name: "Events", icon: Events, link: "/events" },
+    { name: "Jobs", icon: Jobs, link: "/job" },
   ];
 
   // Improved active link detection
@@ -73,7 +88,7 @@ const Sidebar = ({currentPath,appState}:{currentPath:any,appState:any}) => {
                           : "text-gray-700 hover:bg-gray-100"
                       } flex hover:bg-gray-100 items-center px-3 py-2 rounded-[5px] group transition-colors duration-200`}
                     >
-                      <img 
+                      <Image 
                         src={side.icon} 
                         alt={side.name} 
                         className="w-6 h-6 drop-shadow-xl" 

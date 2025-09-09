@@ -1,13 +1,13 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import NoData from "./NoData";
 import Link from "next/link";
 import { addFollower } from "@/utils/apis/profile";
 import { handleAccountRevalidation } from "./accountRevaliation";
+import DummyUser from "../../assets/Dummy-User.jpg";
+import Image from "next/image";
 
-const ProfileCards = ({ data, tab,followers,appState ,followings}: any) => {
-
-
+const ProfileCards = ({ data, tab, followers, appState, followings }: any) => {
   const [sendingUserId, setSendingUserId] = useState<string | null>(null);
 
   const followerUser = async (followerId: string) => {
@@ -15,7 +15,7 @@ const ProfileCards = ({ data, tab,followers,appState ,followings}: any) => {
     await addFollower(followerId);
     await handleAccountRevalidation();
     setSendingUserId(null);
-  } 
+  };
 
   return (
     <div>
@@ -23,15 +23,17 @@ const ProfileCards = ({ data, tab,followers,appState ,followings}: any) => {
         {data.length < 1 && <NoData />}
         <div className="flex flex-wrap gap-4">
           {data.map((user: any, index: number) => (
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden w-48">
+            <div
+              key={user.uid} // uid is unique
+              className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden w-48"
+            >
               {/* Profile Image Section */}
               <div className="relative">
-                <img
-                  src={
-                    user.avatar ||
-                    "https://content.acetians.in/uploads/d%20u%20m%20m%20y%20-%20u%20s%20er%20-%20male.jpg"
-                  }
-                  alt={user.avatar}
+                <Image
+                  src={user.avatar || DummyUser}
+                  alt={user.name }
+                  width={200}
+                  height={160}
                   className="w-full h-40 object-cover"
                 />
               </div>
@@ -51,7 +53,7 @@ const ProfileCards = ({ data, tab,followers,appState ,followings}: any) => {
                   href={`/account/${user.uid}`}
                   className="cursor-pointer text-center  box-border whitespace-nowrap  font-semibold text-gray-900 mb-4 "
                 >
-                  {(user.name || "").split(" ").slice(0,3).join(" ")}
+                  {(user.name || "").split(" ").slice(0, 3).join(" ")}
                 </Link>
 
                 {tab === "connections" && (
@@ -68,24 +70,28 @@ const ProfileCards = ({ data, tab,followers,appState ,followings}: any) => {
                       Message
                     </button>
 
-                     <button className="w-full bg-blue-700 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 text-sm">
+                    <button className="w-full bg-blue-700 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 text-sm">
                       Remove
                     </button>
                   </div>
                 )}
 
-
                 {tab === "followers" && (
                   <div className="space-y-2 mt-3">
-                      {followings && followings.some((f:any) => f.uid === user.uid) ? (
-                      <button className="w-full bg-blue-700 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 text-sm">Following</button>
+                    {followings &&
+                    followings.some((f: any) => f.uid === user.uid) ? (
+                      <button className="w-full bg-blue-700 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 text-sm">
+                        Following
+                      </button>
                     ) : (
                       <button
                         className="w-full bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 text-sm"
                         onClick={() => followerUser(user.uid)}
                         disabled={sendingUserId === user.uid}
                       >
-                        {sendingUserId === user.uid ? "Please Wait..." : "Follow"}
+                        {sendingUserId === user.uid
+                          ? "Please Wait..."
+                          : "Follow"}
                       </button>
                     )}
                     <button className="w-full bg-gray-300 hover:bg-blue-600 text-black font-medium py-2 px-4 rounded-md transition-colors duration-200 text-sm">
@@ -93,7 +99,6 @@ const ProfileCards = ({ data, tab,followers,appState ,followings}: any) => {
                     </button>
                   </div>
                 )}
-
 
                 {tab === "request" && (
                   <div className="space-y-2">

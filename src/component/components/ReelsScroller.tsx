@@ -15,6 +15,7 @@ import NameAvatar from "./nameAvatar";
 import { IoClose } from "react-icons/io5";
 import moment from "moment";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import DummyUser from "../../assets/Dummy-User.jpg"
 
 export default function ReelsScroller({
   limit,
@@ -224,8 +225,8 @@ export default function ReelsScroller({
                 {/* Large gray avatar circle */}
                 <div className=" bg-gray-500 rounded-full mx-auto flex items-center justify-center">
                   {/* Simple person icon using CSS */}
-                  <img
-                    src={"https://content.acetians.in/uploads/d%20u%20m%20m%20y%20-%20u%20s%20er%20-%20male.jpg"}
+                  <Image
+                    src={DummyUser}
                     alt="Avatar"
                     className=" rounded-full object-cover"
                   />
@@ -314,7 +315,8 @@ export default function ReelsScroller({
                     <img
                       src={
                         stat.userDetails.profilePhoto ||
-                        "https://content.acetians.in/uploads/d%20u%20m%20m%20y%20-%20u%20s%20er%20-%20male.jpg"
+                        DummyUser
+
                       }
                       alt="Profile"
                       className="rounded-full border-2 border-green-500 w-12 h-12 object-cover"

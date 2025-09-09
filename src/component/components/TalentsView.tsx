@@ -4,6 +4,7 @@ import ReelCardSkeletal from "../skelatal/ReelCardSkletal";
 import NameAvatar from "./nameAvatar";
 import Image from "next/image";
 import Link from "next/link";
+import DummyUser from "../../assets/Dummy-User.jpg"
 
 export default function TalentsView (){
     const reelsState= useSelector((state:any)=>state.reels.reels);
@@ -30,7 +31,7 @@ export default function TalentsView (){
             }} className=" rounded-lg h-full w-[55px] relative">
                <Image  alt={rState.id} src={rState.thumbnail} width="130" height="100" className="rounded-lg h-full object-cover" style={{maxWidth:'120px',height:'200px'}}  />
                <div className="absolute bottom-0 p-2">
-                {rState.userDetails.profilePhoto==null?<Image src={"https://content.acetians.in/uploads/d%20u%20m%20m%20y%20-%20u%20s%20er%20-%20male.jpg"} alt="M" height={90} width={90} className="rounded-full" style={{height:'30px',width:'30px'}} />: <Image src={rState.userDetails.profilePhoto} alt="M" height={90} width={90} className="rounded-full" style={{height:'30px',width:'30px'}} /> }
+                {rState.userDetails.profilePhoto==null?<Image src={DummyUser} alt="M" height={90} width={90} className="rounded-full" style={{height:'30px',width:'30px'}} />: <Image src={rState.userDetails.profilePhoto} alt="M" height={90} width={90} className="rounded-full" style={{height:'30px',width:'30px'}} /> }
                </div>
             </div>
             </Link>
