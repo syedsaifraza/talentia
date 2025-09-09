@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 interface CompanyListTileProps {
-    logo: string;
+    logo: any;
     name: string;
     industry: string;
     link: string;

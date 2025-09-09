@@ -9,6 +9,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 
+import Photo from "../../assets/Add-Reels-Photo.png"
+import Smile from "../../assets/Add-Reels-Smile.png"
+import Video from "../../assets/Add-Reels-Video.png"
+import Talents  from "../../assets/Add-Reels-Talent.png";
+
+
 export default function AddPost(){
 const [postModal,setPostModal]=useState(false);
      return (
@@ -30,18 +36,18 @@ const [postModal,setPostModal]=useState(false);
       <div className="flex justify-between items-center">
         <button className="flex items-center p-3 justify-center  rounded-md space-x-2 hover:bg-gray-100" onClick={() => setPostModal(true)}>
          <Image className="object-contain" width={20} height={20} alt="Photo Icon"
-         src="https://content.acetians.in/uploads/i%20m%20a%20g%20%20e%20s.png"/>
+         src={Photo}/>
  
           <span className="text-sm text-gray-600 font-bold">Photo</span>
         </button>
 
         <button className="flex items-center p-3 justify-center  rounded-md space-x-2 hover:bg-gray-100" onClick={() => setPostModal(true)}>
-          <Image width={20} height={20} src="https://content.acetians.in/uploads/v%20i%20d%20e%20o%20%20g%20r%20a%20p%20h%20y.png" alt="Video Icon" />
+          <Image width={20} height={20} src={Video} alt="Video Icon" />
           <span className="text-sm text-gray-600 font-bold">Video</span>
         </button>
 
         <button className="flex items-center p-3 justify-center rounded-md space-x-2 hover:bg-gray-100" onClick={() => setPostModal(true)}>
-          <Image  alt="Feel Icon" width={20} height={20} src="https://content.acetians.in/uploads/h%20a%20p%20p%20y%20-%20%20f%20a%20c%20e%20.png"/>
+          <Image  alt="Feel Icon" width={20} height={20} src={Smile}/>
           <span className="text-sm text-gray-600 font-bold">Feeling/Activity</span>
         </button>
 
@@ -49,7 +55,7 @@ const [postModal,setPostModal]=useState(false);
         //  onClick={() => window.location.href="/reels/add-reels"  }
          >
          <Image width={20} height={20} alt="Reels Icon"
-         src="https://content.acetians.in/uploads/v%20i%20d%20e%20o.png"/>
+         src={Talents}/>
  
           <span className="text-sm text-gray-600 font-bold">Talent</span>
         </Link>

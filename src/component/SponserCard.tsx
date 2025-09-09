@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 interface SponserCardProps {
-    image: string;
+    image: any;
     name: string;
     description: string;
     link: string;
