@@ -19,7 +19,7 @@ const handleLogout = () => {
     dispatch(logout());
     window.location.reload()
   };
-    return (<div className="p-2">
+    return (<div className="p-2 w-[300px]">
      <div className="shadow-lg rounded-lg my-2 p-2">
       
        <UserAccountTile docId={""} key={10929010}  avatar={userState.profilePhoto||userState.logoURL} name={userState.name} currentAcc={true} />

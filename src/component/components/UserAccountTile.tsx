@@ -39,9 +39,9 @@ export default function UserAccountTile({name,currentAcc,avatar,docId}:{name:str
         <ToastContainer/>
     <div className="flex items-center my-1 relative hover:bg-gray-200 px-1 rounded-md hover:cursor-pointer" onClick={()=>handleUserLogin()}>
         <div className={`${currentAcc==true?`gradient-account-moving`:''} rounded-full p-1`}  >
-            {avatar!=""? <Image
+            {avatar != ""  ? <Image
             src={avatar} style={{border:'1px solid black',borderRadius:'50%'}} width={40} alt={name} height={40}
-            />: <NameAvatar name={name} size={currentAcc==true?35:30}/> }
+            />:  <NameAvatar name={name} size={40}/> }
              
         </div>
         

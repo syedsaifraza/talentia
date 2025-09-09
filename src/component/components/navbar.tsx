@@ -258,7 +258,7 @@ const loadNotifications = async () => {
 
                 {showMenu && (
                   <div
-                    className="absolute right-0 mt-3 w-[400px] bg-white shadow-md rounded-md py-2"
+                    className="absolute right-0 mt-3  bg-white shadow-md rounded-md py-2"
                     style={{ zIndex: 1000 }}
                   >
                     <ProfileDropdown />
